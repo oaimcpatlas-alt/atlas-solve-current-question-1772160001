@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   query:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     timeout-minutes: 20
     steps:
       - name: Checkout
