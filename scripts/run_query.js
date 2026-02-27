@@ -1,5 +1,6 @@
 
 const fs = require('fs');
+const path = require('path');
 const { MongoClient } = require('mongodb');
 const tls = require('tls');
 const { Duplex } = require('stream');
@@ -8,13 +9,10 @@ const WebSocket = require('ws');
 const PROJECT_ID = '699c12be8df98bd863d63d70';
 const CLUSTER_NAME = 'mcpatlas';
 const MONGO_URI = 'mongodb://ac-lxbrbla-shard-00-02.zlknsyp.mongodb.net,ac-lxbrbla-shard-00-01.zlknsyp.mongodb.net,ac-lxbrbla-shard-00-00.zlknsyp.mongodb.net/?tls=true&authMechanism=MONGODB-X509&authSource=%24external&serverMonitoringMode=poll&maxIdleTimeMS=30000&minPoolSize=0&maxPoolSize=5&maxConnecting=6&replicaSet=atlas-pq8tl1-shard-0';
-
-function write(obj) {
-  fs.writeFileSync('workflow_result.json', JSON.stringify(obj, null, 2));
-}
+const COOKIES_PATH = 'browser_cookies.json';
 
 function buildCookieHeader() {
-  const raw = JSON.parse(fs.readFileSync('browser_cookies.json', 'utf8'));
+  const raw = JSON.parse(fs.readFileSync(COOKIES_PATH, 'utf8'));
   const cookies = Array.isArray(raw.cookies) ? raw.cookies : [];
   const parts = [];
   for (const c of cookies) {
@@ -27,7 +25,6 @@ function buildCookieHeader() {
   }
   return parts.join('; ');
 }
-
 const COOKIE_HEADER = buildCookieHeader();
 
 class TLSSocketProxy extends Duplex {
@@ -81,7 +78,7 @@ class TLSSocketProxy extends Duplex {
           this.emit('secureConnect');
           this._flush();
         } else {
-          this.destroy(new Error('Unexpected pre-message'));
+          this.destroy(new Error('Unexpected pre-message: ' + rest.toString('utf8')));
         }
       } else if (type === 2) {
         this._refreshTimeout();
@@ -103,7 +100,6 @@ class TLSSocketProxy extends Duplex {
       }
     });
   }
-
   _flush() {
     if (!this.connected || !this.ws || this.ws.readyState !== WebSocket.OPEN) return;
     while (this._pendingWrites.length) {
@@ -111,7 +107,6 @@ class TLSSocketProxy extends Duplex {
       this._writeNow(chunk, encoding, callback);
     }
   }
-
   _writeNow(chunk, encoding, callback) {
     try {
       this._refreshTimeout();
@@ -122,9 +117,7 @@ class TLSSocketProxy extends Duplex {
       callback(e);
     }
   }
-
   _read() {}
-
   _write(chunk, encoding, callback) {
     if (this.destroyed) return callback(new Error('Socket destroyed'));
     if (!this.connected || !this.ws || this.ws.readyState !== WebSocket.OPEN) {
@@ -133,7 +126,6 @@ class TLSSocketProxy extends Duplex {
     }
     this._writeNow(chunk, encoding, callback);
   }
-
   _destroy(err, callback) {
     this._clearTimeout();
     while (this._pendingWrites.length) {
@@ -147,7 +139,6 @@ class TLSSocketProxy extends Duplex {
     } catch {}
     callback(err);
   }
-
   setKeepAlive() { return this; }
   setNoDelay() { return this; }
   setTimeout(ms, cb) {
@@ -156,12 +147,7 @@ class TLSSocketProxy extends Duplex {
     this._refreshTimeout();
     return this;
   }
-  _clearTimeout() {
-    if (this._timeoutId) {
-      clearTimeout(this._timeoutId);
-      this._timeoutId = null;
-    }
-  }
+  _clearTimeout() { if (this._timeoutId) { clearTimeout(this._timeoutId); this._timeoutId = null; } }
   _refreshTimeout() {
     this._clearTimeout();
     if (typeof this._timeout === 'number' && this._timeout > 0 && Number.isFinite(this._timeout)) {
@@ -191,77 +177,45 @@ tls.connect = function patchedTlsConnect(options, callback) {
 
 function ser(v) {
   if (v === null || typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') return v;
-  if (Array.isArray(v)) return v.slice(0, 10).map(ser);
+  if (Array.isArray(v)) return v.map(ser);
   if (v instanceof Date) return v.toISOString();
   if (typeof v === 'object') {
+    // ObjectId stringify
+    if (v && typeof v.toHexString === 'function') return v.toHexString();
+    if (v && v._bsontype === 'ObjectId' && v.id) return Buffer.from(v.id).toString('hex');
     const out = {};
-    for (const [k, val] of Object.entries(v).slice(0, 100)) out[k] = ser(val);
+    for (const [k, val] of Object.entries(v)) out[k] = ser(val);
     return out;
   }
   return String(v);
 }
 
 async function main() {
-  const out = { started_at: new Date().toISOString(), cookieHeaderLength: COOKIE_HEADER.length };
-  let client = null;
+  const out = { cookieHeaderLength: COOKIE_HEADER.length };
+  const client = new MongoClient(MONGO_URI, {
+    serverSelectionTimeoutMS: 30000,
+    connectTimeoutMS: 30000,
+    socketTimeoutMS: 30000,
+    directConnection: false,
+    monitorCommands: false,
+  });
   try {
-    client = new MongoClient(MONGO_URI, {
-      serverSelectionTimeoutMS: 30000,
-      connectTimeoutMS: 30000,
-      socketTimeoutMS: 30000,
-      directConnection: false,
-      monitorCommands: false,
-    });
     await client.connect();
     out.ping = await client.db('admin').command({ ping: 1 });
-    const dbsResp = await client.db('admin').admin().listDatabases();
-    const dbNames = (dbsResp.databases || []).map(d => d.name).filter(n => !['admin','local','config'].includes(n));
-    out.databases = dbNames;
-    out.collections = {};
-    for (const dbName of dbNames) {
-      const db = client.db(dbName);
-      out.collections[dbName] = {};
-      let cols = [];
-      try {
-        cols = await db.listCollections().toArray();
-      } catch (e) {
-        out.collections[dbName]._error = String(e && e.message || e);
-        continue;
-      }
-      for (const c of cols) {
-        const collName = c.name;
-        const coll = db.collection(collName);
-        const rec = {};
-        try {
-          rec.estimatedCount = await coll.estimatedDocumentCount();
-        } catch (e) {
-          rec.estimatedCountError = String(e && e.message || e);
-        }
-        try {
-          const sampleDocs = await coll.find({}).limit(3).toArray();
-          rec.sampleDocs = sampleDocs.map(ser);
-          const fieldNames = new Set();
-          for (const doc of sampleDocs) {
-            if (doc && typeof doc === 'object' && !Array.isArray(doc)) {
-              for (const k of Object.keys(doc)) fieldNames.add(k);
-            }
-          }
-          rec.topLevelFields = Array.from(fieldNames).sort();
-        } catch (e) {
-          rec.sampleError = String(e && e.message || e);
-        }
-        out.collections[dbName][collName] = rec;
-        write(out);
-      }
-    }
+    const coll = client.db('video_game_store').collection('Customers');
+    const target = new Date('2018-04-03T00:00:00.000Z');
+    const next = new Date('2018-04-04T00:00:00.000Z');
+    const docs = await coll.find({
+      'Purchase Date': { $gte: target, $lt: next }
+    }).toArray();
+    out.count = docs.length;
+    out.docs = docs.map(ser);
   } catch (e) {
     out.error = String(e && e.message || e);
     out.stack = e && e.stack || null;
   } finally {
-    try { if (client) await client.close(); } catch {}
-    out.finished_at = new Date().toISOString();
-    write(out);
+    try { await client.close(); } catch {}
+    console.log(JSON.stringify(out, null, 2));
   }
 }
-
 main();
