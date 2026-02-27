@@ -11,24 +11,9 @@
       "text": "!function(){var t,e,n,r,i={8971:function(t,e,n){\"use strict\";var r=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,\"__esModule\",{value:!0});var i=r(n(8578));function o(t,e){return function(){var n=this.traits(),r=this.properties?this.properties():{};return i.default(n,\"address.\"+t)||i.default(n,t)||(e?i.default(n,\"address.\"+e):null)||(e?i.default(n,e):null)||i.default(r,\"address.\"+t)||i.default(r,t)||(e?i.default(r,\"address.\"+e):null)||(e?i.d"
     },
     {
-      "url": "https://px.ads.linkedin.com/collect?v=2&fmt=js&pid=33677&time=1772172071343&li_adsId=ed8cb3c0-d3ab-44d3-8798-267da491ad9a&url=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Flogin%3Fn%3Dhttps%253A%252F%252Fcloud.mongodb.com%252Fv2%252F699c12be8df98bd863d63d70%26nextHash%3D%2523overview%26signedOut%3Dtrue",
-      "status": 200,
-      "text": ""
-    },
-    {
       "url": "https://evs.blue.mongodb.com/v1/projects/tFLI8kTsjVV1Whb5D6Cgthsjp2f26tRF/settings",
       "status": 200,
       "text": "{\"_lastModified\":\"2026-02-24T15:50:30.558Z\",\"integrations\":{\"Optimizely\":{\"customCampaignProperties\":{},\"customExperimentProperties\":{},\"listen\":true,\"nonInteraction\":true,\"sendRevenueOnlyForOrderCompleted\":true,\"trackCategorizedPages\":true,\"trackNamedPages\":true,\"variations\":false,\"versionSettings\":{\"version\":\"3.5.1\",\"componentTypes\":[\"browser\",\"ios\",\"android\"]},\"type\":\"browser\",\"bundlingStatus\":\"bundled\"},\"Social_Business Email Event Split v2 (MongoDB)\":{\"destinationSourceApiKey\":\"xGfwfqCh9aWX"
-    },
-    {
-      "url": "https://account.mongodb.com/uiMsgs",
-      "status": 200,
-      "text": "[]"
-    },
-    {
-      "url": "https://px.ads.linkedin.com/attribution_trigger?pid=33677&time=1772172071343&url=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Flogin%3Fn%3Dhttps%253A%252F%252Fcloud.mongodb.com%252Fv2%252F699c12be8df98bd863d63d70%26nextHash%3D%2523overview%26signedOut%3Dtrue",
-      "status": 200,
-      "text": "{}"
     },
     {
       "url": "https://evs.blue.mongodb.com/analytics-next/bundles/ajs-destination.bundle.8e6b895db75187c55313.js",
@@ -41,9 +26,9 @@
       "text": "\"use strict\";(self.webpackChunk_segment_analytics_next=self.webpackChunk_segment_analytics_next||[]).push([[104],{1419:function(n,e,t){function i(n,e){var t,i;return\"boolean\"==typeof(null==e?void 0:e.enabled)?e.enabled:null===(i=null===(t=null==n?void 0:n.__default)||void 0===t?void 0:t.enabled)||void 0===i||i}t.d(e,{j:function(){return i}})},3542:function(n,e,t){t.r(e),t.d(e,{schemaFilter:function(){return o}});var i=t(5478),r=t(1419);function o(n,e){function t(t){var o=n,u=t.event.event;if(o&&"
     },
     {
-      "url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/875946829/?random=1772172071480&cv=11&fst=1772172071480&bg=ffffff&guid=ON&async=1&gtm=45be62p1v9101117952z871318991za20gzb71318991zd71318991xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=103116026~103200004~104527907~104528500~104684208~104684211~115616985~115938465~115938468~116024733~117484253~117611006&u_w=1280&u_h=720&url=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Flogin%3Fn%3Dhttps%253A%252F%252Fcloud.mongodb.com%252Fv2%252F699c12be8df98bd863d63d70%26nextHash%3D%2523overview%26signedOut%3Dtrue&frm=0&tiba=Log%20in%20%7C%20MongoDB&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=290204060.1772150791&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=CA&rfmt=3&fmt=4",
+      "url": "https://account.mongodb.com/uiMsgs",
       "status": 200,
-      "text": "(function(){var s = {};(function(){var k=typeof Object.defineProperties==\"function\"?Object.defineProperty:function(a,d,b){if(a==Array.prototype||a==Object.prototype)return a;a[d]=b.value;return a};function l(a){a=[\"object\"==typeof globalThis&&globalThis,a,\"object\"==typeof window&&window,\"object\"==typeof self&&self,\"object\"==typeof global&&global];for(var d=0;d<a.length;++d){var b=a[d];if(b&&b.Math==Math)return b}throw Error(\"Cannot find global object\");} var p=l(this),q=typeof Symbol===\"function"
+      "text": "[]"
     },
     {
       "url": "https://evs.blue.mongodb.com/next-integrations/integrations/optimizely/3.5.1/optimizely.dynamic.js.gz",
@@ -51,14 +36,29 @@
       "text": "window['optimizelyDeps'] = [\"/integrations/vendor/commons.59560acdd69ed701c941.js\"];window['optimizelyLoader'] = function() { return window.optimizelyIntegration=function(e){function t(t){for(var r,o,p=t[0],s=t[1],d=t[2],m=0,f=[];m<p.length;m++)o=p[m],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&f.push(n[o][0]),n[o]=0;for(r in s)Object.prototype.hasOwnProperty.call(s,r)&&(e[r]=s[r]);for(c&&c(t);f.length;)f.shift()();return a.push.apply(a,d||[]),i()}function i(){for(var e,t=0;t<a.length;t++){"
     },
     {
+      "url": "https://px.ads.linkedin.com/collect?v=2&fmt=js&pid=33677&time=1772172608748&li_adsId=3e57baae-a3e1-4c67-bf83-9dcdbb057ed3&url=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Flogin%3Fn%3Dhttps%253A%252F%252Fcloud.mongodb.com%252Fv2%252F699c12be8df98bd863d63d70%26nextHash%3D%2523overview%26signedOut%3Dtrue",
+      "status": 200,
+      "text": ""
+    },
+    {
       "url": "https://evs.blue.mongodb.com/next-integrations/integrations/vendor/commons.59560acdd69ed701c941.js.gz",
       "status": 200,
       "text": "(window.webpackJsonp_name_Integration=window.webpackJsonp_name_Integration||[]).push([[0],{\"+BL1\":function(t,e,r){\"use strict\";function n(t){var e=t.toString();return 1===e.length?\"0\"+e:e}t.exports=function(t){return t.getUTCFullYear()+\"-\"+n(t.getUTCMonth()+1)+\"-\"+n(t.getUTCDate())+\"T\"+n(t.getUTCHours())+\":\"+n(t.getUTCMinutes())+\":\"+n(t.getUTCSeconds())+\".\"+String((t.getUTCMilliseconds()/1e3).toFixed(3)).slice(2,5)+\"Z\"}},\"+VvR\":function(t,e){t.exports=function(t,e){if(\"string\"!=typeof t)throw ne"
     },
     {
+      "url": "https://px.ads.linkedin.com/attribution_trigger?pid=33677&time=1772172608748&url=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Flogin%3Fn%3Dhttps%253A%252F%252Fcloud.mongodb.com%252Fv2%252F699c12be8df98bd863d63d70%26nextHash%3D%2523overview%26signedOut%3Dtrue",
+      "status": 200,
+      "text": "{}"
+    },
+    {
+      "url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/875946829/?random=1772172608779&cv=11&fst=1772172608779&bg=ffffff&guid=ON&async=1&gtm=45be62p1v9101117952z871318991za20gzb71318991zd71318991xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=103116026~103200004~104527906~104528501~104684208~104684211~115616986~115938466~115938468~116024733&u_w=1280&u_h=720&url=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Flogin%3Fn%3Dhttps%253A%252F%252Fcloud.mongodb.com%252Fv2%252F699c12be8df98bd863d63d70%26nextHash%3D%2523overview%26signedOut%3Dtrue&frm=0&tiba=Log%20in%20%7C%20MongoDB&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=290204060.1772150791&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=CA&rfmt=3&fmt=4",
+      "status": 200,
+      "text": "(function(){var s = {};(function(){var k=typeof Object.defineProperties==\"function\"?Object.defineProperty:function(a,d,b){if(a==Array.prototype||a==Object.prototype)return a;a[d]=b.value;return a};function l(a){a=[\"object\"==typeof globalThis&&globalThis,a,\"object\"==typeof window&&window,\"object\"==typeof self&&self,\"object\"==typeof global&&global];for(var d=0;d<a.length;++d){var b=a[d];if(b&&b.Math==Math)return b}throw Error(\"Cannot find global object\");} var p=l(this),q=typeof Symbol===\"function"
+    },
+    {
       "url": "https://auth.mongodb.com/api/v1/sessions/me",
       "status": 404,
-      "text": "{\"errorCode\":\"E0000007\",\"errorSummary\":\"Not found: Resource not found: me (Session)\",\"errorLink\":\"E0000007\",\"errorId\":\"oaex60bzxjETzSa3xGvZ_t-1w\",\"errorCauses\":[]}"
+      "text": "{\"errorCode\":\"E0000007\",\"errorSummary\":\"Not found: Resource not found: me (Session)\",\"errorLink\":\"E0000007\",\"errorId\":\"oaeA3dm2O6bQGKCLMzdhDLUNA\",\"errorCauses\":[]}"
     },
     {
       "url": "https://api.blue.mongodb.com/v1/i",
