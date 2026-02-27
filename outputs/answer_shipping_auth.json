@@ -1,10 +1,10 @@
 {
   "before_code_ids": [
-    "19c9dd63d6c7e71f",
-    "19c9de5d16286b05",
-    "19c9dc147a6aeb40",
-    "19c9de819f7dbdc7",
-    "19c9de630e8eeb07"
+    "19ca130a6a67a40c",
+    "19ca130296545eaa",
+    "19ca0becda7a7e09",
+    "19ca0b1e4349a6ac",
+    "19ca12d076caba93"
   ],
   "session_token_login_url_present": true,
   "session_token_seed_cookie_count": 5,
@@ -19,55 +19,164 @@
   "verify": {
     "status": 400,
     "headers": {
-      "date": "Fri, 27 Feb 2026 07:05:42 GMT",
+      "date": "Fri, 27 Feb 2026 22:54:04 GMT",
       "strict-transport-security": "max-age=31536000; includeSubdomains;",
       "referrer-policy": "strict-origin-when-cross-origin",
       "x-permitted-cross-domain-policies": "none",
       "x-content-type-options": "nosniff",
-      "x-error-code": "INVALID_USER_AUTH",
+      "x-error-code": "RATE_LIMITED",
       "content-type": "application/json",
       "x-frame-options": "DENY",
-      "content-length": "64",
+      "content-length": "59",
       "server": "mdbws",
       "x-xgen-up-proto": "HTTP/2",
       "connection": "close"
     },
-    "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}",
-    "attempt": 1
+    "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+    "attempt": 2
   },
-  "reset_candidates": [
+  "reset_rounds": [
     {
-      "id": "19c9dea78db52c0d",
-      "internalDate": "1772175915000"
+      "round": 1,
+      "candidate_ids": [
+        "19ca149a8a57b014",
+        "19ca149728f94352",
+        "19ca1493e9861855",
+        "19ca1492c633ae44",
+        "19ca1487a790ffb9",
+        "19ca147d66c3470b",
+        "19ca1465de1f3da2",
+        "19ca1456afb51ee5"
+      ],
+      "rate_limited": true
     },
     {
-      "id": "19c9de9dbd4f4f38",
-      "internalDate": "1772175874000"
+      "round": 2,
+      "candidate_ids": [
+        "19ca149a8a57b014",
+        "19ca149728f94352",
+        "19ca1493e9861855",
+        "19ca1492c633ae44",
+        "19ca1487a790ffb9",
+        "19ca147d66c3470b",
+        "19ca1465de1f3da2",
+        "19ca1456afb51ee5"
+      ],
+      "rate_limited": true
     },
     {
-      "id": "19c9de9a50607de9",
-      "internalDate": "1772175860000"
+      "round": 3,
+      "candidate_ids": [
+        "19ca149a8a57b014",
+        "19ca149728f94352",
+        "19ca1493e9861855",
+        "19ca1492c633ae44",
+        "19ca1487a790ffb9",
+        "19ca147d66c3470b",
+        "19ca1465de1f3da2",
+        "19ca1456afb51ee5"
+      ],
+      "rate_limited": true
     },
     {
-      "id": "19c9de994c14ae2c",
-      "internalDate": "1772175856000"
+      "round": 4,
+      "candidate_ids": [
+        "19ca149a8a57b014",
+        "19ca149728f94352",
+        "19ca1493e9861855",
+        "19ca1492c633ae44",
+        "19ca1487a790ffb9",
+        "19ca147d66c3470b",
+        "19ca1465de1f3da2",
+        "19ca1456afb51ee5"
+      ],
+      "rate_limited": true
     },
     {
-      "id": "19c9de7fdaa9ec94",
-      "internalDate": "1772175751000"
+      "round": 5,
+      "candidate_ids": [
+        "19ca149a8a57b014",
+        "19ca149728f94352",
+        "19ca1493e9861855",
+        "19ca1492c633ae44",
+        "19ca1487a790ffb9",
+        "19ca147d66c3470b",
+        "19ca1465de1f3da2",
+        "19ca1456afb51ee5"
+      ],
+      "rate_limited": true
     },
     {
-      "id": "19c9de7e0ac4e650",
-      "internalDate": "1772175744000"
+      "round": 6,
+      "candidate_ids": [
+        "19ca149a8a57b014",
+        "19ca149728f94352",
+        "19ca1493e9861855",
+        "19ca1492c633ae44",
+        "19ca1487a790ffb9",
+        "19ca147d66c3470b",
+        "19ca1465de1f3da2",
+        "19ca1456afb51ee5"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 7,
+      "candidate_ids": [
+        "19ca149a8a57b014",
+        "19ca149728f94352",
+        "19ca1493e9861855",
+        "19ca1492c633ae44",
+        "19ca1487a790ffb9",
+        "19ca147d66c3470b",
+        "19ca1465de1f3da2",
+        "19ca1456afb51ee5"
+      ],
+      "success_id": "19ca149a8a57b014"
     }
   ],
-  "reset_password_suffix": "44Q#7m",
+  "reset_candidates": [
+    {
+      "id": "19ca149a8a57b014",
+      "internalDate": "1772232484000"
+    },
+    {
+      "id": "19ca149728f94352",
+      "internalDate": "1772232471000"
+    },
+    {
+      "id": "19ca1493e9861855",
+      "internalDate": "1772232457000"
+    },
+    {
+      "id": "19ca1492c633ae44",
+      "internalDate": "1772232453000"
+    },
+    {
+      "id": "19ca1487a790ffb9",
+      "internalDate": "1772232407000"
+    },
+    {
+      "id": "19ca147d66c3470b",
+      "internalDate": "1772232365000"
+    },
+    {
+      "id": "19ca1465de1f3da2",
+      "internalDate": "1772232268000"
+    },
+    {
+      "id": "19ca1456afb51ee5",
+      "internalDate": "1772232206000"
+    }
+  ],
+  "reset_password_suffix": "R7Q#7m",
   "reset_attempts": [
     {
-      "id": "19c9dea78db52c0d",
+      "id": "19ca149a8a57b014",
+      "round": 1,
       "status": 429,
       "headers": {
-        "date": "Fri, 27 Feb 2026 07:05:45 GMT",
+        "date": "Fri, 27 Feb 2026 22:54:21 GMT",
         "strict-transport-security": "max-age=31536000; includeSubdomains;",
         "referrer-policy": "strict-origin-when-cross-origin",
         "x-permitted-cross-domain-policies": "none",
@@ -81,9 +190,143 @@
         "connection": "close"
       },
       "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19ca149a8a57b014",
+      "round": 2,
+      "status": 429,
+      "headers": {
+        "date": "Fri, 27 Feb 2026 22:55:23 GMT",
+        "strict-transport-security": "max-age=31536000; includeSubdomains;",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-permitted-cross-domain-policies": "none",
+        "x-content-type-options": "nosniff",
+        "x-error-code": "RATE_LIMITED",
+        "content-type": "application/json",
+        "x-frame-options": "DENY",
+        "content-length": "59",
+        "server": "mdbws",
+        "x-xgen-up-proto": "HTTP/2",
+        "connection": "close"
+      },
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19ca149a8a57b014",
+      "round": 3,
+      "status": 429,
+      "headers": {
+        "date": "Fri, 27 Feb 2026 22:56:26 GMT",
+        "strict-transport-security": "max-age=31536000; includeSubdomains;",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-permitted-cross-domain-policies": "none",
+        "x-content-type-options": "nosniff",
+        "x-error-code": "RATE_LIMITED",
+        "content-type": "application/json",
+        "x-frame-options": "DENY",
+        "content-length": "59",
+        "server": "mdbws",
+        "x-xgen-up-proto": "HTTP/2",
+        "connection": "close"
+      },
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19ca149a8a57b014",
+      "round": 4,
+      "status": 429,
+      "headers": {
+        "date": "Fri, 27 Feb 2026 22:57:28 GMT",
+        "strict-transport-security": "max-age=31536000; includeSubdomains;",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-permitted-cross-domain-policies": "none",
+        "x-content-type-options": "nosniff",
+        "x-error-code": "RATE_LIMITED",
+        "content-type": "application/json",
+        "x-frame-options": "DENY",
+        "content-length": "59",
+        "server": "mdbws",
+        "x-xgen-up-proto": "HTTP/2",
+        "connection": "close"
+      },
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19ca149a8a57b014",
+      "round": 5,
+      "status": 429,
+      "headers": {
+        "date": "Fri, 27 Feb 2026 22:58:30 GMT",
+        "strict-transport-security": "max-age=31536000; includeSubdomains;",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-permitted-cross-domain-policies": "none",
+        "x-content-type-options": "nosniff",
+        "x-error-code": "RATE_LIMITED",
+        "content-type": "application/json",
+        "x-frame-options": "DENY",
+        "content-length": "59",
+        "server": "mdbws",
+        "x-xgen-up-proto": "HTTP/2",
+        "connection": "close"
+      },
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19ca149a8a57b014",
+      "round": 6,
+      "status": 429,
+      "headers": {
+        "date": "Fri, 27 Feb 2026 22:59:32 GMT",
+        "strict-transport-security": "max-age=31536000; includeSubdomains;",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-permitted-cross-domain-policies": "none",
+        "x-content-type-options": "nosniff",
+        "x-error-code": "RATE_LIMITED",
+        "content-type": "application/json",
+        "x-frame-options": "DENY",
+        "content-length": "59",
+        "server": "mdbws",
+        "x-xgen-up-proto": "HTTP/2",
+        "connection": "close"
+      },
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19ca149a8a57b014",
+      "round": 7,
+      "status": 200,
+      "headers": {
+        "date": "Fri, 27 Feb 2026 23:00:34 GMT",
+        "strict-transport-security": "max-age=31536000; includeSubdomains;",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-permitted-cross-domain-policies": "none",
+        "x-content-type-options": "nosniff",
+        "x-error-code": "NONE",
+        "content-type": "application/json",
+        "x-frame-options": "DENY",
+        "vary": "Accept-Encoding",
+        "content-length": "197",
+        "server": "mdbws",
+        "x-xgen-up-proto": "HTTP/2",
+        "connection": "close"
+      },
+      "body": "{\"errorCode\":\"NONE\",\"loginRedirect\":\"/account/security/mfa?n=%2Faccount%2Fprofile%2Finfo&uId=00u117rlu9fT52fdU298&stateToken=005favfR3MEOmfPGN63iVl7VJOubo61uN0zdGdvGvq\",\"version\":\"1\",\"status\":\"OK\"}"
     }
   ],
-  "auth_method": null,
-  "error": "auth bootstrap failed: {'status': 400, 'headers': {'date': 'Fri, 27 Feb 2026 07:05:42 GMT', 'strict-transport-security': 'max-age=31536000; includeSubdomains;', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-permitted-cross-domain-policies': 'none', 'x-content-type-options': 'nosniff', 'x-error-code': 'INVALID_USER_AUTH', 'content-type': 'application/json', 'x-frame-options': 'DENY', 'content-length': '64', 'server': 'mdbws', 'x-xgen-up-proto': 'HTTP/2', 'connection': 'close'}, 'body': '{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}', 'attempt': 1}",
-  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 277, in <module>\nRuntimeError: auth bootstrap failed: {'status': 400, 'headers': {'date': 'Fri, 27 Feb 2026 07:05:42 GMT', 'strict-transport-security': 'max-age=31536000; includeSubdomains;', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-permitted-cross-domain-policies': 'none', 'x-content-type-options': 'nosniff', 'x-error-code': 'INVALID_USER_AUTH', 'content-type': 'application/json', 'x-frame-options': 'DENY', 'content-length': '64', 'server': 'mdbws', 'x-xgen-up-proto': 'HTTP/2', 'connection': 'close'}, 'body': '{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}', 'attempt': 1}\n"
+  "reset_success_id": "19ca149a8a57b014",
+  "auth_method": "resetPasswordComplete",
+  "state_token_prefix": "005favfR3MEO",
+  "mfa_get": {
+    "status": 200,
+    "body": "{\"_embedded\":{\"factors\":[{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"}],\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"stateToken\":\"005favfR3MEOmfPGN63iVl7VJOubo61uN0zdGdvGvq\",\"status\":\"MFA_REQUIRED\"}"
+  },
+  "factor_id": "emf11aaoelxPONmRM298",
+  "factor_type": "email",
+  "new_code_id": "19ca130a6a67a40c",
+  "mfa_verify": {
+    "status": 400,
+    "body": "{\"errorCode\":\"INVALID_PASSCODE_OR_ANSWER\",\"message\":\"INVALID_PASSCODE_OR_ANSWER\",\"params\":[],\"version\":\"1\",\"status\":\"ERROR\"}"
+  },
+  "error": "mfa verify failed: {'errorCode': 'INVALID_PASSCODE_OR_ANSWER', 'message': 'INVALID_PASSCODE_OR_ANSWER', 'params': [], 'version': '1', 'status': 'ERROR'}",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 346, in <module>\nRuntimeError: mfa verify failed: {'errorCode': 'INVALID_PASSCODE_OR_ANSWER', 'message': 'INVALID_PASSCODE_OR_ANSWER', 'params': [], 'version': '1', 'status': 'ERROR'}\n"
 }
