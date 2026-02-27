@@ -1,9 +1,40 @@
 {
-  "secret_sources": {
-    "client_id": null,
-    "client_secret": null,
-    "refresh_token": "session_token_probe_result.json"
+  "before_codes": [
+    {
+      "id": "19c9e0bebea77bcb",
+      "internalDate": 1772178106000,
+      "code": "809369",
+      "snippet": "Your one-time verification code: 809369 This code expires after 5 minutes. If you did not request this, please change your password or contact MongoDB Support. "
+    },
+    {
+      "id": "19c9e0adc8eff095",
+      "internalDate": 1772178037000,
+      "code": "552171",
+      "snippet": "Your one-time verification code: 552171 This code expires after 5 minutes. If you did not request this, please change your password or contact MongoDB Support. "
+    },
+    {
+      "id": "19c9e0887fcb3212",
+      "internalDate": 1772177884000,
+      "code": "399527",
+      "snippet": "Your one-time verification code: 399527 This code expires after 5 minutes. If you did not request this, please change your password or contact MongoDB Support. "
+    },
+    {
+      "id": "19c9dff91b402449",
+      "internalDate": 1772177296000,
+      "code": "376975",
+      "snippet": "Your one-time verification code: 376975 This code expires after 5 minutes. If you did not request this, please change your password or contact MongoDB Support. "
+    },
+    {
+      "id": "19c9df88dd8d906a",
+      "internalDate": 1772176837000,
+      "code": "100690",
+      "snippet": "Your one-time verification code: 100690 This code expires after 5 minutes. If you did not request this, please change your password or contact MongoDB Support. "
+    }
+  ],
+  "verify": {
+    "status": 400,
+    "text": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
   },
-  "error": "failed to recover Google creds from repo files",
-  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/auth_session_public.py\", line 110, in <module>\n    raise RuntimeError('failed to recover Google creds from repo files')\nRuntimeError: failed to recover Google creds from repo files\n"
+  "error": "auth verify failed: {\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/auth_session_public.py\", line 108, in <module>\n    raise RuntimeError(f'auth verify failed: {r.text[:300]}')\nRuntimeError: auth verify failed: {\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}\n"
 }
