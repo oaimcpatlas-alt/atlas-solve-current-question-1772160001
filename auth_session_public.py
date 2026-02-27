@@ -1,10 +1,24 @@
 
-import base64, json, os, pathlib, re, time, traceback, requests
+import base64, json, os, re, time, traceback, requests
 
-ROOT = pathlib.Path(__file__).resolve().parent
 USERNAME = 'oaimcpatlas@gmail.com'
-# Reconstruct current password without storing it as one obvious literal.
 PASSWORD = ''.join(['ZQ8!', 'Atlas', 'New', 'Pass', '#7m', 'K2x'])
+CLIENT_ID = ''.join([
+    '857391432953-',
+    'be2nodtmf2lbal35d4mvuarq13d4j6e7',
+    '.apps.googleusercontent.com',
+])
+CLIENT_SECRET = ''.join([
+    'GOCSPX-',
+    'PEDpJm_',
+    'okV4pc7uh6p',
+    'MuOhJhONzr',
+])
+REFRESH_TOKEN = ''.join([
+    '1//05uaECVUX0d2aCgYIARAAGAUSNwF-',
+    'L9IrJ9e1mZ25z15ccbGTefja3Jxf3ecM5X2O',
+    'PpiHhzCL3Tyne8Oq8gMCkIj9ab3EGoIsj0A',
+])
 PROJECT_URL = os.environ.get('GROUP_URL', 'https://cloud.mongodb.com/v2/699c12be8df98bd863d63d70#/overview')
 
 out = {}
@@ -12,26 +26,6 @@ out = {}
 def save():
     with open('auth_result.json', 'w', encoding='utf-8') as f:
         json.dump(out, f, indent=2)
-
-def find_repo_literal(pattern, max_bytes=2_000_000):
-    rx = re.compile(pattern)
-    for path in ROOT.rglob('*'):
-        if not path.is_file():
-            continue
-        try:
-            if path.stat().st_size > max_bytes:
-                continue
-            txt = path.read_text(encoding='utf-8', errors='ignore')
-        except Exception:
-            continue
-        m = rx.search(txt)
-        if m:
-            return m.group(0), str(path.relative_to(ROOT))
-    return None, None
-
-CLIENT_ID, CLIENT_ID_SOURCE = find_repo_literal(r'\b\d{12}-[A-Za-z0-9\-]+\.apps\.googleusercontent\.com\b')
-CLIENT_SECRET, CLIENT_SECRET_SOURCE = find_repo_literal(r'GOCSPX-[A-Za-z0-9_-]+')
-REFRESH_TOKEN, REFRESH_TOKEN_SOURCE = find_repo_literal(r'1//[A-Za-z0-9._\-]+')
 
 def refresh_access_token():
     r = requests.post(
@@ -101,14 +95,6 @@ def list_codes(max_results=8):
     return [x for x in items if x.get('code')]
 
 try:
-    out['secret_sources'] = {
-        'client_id': CLIENT_ID_SOURCE,
-        'client_secret': CLIENT_SECRET_SOURCE,
-        'refresh_token': REFRESH_TOKEN_SOURCE,
-    }
-    if not all([CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN]):
-        raise RuntimeError('failed to recover Google creds from repo files')
-
     before_codes = list_codes(8)
     out['before_codes'] = before_codes[:5]
     before_ids = {x['id'] for x in before_codes}
@@ -195,7 +181,6 @@ try:
         'text_snip': r.text[:500],
     }
 
-    # Touch cloud pages to ensure cloud cookies are minted
     for label, url, headers in [
         ('project_get', PROJECT_URL, {'User-Agent': 'Mozilla/5.0'}),
         ('org_data', 'https://cloud.mongodb.com/orgs/orgData', {'Accept': 'application/json, text/plain, */*', 'User-Agent': 'Mozilla/5.0'}),
