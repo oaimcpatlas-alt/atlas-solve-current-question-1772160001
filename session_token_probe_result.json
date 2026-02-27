@@ -1,0 +1,92 @@
+{
+  "loginUrl": "https://auth.mongodb.com/oauth2/default/v1/authorize?client_id=0oa2h8np9ryZR4Xat297&redirect_uri=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Foidc%2Fcallback&response_type=code&response_mode=query&scope=openid+email&state=%7B%22stateNonce%22%3A%227ac314bf-7346-4b1c-8ef6-087292241148%22%7D&nonce=7226ca6c-25c0-4e7c-bdb6-858db3afef74&sessionToken=20111iTBfo3iYJ2_Pw9jY6Gu4P0bs1beQxpvRcOYBCTQV1JC224SArB",
+  "steps": [
+    {
+      "label": "loginRedirect",
+      "url": "https://auth.mongodb.com/oauth2/default/v1/authorize?client_id=0oa2h8np9ryZR4Xat297&redirect_uri=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Foidc%2Fcallback&response_type=code&response_mode=query&scope=openid+email&state=%7B%22stateNonce%22%3A%227ac314bf-7346-4b1c-8ef6-087292241148%22%7D&nonce=7226ca6c-25c0-4e7c-bdb6-858db3afef74&sessionToken=20111iTBfo3iYJ2_Pw9jY6Gu4P0bs1beQxpvRcOYBCTQV1JC224SArB",
+      "status": 200,
+      "headers": {
+        "accept-ch": "Sec-CH-UA-Platform-Version",
+        "cache-control": "no-cache, no-store",
+        "connection": "Keep-Alive",
+        "content-encoding": "gzip",
+        "content-language": "en",
+        "content-security-policy-report-only": "default-src 'self' mongodb.okta.com auth.mongodb.com *.oktacdn.com; connect-src 'self' mongodb.okta.com mongodb-admin.okta.com auth.mongodb.com *.oktacdn.com *.mixpanel.com *.mapbox.com mongodb.kerberos.okta.com mongodb.mtls.okta.com *.authenticatorlocalprod.com:8769 http://localhost:8769 http://127.0.0.1:8769 *.authenticatorlocalprod.com:65111 http://localhost:65111 http://127.0.0.1:65111 *.authenticatorlocalprod.com:65121 http://localhost:65121 http://127.0.0.1:65121 *.authenticatorlocalprod.com:65131 http://localhost:65131 http://127.0.0.1:65131 *.authenticatorlocalprod.com:65141 http://localhost:65141 http://127.0.0.1:65141 *.authenticatorlocalprod.com:65151 http://localhost:65151 http://127.0.0.1:65151 https://oinmanager.okta.com data:; script-src 'unsafe-inline' 'unsafe-eval' 'self' 'report-sample' mongodb.okta.com auth.mongodb.com *.oktacdn.com; style-src 'unsafe-inline' 'self' 'report-sample' mongodb.okta.com auth.mongodb.com *.oktacdn.com; frame-src 'self' mongodb.okta.com mongodb-admin.okta.com auth.mongodb.com login.okta.com com-okta-authenticator: api-5f50d427.duosecurity.com; img-src 'self' mongodb.okta.com auth.mongodb.com *.oktacdn.com *.tiles.mapbox.com *.mapbox.com data: blob:; font-src 'self' mongodb.okta.com auth.mongodb.com data: *.oktacdn.com fonts.gstatic.com; frame-ancestors 'self' https://account.mongodb.com https://account-stage.mongodb.com",
+        "content-type": "text/html;charset=utf-8",
+        "date": "Fri, 27 Feb 2026 06:55:52 GMT",
+        "expires": "0",
+        "keep-alive": "timeout=5, max=100",
+        "p3p": "CP=\"HONK\"",
+        "pragma": "no-cache",
+        "referrer-policy": "no-referrer",
+        "server": "nginx",
+        "set-cookie": "DT=DI1ZO7cpCWkRpqE1NfA_-qHVA;Version=1;Path=/;Max-Age=63072000;Secure;Expires=Sun, 27 Feb 2028 06:55:52 GMT;HttpOnly",
+        "strict-transport-security": "max-age=315360000; includeSubDomains",
+        "transfer-encoding": "chunked",
+        "vary": "Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-okta-request-id": "aaE_-EpgLPdS43-5XHMuRwAABss",
+        "x-rate-limit-limit": "60",
+        "x-rate-limit-remaining": "59",
+        "x-rate-limit-reset": "1772175412",
+        "x-robots-tag": "noindex,nofollow",
+        "x-ua-compatible": "IE=edge",
+        "x-xss-protection": "0"
+      },
+      "setCookieNames": [
+        "xids",
+        "sid",
+        "autolaunch_triggered",
+        "activate_ca_modal_triggered",
+        "JSESSIONID",
+        "t",
+        "DT"
+      ],
+      "bodyHead": "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n<html>\n<head>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <meta name=\"robots\" content=\"noindex,nofollow\" />\n    <!-- Styles generated from theme -->\n    <link href=\"/api/internal/brand/theme/style-sheet?touch-point=SIGN_IN_PAGE&amp;v=f55deda9bcf67d146891c3735c8e74886bdff5e14abce1465d6d1b7e09d6cbe3c8b4e1bab1b67d8a53b77925c6499bbb\" rel=\"stylesheet\" type=\"text/css\">\n    <!-- Favicon from theme -->\n    <link rel=\"shortcut icon\" href=\"https://ok5static.oktacdn.com/bc/image/fileStoreRecord?id=fs0jq9gvpsKaNQB17297\" type=\"image/x-icon\"/>\n\n    <style>\n        .button {\n            background-color: #00ED64 !important;\n            border-color: #00ED64 !important;\n            color: #000000 !important;\n        }\n\n        .applogin-container {\n            color: #001E2B !important;\n        }\n      \n        #okta-sign-in .infobox {\n            hyphens: none !important;\n        }\n\n        #okta-sign-in .default-custom-button {\n            background-color: #011e2b !important;\n            border: 1p"
+    }
+  ],
+  "jarNames": [
+    "okta-oauth-state",
+    "okta-oauth-nonce",
+    "oidc-init-user-prod",
+    "remember-user-device",
+    "user-device",
+    "xids",
+    "sid",
+    "autolaunch_triggered",
+    "activate_ca_modal_triggered",
+    "JSESSIONID",
+    "t",
+    "DT"
+  ],
+  "accountProfile": {
+    "status": 303,
+    "headers": {
+      "content-length": "0",
+      "date": "Fri, 27 Feb 2026 06:55:52 GMT",
+      "location": "https://account.mongodb.com/account/login?signedOut=true&fromURI=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Fprofile%2Finfo",
+      "server": "mdbws"
+    },
+    "bodyHead": ""
+  },
+  "cloudOverview": {
+    "status": 303,
+    "headers": {
+      "content-length": "0",
+      "date": "Fri, 27 Feb 2026 06:55:52 GMT",
+      "location": "https://account.mongodb.com/account/login?signedOut=true&n=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F699c12be8df98bd863d63d70",
+      "server": "mdbws"
+    },
+    "bodyHead": ""
+  },
+  "connectionInfo": {
+    "status": 303,
+    "headers": {
+      "content-length": "0",
+      "date": "Fri, 27 Feb 2026 06:55:52 GMT",
+      "location": "https://account.mongodb.com/account/login?signedOut=true&n=https%3A%2F%2Fcloud.mongodb.com%2Fexplorer%2Fv1%2Fgroups%2F699c12be8df98bd863d63d70%2Fclusters%2FconnectionInfo",
+      "server": "mdbws"
+    },
+    "bodyHead": ""
+  }
+}
