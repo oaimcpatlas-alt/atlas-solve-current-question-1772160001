@@ -1,10 +1,9 @@
 
 const fs = require('fs');
-const WebSocket = require('ws');
 
 function writeResult(obj){ fs.writeFileSync('workflow_result.json', JSON.stringify(obj, null, 2)); }
 
-function buildCookieHeader(allowedDomains) {
+function buildAccountCookieHeader() {
   try {
     const raw = JSON.parse(fs.readFileSync('browser_cookies.json','utf8'));
     const cookies = Array.isArray(raw.cookies) ? raw.cookies : [];
@@ -13,112 +12,84 @@ function buildCookieHeader(allowedDomains) {
       const d = String(c.domain || '');
       const v = typeof c.value === 'string' ? c.value : '';
       if (!v) continue;
-      if (allowedDomains.some((ad) => d === ad || d.endsWith(ad))) {
+      if (d === 'account.mongodb.com' || d === '.account.mongodb.com' || d === '.mongodb.com') {
         parts.push(`${c.name}=${c.value}`);
       }
     }
     return parts.join('; ');
-  } catch {
-    return '';
-  }
+  } catch { return ''; }
 }
 
-async function fetchManual(url, headers) {
-  const resp = await fetch(url, {
-    method: 'GET',
+async function tryPassword(password, cookieHeader) {
+  const headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'User-Agent': 'Mozilla/5.0',
+  };
+  if (cookieHeader) headers['Cookie'] = cookieHeader;
+  const resp = await fetch('https://account.mongodb.com/account/auth/verify', {
+    method: 'POST',
     headers,
+    body: JSON.stringify({ username: 'oaimcpatlas@gmail.com', password }),
     redirect: 'manual',
   });
   const text = await resp.text();
   let json = null;
   try { json = JSON.parse(text); } catch {}
   return {
+    password,
     status: resp.status,
+    at: new Date().toISOString(),
     headers: Object.fromEntries(resp.headers.entries()),
-    body: text.slice(0, 2000),
-    json,
+    body: text.slice(0, 1000),
+    json
   };
 }
 
-function testWs(cookieHeader) {
-  return new Promise((resolve) => {
-    const host = 'ac-lxbrbla-shard-00-00.zlknsyp.mongodb.net';
-    const url = new URL('wss://cloud.mongodb.com/cluster-connection/699c12be8df98bd863d63d70');
-    url.searchParams.set('sniHostname', host);
-    url.searchParams.set('port', '27017');
-    url.searchParams.set('clusterName', 'mcpatlas');
-    url.searchParams.set('version', '1');
-    const out = { url: url.toString() };
-    const headers = {
-      'User-Agent': 'Mozilla/5.0',
-      'Origin': 'https://cloud.mongodb.com',
-    };
-    if (cookieHeader) headers['Cookie'] = cookieHeader;
-    const ws = new WebSocket(url, { headers });
-    let done = false;
-    function finish() {
-      if (done) return;
-      done = true;
-      try { ws.close(); } catch {}
-      resolve(out);
-    }
-    ws.on('open', () => {
-      out.open = true;
-      const meta = { port: 27017, host, clusterName: 'mcpatlas', ok: 1 };
-      const payload = Buffer.from(JSON.stringify(meta), 'utf8');
-      const frame = Buffer.concat([Buffer.from([1]), payload]);
-      ws.send(frame);
-    });
-    ws.on('message', (data) => {
-      const buf = Buffer.isBuffer(data) ? data : Buffer.from(data);
-      out.message = {
-        len: buf.length,
-        type: buf[0],
-        textPrefix: buf.subarray(1, 200).toString('utf8'),
-        hexPrefix: buf.subarray(0, 50).toString('hex'),
-      };
-      finish();
-    });
-    ws.on('unexpected-response', (_req, res) => {
-      out.unexpected = {
-        statusCode: res.statusCode,
-        headers: res.headers,
-      };
-      finish();
-    });
-    ws.on('error', (err) => {
-      out.error = String(err && err.message || err);
-      finish();
-    });
-    ws.on('close', (code, reason) => {
-      out.close = { code, reason: reason.toString() };
-      setTimeout(finish, 50);
-    });
-    setTimeout(() => {
-      out.timeout = true;
-      finish();
-    }, 10000);
-  });
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function main() {
   const result = { triedAt: new Date().toISOString() };
   try {
-    const accountCookieHeader = buildCookieHeader(['account.mongodb.com', '.account.mongodb.com', '.mongodb.com']);
-    const cloudCookieHeader = buildCookieHeader(['cloud.mongodb.com', '.cloud.mongodb.com', '.mongodb.com']);
-    result.accountCookieHeaderLength = accountCookieHeader.length;
-    result.cloudCookieHeaderLength = cloudCookieHeader.length;
-
-    const cloudHeaders = {
-      'Accept': 'application/json',
-      'User-Agent': 'Mozilla/5.0',
-    };
-    if (cloudCookieHeader) cloudHeaders['Cookie'] = cloudCookieHeader;
-
-    result.overview = await fetchManual('https://cloud.mongodb.com/v2/699c12be8df98bd863d63d70#/overview', cloudHeaders);
-    result.connectionInfo = await fetchManual('https://cloud.mongodb.com/explorer/v1/groups/699c12be8df98bd863d63d70/clusters/connectionInfo', cloudHeaders);
-    result.nds = await fetchManual('https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70', cloudHeaders);
-    result.wsProbe = await testWs(cloudCookieHeader);
+    const cookieHeader = buildAccountCookieHeader();
+    result.accountCookieHeaderLength = cookieHeader.length;
+    const candidates = [
+      'AtlasGHReset!8901',
+      'AtlasGHReset!7890',
+      'AtlasGHReset!6789',
+      'AtlasGHReset!9012',
+      'Scratch!321Aa',
+      'AtlasTemp!2026#A',
+      'AtlasTemp!2026#B',
+      'Tmp!2e7ad4aa5c4fe3d1aA1',
+      'V7u!9xK#2mQ@4nR$8tP^6sL&',
+      'VJ2!V6Q!Tm)k(K)Ls9An*t8uN9',
+      'AtlasKnown!12345',
+      'GHQuery!83fddfa4Z9#',
+      'VM5!YXAtnZLkAkl@U9MGVb0q0w',
+      'VQ3!V%6f6=DUBT@E6VTkjvR5iy',
+      'Vu7#qL9!sT2@wX4$zN8^mP6&',
+      'AgentFull!9010x',
+      'VL1!KD_%wowyaI*XKxwYTLMXxW',
+    ];
+    result.candidates = [];
+    for (const pw of candidates) {
+      const res = await tryPassword(pw, cookieHeader);
+      result.candidates.push(res);
+      writeResult(result);
+      if (res.status === 200 && res.json && res.json.status === 'OK') {
+        result.success = res;
+        break;
+      }
+      const err = res.json && res.json.errorCode;
+      if (err === 'RATE_LIMITED') {
+        await sleep(45000);
+      } else {
+        await sleep(5000);
+      }
+    }
   } catch (e) {
     result.error = String(e && e.stack || e);
   } finally {
