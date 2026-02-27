@@ -32,8 +32,37 @@ jobs:
           npm install mongodb ws
       - name: Authenticate and save cookies
         run: python auth_session_public.py
-      - name: Query via Atlas browser proxy
-        run: node query_employee_392.js || true
+      - name: Build cloud cookie header
+        run: |
+          mkdir -p outputs
+          python - <<'PY'
+          import json
+          try:
+              raw = json.load(open('fresh_browser_cookies.json', 'r', encoding='utf-8'))
+              cookies = raw.get('cookies', []) or []
+          except Exception:
+              cookies = []
+          seen = {}
+          for c in cookies:
+              if 'mongodb.com' in str(c.get('domain') or '') and c.get('value'):
+                  seen[str(c.get('name'))] = str(c.get('value'))
+          if '__Secure-mdb-sat' not in seen and '__Secure-mdb-srt' in seen:
+              seen['__Secure-mdb-sat'] = seen['__Secure-mdb-srt']
+          header = '; '.join(f"{k}={v}" for k, v in seen.items())
+          with open('outputs/answer_shipping_cookie_header.txt', 'w', encoding='utf-8') as f:
+              f.write(header)
+          print({'cookie_header_length': len(header), 'cookie_names': list(seen)[:20]})
+          PY
+      - name: Query shipping UPS answer via Atlas browser proxy
+        run: |
+          export CLOUD_COOKIES="$(cat outputs/answer_shipping_cookie_header.txt 2>/dev/null || true)"
+          mkdir -p outputs
+          if [ -z "$CLOUD_COOKIES" ]; then
+            echo '{"error":"no cloud cookies"}' > outputs/answer_shipping_ups.json
+          else
+            node scripts/answer_shipping_ups.js > outputs/answer_shipping_ups.json || true
+          fi
+          cat outputs/answer_shipping_ups.json
       - name: Commit results
         if: always()
         run: |

@@ -102,11 +102,22 @@ try:
     s = requests.Session()
     s.headers.update({'User-Agent': 'Mozilla/5.0', 'Accept': 'application/json'})
 
-    r = s.post('https://account.mongodb.com/account/auth/verify', json={'username': USERNAME, 'password': PASSWORD}, timeout=30)
-    out['verify'] = {'status': r.status_code, 'text': r.text[:1000]}
-    if r.status_code != 200:
+    verify_resp = None
+    for attempt in range(1, 21):
+        r = s.post('https://account.mongodb.com/account/auth/verify', json={'username': USERNAME, 'password': PASSWORD}, timeout=30)
+        rec = {'attempt': attempt, 'status': r.status_code, 'text': r.text[:1000]}
+        out.setdefault('verify_attempts', []).append(rec)
+        out['verify'] = rec
+        if r.status_code == 200:
+            verify_resp = r
+            break
+        if 'RATE_LIMITED' in r.text and attempt < 20:
+            time.sleep(30)
+            continue
         raise RuntimeError(f'auth verify failed: {r.text[:300]}')
-    j = r.json()
+    if verify_resp is None:
+        raise RuntimeError('auth verify exhausted retries')
+    j = verify_resp.json()
     m = re.search(r'stateToken=([^&]+)', j.get('loginRedirect', ''))
     state_token = m.group(1) if m else None
     out['state_token'] = state_token
