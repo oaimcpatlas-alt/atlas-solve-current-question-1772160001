@@ -46,16 +46,22 @@ jobs:
           function buildCookieHeader() {
             const raw = JSON.parse(fs.readFileSync('browser_cookies.json', 'utf8'));
             const cookies = Array.isArray(raw.cookies) ? raw.cookies : [];
-            const parts = [];
+            const allowedDomains = new Set(['cloud.mongodb.com', '.cloud.mongodb.com']);
+            const cookieMap = new Map();
+            let cloudSrt = null;
             for (const c of cookies) {
               const domain = String(c.domain || '');
               const value = typeof c.value === 'string' ? c.value : '';
               if (!value) continue;
-              if (domain === 'cloud.mongodb.com' || domain === '.cloud.mongodb.com') {
-                parts.push(`${c.name}=${c.value}`);
-              }
+              if (!allowedDomains.has(domain)) continue;
+              const name = String(c.name);
+              cookieMap.set(name, value);
+              if (name === '__Secure-mdb-srt') cloudSrt = value;
             }
-            return parts.join('; ');
+            if (cloudSrt) {
+              cookieMap.set('__Secure-mdb-sat', cloudSrt);
+            }
+            return Array.from(cookieMap.entries()).map(([k, v]) => `${k}=${v}`).join('; ');
           }
 
           const COOKIE_HEADER = buildCookieHeader();
