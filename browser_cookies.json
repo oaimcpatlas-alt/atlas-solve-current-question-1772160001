@@ -32,26 +32,6 @@
       "sameSite": "None"
     },
     {
-      "name": "sid",
-      "value": "102zgFA0KtwQmCNY_JuKtv8Lg",
-      "domain": "auth.mongodb.com",
-      "path": "/",
-      "expires": -1,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "None"
-    },
-    {
-      "name": "xids",
-      "value": "1029EHJ86l7TwaDCPN68RmrdQ",
-      "domain": "auth.mongodb.com",
-      "path": "/",
-      "expires": -1,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "None"
-    },
-    {
       "name": "proximity_eaf57d0831fbadd85de077238e567b9a",
       "value": "eyJ6aXAiOiJERUYiLCJwMnMiOiJvXzVCUGd6UHdFaGFyVmxPTVJlaS1nIiwicDJjIjoxMDAwLCJ2ZXIiOiIxIiwiZW5jIjoiQTI1NkdDTSIsImFsZyI6IlBCRVMyLUhTNTEyK0EyNTZLVyJ9.UIOZyIEUU_PK_8_7XmyMvATGgM0Hv6doGO-d6Mhw1mYlb-vq4oKl7g.1oGJ79kHtTQrF9VA.XCGypoITznmOxY1szcPcLSxqFA6UUvttEyddWUb8xUeqcspoKxLlwLLe4JIc8yMGVkg-b2rxhU215eiEH2WZJVSud9v_7dpME4RgWYbBqNJesXcnbqrB5BqOjMefnZ5UsodvHSkckvuhJ0A2A2XQaI3tMUOC--RT5nZNNp-9isq74A.TqAU_pZL85RbYLQHq-o05w",
       "domain": "auth.mongodb.com",
@@ -79,16 +59,6 @@
       "expires": 1779951771.39673,
       "httpOnly": true,
       "secure": false,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "__Secure-mdb-sat",
-      "value": "eyJhbGciOiJFUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6Im1yay00ZjBjYzQ0YmIwYzY0YjY5YTkwZjdjMTgwOTcwYmYyYiJ9.eyJpc3MiOiJtb25nb2RiLWNsb3VkIiwiYXVkIjoiYXVkIiwic3ViIjoibWRiX2F1X2lkXzY5OWMxMmI0ZDIwMzJjMjcwOTI3N2E0YyIsImlhdCI6MTc3MjE3NTc3MSwibmJmIjoxNzcyMTc1NzcxLCJleHAiOjE3NzIxNzY2NzEsImp0aSI6Ijg2NTFkNWY4LThhMDAtNGY5Yy1iNDU5LTUxYjI3NmVhNmU5ZCIsInNlc3Npb25TdWIiOiIwMHUxMTdybHU5ZlQ1MmZkVTI5OCIsInNlc3Npb25JZCI6IjYyNWFiMmI3LTFiMzItNDJhYy1hMWE1LWMyYTZjYjhhNGRkYyJ9.AHFZpYp6jKB8y28HPbc2H1ZYtYvMkuo06sRF2uYz-G9ygbCVh1mjxqld6RnWmesBzppqypz7p1V7xBEjTmNwSFqUAMlXPDkoh1Apsml03mb_bDG8FrwzJw8Nc4SyV2CFAi7_1XKI90ayacl6m004pyk2TrC9yZZRpuKLRCuyv3nK5wvl",
-      "domain": "account.mongodb.com",
-      "path": "/",
-      "expires": 1772176671.396777,
-      "httpOnly": true,
-      "secure": true,
       "sameSite": "Lax"
     },
     {
@@ -132,16 +102,6 @@
       "sameSite": "Lax"
     },
     {
-      "name": "JSESSIONID",
-      "value": "7F87DA605600A8E3447B249A46250761",
-      "domain": "auth.mongodb.com",
-      "path": "/",
-      "expires": -1,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "Lax"
-    },
-    {
       "name": "idx",
       "value": "eyJ6aXAiOiJERUYiLCJ2ZXIiOiIxIiwiYWxpYXMiOiJlbmNyeXB0aW9ua2V5Iiwib2lkIjoiMDBvMWJrcmlybjBSNFNNRmMyOTciLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiZGlyIiwieHNpZCI6ImlkeDZ2cUx4LXRIUzdtWmRfTFllRkkyeGcifQ..SBAC-AVuUR1d04Ys.KYT_ddAKkqu3w0y2i4uMMTAKw86UC8lfBCXDvLbdcmJzLsXb5JV93IXAVOahI8vU_keH_sF1IZXp4k1yK6Z2WMr3Nl5sgKSZcULRb2rsJMoD5LjoX8em9Cl-_yZEnhwc7ZX2nGgyScsOpvM1wFBWBCjK7V86gOlpYhUlYhFJZaEIJZBhZrOjhj5chnkt0BQMA8aI_X1Qin2CI7PH96-6JbPYSmYtQbDq16ZWorjVKl2zYIs68fKrzsGB8YWnkrDSHgVvMyqwrhk3XgTmZjXvE37HS0dXeOavodiGH62VfmO_pdoQfw77OB9oP6otImd4muW9RdVRUakFUXU2CDtGvFu160xZorc03mTT0gb-uiXvtFqrW1TLio42h8bfZChjVDwtfhyHvILSaluBsscIUuUpFe01Vv-h0zRPfy_d2jxf8RS7yaFGD7tKGqBhrOUOBzMFktgF-iH836RrvPXWqUHO6Tvv6atFXQIbxCeoKmaPRlV-W2zCLtZwySN0XP3FWZ7tPUnsttzNAb1DQrabwh-u4e7gLhrOpyjkyx94v9TGMB9-EpX4stdYxIHItdw2dbA9Z5GPgaRxoQuxgYlYzfHh4DzjkhYHhHTbuFZ_81kUINcXQFyCGwkS6efWtJnpUTogu9tmtYtrwkARDwkHB-AKl8MWZ7lKOJDfeIIM819GrD6zNOwE5zXRc8oNyMCtcfwitl4Klq7ckRg4PKyiYyIeZwMj8zexjH9kx4m6Kpw1o0hFOdHg7fjRfjkJjK8Sg-g_fldtl3GA--4Sc-b3JYzjd25epAXYoiKLw55bIpyiZGFTlNhXaIAXo3HDuXhfWMQC8HvqJeFo5cHFI3BbABCnN1Ppc90h4nnm3ybSlnxDEiN4EJgj1oFnlpUOBYNP-0U3hQyMry7xGgQSvokv6_BHQAOPmeVdX2oEBcEsDQ7nsYvJv_l4kJFukI4MfR0H4UFh2WW9lxPNDCE1ZvD2Y1HCb5BrF1_7Q9R9Kqv_sugL-MbBUGlMq7hiFUAop9nMb_fqy8D1Ne9QdlcuLQCZCsFLCv-3Ghq060-pTteCjn9x5FS8UciseNPUXgTMwAzQiNVo5l6sl-VgI80gbfzqFWD67knWyADwmMXtGnKo2_N-8teIWKHrXgA-zgAaNjgPUlX0FqbzFAcfM7Y08MZgOReKKt_oXd1D5Ho9KA.xpKYjqDx08Zks6ehKwmpKA",
       "domain": "auth.mongodb.com",
@@ -150,16 +110,6 @@
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
-    },
-    {
-      "name": "__Secure-mdb-sat",
-      "value": "eyJhbGciOiJFUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6Im1yay00ZjBjYzQ0YmIwYzY0YjY5YTkwZjdjMTgwOTcwYmYyYiJ9.eyJpc3MiOiJtb25nb2RiLWNsb3VkIiwiYXVkIjoiYXVkIiwic3ViIjoibWRiX3VpX2lkXzY5OWMxMmJlOGRmOThiZDg2M2Q2M2NjNiIsImlhdCI6MTc3MjE3NTc3MiwibmJmIjoxNzcyMTc1NzcyLCJleHAiOjE3NzIxNzY2NzIsImp0aSI6IjRlNTgxZDBjLTNlMDEtNDRhYy1iZmQzLWNiNjVmY2Y1NWNjYyIsInNlc3Npb25TdWIiOiIwMHUxMTdybHU5ZlQ1MmZkVTI5OCIsInNlc3Npb25JZCI6IjYyNWFiMmI3LTFiMzItNDJhYy1hMWE1LWMyYTZjYjhhNGRkYyJ9.AAkdnpSrImgR209lbcsYlZ7AGwgOTn6cXkdkxhGYNGtHGvYnfYYMwhXKBNVfSTxzPCPdxXATPMyZWV5xgQFFTw2iALZM_c213bxH_Dyl2HMp0VXJTiM0iEwtKFSOoEeAgmxNFKWS5iUAdS8m01B_TJ5In-oMV_8QMFPif2nbrzg0ONPJ",
-      "domain": ".cloud.mongodb.com",
-      "path": "/",
-      "expires": 1772176672.301181,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "Lax"
     },
     {
       "name": "__Secure-mdb-srt",
@@ -202,21 +152,11 @@
       "sameSite": "Lax"
     },
     {
-      "name": "test_cookie",
-      "value": "CheckForPermission",
-      "domain": ".doubleclick.net",
-      "path": "/",
-      "expires": 1772176673.117476,
-      "httpOnly": false,
-      "secure": true,
-      "sameSite": "None"
-    },
-    {
       "name": "li_sugr",
       "value": "b079fee1-4c4c-435c-b9b4-df36cdeb24a0",
       "domain": ".linkedin.com",
       "path": "/",
-      "expires": 1779951773.18127,
+      "expires": 1779953371.854827,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -226,7 +166,7 @@
       "value": "\"v=2&3a98ea8c-b605-4d9f-8869-1579b8048cf0\"",
       "domain": ".linkedin.com",
       "path": "/",
-      "expires": 1803711774.181381,
+      "expires": 1803713371.855042,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -266,7 +206,7 @@
       "value": "f3748657-f3d0-4a36-b82b-1d7f1a15031d5c88f9",
       "domain": "m.stripe.com",
       "path": "/",
-      "expires": 1806736260.698669,
+      "expires": 1806737372.804991,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
@@ -292,16 +232,6 @@
       "sameSite": "Strict"
     },
     {
-      "name": "intercom-device-id-qq7v0gqb",
-      "value": "a9efa78e-174f-4c3d-9687-5683fcf22d2e",
-      "domain": ".mongodb.com",
-      "path": "/",
-      "expires": 1795506260,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
       "name": "amplitudeSessionId",
       "value": "1772175776963",
       "domain": "cloud.mongodb.com",
@@ -316,7 +246,7 @@
       "value": "eaf57d0831fbadd85de077238e567b9a9fb8b52aa0ddad9462c777a2ae019868",
       "domain": ".mongodb.com",
       "path": "/",
-      "expires": 1803712283,
+      "expires": 1803713374,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -326,27 +256,77 @@
       "value": "5a0b92a6-68b3-4bf9-9aae-0f2a98f08d07",
       "domain": ".mongodb.com",
       "path": "/",
-      "expires": 1803712283,
+      "expires": 1803713374,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
     },
     {
-      "name": "auid",
-      "value": "eaf57d0831fbadd85de077238e567b9a9fb8b52aa0ddad9462c777a2ae019868",
-      "domain": ".cloud.mongodb.com",
+      "name": "test_cookie",
+      "value": "CheckForPermission",
+      "domain": ".doubleclick.net",
       "path": "/",
-      "expires": 1772176559,
+      "expires": 1772178271.713451,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "JSESSIONID",
+      "value": "CD7BF10BCF4F25767CC311743C2A7968",
+      "domain": "auth.mongodb.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__stripe_mid",
+      "value": "8e50f2b3-1e44-4c77-a134-27310e0f13a6a04de3",
+      "domain": ".account.mongodb.com",
+      "path": "/",
+      "expires": 1803713372,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "__stripe_sid",
+      "value": "40ea84bf-0526-4272-a2e3-ba3def69932f4f1f9c",
+      "domain": ".account.mongodb.com",
+      "path": "/",
+      "expires": 1772179172,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "intercom-id-qq7v0gqb",
+      "value": "f65a001e-2465-4822-87fb-e2b1158011d5",
+      "domain": ".mongodb.com",
+      "path": "/",
+      "expires": 1795507372,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
     },
     {
       "name": "intercom-session-qq7v0gqb",
-      "value": "cUxNMHJVMlRCQm5kallsVUQwWCtnQVcyNlAwZzUwMERZd2ZXaTAyWlVVdUZqbzlhNzRaYkpkR1FaZXFCM2M2SG1scmhJRExrVlJtREVyZURXb1ZZYS9iNUNDM2FoZUt4Q1FJUnNwRzcxam8zSnJxaGtGOFRUVFZPYlJGcjNKTUZVWEcvQTNmZHNHU3N0NkNsM3V5TEVjK2RJbkRxNGwxTldyVTFaSEpOaTIzd0RLTE5LcVFmYmE1M1JrTVZYSHA0U3NCNEFneWpRTCtuTlRvQlFVVU84dz09LS10MlBUZlEyWTZZZ1Zqc1d3Vk5BRHpBPT0=--1e510dd9709fe35c1239f5bfa2fd64a367b9c0aa",
+      "value": "",
       "domain": ".mongodb.com",
       "path": "/",
-      "expires": 1772781060,
+      "expires": 1772782172,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "intercom-device-id-qq7v0gqb",
+      "value": "d326c460-7d9e-4a92-975e-35a490b0eba2",
+      "domain": ".mongodb.com",
+      "path": "/",
+      "expires": 1795507372,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
