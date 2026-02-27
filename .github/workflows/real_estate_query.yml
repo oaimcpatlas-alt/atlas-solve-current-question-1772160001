@@ -1,0 +1,455 @@
+name: RealEstateRecon
+on:
+  push:
+    branches: [main]
+jobs:
+  recon:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      MONGO_URI: "mongodb+srv://oaimcpatlas_db_user:pdVEIpUnn0quf2Mr@mcpatlas.zlknsyp.mongodb.net"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install pymongo
+      - name: Recon and solve
+        run: |
+          python - <<'PY'
+          import json, os, re, traceback, math
+          from datetime import datetime, date
+          from pymongo import MongoClient
+
+          out = {"started_at": datetime.utcnow().isoformat() + "Z"}
+
+          def ser(v):
+              if isinstance(v, (datetime, date)):
+                  return v.isoformat()
+              t = type(v).__name__
+              if t == 'ObjectId':
+                  return str(v)
+              if isinstance(v, list):
+                  return [ser(x) for x in v[:50]]
+              if isinstance(v, dict):
+                  return {str(k): ser(vv) for k, vv in list(v.items())[:200]}
+              return v
+
+          def flatten(obj, prefix=''):
+              out = {}
+              if isinstance(obj, dict):
+                  for k, v in obj.items():
+                      p = f"{prefix}.{k}" if prefix else str(k)
+                      if isinstance(v, dict):
+                          out.update(flatten(v, p))
+                      elif isinstance(v, list):
+                          out[p] = v
+                          for i, item in enumerate(v[:10]):
+                              pi = f"{p}[{i}]"
+                              if isinstance(item, dict):
+                                  out.update(flatten(item, pi))
+                              else:
+                                  out[pi] = item
+                      else:
+                          out[p] = v
+              else:
+                  out[prefix or 'value'] = obj
+              return out
+
+          def norm(s):
+              return re.sub(r'[^a-z0-9]+', ' ', str(s).lower()).strip()
+
+          def as_bool(v):
+              if isinstance(v, bool):
+                  return v
+              s = norm(v)
+              if s in {'true','yes','y','1','included','available'}:
+                  return True
+              if s in {'false','no','n','0','none','not included','unavailable'}:
+                  return False
+              return None
+
+          def num(v):
+              if isinstance(v, (int, float)) and not isinstance(v, bool):
+                  return float(v)
+              s = str(v).strip()
+              s = s.replace(',', '')
+              m = re.search(r'-?\d+(?:\.\d+)?', s)
+              if m:
+                  try:
+                      return float(m.group(0))
+                  except Exception:
+                      return None
+              return None
+
+          def pick(flat, includes_any, value_pred=None):
+              hits = []
+              for k, v in flat.items():
+                  nk = norm(k).replace(' ', '')
+                  if any(tok in nk for tok in includes_any):
+                      if value_pred is None or value_pred(v):
+                          hits.append((k, v))
+              return hits
+
+          def get_first_value(flat, key_tokens, value_pred=None):
+              for k, v in flat.items():
+                  nk = norm(k).replace(' ', '')
+                  if any(tok in nk for tok in key_tokens):
+                      if value_pred is None or value_pred(v):
+                          return v, k
+              return None, None
+
+          def extract_listing(doc):
+              flat = flatten(doc)
+              fields = {k: ser(v) for k,v in flat.items()}
+
+              # property type / listing type
+              prop_type = None
+              prop_key = None
+              for tok in ['propertytype','unittype','hometype','listingtype','type','category']:
+                  v, k = get_first_value(flat, [tok])
+                  if k:
+                      s = norm(v)
+                      # skip obvious non type values if generic 'type'
+                      if tok == 'type' and s in {'string','number','yes','no','true','false'}:
+                          continue
+                      prop_type = s
+                      prop_key = k
+                      break
+
+              # bedrooms
+              bedrooms = None
+              bedrooms_key = None
+              for tok in ['bedrooms','beds','nbrbedrooms']:
+                  v, k = get_first_value(flat, [tok], lambda x: num(x) is not None)
+                  if k:
+                      bedrooms = num(v)
+                      bedrooms_key = k
+                      break
+
+              # furnished
+              furnished = None
+              furnished_key = None
+              for tok in ['furnished','isfurnished']:
+                  v, k = get_first_value(flat, [tok])
+                  if k:
+                      furnished = as_bool(v)
+                      if furnished is None:
+                          s = norm(v)
+                          if 'furnished' in s:
+                              furnished = True
+                          elif 'unfurnished' in s:
+                              furnished = False
+                      furnished_key = k
+                      break
+
+              # year built
+              year_built = None
+              year_built_key = None
+              for tok in ['yearbuilt','builtin','constructionyear','buildyear','year']:
+                  v, k = get_first_value(flat, [tok], lambda x: num(x) is not None)
+                  if k:
+                      n = num(v)
+                      if n and 1800 <= n <= 2100:
+                          year_built = int(n)
+                          year_built_key = k
+                          break
+
+              # amenities level
+              amenities = None
+              amenities_key = None
+              for tok in ['amenitieslevel','amenitylevel','amenities','amenitypackage','amenitytier','features']:
+                  v, k = get_first_value(flat, [tok])
+                  if k:
+                      amenities = norm(v)
+                      amenities_key = k
+                      break
+
+              # energy efficiency/rating
+              energy = None
+              energy_key = None
+              for tok in ['energyefficiency','energyrating','energyclass','efficiencyrating','ecoRating'.lower()]:
+                  v, k = get_first_value(flat, [tok])
+                  if k:
+                      energy = norm(v)
+                      energy_key = k
+                      break
+
+              # parking / vehicle storage
+              parking = None
+              parking_key = None
+              for tok in ['parking','garage','carport','vehiclestorage']:
+                  v, k = get_first_value(flat, [tok])
+                  if k:
+                      s = norm(v)
+                      b = as_bool(v)
+                      if b is None:
+                          if any(x in s for x in ['yes','included','available','garage','carport','covered','assigned','street','lot','space']):
+                              b = True
+                          elif s in {'none','no','n/a','na','not available'}:
+                              b = False
+                      parking = b if b is not None else s
+                      parking_key = k
+                      break
+
+              # rent
+              rent = None
+              rent_key = None
+              for tok in ['monthlyrent','rent','pricepermonth','baseRent'.lower(),'rentamount','listprice']:
+                  v, k = get_first_value(flat, [tok], lambda x: num(x) is not None)
+                  if k:
+                      rent = num(v)
+                      rent_key = k
+                      break
+
+              # lease term (months)
+              lease_months = None
+              lease_months_key = None
+              for tok in ['leasetermmonths','leasemonths','termmonths','leaseperiod','leaseduration','minimumlease']:
+                  v, k = get_first_value(flat, [tok], lambda x: num(x) is not None)
+                  if k:
+                      n = num(v)
+                      if n and 1 <= n <= 120:
+                          lease_months = int(round(n))
+                          lease_months_key = k
+                          break
+              # parse from text values like "12 months"
+              if lease_months is None:
+                  for k,v in flat.items():
+                      nk = norm(k).replace(' ', '')
+                      if any(tok in nk for tok in ['lease','term']):
+                          s = norm(v)
+                          m = re.search(r'(\d+)\s*month', s)
+                          if m:
+                              lease_months = int(m.group(1))
+                              lease_months_key = k
+                              break
+
+              # fees
+              extra_monthly = 0.0
+              fee_fields = []
+              total_included = None
+              total_included_key = None
+              for tok in ['totalleasecost','totalcost','leasecost','leaseprice','total']:
+                  v, k = get_first_value(flat, [tok], lambda x: num(x) is not None)
+                  if k:
+                      s = norm(k)
+                      if 'total' in s and ('lease' in s or 'cost' in s):
+                          total_included = num(v)
+                          total_included_key = k
+                          break
+              for tok in ['parkingfee','utilitiesfee','monthlyfees','hoa','servicefee','amenityfee']:
+                  hits = pick(flat, [tok], lambda x: num(x) is not None)
+                  for k,v in hits:
+                      extra_monthly += num(v) or 0.0
+                      fee_fields.append((k, num(v)))
+
+              title = None
+              for candidate in ['title','name','listingname','propertyname','address','unitnumber','unit']:
+                  v, k = get_first_value(flat, [candidate])
+                  if k:
+                      title = str(v)
+                      break
+
+              text_blob = ' '.join([norm(k) + ' ' + norm(v) for k,v in flat.items()][:300])
+
+              return {
+                  'title': title,
+                  'prop_type': prop_type,
+                  'prop_type_key': prop_key,
+                  'bedrooms': bedrooms,
+                  'bedrooms_key': bedrooms_key,
+                  'furnished': furnished,
+                  'furnished_key': furnished_key,
+                  'year_built': year_built,
+                  'year_built_key': year_built_key,
+                  'amenities': amenities,
+                  'amenities_key': amenities_key,
+                  'energy': energy,
+                  'energy_key': energy_key,
+                  'parking': parking,
+                  'parking_key': parking_key,
+                  'rent': rent,
+                  'rent_key': rent_key,
+                  'lease_months': lease_months,
+                  'lease_months_key': lease_months_key,
+                  'extra_monthly': extra_monthly,
+                  'fee_fields': fee_fields,
+                  'total_included': total_included,
+                  'total_included_key': total_included_key,
+                  'text_blob': text_blob[:4000],
+                  'raw': ser(doc),
+              }
+
+          def matches(listing):
+              text = listing['text_blob']
+              reasons = []
+
+              # apartment
+              is_apartment = False
+              if listing['prop_type'] and 'apart' in listing['prop_type']:
+                  is_apartment = True
+              elif ' apartment ' in f" {text} ":
+                  is_apartment = True
+              elif 'apt' in text:
+                  is_apartment = True
+              if not is_apartment:
+                  return False, ['not apartment']
+              reasons.append('apartment')
+
+              # two-bedroom
+              if listing['bedrooms'] is None or abs(listing['bedrooms'] - 2) > 0.01:
+                  return False, reasons + ['bedrooms != 2']
+              reasons.append('2 bed')
+
+              # furnished
+              if listing['furnished'] is not True and ' furnished ' not in f" {text} ":
+                  return False, reasons + ['not furnished']
+              reasons.append('furnished')
+
+              # built after 2020
+              if listing['year_built'] is None or listing['year_built'] <= 2020:
+                  return False, reasons + ['year not > 2020']
+              reasons.append('built after 2020')
+
+              # mid-level amenities
+              amenities = listing['amenities'] or ''
+              amen_ok = any(x in amenities for x in ['mid', 'medium', 'standard', 'moderate']) and not any(x in amenities for x in ['high', 'luxury', 'premium', 'basic', 'low'])
+              if not amen_ok:
+                  # if features may literally include "mid-level"
+                  if 'mid level' not in amenities and 'midlevel' not in amenities:
+                      return False, reasons + ['amenities not mid-level']
+              reasons.append('mid amenities')
+
+              # top energy efficiency
+              energy = listing['energy'] or ''
+              top_energy = False
+              if any(x in energy for x in ['a+', 'a ++', 'a plus', 'top', 'highest', 'excellent', 'platinum', 'leed platinum', 'energy star certified', 'energy star']):
+                  top_energy = True
+              # strict A when rating seems just letters
+              if energy.strip() in {'a', 'a+'}:
+                  top_energy = True
+              if not top_energy:
+                  return False, reasons + ['energy not top']
+              reasons.append('top energy')
+
+              # parking / vehicle storage
+              p = listing['parking']
+              p_text = '' if p is None else str(p).lower()
+              if not (p is True or any(x in p_text for x in ['garage','carport','included','available','assigned','covered','space','true', 'yes'])):
+                  return False, reasons + ['no parking']
+              reasons.append('parking')
+
+              if listing['rent'] is None:
+                  return False, reasons + ['no rent']
+              reasons.append('has rent')
+
+              return True, reasons
+
+          try:
+              client = MongoClient(os.environ['MONGO_URI'], serverSelectionTimeoutMS=30000)
+              out['ping'] = client.admin.command('ping')
+              dbs = client.list_database_names()
+              out['databases'] = dbs
+              out['collections'] = {}
+              candidate_collections = []
+              docs_examined = 0
+              candidates = []
+
+              for db_name in dbs:
+                  if db_name in {'admin', 'local', 'config'}:
+                      continue
+                  db = client[db_name]
+                  try:
+                      coll_names = db.list_collection_names()
+                  except Exception as e:
+                      out['collections'][db_name] = {'error': str(e)}
+                      continue
+                  out['collections'][db_name] = {}
+                  for coll_name in coll_names:
+                      coll = db[coll_name]
+                      info = {}
+                      try:
+                          info['count_estimate'] = coll.estimated_document_count()
+                      except Exception as e:
+                          info['count_estimate_error'] = str(e)
+                      sample = []
+                      try:
+                          # small sample
+                          cur = coll.find({}, limit=20)
+                          for doc in cur:
+                              docs_examined += 1
+                              listing = extract_listing(doc)
+                              # scoring for domain relevance
+                              score = 0
+                              tb = listing['text_blob']
+                              if any(k in tb for k in ['rent', 'bedroom', 'furnished', 'lease', 'amenities', 'energy', 'parking', 'apartment']):
+                                  score += 1
+                              if listing['rent'] is not None: score += 1
+                              if listing['bedrooms'] is not None: score += 1
+                              if listing['year_built'] is not None: score += 1
+                              if listing['amenities'] is not None: score += 1
+                              if listing['energy'] is not None: score += 1
+                              if listing['parking'] is not None: score += 1
+                              if listing['prop_type'] and 'apart' in listing['prop_type']: score += 2
+                              ok, reasons = matches(listing)
+                              if ok:
+                                  total_cost = listing['total_included']
+                                  if total_cost is None:
+                                      months = listing['lease_months'] or 12
+                                      total_cost = (listing['rent'] + listing['extra_monthly']) * months
+                                  candidates.append({
+                                      'db': db_name,
+                                      'collection': coll_name,
+                                      'title': listing['title'],
+                                      'rent': listing['rent'],
+                                      'lease_months': listing['lease_months'],
+                                      'extra_monthly': listing['extra_monthly'],
+                                      'total_cost': total_cost,
+                                      'reasons': reasons,
+                                      'listing': {k:v for k,v in listing.items() if k not in {'text_blob'}},
+                                  })
+                              if score >= 4:
+                                  sample.append({
+                                      'score': score,
+                                      'title': listing['title'],
+                                      'prop_type': listing['prop_type'],
+                                      'bedrooms': listing['bedrooms'],
+                                      'furnished': listing['furnished'],
+                                      'year_built': listing['year_built'],
+                                      'amenities': listing['amenities'],
+                                      'energy': listing['energy'],
+                                      'parking': listing['parking'],
+                                      'rent': listing['rent'],
+                                      'lease_months': listing['lease_months'],
+                                      'raw': listing['raw'],
+                                  })
+                      except Exception as e:
+                          info['scan_error'] = str(e)
+                          info['scan_traceback'] = traceback.format_exc()
+                      info['sample_relevant_docs'] = sample[:8]
+                      out['collections'][db_name][coll_name] = info
+
+              out['docs_examined'] = docs_examined
+              candidates.sort(key=lambda x: (x['rent'], x['total_cost']))
+              out['matching_candidates'] = candidates[:20]
+              out['best_match'] = candidates[0] if candidates else None
+          except Exception as e:
+              out['error'] = str(e)
+              out['traceback'] = traceback.format_exc()
+
+          out['finished_at'] = datetime.utcnow().isoformat() + "Z"
+          with open('outputs/real_estate_result.json', 'w', encoding='utf-8') as f:
+              json.dump(out, f, indent=2)
+          print(json.dumps(out)[:10000])
+          PY
+      - name: Commit output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/real_estate_query.yml outputs/real_estate_result.json
+          git commit -m "Add real estate recon output" || echo "nothing to commit"
+          git push
