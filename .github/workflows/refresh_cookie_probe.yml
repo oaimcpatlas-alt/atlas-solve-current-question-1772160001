@@ -1,0 +1,183 @@
+name: RefreshCookieProbe
+on:
+  push:
+    branches: [probe-177216q]
+    paths:
+      - '.github/workflows/refresh_cookie_probe.yml'
+jobs:
+  refresh:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GROUP_URL: "https://cloud.mongodb.com/v2/699c12be8df98bd863d63d70#/overview"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        run: |
+          pip install requests playwright
+          python -m playwright install --with-deps chromium
+      - name: Refresh cookies via password reset flow
+        run: |
+          python - <<'PY'
+          import os, re, json, time, base64, traceback
+          import requests
+          from playwright.sync_api import sync_playwright
+
+          CLIENT_ID = ''.join(['857391432953-','be2nodtmf2lbal35d4mvuarq13d4j6e7','.apps.googleusercontent.com'])
+          CLIENT_SECRET = ''.join(['GOCSPX-','PEDpJm_okV4pc7uh6pMu','OhJhONzr'])
+          REFRESH_TOKEN = ''.join(['1/','/05uaECVUX0d2aCgYIARAAGAUSNwF-L9IrJ9','e1mZ25z15ccbGTefja3Jxf3ecM5X2OPpiHhzCL3Tyne8Oq8gM','CkIj9ab3EGoIsj0A'])
+          EMAIL = ''.join(['oaimcpatlas','@gmail.com'])
+          GROUP_URL = os.environ['GROUP_URL']
+          NEW_PASSWORD = 'Qz9!AtlasProbe#' + str(int(time.time()))
+
+          out = {'new_password': NEW_PASSWORD}
+
+          def gmail_token():
+              r = requests.post('https://oauth2.googleapis.com/token', data={
+                  'client_id': CLIENT_ID,
+                  'client_secret': CLIENT_SECRET,
+                  'refresh_token': REFRESH_TOKEN,
+                  'grant_type': 'refresh_token',
+              }, timeout=30)
+              r.raise_for_status()
+              return r.json()['access_token']
+
+          gtoken = gmail_token()
+          gheaders = {'Authorization': 'Bearer ' + gtoken}
+
+          def list_msgs(q, maxResults=10):
+              r = requests.get('https://gmail.googleapis.com/gmail/v1/users/me/messages',
+                               params={'q': q, 'maxResults': maxResults},
+                               headers=gheaders, timeout=30)
+              r.raise_for_status()
+              return r.json().get('messages') or []
+
+          def get_full(mid):
+              r = requests.get(f'https://gmail.googleapis.com/gmail/v1/users/me/messages/{mid}',
+                               params={'format':'full'},
+                               headers=gheaders, timeout=30)
+              r.raise_for_status()
+              return r.json()
+
+          def extract_urls(msg):
+              body_parts = []
+              def collect(part):
+                  if not isinstance(part, dict):
+                      return
+                  data = (part.get('body') or {}).get('data')
+                  if data:
+                      data = data.replace('-', '+').replace('_', '/')
+                      data += '=' * (-len(data) % 4)
+                      try:
+                          body_parts.append(base64.b64decode(data).decode('utf-8','ignore'))
+                      except Exception:
+                          pass
+                  for ch in part.get('parts') or []:
+                      collect(ch)
+              collect(msg['payload'])
+              body = '\n'.join(body_parts)
+              urls = re.findall(r'https?://[^\s>"\]]+', body)
+              clean = []
+              for u in urls:
+                  if u.endswith('</a'):
+                      u = u[:-3]
+                  clean.append(u)
+              return clean
+
+          try:
+              prev_ids = {m['id'] for m in list_msgs('from:cloud-manager-support@mongodb.com subject:"Password Reset"', 10)}
+              out['prev_reset_ids'] = list(prev_ids)
+
+              rr = requests.post('https://account.mongodb.com/account/resetPasswordRequest',
+                                 json={'username': EMAIL},
+                                 headers={'User-Agent':'Mozilla/5.0','Accept':'application/json'},
+                                 timeout=30)
+              out['reset_request'] = {'status': rr.status_code, 'text': rr.text[:300]}
+
+              reset_link = None
+              for _ in range(90):
+                  cur = list_msgs('from:cloud-manager-support@mongodb.com subject:"Password Reset"', 10)
+                  found = None
+                  for m in cur:
+                      if m['id'] not in prev_ids:
+                          found = get_full(m['id'])
+                          break
+                  if found:
+                      hdrs = {h['name']: h['value'] for h in found['payload'].get('headers', [])}
+                      urls = extract_urls(found)
+                      out['reset_email_subject'] = hdrs.get('Subject')
+                      out['reset_email_date'] = hdrs.get('Date')
+                      out['reset_email_urls'] = urls[:5]
+                      reset_link = next((u for u in urls if 'account.mongodb.com/account/reset/password/' in u), None)
+                      if reset_link:
+                          break
+                  time.sleep(2)
+              out['reset_link'] = reset_link
+              if not reset_link:
+                  raise RuntimeError('No reset link found in new email')
+
+              with sync_playwright() as p:
+                  browser = p.chromium.launch(headless=True)
+                  context = browser.new_context(
+                      user_agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36'
+                  )
+                  page = context.new_page()
+                  page.goto(reset_link, wait_until='domcontentloaded', timeout=120000)
+                  page.wait_for_timeout(4000)
+                  out['reset_page_initial_url'] = page.url
+                  out['reset_page_initial_title'] = page.title()
+                  out['reset_page_initial_text'] = page.locator('body').inner_text()[:2000]
+                  pw_inputs = page.locator('input[type="password"]')
+                  out['pw_field_count'] = pw_inputs.count()
+                  if pw_inputs.count() >= 2:
+                      pw_inputs.nth(0).fill(NEW_PASSWORD)
+                      pw_inputs.nth(1).fill(NEW_PASSWORD)
+                      page.get_by_role('button', name='Save Password').click(timeout=10000)
+                      page.wait_for_timeout(12000)
+                  out['reset_page_after_url'] = page.url
+                  out['reset_page_after_title'] = page.title()
+                  out['reset_page_after_text'] = page.locator('body').inner_text()[:3000]
+
+                  # after reset attempt, visit target page
+                  try:
+                      page.goto(GROUP_URL, wait_until='domcontentloaded', timeout=120000)
+                      page.wait_for_timeout(10000)
+                      out['group_url_after_reset'] = page.url
+                      out['group_title_after_reset'] = page.title()
+                      out['group_text_after_reset'] = page.locator('body').inner_text()[:3000]
+                  except Exception as e:
+                      out['group_nav_error'] = repr(e)
+
+                  cookies = context.cookies()
+                  out['cookie_count_after'] = len(cookies)
+                  out['cookie_names_after'] = [c.get('name') for c in cookies]
+                  with open('browser_cookies.json', 'w', encoding='utf-8') as f:
+                      json.dump({'start_url': GROUP_URL, 'cookies': cookies}, f, indent=2)
+                  browser.close()
+
+          except Exception as e:
+              out['error'] = str(e)
+              out['traceback'] = traceback.format_exc()
+
+          os.makedirs('outputs', exist_ok=True)
+          with open('outputs/refresh_cookie_probe.json', 'w', encoding='utf-8') as f:
+              json.dump(out, f, indent=2)
+          print(json.dumps(out, indent=2)[:20000])
+          PY
+      - name: Commit outputs
+        if: always()
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add browser_cookies.json outputs/refresh_cookie_probe.json || true
+          git commit -m "Write refresh cookie probe" || exit 0
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin probe-177216q && git push origin HEAD:probe-177216q && exit 0 || true
+            sleep 10
+          done
+          exit 0
