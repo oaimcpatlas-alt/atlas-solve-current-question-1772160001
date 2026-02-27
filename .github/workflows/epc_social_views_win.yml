@@ -1,0 +1,92 @@
+
+name: EPCSocialViewsWin
+on:
+  push:
+    branches: [epc-social-views-win-1772234707]
+permissions:
+  contents: write
+jobs:
+  query:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check -q pymongo dnspython requests
+      - name: Query October 2023 top-view social post
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, requests
+          from datetime import datetime, timezone
+          from pymongo import MongoClient
+          import dns.resolver
+          USER="oaimcpatlas_db_user"; PASSWORD="pdVEIpUnn0quf2Mr"; ROOT="mcpatlas.zlknsyp.mongodb.net"
+          def pd(v):
+              if isinstance(v, datetime): return v if v.tzinfo else v.replace(tzinfo=timezone.utc)
+              if v is None: return None
+              s=str(v).strip()
+              for cand in [s, s.replace(' ','T'), s.replace('Z','+00:00')]:
+                try:
+                  dt=datetime.fromisoformat(cand); return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+                except Exception: pass
+              return None
+          def pn(v):
+              try: return float(str(v).replace(',',''))
+              except Exception: return None
+          def ser(v):
+              if isinstance(v, datetime): return v.isoformat()
+              if type(v).__name__=='ObjectId': return str(v)
+              if isinstance(v, dict): return {str(k):ser(vv) for k,vv in v.items()}
+              if isinstance(v, list): return [ser(x) for x in v[:20]]
+              return v
+          out={}
+          try:
+              out['public_ip']=requests.get('https://api.ipify.org?format=json', timeout=20).json()
+          except Exception as e:
+              out['public_ip_error']=repr(e)
+          hosts=[]
+          try:
+              hosts=[str(r.target).rstrip('.') for r in dns.resolver.resolve(f"_mongodb._tcp.{ROOT}","SRV")]
+          except Exception: pass
+          for h in ["ac-lxbrbla-shard-00-00.zlknsyp.mongodb.net","ac-lxbrbla-shard-00-01.zlknsyp.mongodb.net","ac-lxbrbla-shard-00-02.zlknsyp.mongodb.net"]:
+              if h not in hosts: hosts.append(h)
+          seed=",".join(f"{h}:27017" for h in hosts)
+          uris=[
+            ("srv", f"mongodb+srv://{USER}:{PASSWORD}@{ROOT}/?retryWrites=false"),
+            ("seed", f"mongodb://{USER}:{PASSWORD}@{seed}/?tls=true&authSource=admin&replicaSet=atlas-pq8tl1-shard-0&readPreference=secondaryPreferred&retryWrites=false"),
+          ]
+          c=None
+          for label,uri in uris:
+            try:
+              cc=MongoClient(uri, serverSelectionTimeoutMS=12000, connectTimeoutMS=12000, socketTimeoutMS=12000)
+              out['ping']=cc.admin.command('ping'); out['used_connection']=label; c=cc; break
+            except Exception as e:
+              out.setdefault('attempts',[]).append({'uri_label':label,'error':repr(e)[:2000]})
+          if c:
+            docs=list(c['video_game_store']['Social Media'].find({},{'_id':0}))
+            filt=[]
+            for d in docs:
+              dt=pd(d.get('Date')); views=pn(d.get('Views'))
+              if dt and views is not None and dt.year==2023 and dt.month==10:
+                dd=dict(d); dd['_parsedDate']=dt.isoformat(); dd['_views']=views; filt.append(dd)
+            filt.sort(key=lambda d:(d['_views'], d.get('Likes',0), str(d.get('Post ID',''))), reverse=True)
+            out['matching_count']=len(filt); out['answer']=ser(filt[0]) if filt else None; out['top5']=[ser(x) for x in filt[:5]]
+          else:
+            out['error']='no connection'
+          with open('outputs/epc_social_views_win.json','w') as f: json.dump(out,f,indent=2,default=ser)
+          print(json.dumps(out, default=ser))
+          PY
+      - name: Commit result
+        if: always()
+        shell: bash
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add outputs/epc_social_views_win.json .github/workflows/epc_social_views_win.yml
+          git commit -m "Write EPC social views win result" || exit 0
+          git pull --rebase origin epc-social-views-win-1772234707 || true
+          git push origin epc-social-views-win-1772234707 || true
