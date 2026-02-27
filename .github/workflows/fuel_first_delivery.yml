@@ -452,6 +452,26 @@ jobs:
           }
           NODE
           cat outputs/fuel_first_delivery.json
+
+      - name: Emit answer annotation
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, os
+          path = 'outputs/fuel_first_delivery.json'
+          if not os.path.exists(path):
+              print('::warning title=FuelFirstDelivery::no output file')
+          else:
+              data = json.load(open(path))
+              ans = data.get('answer')
+              if ans:
+                  msg = f"order_id={ans.get('order_id')} | order_date={ans.get('order_date')} | distance_km={ans.get('delivery_distance_km')} | fuel_liters={ans.get('fuel_liters')} | btc_close_usd={ans.get('bitcoin_close_usd')} | gas_price_per_liter_usd={ans.get('gas_price_per_liter_usd')} | fuel_cost_usd={ans.get('fuel_cost_usd')}"
+                  print('::warning title=FuelFirstDelivery::' + msg)
+              else:
+                  err = data.get('error', 'no answer')
+                  print('::warning title=FuelFirstDelivery::error=' + str(err))
+          PY
+
       - name: Commit result
         if: always()
         run: |
