@@ -1,0 +1,125 @@
+name: SportsMagnesiumQueryMacOS
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/sports_magnesium_query_macos.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: macos-latest
+    timeout-minutes: 20
+    env:
+      MONGO_URI: "mongodb+srv://oaimcpatlas_db_user:pdVEIpUnn0quf2Mr@mcpatlas.zlknsyp.mongodb.net"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install pymongo
+
+      - name: Query DB directly
+        run: |
+          python - <<'PY'
+          import json, os, time, traceback
+          from datetime import datetime
+          from pymongo import MongoClient
+
+          result = {"target_year": 2021, "connect_attempts": []}
+          client = None
+          last_error = None
+          for attempt in range(1, 11):
+              try:
+                  client = MongoClient(os.environ["MONGO_URI"], serverSelectionTimeoutMS=20000, connectTimeoutMS=20000, socketTimeoutMS=20000)
+                  result["ping"] = client.admin.command("ping")
+                  result["connected_on_attempt"] = attempt
+                  break
+              except Exception as e:
+                  last_error = repr(e)
+                  result["connect_attempts"].append({"attempt": attempt, "error": last_error})
+                  time.sleep(10)
+
+          def ser(v):
+              t = type(v).__name__
+              if t == "ObjectId":
+                  return str(v)
+              if isinstance(v, (str, int, float, bool)) or v is None:
+                  return v
+              if hasattr(v, "isoformat"):
+                  try:
+                      return v.isoformat()
+                  except Exception:
+                      return str(v)
+              if isinstance(v, list):
+                  return [ser(x) for x in v]
+              if isinstance(v, dict):
+                  return {str(k): ser(vv) for k, vv in v.items()}
+              return str(v)
+
+          if client is None:
+              result["error"] = f"connect failed: {last_error}"
+          else:
+              try:
+                  col = client["video_game_store"]["Customers"]
+                  start = datetime(2021, 1, 1)
+                  end = datetime(2022, 1, 1)
+                  q = {"Game Genre": "Sports", "Purchase Date": {"$gte": start, "$lt": end}}
+                  result["matching_document_count"] = col.count_documents(q)
+                  distinct_ids = col.distinct("Customer ID", q)
+                  result["unique_customer_id_count"] = len(distinct_ids)
+                  result["sample_customer_ids"] = distinct_ids[:20]
+                  result["sample_docs"] = [ser(x) for x in col.find(q).limit(5)]
+                  result["genre_breakdown_2021_top10"] = [
+                      {"_id": x["_id"], "count": x["count"]}
+                      for x in col.aggregate([
+                          {"$match": {"Purchase Date": {"$gte": start, "$lt": end}}},
+                          {"$group": {"_id": "$Game Genre", "count": {"$sum": 1}}},
+                          {"$sort": {"count": -1, "_id": 1}},
+                          {"$limit": 10}
+                      ])
+                  ]
+                  result["sports_by_year"] = [ser(x) for x in col.aggregate([
+                      {"$match": {"Game Genre": "Sports"}},
+                      {"$group": {"_id": {"$year": "$Purchase Date"}, "count": {"$sum": 1}}},
+                      {"$sort": {"_id": 1}}
+                  ])]
+              except Exception as e:
+                  result["query_error"] = repr(e)
+                  result["query_traceback"] = traceback.format_exc()
+              finally:
+                  try:
+                      client.close()
+                  except Exception:
+                      pass
+
+          json.dump(result, open("sports_magnesium_macos_result.json", "w", encoding="utf-8"), indent=2)
+          print(json.dumps(result, indent=2))
+          PY
+
+      - if: always()
+        name: Commit result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sports_magnesium_macos_result.json
+          if git diff --cached --quiet; then
+            echo "No result changes"
+            exit 0
+          fi
+          git commit -m "Write sports magnesium macos result"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0 || true
+            sleep 5
+          done
+          exit 1
