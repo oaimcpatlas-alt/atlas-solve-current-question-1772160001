@@ -1,0 +1,104 @@
+{
+  "generated_password": "Aa1!2gVoUz4f2V%]]W%Y-y",
+  "request": {
+    "status": 429,
+    "headers": {
+      "date": "Fri, 27 Feb 2026 07:10:42 GMT",
+      "strict-transport-security": "max-age=31536000; includeSubdomains;",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "x-permitted-cross-domain-policies": "none",
+      "x-content-type-options": "nosniff",
+      "x-error-code": "RATE_LIMITED",
+      "content-type": "application/json",
+      "x-frame-options": "DENY",
+      "content-length": "59",
+      "server": "mdbws",
+      "x-xgen-up-proto": "HTTP/2",
+      "connection": "close"
+    },
+    "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+    "final_url": "https://account.mongodb.com/account/resetPasswordRequest"
+  },
+  "reset_listing": {
+    "messages": [
+      {
+        "id": "19c9dea78db52c0d",
+        "threadId": "19c9d6de8f16c871"
+      },
+      {
+        "id": "19c9de9dbd4f4f38",
+        "threadId": "19c9d6de8f16c871"
+      },
+      {
+        "id": "19c9de9a50607de9",
+        "threadId": "19c9d6de8f16c871"
+      },
+      {
+        "id": "19c9de994c14ae2c",
+        "threadId": "19c9d6de8f16c871"
+      },
+      {
+        "id": "19c9de8139e0d1de",
+        "threadId": "19c9d3ca88dd573f"
+      },
+      {
+        "id": "19c9de7fdaa9ec94",
+        "threadId": "19c9d6de8f16c871"
+      },
+      {
+        "id": "19c9de7fae04bea2",
+        "threadId": "19c9d3ca88dd573f"
+      },
+      {
+        "id": "19c9de7e0ac4e650",
+        "threadId": "19c9d6de8f16c871"
+      },
+      {
+        "id": "19c9de7d84753ade",
+        "threadId": "19c9d6de8f16c871"
+      },
+      {
+        "id": "19c9de746294e661",
+        "threadId": "19c9d3ca88dd573f"
+      }
+    ],
+    "nextPageToken": "07479428036381293361",
+    "resultSizeEstimate": 201
+  },
+  "reset_message_id": "19c9dea78db52c0d",
+  "reset_internalDate": "1772175915000",
+  "reset_snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request.",
+  "tempId": "2157cd5be70f8b22d1ea7a25775b9f8d49156b1352fba5d996077cedb2e2b467",
+  "complete": {
+    "status": 429,
+    "headers": {
+      "date": "Fri, 27 Feb 2026 07:10:52 GMT",
+      "strict-transport-security": "max-age=31536000; includeSubdomains;",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "x-permitted-cross-domain-policies": "none",
+      "x-content-type-options": "nosniff",
+      "x-error-code": "RATE_LIMITED",
+      "content-type": "application/json",
+      "x-frame-options": "DENY",
+      "content-length": "59",
+      "server": "mdbws",
+      "x-xgen-up-proto": "HTTP/2",
+      "connection": "close"
+    },
+    "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+    "final_url": "https://account.mongodb.com/account/resetPasswordComplete"
+  },
+  "verify": {
+    "status": 401,
+    "headers": {
+      "date": "Fri, 27 Feb 2026 07:10:52 GMT",
+      "server": "mdbws",
+      "connection": "close",
+      "content-length": "0"
+    },
+    "body": "",
+    "final_url": "https://account.mongodb.com/account/verify"
+  },
+  "verify_parse_error": "JSONDecodeError('Expecting value: line 1 column 1 (char 0)')",
+  "state_token": null
+}

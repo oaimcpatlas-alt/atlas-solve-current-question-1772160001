@@ -1,6 +1,263 @@
 {
-  "cookie_count": 36,
-  "final_url": "https://account.mongodb.com/account/login?n=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F699c12be8df98bd863d63d70&nextHash=%23overview&signedOut=true",
-  "title": "Log in | MongoDB",
-  "excerpt": "Log in to your account\nDon't have an account?\u00a0Sign Up\nYou have successfully logged out.\nGoogle\nGitHub\nOr with email and password\nEmail Address\nNext\nIntroducing the Embedding and Reranking API\nAccess Voyage AI's state-of-the-art embedding and reranking models natively in MongoDB Atlas for more accurate AI retrieval.\nLearn more\n\u2192"
+  "initial_cookie_count": 36,
+  "clicked": [
+    "Got it",
+    "Add Current IP Address"
+  ],
+  "final_url": "https://cloud.mongodb.com/v2/699c12be8df98bd863d63d70#/overview",
+  "title": "Project Overview | Cloud: MongoDB Cloud",
+  "excerpt": "Project Overview\n\nDATABASE\n\nClusters\n\nSearch & Vector Search\n\nData Explorer\n\nBackup\n\nSTREAMING DATA\n\nStream Processing\n\nTriggers\n\nSERVICES\n\nAI Models\n\nMigration\n\nData Federation\n\nVisualization\n\nSECURITY\n\nSecurity Quickstart\n\nProject Identity & Access\n\nDatabase & Network Access\n\nActivity Feed\n\nORGANIZATION\nMCPAtlas's Org - 2026-02-23\nPROJECT\nProject 0\nM\nWe are deploying your changes (current action: creating a plan)\nCurrent IP Address (20.51.198.212/32) added!\nVisit Network Access to modify your settings.\nYour organization does not have a designated security contact. Add an Atlas Security Contact in Organization Settings to receive security-related notifications.\nProject 0 Overview\nClusters\nCreate cluster\nmcpatlas\nConnect\nEdit configuration\n\nData Size: 120.21 MB\n\nBrowse collections\n\nView monitoring\n\n+ Add Tag\nApplication Development\nConnect new\n\nPyMongo | v4.8.0\n\nmcpatlas\n\nUPDATE TO 4.16.0\n\nnodejs|mongosh | v7.1.0|2.7.0\n\nmcpatlas\n\nnodejs | v6.21.0\n\nmcpatlas\n\nUPDATE TO 7.1.0\nFEATURES AVAILABLE ON YOUR LATEST DRIVER VERSIONS\n\nSearch\n\nVector Search\n\nMCP Server\n\nData Visualization\n\nToolbar\nResources\nTips (1)\n\nPerformance (1)\n\nSet Up Alerts\n\nSet up alerts to monitor your database and get notified about important updates.\n\nView Alerts\n\nCost (0)\n\nResilience (0)\n\nSystem StatusAll Good\n\u00a92026 MongoDB, Inc.StatusTermsPrivacyAtlas BlogContact Sales",
+  "final_cookie_count": 35,
+  "responses": [
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70/privateNetworkSettings/endpointIds",
+      "status": 200,
+      "text": "[]"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70/containers",
+      "status": 200,
+      "text": "[{\"@provider\":\"FREE\",\"clusterName\":\"mtm-azure-westus-0-m0-5\",\"groupId\":\"5c7ebdf4d5ec138853250cb2\",\"id\":\"698e17728dee800f84319e5a\",\"isProvisioned\":true}]"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70/privateEndpoint/serverless/AWS",
+      "status": 200,
+      "text": "[]"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/dataLakes/699c12be8df98bd863d63d70/v1/tenants?includeStorage=false",
+      "status": 200,
+      "text": "[]"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70/containers/aws/defaults",
+      "status": 200,
+      "text": "{\"atlasCidrBlock\":\"192.168.248.0/21\",\"regions\":[{\"awsEnv\":\"Standard\",\"complianceLevel\":\"COMMERCIAL\",\"continent\":\"North America\",\"isRecommended\":true,\"key\":\"US_EAST_1\",\"latitude\":39.0437567,\"location\":\"N. Virginia\",\"longitude\":-77.4874416,\"name\":\"us-east-1\",\"provider\":\"AWS\"},{\"awsEnv\":\"Standard\",\"complianceLevel\":\"COMMERCIAL\",\"continent\":\"North America\",\"isRecommended\":true,\"key\":\"US_EAST_2\",\"latitude\":39.96118,\"location\":\"Ohio\",\"longitude\":-82.99879,\"name\":\"us-east-2\",\"provider\":\"AWS\"},{\"awsEnv\":\"Standard\",\"complianceLevel\":\"COMMERCIAL\",\"continent\":\"North America\",\"isRecommended\":false,\"key\":\"US_WEST_1\",\"latitude\":37.468319,\"location\":\"N. California\",\"longitude\":-122.143936,\"name\":\"us-west-1\",\"provider\":\"AWS\"},{\"awsEnv\":\"Standard\",\"complianceLevel\":\"COMMERCIAL\",\"continent\":\"North America\","
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70/privateEndpoint/serverless/AZURE",
+      "status": 200,
+      "text": "[]"
+    },
+    {
+      "url": "https://services.cloud.mongodb.com/api/private/v1.0/groups/699c12be8df98bd863d63d70/allowed_deprecated_features",
+      "status": 200,
+      "text": "{\"isDataAPIAllowed\":false,\"isSyncAllowed\":false}"
+    },
+    {
+      "url": "https://services.cloud.mongodb.com/api/private/v1.0/groups/699c12be8df98bd863d63d70/eol",
+      "status": 404,
+      "text": "{\"error\":\"error getting eol status for group: no apps with valid eol status found\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70/privateEndpoint/AWS/endpointService",
+      "status": 200,
+      "text": "[]"
+    },
+    {
+      "url": "https://cloud.mongodb.com/activity/alertConfigs/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "[{\"_t\":\"NDS\",\"ac\":\"GROUP\",\"cid\":\"699c12be8df98bd863d63d70\",\"cre\":\"2026-02-23T08:41:34Z\",\"enabled\":true,\"et\":\"CLUSTER_BLOCK_WRITE\",\"forAllGroups\":false,\"groupType\":\"NDS\",\"groups\":[],\"id\":\"699c12be8df98bd863d63dc2\",\"matchers\":null,\"notify\":[{\"_t\":\"GROUP\",\"cid\":\"699c12be8df98bd863d63d70\",\"delay\":0,\"email\":true,\"gn\":\"Project 0\",\"id\":\"699c12be8df98bd863d63dc3\",\"integration\":null,\"interval\":0,\"roles\":[\"GROUP_OWNER\"],\"sms\":false}],\"orgId\":\"699c12be8df98bd863d63cdd\",\"severityOverride\":null,\"source\":\"DEFAULT\",\"tags\":[],\"upd\":\"2026-02-23T08:41:34Z\"},{\"_t\":\"NDS\",\"ac\":\"GROUP\",\"cid\":\"699c12be8df98bd863d63d70\",\"cre\":\"2026-02-23T08:41:34Z\",\"enabled\":true,\"et\":\"CLUSTER_UNBLOCK_WRITE\",\"forAllGroups\":false,\"groupType\":\"NDS\",\"groups\":[],\"id\":\"699c12be8df98bd863d63de6\",\"matchers\":null,\"notify\":[{\"_t\":\"GROUP\","
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70/privateEndpoint/AZURE/endpointService",
+      "status": 200,
+      "text": "[]"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70/privateEndpoint/GCP/endpointService",
+      "status": 200,
+      "text": "[]"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70/privateEndpoint/serverless/AZURE",
+      "status": 200,
+      "text": "[]"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70/privateEndpoint/serverless/AWS",
+      "status": 200,
+      "text": "[]"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70/peers",
+      "status": 200,
+      "text": "[]"
+    },
+    {
+      "url": "https://services.cloud.mongodb.com/api/admin/v3.0/groups/699c12be8df98bd863d63d70/apps?product=standard%2Catlas%2Cdata-api%2Cdevice-sync%2Cedge-server",
+      "status": 200,
+      "text": "[]"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T02:51:11Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":null,\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"IDLE\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T02:51:11Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":null,\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"IDLE\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T02:51:11Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":null,\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"IDLE\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T02:51:11Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":null,\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"IDLE\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T02:51:11Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":null,\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"IDLE\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T02:51:11Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":null,\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"IDLE\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70/ipWhitelist/addPermissions",
+      "status": 200,
+      "text": "[{\"comment\":\"\",\"deleteAfterDate\":null,\"isEditable\":true,\"requesterIpAddress\":false,\"statusPerContainer\":{\"698e17728dee800f84319e5a\":\"ACTIVE\"},\"type\":\"IP\",\"value\":\"172.183.224.43/32\"},{\"comment\":\"\",\"deleteAfterDate\":null,\"isEditable\":true,\"requesterIpAddress\":false,\"statusPerContainer\":{\"698e17728dee800f84319e5a\":\"ACTIVE\"},\"type\":\"IP\",\"value\":\"20.236.100.1/32\"},{\"comment\":\"Created as part of the Auto Setup process\",\"deleteAfterDate\":null,\"isEditable\":true,\"requesterIpAddress\":false,\"statusPerContainer\":{\"698e17728dee800f84319e5a\":\"ACTIVE\"},\"type\":\"IP\",\"value\":\"98.42.223.63/32\"},{\"comment\":\"\",\"deleteAfterDate\":null,\"isEditable\":true,\"requesterIpAddress\":true,\"statusPerContainer\":{},\"type\":\"IP\",\"value\":\"20.51.198.212/32\"},{\"comment\":\"\",\"deleteAfterDate\":null,\"isEditable\":true,\"requesterIpAddr"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70/ipWhitelist",
+      "status": 200,
+      "text": "[{\"comment\":\"\",\"deleteAfterDate\":null,\"isEditable\":true,\"requesterIpAddress\":false,\"statusPerContainer\":{\"698e17728dee800f84319e5a\":\"ACTIVE\"},\"type\":\"IP\",\"value\":\"172.183.224.43/32\"},{\"comment\":\"\",\"deleteAfterDate\":null,\"isEditable\":true,\"requesterIpAddress\":false,\"statusPerContainer\":{\"698e17728dee800f84319e5a\":\"ACTIVE\"},\"type\":\"IP\",\"value\":\"20.236.100.1/32\"},{\"comment\":\"Created as part of the Auto Setup process\",\"deleteAfterDate\":null,\"isEditable\":true,\"requesterIpAddress\":false,\"statusPerContainer\":{\"698e17728dee800f84319e5a\":\"ACTIVE\"},\"type\":\"IP\",\"value\":\"98.42.223.63/32\"},{\"comment\":\"\",\"deleteAfterDate\":null,\"isEditable\":true,\"requesterIpAddress\":true,\"statusPerContainer\":{},\"type\":\"IP\",\"value\":\"20.51.198.212/32\"},{\"comment\":\"\",\"deleteAfterDate\":null,\"isEditable\":true,\"requesterIpAddr"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T02:51:11Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":null,\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"UPDATING\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/clusters/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "[{\"@provider\":\"FREE\",\"limitsProfile\":\"NORMAL\",\"tenantBackupEnabled\":false,\"acceptDataRisksAndForceReplicaSetReconfig\":null,\"advancedConfiguration\":null,\"backupEnabled\":false,\"biConnector\":{\"enabled\":false,\"privateHostname\":null,\"privateLinkHostnamesMap\":{},\"publicHostname\":null,\"readPreference\":\"secondary\"},\"bumperFileOverrides\":[],\"cancelConfigServerTransitionRequested\":null,\"cancelShardDrainRequested\":null,\"clusterNamePrefix\":\"ac-lxbrbla\",\"clusterProvisionType\":\"FAST\",\"clusterTags\":[],\"clusterType\":\"REPLICASET\",\"configServerManagementMode\":null,\"configServerType\":null,\"continuousDeliveryFCV\":null,\"cpuSocketBinding\":[],\"createDate\":\"2026-02-23T08:47:37Z\",\"createSampleSearchIndex\":true,\"customerProvidedDiskSizeGB\":0.5,\"dataProcessingRegion\":null,\"dbCheckPreflightRetryCount\":0,\"deleteAfterC"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T02:51:11Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":null,\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"UPDATING\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T02:51:11Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":null,\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"UPDATING\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/clusters/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "[{\"@provider\":\"FREE\",\"limitsProfile\":\"NORMAL\",\"tenantBackupEnabled\":false,\"acceptDataRisksAndForceReplicaSetReconfig\":null,\"advancedConfiguration\":null,\"backupEnabled\":false,\"biConnector\":{\"enabled\":false,\"privateHostname\":null,\"privateLinkHostnamesMap\":{},\"publicHostname\":null,\"readPreference\":\"secondary\"},\"bumperFileOverrides\":[],\"cancelConfigServerTransitionRequested\":null,\"cancelShardDrainRequested\":null,\"clusterNamePrefix\":\"ac-lxbrbla\",\"clusterProvisionType\":\"FAST\",\"clusterTags\":[],\"clusterType\":\"REPLICASET\",\"configServerManagementMode\":null,\"configServerType\":null,\"continuousDeliveryFCV\":null,\"cpuSocketBinding\":[],\"createDate\":\"2026-02-23T08:47:37Z\",\"createSampleSearchIndex\":true,\"customerProvidedDiskSizeGB\":0.5,\"dataProcessingRegion\":null,\"dbCheckPreflightRetryCount\":0,\"deleteAfterC"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T07:11:21Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":[{\"clusterName\":\"mcpatlas\",\"completeDate\":null,\"failureCode\":\"NONE\",\"groupId\":\"699c12be8df98bd863d63d70\",\"id\":\"69a14399574667221d0a4b35\",\"moves\":[{\"instanceId\":null,\"isServerless\":false,\"lastStepResult\":null,\"name\":\"ConfigureMongoDB\",\"state\":\"EXECUTING\"}],\"result\":\"NOT_STARTED\",\"startDate\":\"2026-02-27T07:11:21Z\",\"state\":\"EXECUTING\"}],\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"UPDATING\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T07:11:21Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":[{\"clusterName\":\"mcpatlas\",\"completeDate\":null,\"failureCode\":\"NONE\",\"groupId\":\"699c12be8df98bd863d63d70\",\"id\":\"69a14399574667221d0a4b35\",\"moves\":[{\"instanceId\":null,\"isServerless\":false,\"lastStepResult\":null,\"name\":\"ConfigureMongoDB\",\"state\":\"EXECUTING\"}],\"result\":\"NOT_STARTED\",\"startDate\":\"2026-02-27T07:11:21Z\",\"state\":\"EXECUTING\"}],\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"UPDATING\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/clusters/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "[{\"@provider\":\"FREE\",\"limitsProfile\":\"NORMAL\",\"tenantBackupEnabled\":false,\"acceptDataRisksAndForceReplicaSetReconfig\":null,\"advancedConfiguration\":null,\"backupEnabled\":false,\"biConnector\":{\"enabled\":false,\"privateHostname\":null,\"privateLinkHostnamesMap\":{},\"publicHostname\":null,\"readPreference\":\"secondary\"},\"bumperFileOverrides\":[],\"cancelConfigServerTransitionRequested\":null,\"cancelShardDrainRequested\":null,\"clusterNamePrefix\":\"ac-lxbrbla\",\"clusterProvisionType\":\"FAST\",\"clusterTags\":[],\"clusterType\":\"REPLICASET\",\"configServerManagementMode\":null,\"configServerType\":null,\"continuousDeliveryFCV\":null,\"cpuSocketBinding\":[],\"createDate\":\"2026-02-23T08:47:37Z\",\"createSampleSearchIndex\":true,\"customerProvidedDiskSizeGB\":0.5,\"dataProcessingRegion\":null,\"dbCheckPreflightRetryCount\":0,\"deleteAfterC"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T07:11:21Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":[{\"clusterName\":\"mcpatlas\",\"completeDate\":null,\"failureCode\":\"NONE\",\"groupId\":\"699c12be8df98bd863d63d70\",\"id\":\"69a14399574667221d0a4b35\",\"moves\":[{\"instanceId\":null,\"isServerless\":false,\"lastStepResult\":null,\"name\":\"ConfigureMongoDB\",\"state\":\"EXECUTING\"}],\"result\":\"IN_PROGRESS\",\"startDate\":\"2026-02-27T07:11:21Z\",\"state\":\"EXECUTING\"}],\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"UPDATING\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T07:11:21Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":[{\"clusterName\":\"mcpatlas\",\"completeDate\":null,\"failureCode\":\"NONE\",\"groupId\":\"699c12be8df98bd863d63d70\",\"id\":\"69a14399574667221d0a4b35\",\"moves\":[{\"instanceId\":null,\"isServerless\":false,\"lastStepResult\":null,\"name\":\"ConfigureMongoDB\",\"state\":\"EXECUTING\"}],\"result\":\"IN_PROGRESS\",\"startDate\":\"2026-02-27T07:11:21Z\",\"state\":\"EXECUTING\"}],\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"UPDATING\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/clusters/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "[{\"@provider\":\"FREE\",\"limitsProfile\":\"NORMAL\",\"tenantBackupEnabled\":false,\"acceptDataRisksAndForceReplicaSetReconfig\":null,\"advancedConfiguration\":null,\"backupEnabled\":false,\"biConnector\":{\"enabled\":false,\"privateHostname\":null,\"privateLinkHostnamesMap\":{},\"publicHostname\":null,\"readPreference\":\"secondary\"},\"bumperFileOverrides\":[],\"cancelConfigServerTransitionRequested\":null,\"cancelShardDrainRequested\":null,\"clusterNamePrefix\":\"ac-lxbrbla\",\"clusterProvisionType\":\"FAST\",\"clusterTags\":[],\"clusterType\":\"REPLICASET\",\"configServerManagementMode\":null,\"configServerType\":null,\"continuousDeliveryFCV\":null,\"cpuSocketBinding\":[],\"createDate\":\"2026-02-23T08:47:37Z\",\"createSampleSearchIndex\":true,\"customerProvidedDiskSizeGB\":0.5,\"dataProcessingRegion\":null,\"dbCheckPreflightRetryCount\":0,\"deleteAfterC"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T07:11:21Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":[{\"clusterName\":\"mcpatlas\",\"completeDate\":null,\"failureCode\":\"NONE\",\"groupId\":\"699c12be8df98bd863d63d70\",\"id\":\"69a14399574667221d0a4b35\",\"moves\":[{\"instanceId\":null,\"isServerless\":false,\"lastStepResult\":null,\"name\":\"ConfigureMongoDB\",\"state\":\"EXECUTING\"}],\"result\":\"IN_PROGRESS\",\"startDate\":\"2026-02-27T07:11:21Z\",\"state\":\"EXECUTING\"}],\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"UPDATING\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/automation/deploymentStatus/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"areJobsInProgress\":false,\"automationStatus\":{\"processes\":[]},\"configVersion\":3,\"deploymentState\":{\"affectedBySERVER_21275\":false,\"agentType\":\"ONE_AGENT\",\"areAnyVersionsAvailable\":true,\"areCommunityBuildsInUse\":false,\"clusterAuthMode\":\"\",\"hasDeploymentItem\":true,\"hasEOLProcessesForAutomationBackupMonitoring\":false,\"hasFourTwoBackupWithUnconfiguredMongoBlockstoreBlockSize\":false,\"hasFourTwoClusterBackedUp\":false,\"hasFourZeroClusterBackedUp\":false,\"hasLegacyConfigServers\":false,\"hasManagedAtlasProxy\":false,\"hasManagedBackupAgents\":false,\"hasManagedBiConnector\":false,\"hasManagedComponents\":true,\"hasManagedMongot\":false,\"hasManagedMonitoringAgents\":false,\"hasManagedProcesses\":false,\"hasMongoDBVersionsCompatibleWithNativeLDAP\":true,\"isAtAutomationAgentVersion\":false,\"isAtBackupAgentVersion\":fa"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T07:11:21Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":[{\"clusterName\":\"mcpatlas\",\"completeDate\":null,\"failureCode\":\"NONE\",\"groupId\":\"699c12be8df98bd863d63d70\",\"id\":\"69a14399574667221d0a4b35\",\"moves\":[{\"instanceId\":null,\"isServerless\":false,\"lastStepResult\":null,\"name\":\"ConfigureMongoDB\",\"state\":\"EXECUTING\"}],\"result\":\"IN_PROGRESS\",\"startDate\":\"2026-02-27T07:11:21Z\",\"state\":\"EXECUTING\"}],\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"UPDATING\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/clusters/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "[{\"@provider\":\"FREE\",\"limitsProfile\":\"NORMAL\",\"tenantBackupEnabled\":false,\"acceptDataRisksAndForceReplicaSetReconfig\":null,\"advancedConfiguration\":null,\"backupEnabled\":false,\"biConnector\":{\"enabled\":false,\"privateHostname\":null,\"privateLinkHostnamesMap\":{},\"publicHostname\":null,\"readPreference\":\"secondary\"},\"bumperFileOverrides\":[],\"cancelConfigServerTransitionRequested\":null,\"cancelShardDrainRequested\":null,\"clusterNamePrefix\":\"ac-lxbrbla\",\"clusterProvisionType\":\"FAST\",\"clusterTags\":[],\"clusterType\":\"REPLICASET\",\"configServerManagementMode\":null,\"configServerType\":null,\"continuousDeliveryFCV\":null,\"cpuSocketBinding\":[],\"createDate\":\"2026-02-23T08:47:37Z\",\"createSampleSearchIndex\":true,\"customerProvidedDiskSizeGB\":0.5,\"dataProcessingRegion\":null,\"dbCheckPreflightRetryCount\":0,\"deleteAfterC"
+    },
+    {
+      "url": "https://cloud.mongodb.com/ui/layout/alerts/organization/699c12be8df98bd863d63cdd/count",
+      "status": 200,
+      "text": "0"
+    },
+    {
+      "url": "https://cloud.mongodb.com/user/shared/alerts/project/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "[]"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70/encryptionAtRest",
+      "status": 200,
+      "text": "{\"awsKms\":{\"accessKeyID\":null,\"customerMasterKeyID\":null,\"enabled\":false,\"lastUpdatedKeyID\":null,\"lastValidationDate\":null,\"networkAccessDeniedDate\":null,\"privateEndpoints\":[],\"region\":null,\"requirePrivateNetworking\":false,\"roleId\":null,\"valid\":false},\"azureKeyVault\":{\"azureEnvironment\":null,\"clientID\":null,\"enabled\":false,\"keyIdentifier\":null,\"keyVaultName\":null,\"lastUpdatedKeyID\":null,\"lastValidationDate\":null,\"networkAccessDeniedDate\":null,\"privateEndpoints\":[],\"requirePrivateNetworking\":false,\"resourceGroupName\":null,\"subscriptionID\":null,\"tenantID\":null,\"valid\":false},\"enabledForSearchNodes\":false,\"googleCloudKms\":{\"enabled\":false,\"keyVersionResourceID\":null,\"lastKmipMasterKeyRotation\":null,\"lastUpdatedKeyID\":null,\"networkAccessDeniedDate\":null,\"roleId\":null,\"valid\":false}}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/deployment/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"atlasProxies\":[],\"atlasUISes\":[],\"auth\":{\"authoritativeSet\":false,\"autoAuthMechanism\":\"MONGODB-CR\",\"autoAuthMechanisms\":[],\"autoAuthRestrictions\":[],\"disabled\":true,\"hasAutoPwd\":false,\"hasKey\":false,\"hasNewKey\":false,\"usersDeleted\":[],\"usersWanted\":[]},\"backupVersions\":[],\"balancer\":{},\"builtInRoles\":[],\"clusterWideConfigurations\":{},\"cpsModules\":[],\"dbCheckModules\":[],\"filebeat\":{},\"indexConfigs\":[],\"kerberos\":{\"serviceName\":\"mongodb\"},\"ldap\":{\"hasBindQueryPassword\":false,\"hasNewBindQueryPassword\":false},\"lifecycleManagementModules\":[],\"maintainedEnvoys\":[],\"maintainedMonarchComponents\":[],\"maintainedMongotunes\":[],\"maintainedRamis\":[],\"mongoDbVersions\":[],\"mongosqlds\":[],\"mongots\":[],\"monitoringVersions\":[],\"onlineArchiveModules\":[],\"options\":{},\"processes\":[{\"args2_6\":{\"net\":{\"port\":2"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T07:11:21Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":[{\"clusterName\":\"mcpatlas\",\"completeDate\":null,\"failureCode\":\"NONE\",\"groupId\":\"699c12be8df98bd863d63d70\",\"id\":\"69a14399574667221d0a4b35\",\"moves\":[{\"instanceId\":null,\"isServerless\":false,\"lastStepResult\":null,\"name\":\"ConfigureMongoDB\",\"state\":\"EXECUTING\"}],\"result\":\"IN_PROGRESS\",\"startDate\":\"2026-02-27T07:11:21Z\",\"state\":\"EXECUTING\"}],\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"UPDATING\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T07:11:21Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":[{\"clusterName\":\"mcpatlas\",\"completeDate\":null,\"failureCode\":\"NONE\",\"groupId\":\"699c12be8df98bd863d63d70\",\"id\":\"69a14399574667221d0a4b35\",\"moves\":[{\"instanceId\":null,\"isServerless\":false,\"lastStepResult\":null,\"name\":\"ConfigureMongoDB\",\"state\":\"EXECUTING\"}],\"result\":\"IN_PROGRESS\",\"startDate\":\"2026-02-27T07:11:21Z\",\"state\":\"EXECUTING\"}],\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"UPDATING\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/clusters/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "[{\"@provider\":\"FREE\",\"limitsProfile\":\"NORMAL\",\"tenantBackupEnabled\":false,\"acceptDataRisksAndForceReplicaSetReconfig\":null,\"advancedConfiguration\":null,\"backupEnabled\":false,\"biConnector\":{\"enabled\":false,\"privateHostname\":null,\"privateLinkHostnamesMap\":{},\"publicHostname\":null,\"readPreference\":\"secondary\"},\"bumperFileOverrides\":[],\"cancelConfigServerTransitionRequested\":null,\"cancelShardDrainRequested\":null,\"clusterNamePrefix\":\"ac-lxbrbla\",\"clusterProvisionType\":\"FAST\",\"clusterTags\":[],\"clusterType\":\"REPLICASET\",\"configServerManagementMode\":null,\"configServerType\":null,\"continuousDeliveryFCV\":null,\"cpuSocketBinding\":[],\"createDate\":\"2026-02-23T08:47:37Z\",\"createSampleSearchIndex\":true,\"customerProvidedDiskSizeGB\":0.5,\"dataProcessingRegion\":null,\"dbCheckPreflightRetryCount\":0,\"deleteAfterC"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T07:11:21Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":[{\"clusterName\":\"mcpatlas\",\"completeDate\":null,\"failureCode\":\"NONE\",\"groupId\":\"699c12be8df98bd863d63d70\",\"id\":\"69a14399574667221d0a4b35\",\"moves\":[{\"instanceId\":null,\"isServerless\":false,\"lastStepResult\":null,\"name\":\"ConfigureMongoDB\",\"state\":\"EXECUTING\"}],\"result\":\"IN_PROGRESS\",\"startDate\":\"2026-02-27T07:11:21Z\",\"state\":\"EXECUTING\"}],\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"UPDATING\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T07:11:21Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":[{\"clusterName\":\"mcpatlas\",\"completeDate\":null,\"failureCode\":\"NONE\",\"groupId\":\"699c12be8df98bd863d63d70\",\"id\":\"69a14399574667221d0a4b35\",\"moves\":[{\"instanceId\":null,\"isServerless\":false,\"lastStepResult\":null,\"name\":\"ConfigureMongoDB\",\"state\":\"EXECUTING\"}],\"result\":\"IN_PROGRESS\",\"startDate\":\"2026-02-27T07:11:21Z\",\"state\":\"EXECUTING\"}],\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"UPDATING\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/clusters/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "[{\"@provider\":\"FREE\",\"limitsProfile\":\"NORMAL\",\"tenantBackupEnabled\":false,\"acceptDataRisksAndForceReplicaSetReconfig\":null,\"advancedConfiguration\":null,\"backupEnabled\":false,\"biConnector\":{\"enabled\":false,\"privateHostname\":null,\"privateLinkHostnamesMap\":{},\"publicHostname\":null,\"readPreference\":\"secondary\"},\"bumperFileOverrides\":[],\"cancelConfigServerTransitionRequested\":null,\"cancelShardDrainRequested\":null,\"clusterNamePrefix\":\"ac-lxbrbla\",\"clusterProvisionType\":\"FAST\",\"clusterTags\":[],\"clusterType\":\"REPLICASET\",\"configServerManagementMode\":null,\"configServerType\":null,\"continuousDeliveryFCV\":null,\"cpuSocketBinding\":[],\"createDate\":\"2026-02-23T08:47:37Z\",\"createSampleSearchIndex\":true,\"customerProvidedDiskSizeGB\":0.5,\"dataProcessingRegion\":null,\"dbCheckPreflightRetryCount\":0,\"deleteAfterC"
+    },
+    {
+      "url": "https://cloud.mongodb.com/nds/699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "{\"dataProcessingRegion\":null,\"deprecatedMongoDBVersions\":[\"3.2\",\"3.4\",\"3.6\",\"4.0\",\"4.2\",\"4.4\",\"5.0\",\"6.0\"],\"groupName\":\"Project 0\",\"id\":\"699c12be8df98bd863d63d70\",\"lastPlanCompleteDate\":\"2026-02-27T02:51:30Z\",\"lastPlanCreateDate\":\"2026-02-27T07:11:21Z\",\"needsProcessAutomationConfigPublishAfter\":null,\"planExecutionEnabled\":true,\"plans\":null,\"poolDeleteRequestedDate\":null,\"poolId\":null,\"reapedContainerWarnings\":[],\"state\":\"UPDATING\"}"
+    }
+  ]
 }
