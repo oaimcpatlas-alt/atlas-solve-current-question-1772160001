@@ -1,5 +1,5 @@
 {
-  "cookie_count": 36,
+  "cookie_count": 35,
   "before_click_url": "https://account.mongodb.com/account/login?n=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F699c12be8df98bd863d63d70&nextHash=%23overview&signedOut=true",
   "before_click_title": "Log in | MongoDB",
   "before_click_excerpt": "Log in to your account\nDon't have an account?\u00a0Sign Up\nYou have successfully logged out.\nGoogle\nGitHub\nOr with email and password\nEmail Address\nNext\nIntroducing the Embedding and Reranking API\nAccess Voyage AI's state-of-the-art embedding and reranking models natively in MongoDB Atlas for more accurate AI retrieval.\nLearn more\n\u2192",
@@ -34,12 +34,27 @@
       "text": "\"use strict\";(self.webpackChunk_segment_analytics_next=self.webpackChunk_segment_analytics_next||[]).push([[50],{1419:function(t,n,i){function e(t,n){var i,e;return\"boolean\"==typeof(null==n?void 0:n.enabled)?n.enabled:null===(e=null===(i=null==t?void 0:t.__default)||void 0===i?void 0:i.enabled)||void 0===e||e}i.d(n,{j:function(){return e}})},3771:function(t,n,i){i.r(n),i.d(n,{LegacyDestination:function(){return k},ajsDestinations:function(){return C}});var e=i(5478),r=i(4303),o=i(6789),s=i(8456),a=i(9752),u=i(4082),l=i(2620),c=i(1419),d=i(5835),h=i(7106),f=i(2939),v=i(9732),p=i(1418),g=i(2911),m=i(6238);function y(t){return t.toLowerCase().replace(\".\",\"\").replace(/\\s+/g,\"-\")}function w(t,n){return void 0===n&&(n=!1),n?btoa(t).replace(/=/g,\"\"):void 0}function b(t,n,i,r){return(0,e.sH)(this,void 0,Promise,(function(){var o,s,a,u,l,c;return(0,e.YH)(this,(function(d){switch(d.label){case 0:o=y(n),s=w(o,r),a=(0,g.YM)(),u=\"\".concat(a,\"/integrations/\").concat(null!=s?s:o,\"/\").concat(i,\"/\").co"
     },
     {
+      "url": "https://px.ads.linkedin.com/collect?v=2&fmt=js&pid=33677&time=1772180170358&li_adsId=33fad587-e0e0-40fa-b2d9-bf524d9d67b1&url=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Flogin%3Fn%3Dhttps%253A%252F%252Fcloud.mongodb.com%252Fv2%252F699c12be8df98bd863d63d70%26nextHash%3D%2523overview%26signedOut%3Dtrue",
+      "status": 200,
+      "text": ""
+    },
+    {
       "url": "https://evs.blue.mongodb.com/analytics-next/bundles/schemaFilter.bundle.1b218d13fed021531d4e.js",
       "status": 200,
       "text": "\"use strict\";(self.webpackChunk_segment_analytics_next=self.webpackChunk_segment_analytics_next||[]).push([[104],{1419:function(n,e,t){function i(n,e){var t,i;return\"boolean\"==typeof(null==e?void 0:e.enabled)?e.enabled:null===(i=null===(t=null==n?void 0:n.__default)||void 0===t?void 0:t.enabled)||void 0===i||i}t.d(e,{j:function(){return i}})},3542:function(n,e,t){t.r(e),t.d(e,{schemaFilter:function(){return o}});var i=t(5478),r=t(1419);function o(n,e){function t(t){var o=n,u=t.event.event;if(o&&u){var a=o[u];if(!(0,r.j)(o,a))return t.updateEvent(\"integrations\",(0,i.Cl)((0,i.Cl)({},t.event.integrations),{All:!1,\"Segment.io\":!0})),t;var l=function(n,e){var t,i;if(!n||!Object.keys(n))return{};var r=n.integrations?Object.keys(n.integrations).filter((function(e){return!1===n.integrations[e]})):[],o=[];return(null!==(t=e.remotePlugins)&&void 0!==t?t:[]).forEach((function(n){r.forEach((function(e){n.creationName==e&&o.push(n.name)}))})),(null!==(i=e.remotePlugins)&&void 0!==i?i:[]).reduce((fu"
     },
     {
-      "url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/875946829/?random=1772168463318&cv=11&fst=1772168463318&bg=ffffff&guid=ON&async=1&gtm=45be62q0h2v9101117952z871318991za20gzb71318991zd71318991xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=103116026~103200004~104527906~104528501~104684208~104684211~115938466~115938469&u_w=1280&u_h=720&url=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Flogin%3Fn%3Dhttps%253A%252F%252Fcloud.mongodb.com%252Fv2%252F699c12be8df98bd863d63d70%26nextHash%3D%2523overview%26signedOut%3Dtrue&frm=0&tiba=Log%20in%20%7C%20MongoDB&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=290204060.1772150791&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=CA&rfmt=3&fmt=4",
+      "url": "https://px.ads.linkedin.com/attribution_trigger?pid=33677&time=1772180170358&url=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Flogin%3Fn%3Dhttps%253A%252F%252Fcloud.mongodb.com%252Fv2%252F699c12be8df98bd863d63d70%26nextHash%3D%2523overview%26signedOut%3Dtrue",
+      "status": 200,
+      "text": "{}"
+    },
+    {
+      "url": "https://evs.blue.mongodb.com/next-integrations/integrations/optimizely/3.5.1/optimizely.dynamic.js.gz",
+      "status": 200,
+      "text": "window['optimizelyDeps'] = [\"/integrations/vendor/commons.59560acdd69ed701c941.js\"];window['optimizelyLoader'] = function() { return window.optimizelyIntegration=function(e){function t(t){for(var r,o,p=t[0],s=t[1],d=t[2],m=0,f=[];m<p.length;m++)o=p[m],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&f.push(n[o][0]),n[o]=0;for(r in s)Object.prototype.hasOwnProperty.call(s,r)&&(e[r]=s[r]);for(c&&c(t);f.length;)f.shift()();return a.push.apply(a,d||[]),i()}function i(){for(var e,t=0;t<a.length;t++){for(var i=a[t],r=!0,p=1;p<i.length;p++){var s=i[p];0!==n[s]&&(r=!1)}r&&(a.splice(t--,1),e=o(o.s=i[0]))}return e}var r={},n={99:0},a=[];function o(t){if(r[t])return r[t].exports;var i=r[t]={i:t,l:!1,exports:{}};return e[t].call(i.exports,i,i.exports,o),i.l=!0,i.exports}o.m=e,o.c=r,o.d=function(e,t,i){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:i})},o.r=function(e){\"undefined\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\"Module\"}),Object.defineP"
+    },
+    {
+      "url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/875946829/?random=1772180170390&cv=11&fst=1772180170390&bg=ffffff&guid=ON&async=1&gtm=45be62p1v9101117952z871318991za20gzb71318991zd71318991xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=103116026~103200004~104527906~104528500~104684208~104684211~115616986~115938465~115938469&u_w=1280&u_h=720&url=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Flogin%3Fn%3Dhttps%253A%252F%252Fcloud.mongodb.com%252Fv2%252F699c12be8df98bd863d63d70%26nextHash%3D%2523overview%26signedOut%3Dtrue&frm=0&tiba=Log%20in%20%7C%20MongoDB&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=588195494.1772175773&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uamb=0&uam=&uap=Linux&uapv=&uaw=0&_tu=CA&rfmt=3&fmt=4",
       "status": 200,
       "text": "(function(){var s = {};(function(){var k=typeof Object.defineProperties==\"function\"?Object.defineProperty:function(a,d,b){if(a==Array.prototype||a==Object.prototype)return a;a[d]=b.value;return a};function l(a){a=[\"object\"==typeof globalThis&&globalThis,a,\"object\"==typeof window&&window,\"object\"==typeof self&&self,\"object\"==typeof global&&global];for(var d=0;d<a.length;++d){var b=a[d];if(b&&b.Math==Math)return b}throw Error(\"Cannot find global object\");} var p=l(this),q=typeof Symbol===\"function\"&&typeof Symbol(\"x\")===\"symbol\",r={},t={};function u(a,d,b){if(!b||a!=null){b=t[d];if(b==null)return a[d];b=a[b];return b!==void 0?b:a[d]}} function v(a,d,b){if(d)a:{var c=a.split(\".\");a=c.length===1;var e=c[0],g;!a&&e in r?g=r:g=p;for(e=0;e<c.length-1;e++){var f=c[e];if(!(f in g))break a;g=g[f]}c=c[c.length-1];b=q&&b===\"es6\"?g[c]:null;d=d(b);d!=null&&(a?k(r,c,{configurable:!0,writable:!0,value:d}):d!==b&&(t[c]===void 0&&(a=Math.random()*1E9>>>0,t[c]=q?p.Symbol(c):\"$jscp$\"+a+\"$\"+c),k(g,t[c],{co"
     },
@@ -49,29 +64,14 @@
       "text": "<!DOCTYPE html>\n<html>\n<head>\n  <link rel=\"shortcut icon\" href=\"data:image/x-icon;,\" type=\"image/x-icon\">\n</head>\n<body>\n  <script>\n'use strict';var l={};class m{constructor(a){this.j=a;this.g={};this.h={};this.i=0;this.id=String(Math.floor(Number.MAX_SAFE_INTEGER*Math.random()))}}function n(a){return a.performance&&a.performance.now()||Date.now()}\nvar p=function(a,c){class d{constructor(b,f,g){this.failureType=b;this.data=f;this.g=g;this.h=new m(n(g))}o(b,f){const g=b.clientId;if(b.type===0){b.isDead=!0;var e=this.h,k=n(this.g);e.g[g]==null&&(e.g[g]=0,e.h[g]=k,e.i++);e.g[g]++;b.stats={targetId:e.id,clientCount:e.i,totalLifeMs:Math.round(k-e.j),heartbeatCount:e.g[g],clientLifeMs:Math.round(k-e.h[g])}}b.failure={failureType:this.failureType,data:this.data};f(b)}}return new d(5,a,c)};/*\n\n Copyright Google LLC\n SPDX-License-Identifier: Apache-2.0\n*/\nlet q=globalThis.trustedTypes,r;function t(){let a=null;if(!q)return a;try{const c=d=>d;a=q.createPolicy(\"goog#html\",{createHTML:c,createScri"
     },
     {
-      "url": "https://evs.blue.mongodb.com/next-integrations/integrations/optimizely/3.5.1/optimizely.dynamic.js.gz",
-      "status": 200,
-      "text": "window['optimizelyDeps'] = [\"/integrations/vendor/commons.59560acdd69ed701c941.js\"];window['optimizelyLoader'] = function() { return window.optimizelyIntegration=function(e){function t(t){for(var r,o,p=t[0],s=t[1],d=t[2],m=0,f=[];m<p.length;m++)o=p[m],Object.prototype.hasOwnProperty.call(n,o)&&n[o]&&f.push(n[o][0]),n[o]=0;for(r in s)Object.prototype.hasOwnProperty.call(s,r)&&(e[r]=s[r]);for(c&&c(t);f.length;)f.shift()();return a.push.apply(a,d||[]),i()}function i(){for(var e,t=0;t<a.length;t++){for(var i=a[t],r=!0,p=1;p<i.length;p++){var s=i[p];0!==n[s]&&(r=!1)}r&&(a.splice(t--,1),e=o(o.s=i[0]))}return e}var r={},n={99:0},a=[];function o(t){if(r[t])return r[t].exports;var i=r[t]={i:t,l:!1,exports:{}};return e[t].call(i.exports,i,i.exports,o),i.l=!0,i.exports}o.m=e,o.c=r,o.d=function(e,t,i){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:i})},o.r=function(e){\"undefined\"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:\"Module\"}),Object.defineP"
-    },
-    {
       "url": "https://evs.blue.mongodb.com/next-integrations/integrations/vendor/commons.59560acdd69ed701c941.js.gz",
       "status": 200,
       "text": "(window.webpackJsonp_name_Integration=window.webpackJsonp_name_Integration||[]).push([[0],{\"+BL1\":function(t,e,r){\"use strict\";function n(t){var e=t.toString();return 1===e.length?\"0\"+e:e}t.exports=function(t){return t.getUTCFullYear()+\"-\"+n(t.getUTCMonth()+1)+\"-\"+n(t.getUTCDate())+\"T\"+n(t.getUTCHours())+\":\"+n(t.getUTCMinutes())+\":\"+n(t.getUTCSeconds())+\".\"+String((t.getUTCMilliseconds()/1e3).toFixed(3)).slice(2,5)+\"Z\"}},\"+VvR\":function(t,e){t.exports=function(t,e){if(\"string\"!=typeof t)throw new TypeError(\"String expected\");e||(e=document);var r=/<([\\w:]+)/.exec(t);if(!r)return e.createTextNode(t);t=t.replace(/^\\s+|\\s+$/g,\"\");var n=r[1];if(\"body\"==n){return(i=e.createElement(\"html\")).innerHTML=t,i.removeChild(i.lastChild)}var i,a=Object.prototype.hasOwnProperty.call(o,n)?o[n]:o._default,c=a[0],u=a[1],s=a[2];(i=e.createElement(\"div\")).innerHTML=u+t+s;for(;c--;)i=i.lastChild;if(i.firstChild==i.lastChild)return i.removeChild(i.firstChild);var p=e.createDocumentFragment();for(;i.firstChil"
     },
     {
-      "url": "https://px.ads.linkedin.com/attribution_trigger?pid=33677&time=1772168463468&url=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Flogin%3Fn%3Dhttps%253A%252F%252Fcloud.mongodb.com%252Fv2%252F699c12be8df98bd863d63d70%26nextHash%3D%2523overview%26signedOut%3Dtrue",
-      "status": 200,
-      "text": "{}"
-    },
-    {
-      "url": "https://px.ads.linkedin.com/collect?v=2&fmt=js&pid=33677&time=1772168463468&li_adsId=4d9229ac-fc68-440a-ae12-5a736cca6e75&url=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Flogin%3Fn%3Dhttps%253A%252F%252Fcloud.mongodb.com%252Fv2%252F699c12be8df98bd863d63d70%26nextHash%3D%2523overview%26signedOut%3Dtrue",
-      "status": 200,
-      "text": ""
-    },
-    {
       "url": "https://auth.mongodb.com/api/v1/sessions/me",
       "status": 404,
-      "text": "{\"errorCode\":\"E0000007\",\"errorSummary\":\"Not found: Resource not found: me (Session)\",\"errorLink\":\"E0000007\",\"errorId\":\"oaey91Q9fsqT66GpZuF0pHbfA\",\"errorCauses\":[]}"
+      "text": "{\"errorCode\":\"E0000007\",\"errorSummary\":\"Not found: Resource not found: me (Session)\",\"errorLink\":\"E0000007\",\"errorId\":\"oaePsXNREUhTMyWnWI3d41V2g\",\"errorCauses\":[]}"
     },
     {
       "url": "https://api.blue.mongodb.com/v1/i",
