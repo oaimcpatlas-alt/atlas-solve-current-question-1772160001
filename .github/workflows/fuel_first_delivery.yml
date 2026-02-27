@@ -453,23 +453,37 @@ jobs:
           NODE
           cat outputs/fuel_first_delivery.json
 
+
       - name: Emit answer annotation
         if: always()
         run: |
           python - <<'PY'
           import json, os
-          path = 'outputs/fuel_first_delivery.json'
-          if not os.path.exists(path):
-              print('::warning title=FuelFirstDelivery::no output file')
-          else:
-              data = json.load(open(path))
+          if os.path.exists('outputs/fuel_first_delivery.json'):
+              data = json.load(open('outputs/fuel_first_delivery.json'))
               ans = data.get('answer')
               if ans:
                   msg = f"order_id={ans.get('order_id')} | order_date={ans.get('order_date')} | distance_km={ans.get('delivery_distance_km')} | fuel_liters={ans.get('fuel_liters')} | btc_close_usd={ans.get('bitcoin_close_usd')} | gas_price_per_liter_usd={ans.get('gas_price_per_liter_usd')} | fuel_cost_usd={ans.get('fuel_cost_usd')}"
                   print('::warning title=FuelFirstDelivery::' + msg)
               else:
-                  err = data.get('error', 'no answer')
-                  print('::warning title=FuelFirstDelivery::error=' + str(err))
+                  print('::warning title=FuelFirstDelivery::query_error=' + str(data.get('error')))
+          else:
+              print('::warning title=FuelFirstDelivery::missing query output')
+          if os.path.exists('auth_result.json'):
+              auth = json.load(open('auth_result.json'))
+              summary = []
+              if auth.get('error'): summary.append('auth_error=' + str(auth.get('error')))
+              if auth.get('state_token'): summary.append('state_token=present')
+              pa = auth.get('password_attempts') or []
+              if pa: summary.append('password_attempts=' + '; '.join(f"{x.get('password')}:{x.get('status')}:{(x.get('body') or '')[:80]}" for x in pa[:3]))
+              ra = auth.get('reset_attempts') or []
+              if ra: summary.append('reset_attempts=' + '; '.join(f"{x.get('token_prefix')}:{x.get('status')}:{(x.get('body') or '')[:80]}" for x in ra[:3]))
+              va = auth.get('verify_attempts') or []
+              if va: summary.append('verify_attempts=' + '; '.join(f"{x.get('code')}:{x.get('status')}:{(x.get('body') or '')[:80]}" for x in va[:3]))
+              if summary:
+                  print('::warning title=FuelFirstDeliveryAuth::' + ' | '.join(summary))
+          else:
+              print('::warning title=FuelFirstDeliveryAuth::missing auth_result.json')
           PY
 
       - name: Commit result
