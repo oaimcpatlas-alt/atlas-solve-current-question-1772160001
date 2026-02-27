@@ -1,0 +1,22 @@
+{
+  "new_password": "Qz9!AtlasProbe#1772173381",
+  "prev_reset_ids": [
+    "19c9dc1910b4dd8d",
+    "19c9dc14b9cd0a0b",
+    "19c9dc2b2655e568",
+    "19c9dc1693a5585e",
+    "19c9dc1d69124668",
+    "19c9dc1f89589567",
+    "19c9dc1e9a62908d",
+    "19c9dc23b70da188",
+    "19c9dc1901216e2c",
+    "19c9dc1c35e05863"
+  ],
+  "reset_request": {
+    "status": 429,
+    "text": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+  },
+  "reset_link": null,
+  "error": "No reset link found in new email",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 96, in <module>\nRuntimeError: No reset link found in new email\n"
+}
