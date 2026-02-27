@@ -4,10 +4,7 @@ const fs = require('fs');
 function writeResult(obj) {
   fs.writeFileSync('workflow_result.json', JSON.stringify(obj, null, 2));
 }
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
 function buildAccountCookieHeader() {
   try {
@@ -18,18 +15,12 @@ function buildAccountCookieHeader() {
       const domain = String(c.domain || '');
       const value = typeof c.value === 'string' ? c.value : '';
       if (!value) continue;
-      if (
-        domain === 'account.mongodb.com' ||
-        domain === '.account.mongodb.com' ||
-        domain === '.mongodb.com'
-      ) {
+      if (domain === 'account.mongodb.com' || domain === '.account.mongodb.com' || domain === '.mongodb.com') {
         parts.push(`${c.name}=${c.value}`);
       }
     }
     return parts.join('; ');
-  } catch {
-    return '';
-  }
+  } catch { return ''; }
 }
 
 async function tryPassword(password, cookieHeader) {
@@ -42,35 +33,23 @@ async function tryPassword(password, cookieHeader) {
   const resp = await fetch('https://account.mongodb.com/account/auth/verify', {
     method: 'POST',
     headers,
-    body: JSON.stringify({
-      username: 'oaimcpatlas@gmail.com',
-      password,
-    }),
+    body: JSON.stringify({ username: 'oaimcpatlas@gmail.com', password }),
     redirect: 'manual',
   });
   const text = await resp.text();
-  return {
-    password,
-    status: resp.status,
-    headers: Object.fromEntries(resp.headers.entries()),
-    body: text,
-  };
+  return { password, status: resp.status, headers: Object.fromEntries(resp.headers.entries()), body: text };
 }
 
 async function main() {
-  const result = {
-    cookieHeaderLength: 0,
-    tried: [],
-  };
+  const result = { cookieHeaderLength: 0, tried: [] };
   try {
     const cookieHeader = buildAccountCookieHeader();
     result.cookieHeaderLength = cookieHeader.length;
     const candidates = [
-      'AtlasTemp!2026#A',
-      'Scratch!321Aa',
-      'AtlasGHReset!9012',
-      'AtlasGHReset!8901',
-      'AtlasGHReset!7890'
+      'AtlasGHReset!6789',
+      'Tmp!2e7ad4aa5c4fe3d1aA1',
+      'P9!vL3#qT7@xN2mR',
+      'V7u!9xK#2mQ@4nR$8tP^6sL&'
     ];
     for (const pw of candidates) {
       const r = await tryPassword(pw, cookieHeader);
@@ -88,9 +67,6 @@ async function main() {
     }
   } catch (e) {
     result.error = String(e && e.stack || e);
-  } finally {
-    writeResult(result);
-  }
+  } finally { writeResult(result); }
 }
-
 main();
