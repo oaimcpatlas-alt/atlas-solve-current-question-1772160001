@@ -172,6 +172,7 @@ jobs:
                       pass
 
           json.dump(result, open("sports_magnesium_result.json", "w", encoding="utf-8"), indent=2)
+          print(json.dumps(result, indent=2))
           PY
 
       - if: always()
@@ -185,4 +186,8 @@ jobs:
             exit 0
           fi
           git commit -m "Write sports magnesium result"
-          git push origin HEAD:main
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0 || true
+            sleep 5
+          done
+          exit 1
