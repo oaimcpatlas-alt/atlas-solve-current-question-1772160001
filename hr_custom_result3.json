@@ -1,0 +1,471 @@
+{
+  "cookieHeaderLength": 1765,
+  "mongoUri": "mongodb://ac-lxbrbla-shard-00-02.zlknsyp.mongodb.net,ac-lxbrbla-shard-00-01.zlknsyp.mongodb.net,ac-lxbrbla-shard-00-00.zlknsyp.mongodb.net/?tls=true&authMechanism=MONGODB-X509&authSource=%24external&serverMonitoringMode=poll&maxIdleTimeMS=30000&minPoolSize=0&maxPoolSize=5&maxConnecting=6&replicaSet=atlas-pq8tl1-shard-0",
+  "databases": [
+    "sample_mflix",
+    "video_game_store"
+  ],
+  "candidates": [
+    {
+      "dbName": "sample_mflix",
+      "collName": "theaters",
+      "score": 2,
+      "inspect": {
+        "sampleDocs": 60,
+        "sampleFlags": {
+          "deptFieldSeen": false,
+          "exitDateFieldSeen": false,
+          "leaveStatusFieldSeen": true,
+          "yearFieldSeen": false,
+          "quarterFieldSeen": false,
+          "leftCountFieldSeen": false,
+          "employeeSignals": 0
+        },
+        "sampleMatches": [],
+        "sampleHrDocs": 0,
+        "sampleScore": 2
+      }
+    },
+    {
+      "dbName": "video_game_store",
+      "collName": "Customers",
+      "score": 2,
+      "inspect": {
+        "sampleDocs": 60,
+        "sampleFlags": {
+          "deptFieldSeen": false,
+          "exitDateFieldSeen": false,
+          "leaveStatusFieldSeen": true,
+          "yearFieldSeen": false,
+          "quarterFieldSeen": false,
+          "leftCountFieldSeen": false,
+          "employeeSignals": 0
+        },
+        "sampleMatches": [],
+        "sampleHrDocs": 0,
+        "sampleScore": 2
+      }
+    },
+    {
+      "dbName": "video_game_store",
+      "collName": "Delivery Logistics",
+      "score": 2,
+      "inspect": {
+        "sampleDocs": 60,
+        "sampleFlags": {
+          "deptFieldSeen": false,
+          "exitDateFieldSeen": false,
+          "leaveStatusFieldSeen": true,
+          "yearFieldSeen": false,
+          "quarterFieldSeen": false,
+          "leftCountFieldSeen": false,
+          "employeeSignals": 0
+        },
+        "sampleMatches": [],
+        "sampleHrDocs": 0,
+        "sampleScore": 2
+      }
+    },
+    {
+      "dbName": "sample_mflix",
+      "collName": "embedded_movies",
+      "score": 0,
+      "inspect": {
+        "sampleDocs": 60,
+        "sampleFlags": {
+          "deptFieldSeen": false,
+          "exitDateFieldSeen": false,
+          "leaveStatusFieldSeen": false,
+          "yearFieldSeen": true,
+          "quarterFieldSeen": false,
+          "leftCountFieldSeen": false,
+          "employeeSignals": 0
+        },
+        "sampleMatches": [],
+        "sampleHrDocs": 0,
+        "sampleScore": 0
+      }
+    },
+    {
+      "dbName": "sample_mflix",
+      "collName": "movies",
+      "score": 0,
+      "inspect": {
+        "sampleDocs": 60,
+        "sampleFlags": {
+          "deptFieldSeen": false,
+          "exitDateFieldSeen": false,
+          "leaveStatusFieldSeen": false,
+          "yearFieldSeen": true,
+          "quarterFieldSeen": false,
+          "leftCountFieldSeen": false,
+          "employeeSignals": 0
+        },
+        "sampleMatches": [],
+        "sampleHrDocs": 0,
+        "sampleScore": 0
+      }
+    },
+    {
+      "dbName": "sample_mflix",
+      "collName": "comments",
+      "score": 0,
+      "inspect": {
+        "sampleDocs": 60,
+        "sampleFlags": {
+          "deptFieldSeen": false,
+          "exitDateFieldSeen": false,
+          "leaveStatusFieldSeen": false,
+          "yearFieldSeen": false,
+          "quarterFieldSeen": false,
+          "leftCountFieldSeen": false,
+          "employeeSignals": 0
+        },
+        "sampleMatches": [],
+        "sampleHrDocs": 0,
+        "sampleScore": 0
+      }
+    },
+    {
+      "dbName": "sample_mflix",
+      "collName": "sessions",
+      "score": 0,
+      "inspect": {
+        "sampleDocs": 1,
+        "sampleFlags": {
+          "deptFieldSeen": false,
+          "exitDateFieldSeen": false,
+          "leaveStatusFieldSeen": false,
+          "yearFieldSeen": false,
+          "quarterFieldSeen": false,
+          "leftCountFieldSeen": false,
+          "employeeSignals": 0
+        },
+        "sampleMatches": [],
+        "sampleHrDocs": 0,
+        "sampleScore": 0
+      }
+    },
+    {
+      "dbName": "sample_mflix",
+      "collName": "users",
+      "score": 0,
+      "inspect": {
+        "sampleDocs": 60,
+        "sampleFlags": {
+          "deptFieldSeen": false,
+          "exitDateFieldSeen": false,
+          "leaveStatusFieldSeen": false,
+          "yearFieldSeen": false,
+          "quarterFieldSeen": false,
+          "leftCountFieldSeen": false,
+          "employeeSignals": 0
+        },
+        "sampleMatches": [],
+        "sampleHrDocs": 0,
+        "sampleScore": 0
+      }
+    },
+    {
+      "dbName": "video_game_store",
+      "collName": "Purchase History",
+      "score": 0,
+      "inspect": {
+        "sampleDocs": 60,
+        "sampleFlags": {
+          "deptFieldSeen": false,
+          "exitDateFieldSeen": false,
+          "leaveStatusFieldSeen": false,
+          "yearFieldSeen": false,
+          "quarterFieldSeen": false,
+          "leftCountFieldSeen": false,
+          "employeeSignals": 0
+        },
+        "sampleMatches": [],
+        "sampleHrDocs": 0,
+        "sampleScore": 0
+      }
+    },
+    {
+      "dbName": "video_game_store",
+      "collName": "Inventory",
+      "score": 0,
+      "inspect": {
+        "sampleDocs": 60,
+        "sampleFlags": {
+          "deptFieldSeen": false,
+          "exitDateFieldSeen": false,
+          "leaveStatusFieldSeen": false,
+          "yearFieldSeen": false,
+          "quarterFieldSeen": false,
+          "leftCountFieldSeen": false,
+          "employeeSignals": 0
+        },
+        "sampleMatches": [],
+        "sampleHrDocs": 0,
+        "sampleScore": 0
+      }
+    },
+    {
+      "dbName": "video_game_store",
+      "collName": "Digital Analytics",
+      "score": 0,
+      "inspect": {
+        "sampleDocs": 60,
+        "sampleFlags": {
+          "deptFieldSeen": false,
+          "exitDateFieldSeen": false,
+          "leaveStatusFieldSeen": false,
+          "yearFieldSeen": false,
+          "quarterFieldSeen": false,
+          "leftCountFieldSeen": false,
+          "employeeSignals": 0
+        },
+        "sampleMatches": [],
+        "sampleHrDocs": 0,
+        "sampleScore": 0
+      }
+    },
+    {
+      "dbName": "video_game_store",
+      "collName": "Social Media",
+      "score": 0,
+      "inspect": {
+        "sampleDocs": 60,
+        "sampleFlags": {
+          "deptFieldSeen": false,
+          "exitDateFieldSeen": false,
+          "leaveStatusFieldSeen": false,
+          "yearFieldSeen": false,
+          "quarterFieldSeen": false,
+          "leftCountFieldSeen": false,
+          "employeeSignals": 0
+        },
+        "sampleMatches": [],
+        "sampleHrDocs": 0,
+        "sampleScore": 0
+      }
+    }
+  ],
+  "collections": {
+    "sample_mflix": {
+      "embedded_movies": {
+        "inspect": {
+          "sampleDocs": 60,
+          "sampleFlags": {
+            "deptFieldSeen": false,
+            "exitDateFieldSeen": false,
+            "leaveStatusFieldSeen": false,
+            "yearFieldSeen": true,
+            "quarterFieldSeen": false,
+            "leftCountFieldSeen": false,
+            "employeeSignals": 0
+          },
+          "sampleMatches": [],
+          "sampleHrDocs": 0,
+          "sampleScore": 0
+        }
+      },
+      "theaters": {
+        "inspect": {
+          "sampleDocs": 60,
+          "sampleFlags": {
+            "deptFieldSeen": false,
+            "exitDateFieldSeen": false,
+            "leaveStatusFieldSeen": true,
+            "yearFieldSeen": false,
+            "quarterFieldSeen": false,
+            "leftCountFieldSeen": false,
+            "employeeSignals": 0
+          },
+          "sampleMatches": [],
+          "sampleHrDocs": 0,
+          "sampleScore": 2
+        }
+      },
+      "movies": {
+        "inspect": {
+          "sampleDocs": 60,
+          "sampleFlags": {
+            "deptFieldSeen": false,
+            "exitDateFieldSeen": false,
+            "leaveStatusFieldSeen": false,
+            "yearFieldSeen": true,
+            "quarterFieldSeen": false,
+            "leftCountFieldSeen": false,
+            "employeeSignals": 0
+          },
+          "sampleMatches": [],
+          "sampleHrDocs": 0,
+          "sampleScore": 0
+        }
+      },
+      "comments": {
+        "inspect": {
+          "sampleDocs": 60,
+          "sampleFlags": {
+            "deptFieldSeen": false,
+            "exitDateFieldSeen": false,
+            "leaveStatusFieldSeen": false,
+            "yearFieldSeen": false,
+            "quarterFieldSeen": false,
+            "leftCountFieldSeen": false,
+            "employeeSignals": 0
+          },
+          "sampleMatches": [],
+          "sampleHrDocs": 0,
+          "sampleScore": 0
+        }
+      },
+      "sessions": {
+        "inspect": {
+          "sampleDocs": 1,
+          "sampleFlags": {
+            "deptFieldSeen": false,
+            "exitDateFieldSeen": false,
+            "leaveStatusFieldSeen": false,
+            "yearFieldSeen": false,
+            "quarterFieldSeen": false,
+            "leftCountFieldSeen": false,
+            "employeeSignals": 0
+          },
+          "sampleMatches": [],
+          "sampleHrDocs": 0,
+          "sampleScore": 0
+        }
+      },
+      "users": {
+        "inspect": {
+          "sampleDocs": 60,
+          "sampleFlags": {
+            "deptFieldSeen": false,
+            "exitDateFieldSeen": false,
+            "leaveStatusFieldSeen": false,
+            "yearFieldSeen": false,
+            "quarterFieldSeen": false,
+            "leftCountFieldSeen": false,
+            "employeeSignals": 0
+          },
+          "sampleMatches": [],
+          "sampleHrDocs": 0,
+          "sampleScore": 0
+        }
+      }
+    },
+    "video_game_store": {
+      "Purchase History": {
+        "inspect": {
+          "sampleDocs": 60,
+          "sampleFlags": {
+            "deptFieldSeen": false,
+            "exitDateFieldSeen": false,
+            "leaveStatusFieldSeen": false,
+            "yearFieldSeen": false,
+            "quarterFieldSeen": false,
+            "leftCountFieldSeen": false,
+            "employeeSignals": 0
+          },
+          "sampleMatches": [],
+          "sampleHrDocs": 0,
+          "sampleScore": 0
+        }
+      },
+      "Customers": {
+        "inspect": {
+          "sampleDocs": 60,
+          "sampleFlags": {
+            "deptFieldSeen": false,
+            "exitDateFieldSeen": false,
+            "leaveStatusFieldSeen": true,
+            "yearFieldSeen": false,
+            "quarterFieldSeen": false,
+            "leftCountFieldSeen": false,
+            "employeeSignals": 0
+          },
+          "sampleMatches": [],
+          "sampleHrDocs": 0,
+          "sampleScore": 2
+        }
+      },
+      "Inventory": {
+        "inspect": {
+          "sampleDocs": 60,
+          "sampleFlags": {
+            "deptFieldSeen": false,
+            "exitDateFieldSeen": false,
+            "leaveStatusFieldSeen": false,
+            "yearFieldSeen": false,
+            "quarterFieldSeen": false,
+            "leftCountFieldSeen": false,
+            "employeeSignals": 0
+          },
+          "sampleMatches": [],
+          "sampleHrDocs": 0,
+          "sampleScore": 0
+        }
+      },
+      "Digital Analytics": {
+        "inspect": {
+          "sampleDocs": 60,
+          "sampleFlags": {
+            "deptFieldSeen": false,
+            "exitDateFieldSeen": false,
+            "leaveStatusFieldSeen": false,
+            "yearFieldSeen": false,
+            "quarterFieldSeen": false,
+            "leftCountFieldSeen": false,
+            "employeeSignals": 0
+          },
+          "sampleMatches": [],
+          "sampleHrDocs": 0,
+          "sampleScore": 0
+        }
+      },
+      "Delivery Logistics": {
+        "inspect": {
+          "sampleDocs": 60,
+          "sampleFlags": {
+            "deptFieldSeen": false,
+            "exitDateFieldSeen": false,
+            "leaveStatusFieldSeen": true,
+            "yearFieldSeen": false,
+            "quarterFieldSeen": false,
+            "leftCountFieldSeen": false,
+            "employeeSignals": 0
+          },
+          "sampleMatches": [],
+          "sampleHrDocs": 0,
+          "sampleScore": 2
+        }
+      },
+      "Social Media": {
+        "inspect": {
+          "sampleDocs": 60,
+          "sampleFlags": {
+            "deptFieldSeen": false,
+            "exitDateFieldSeen": false,
+            "leaveStatusFieldSeen": false,
+            "yearFieldSeen": false,
+            "quarterFieldSeen": false,
+            "leftCountFieldSeen": false,
+            "employeeSignals": 0
+          },
+          "sampleMatches": [],
+          "sampleHrDocs": 0,
+          "sampleScore": 0
+        }
+      }
+    }
+  },
+  "answer": {
+    "q1": 0,
+    "q3": 0,
+    "total": 0,
+    "note": "No positive matches found in scanned candidate collections."
+  },
+  "ping": {
+    "ok": 1
+  },
+  "selected": [],
+  "positive": []
+}
