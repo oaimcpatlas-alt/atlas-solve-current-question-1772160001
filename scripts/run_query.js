@@ -22,7 +22,7 @@ async function main() {
   try {
     const cookieHeader = buildAccountCookieHeader();
     result.cookieHeaderLength = cookieHeader.length;
-    const password = 'Tmp!2e7ad4aa5c4fe3d1aA1';
+    const password = 'P9!vL3#qT7@xN2mR';
     const headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
