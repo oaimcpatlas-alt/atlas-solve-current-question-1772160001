@@ -163,39 +163,48 @@ jobs:
               return out
 
           try:
-              # request reset and use freshest token
-              result['reset_request'] = dict(zip(['status','headers','body','final_url'], post_json('https://account.mongodb.com/account/resetPasswordRequest', {'username': USERNAME})))
-              time.sleep(8)
-              token = latest_reset_token()
-              result['temp_id'] = token
-              if not token:
-                  raise RuntimeError('No reset token found in Gmail')
-              reset_link = f'https://account.mongodb.com/account/reset/password/{token}?email=oaimcpatlas%40gmail.com'
-              result['reset_link'] = reset_link
-
-              # prime cookies with GET
-              result['reset_get'] = dict(zip(['status','headers','body','final_url'], get(reset_link)))
-
-              # complete reset
-              result['reset_complete'] = dict(zip(['status','headers','body','final_url'], post_json('https://account.mongodb.com/account/resetPasswordComplete', {
-                  'username': USERNAME,
-                  'password': PASSWORD,
-                  'passwordConfirm': PASSWORD,
-                  'tempId': token,
-                  'isPendingUser': False,
-              })))
-
+              # request reset and use freshest token; retry over time because account reset endpoint is often rate-limited
               state_token = None
-              try:
-                  body = json.loads(result['reset_complete']['body'])
-                  m = re.search(r'stateToken=([^&]+)', body.get('loginRedirect', ''))
-                  if m:
-                      state_token = m.group(1)
-                      result['login_redirect_from_reset'] = body.get('loginRedirect')
-              except Exception as e:
-                  result['reset_complete_parse_error'] = repr(e)
+              login_redirect = None
+              result['reset_attempts'] = []
+              for attempt in range(1, 9):
+                  attempt_rec = {'attempt': attempt}
+                  attempt_rec['reset_request'] = dict(zip(['status','headers','body','final_url'], post_json('https://account.mongodb.com/account/resetPasswordRequest', {'username': USERNAME})))
+                  token = latest_reset_token()
+                  attempt_rec['temp_id'] = token
+                  if token:
+                      reset_link = f'https://account.mongodb.com/account/reset/password/{token}?email=oaimcpatlas%40gmail.com'
+                      attempt_rec['reset_link'] = reset_link
+                      attempt_rec['reset_get'] = dict(zip(['status','headers','body','final_url'], get(reset_link)))
+                      attempt_rec['reset_complete'] = dict(zip(['status','headers','body','final_url'], post_json('https://account.mongodb.com/account/resetPasswordComplete', {
+                          'username': USERNAME,
+                          'password': PASSWORD,
+                          'passwordConfirm': PASSWORD,
+                          'tempId': token,
+                          'isPendingUser': False,
+                      })))
+                      try:
+                          body = json.loads(attempt_rec['reset_complete']['body'])
+                          if body.get('loginRedirect'):
+                              login_redirect = body.get('loginRedirect')
+                              m = re.search(r'stateToken=([^&]+)', login_redirect)
+                              if m:
+                                  state_token = m.group(1)
+                      except Exception as e:
+                          attempt_rec['reset_complete_parse_error'] = repr(e)
+                  result['reset_attempts'].append(attempt_rec)
+                  if state_token:
+                      result['reset_request'] = attempt_rec['reset_request']
+                      result['temp_id'] = token
+                      result['reset_link'] = attempt_rec.get('reset_link')
+                      result['reset_get'] = attempt_rec.get('reset_get')
+                      result['reset_complete'] = attempt_rec.get('reset_complete')
+                      result['login_redirect_from_reset'] = login_redirect
+                      break
+                  if attempt < 8:
+                      time.sleep(60)
 
-              # fallback verify
+              # fallback verify after reset
               if not state_token:
                   result['verify'] = dict(zip(['status','headers','body','final_url'], post_json('https://account.mongodb.com/account/verify', {
                       'username': USERNAME,
