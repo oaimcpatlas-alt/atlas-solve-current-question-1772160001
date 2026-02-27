@@ -1,0 +1,176 @@
+{
+  "before_code_ids": [
+    "19c9d9d558a04e89",
+    "19c9dc1331a1ee6f",
+    "19c9db00924304ba",
+    "19c9d9cfc65bcd43",
+    "19c9dc147a6aeb40"
+  ],
+  "initial_url": "https://account.mongodb.com/account/login?n=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F699c12be8df98bd863d63d70&nextHash=%23overview&signedOut=true",
+  "initial_title": "Log in | MongoDB",
+  "initial_excerpt": "Log in to your account\nDon't have an account?\u00a0Sign Up\nYou have successfully logged out.\nGoogle\nGitHub\nOr with email and password\nEmail Address\nNext\nIntroducing the Embedding and Reranking API\nAccess Voyage AI's state-of-the-art embedding and reranking models natively in MongoDB Atlas for more accurate AI retrieval.\nLearn more\n\u2192",
+  "email_filled": true,
+  "password_submitted": true,
+  "dismissed": [],
+  "before_url": "https://account.mongodb.com/account/login?n=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F699c12be8df98bd863d63d70&nextHash=%23overview&signedOut=true",
+  "before_title": "Log in | MongoDB",
+  "before_excerpt": "Log in to your account\nDon't have an account?\u00a0Sign Up\nYou have successfully logged out.\nGoogle\nGitHub\nOr with email and password\nA server error occurred. Please try again in a minute.\nEmail Address\nChange\nPassword\nPassword hidden\n\u00a0Forgot Password?\nLogin\nIntroducing the Embedding and Reranking API\nAccess Voyage AI's state-of-the-art embedding and reranking models natively in MongoDB Atlas for more accurate AI retrieval.\nLearn more\n\u2192",
+  "clicked_overview": [],
+  "access_url": "https://account.mongodb.com/account/login?n=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F699c12be8df98bd863d63d70&nextHash=%23security%2Fnetwork%2FaccessList&signedOut=true",
+  "access_title": "Log in | MongoDB",
+  "access_excerpt": "Log in to your account\nDon't have an account?\u00a0Sign Up\nYou have successfully logged out.\nGoogle\nGitHub\nOr with email and password\nEmail Address\nNext\nIntroducing the Embedding and Reranking API\nAccess Voyage AI's state-of-the-art embedding and reranking models natively in MongoDB Atlas for more accurate AI retrieval.\nLearn more\n\u2192",
+  "clicked_access": [],
+  "after_url": "https://account.mongodb.com/account/login?n=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F699c12be8df98bd863d63d70&nextHash=%23overview&signedOut=true",
+  "after_title": "Log in | MongoDB",
+  "after_excerpt": "Log in to your account\nDon't have an account?\u00a0Sign Up\nYou have successfully logged out.\nGoogle\nGitHub\nOr with email and password\nEmail Address\nNext\nIntroducing the Embedding and Reranking API\nAccess Voyage AI's state-of-the-art embedding and reranking models natively in MongoDB Atlas for more accurate AI retrieval.\nLearn more\n\u2192",
+  "responses_tail": [
+    {
+      "url": "https://account.mongodb.com/account/login?signedOut=true&n=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n      <title>Cloud: MongoDB Cloud</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    \n    <meta name=\"csrf-token\" content=\"\"/>\n    <meta name=\"csrf-time\" content=\"\"/>\n\n    <script type=\"text/javascript\">\n        window.indexStartAt = Date.now();\n        performance.mark(\"index-start\");\n    </script>\n\n    <link rel=\"icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n    <link rel=\"shortcut icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://a"
+    },
+    {
+      "url": "https://evs.blue.mongodb.com/v1/projects/tFLI8kTsjVV1Whb5D6Cgthsjp2f26tRF/settings",
+      "status": 200,
+      "text": "{\"_lastModified\":\"2026-02-24T15:50:30.558Z\",\"integrations\":{\"Optimizely\":{\"customCampaignProperties\":{},\"customExperimentProperties\":{},\"listen\":true,\"nonInteraction\":true,\"sendRevenueOnlyForOrderCompleted\":true,\"trackCategorizedPages\":true,\"trackNamedPages\":true,\"variations\":false,\"versionSettings\":{\"version\":\"3.5.1\",\"componentTypes\":[\"browser\",\"ios\",\"android\"]},\"type\":\"browser\",\"bundlingStatus\":\"bundled\"},\"Social_Business Email Event Split v2 (MongoDB)\":{\"destinationSourceApiKey\":\"xGfwfqCh9aWX1mdolOC1W2R43fjCMBRb\",\"versionSettings\":{\"componentTypes\":[]}},\"AWS S3\":{\"versionSettings\":{\"componentTypes\":[]}},\"Intercom Cloud Mode (Actions)\":{\"versionSettings\":{\"componentTypes\":[]}},\"Iterable (Actions)\":{\"versionSettings\":{\"componentTypes\":[]}},\"Marketo Form Submitted - Prod (MongoDB)\":{\"versionSettings\":{\"componentTypes\":[]}},\"Mixpanel (Actions)\":{\"versionSettings\":{\"componentTypes\":[]},\"consentSettings\":{\"categories\":[\"C0002\",\"C0004\"]}},\"Segment.io\":{\"apiKey\":\"tFLI8kTsjVV1Whb5D6Cgthsjp2f"
+    },
+    {
+      "url": "https://account.mongodb.com/uiMsgs",
+      "status": 200,
+      "text": "[]"
+    },
+    {
+      "url": "https://www.googletagmanager.com/static/service_worker/6240/sw_iframe.html?origin=https%3A%2F%2Faccount.mongodb.com",
+      "status": 200,
+      "text": "<!DOCTYPE html>\n<html>\n<head>\n  <link rel=\"shortcut icon\" href=\"data:image/x-icon;,\" type=\"image/x-icon\">\n</head>\n<body>\n  <script>\n'use strict';var l={};class m{constructor(a){this.j=a;this.g={};this.h={};this.i=0;this.id=String(Math.floor(Number.MAX_SAFE_INTEGER*Math.random()))}}function n(a){return a.performance&&a.performance.now()||Date.now()}\nvar p=function(a,c){class d{constructor(b,f,g){this.failureType=b;this.data=f;this.g=g;this.h=new m(n(g))}o(b,f){const g=b.clientId;if(b.type===0){b.isDead=!0;var e=this.h,k=n(this.g);e.g[g]==null&&(e.g[g]=0,e.h[g]=k,e.i++);e.g[g]++;b.stats={targetId:e.id,clientCount:e.i,totalLifeMs:Math.round(k-e.j),heartbeatCount:e.g[g],clientLifeMs:Math.round(k-e.h[g])}}b.failure={failureType:this.failureType,data:this.data};f(b)}}return new d(5,a,c)};/*\n\n Copyright Google LLC\n SPDX-License-Identifier: Apache-2.0\n*/\nlet q=globalThis.trustedTypes,r;function t(){let a=null;if(!q)return a;try{const c=d=>d;a=q.createPolicy(\"goog#html\",{createHTML:c,createScri"
+    },
+    {
+      "url": "https://px.ads.linkedin.com/attribution_trigger?pid=33677&time=1772174265919&url=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Flogin%3Fn%3Dhttps%253A%252F%252Fcloud.mongodb.com%252Fv2%252F699c12be8df98bd863d63d70%26nextHash%3D%2523overview%26signedOut%3Dtrue",
+      "status": 200,
+      "text": "{}"
+    },
+    {
+      "url": "https://auth.mongodb.com/api/v1/sessions/me",
+      "status": 404,
+      "text": "{\"errorCode\":\"E0000007\",\"errorSummary\":\"Not found: Resource not found: me (Session)\",\"errorLink\":\"E0000007\",\"errorId\":\"oaea477LtD0TsWAJo4839pXDg\",\"errorCauses\":[]}"
+    },
+    {
+      "url": "https://api.blue.mongodb.com/v1/i",
+      "status": 200,
+      "text": "{\n  \"success\": true\n}"
+    },
+    {
+      "url": "https://api.blue.mongodb.com/v1/p",
+      "status": 200,
+      "text": "{\n  \"success\": true\n}"
+    },
+    {
+      "url": "https://api.blue.mongodb.com/v1/t",
+      "status": 200,
+      "text": "{\n  \"success\": true\n}"
+    },
+    {
+      "url": "https://account.mongodb.com/account/auth",
+      "status": 400,
+      "text": "{\"errorCode\":\"INVALID_CAPTCHA\",\"message\":\"INVALID_CAPTCHA\",\"params\":[],\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "url": "https://auth.mongodb.com/api/v1/sessions/me",
+      "status": 404,
+      "text": "{\"errorCode\":\"E0000007\",\"errorSummary\":\"Not found: Resource not found: me (Session)\",\"errorLink\":\"E0000007\",\"errorId\":\"oae6EUF8GiPRhm2v4MmW5vGGw\",\"errorCauses\":[]}"
+    },
+    {
+      "url": "https://account.mongodb.com/account/login?signedOut=true&n=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n      <title>Cloud: MongoDB Cloud</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    \n    <meta name=\"csrf-token\" content=\"\"/>\n    <meta name=\"csrf-time\" content=\"\"/>\n\n    <script type=\"text/javascript\">\n        window.indexStartAt = Date.now();\n        performance.mark(\"index-start\");\n    </script>\n\n    <link rel=\"icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n    <link rel=\"shortcut icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://a"
+    },
+    {
+      "url": "https://evs.blue.mongodb.com/v1/projects/tFLI8kTsjVV1Whb5D6Cgthsjp2f26tRF/settings",
+      "status": 200,
+      "text": "{\"_lastModified\":\"2026-02-24T15:50:30.558Z\",\"integrations\":{\"Optimizely\":{\"customCampaignProperties\":{},\"customExperimentProperties\":{},\"listen\":true,\"nonInteraction\":true,\"sendRevenueOnlyForOrderCompleted\":true,\"trackCategorizedPages\":true,\"trackNamedPages\":true,\"variations\":false,\"versionSettings\":{\"version\":\"3.5.1\",\"componentTypes\":[\"browser\",\"ios\",\"android\"]},\"type\":\"browser\",\"bundlingStatus\":\"bundled\"},\"Social_Business Email Event Split v2 (MongoDB)\":{\"destinationSourceApiKey\":\"xGfwfqCh9aWX1mdolOC1W2R43fjCMBRb\",\"versionSettings\":{\"componentTypes\":[]}},\"AWS S3\":{\"versionSettings\":{\"componentTypes\":[]}},\"Intercom Cloud Mode (Actions)\":{\"versionSettings\":{\"componentTypes\":[]}},\"Iterable (Actions)\":{\"versionSettings\":{\"componentTypes\":[]}},\"Marketo Form Submitted - Prod (MongoDB)\":{\"versionSettings\":{\"componentTypes\":[]}},\"Mixpanel (Actions)\":{\"versionSettings\":{\"componentTypes\":[]},\"consentSettings\":{\"categories\":[\"C0002\",\"C0004\"]}},\"Segment.io\":{\"apiKey\":\"tFLI8kTsjVV1Whb5D6Cgthsjp2f"
+    },
+    {
+      "url": "https://www.googletagmanager.com/static/service_worker/6240/sw_iframe.html?origin=https%3A%2F%2Faccount.mongodb.com",
+      "status": 200,
+      "text": "<!DOCTYPE html>\n<html>\n<head>\n  <link rel=\"shortcut icon\" href=\"data:image/x-icon;,\" type=\"image/x-icon\">\n</head>\n<body>\n  <script>\n'use strict';var l={};class m{constructor(a){this.j=a;this.g={};this.h={};this.i=0;this.id=String(Math.floor(Number.MAX_SAFE_INTEGER*Math.random()))}}function n(a){return a.performance&&a.performance.now()||Date.now()}\nvar p=function(a,c){class d{constructor(b,f,g){this.failureType=b;this.data=f;this.g=g;this.h=new m(n(g))}o(b,f){const g=b.clientId;if(b.type===0){b.isDead=!0;var e=this.h,k=n(this.g);e.g[g]==null&&(e.g[g]=0,e.h[g]=k,e.i++);e.g[g]++;b.stats={targetId:e.id,clientCount:e.i,totalLifeMs:Math.round(k-e.j),heartbeatCount:e.g[g],clientLifeMs:Math.round(k-e.h[g])}}b.failure={failureType:this.failureType,data:this.data};f(b)}}return new d(5,a,c)};/*\n\n Copyright Google LLC\n SPDX-License-Identifier: Apache-2.0\n*/\nlet q=globalThis.trustedTypes,r;function t(){let a=null;if(!q)return a;try{const c=d=>d;a=q.createPolicy(\"goog#html\",{createHTML:c,createScri"
+    },
+    {
+      "url": "https://account.mongodb.com/uiMsgs",
+      "status": 200,
+      "text": "[]"
+    },
+    {
+      "url": "https://px.ads.linkedin.com/attribution_trigger?pid=33677&time=1772174287230&url=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Flogin%3Fn%3Dhttps%253A%252F%252Fcloud.mongodb.com%252Fv2%252F699c12be8df98bd863d63d70%26nextHash%3D%2523security%252Fnetwork%252FaccessList%26signedOut%3Dtrue",
+      "status": 200,
+      "text": "{}"
+    },
+    {
+      "url": "https://auth.mongodb.com/api/v1/sessions/me",
+      "status": 404,
+      "text": "{\"errorCode\":\"E0000007\",\"errorSummary\":\"Not found: Resource not found: me (Session)\",\"errorLink\":\"E0000007\",\"errorId\":\"oaeEi6xTitWRgibmKLzFkOl1g\",\"errorCauses\":[]}"
+    },
+    {
+      "url": "https://api.blue.mongodb.com/v1/i",
+      "status": 200,
+      "text": "{\n  \"success\": true\n}"
+    },
+    {
+      "url": "https://api.blue.mongodb.com/v1/p",
+      "status": 200,
+      "text": "{\n  \"success\": true\n}"
+    },
+    {
+      "url": "https://api.blue.mongodb.com/v1/t",
+      "status": 200,
+      "text": "{\n  \"success\": true\n}"
+    },
+    {
+      "url": "https://account.mongodb.com/account/login?signedOut=true&n=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F699c12be8df98bd863d63d70",
+      "status": 200,
+      "text": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n      <title>Cloud: MongoDB Cloud</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    \n    <meta name=\"csrf-token\" content=\"\"/>\n    <meta name=\"csrf-time\" content=\"\"/>\n\n    <script type=\"text/javascript\">\n        window.indexStartAt = Date.now();\n        performance.mark(\"index-start\");\n    </script>\n\n    <link rel=\"icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n    <link rel=\"shortcut icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://a"
+    },
+    {
+      "url": "https://evs.blue.mongodb.com/v1/projects/tFLI8kTsjVV1Whb5D6Cgthsjp2f26tRF/settings",
+      "status": 200,
+      "text": "{\"_lastModified\":\"2026-02-24T15:50:30.558Z\",\"integrations\":{\"Optimizely\":{\"customCampaignProperties\":{},\"customExperimentProperties\":{},\"listen\":true,\"nonInteraction\":true,\"sendRevenueOnlyForOrderCompleted\":true,\"trackCategorizedPages\":true,\"trackNamedPages\":true,\"variations\":false,\"versionSettings\":{\"version\":\"3.5.1\",\"componentTypes\":[\"browser\",\"ios\",\"android\"]},\"type\":\"browser\",\"bundlingStatus\":\"bundled\"},\"Social_Business Email Event Split v2 (MongoDB)\":{\"destinationSourceApiKey\":\"xGfwfqCh9aWX1mdolOC1W2R43fjCMBRb\",\"versionSettings\":{\"componentTypes\":[]}},\"AWS S3\":{\"versionSettings\":{\"componentTypes\":[]}},\"Intercom Cloud Mode (Actions)\":{\"versionSettings\":{\"componentTypes\":[]}},\"Iterable (Actions)\":{\"versionSettings\":{\"componentTypes\":[]}},\"Marketo Form Submitted - Prod (MongoDB)\":{\"versionSettings\":{\"componentTypes\":[]}},\"Mixpanel (Actions)\":{\"versionSettings\":{\"componentTypes\":[]},\"consentSettings\":{\"categories\":[\"C0002\",\"C0004\"]}},\"Segment.io\":{\"apiKey\":\"tFLI8kTsjVV1Whb5D6Cgthsjp2f"
+    },
+    {
+      "url": "https://www.googletagmanager.com/static/service_worker/6240/sw_iframe.html?origin=https%3A%2F%2Faccount.mongodb.com",
+      "status": 200,
+      "text": "<!DOCTYPE html>\n<html>\n<head>\n  <link rel=\"shortcut icon\" href=\"data:image/x-icon;,\" type=\"image/x-icon\">\n</head>\n<body>\n  <script>\n'use strict';var l={};class m{constructor(a){this.j=a;this.g={};this.h={};this.i=0;this.id=String(Math.floor(Number.MAX_SAFE_INTEGER*Math.random()))}}function n(a){return a.performance&&a.performance.now()||Date.now()}\nvar p=function(a,c){class d{constructor(b,f,g){this.failureType=b;this.data=f;this.g=g;this.h=new m(n(g))}o(b,f){const g=b.clientId;if(b.type===0){b.isDead=!0;var e=this.h,k=n(this.g);e.g[g]==null&&(e.g[g]=0,e.h[g]=k,e.i++);e.g[g]++;b.stats={targetId:e.id,clientCount:e.i,totalLifeMs:Math.round(k-e.j),heartbeatCount:e.g[g],clientLifeMs:Math.round(k-e.h[g])}}b.failure={failureType:this.failureType,data:this.data};f(b)}}return new d(5,a,c)};/*\n\n Copyright Google LLC\n SPDX-License-Identifier: Apache-2.0\n*/\nlet q=globalThis.trustedTypes,r;function t(){let a=null;if(!q)return a;try{const c=d=>d;a=q.createPolicy(\"goog#html\",{createHTML:c,createScri"
+    },
+    {
+      "url": "https://account.mongodb.com/uiMsgs",
+      "status": 200,
+      "text": "[]"
+    },
+    {
+      "url": "https://px.ads.linkedin.com/attribution_trigger?pid=33677&time=1772174295482&url=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Flogin%3Fn%3Dhttps%253A%252F%252Fcloud.mongodb.com%252Fv2%252F699c12be8df98bd863d63d70%26nextHash%3D%2523overview%26signedOut%3Dtrue",
+      "status": 200,
+      "text": "{}"
+    },
+    {
+      "url": "https://auth.mongodb.com/api/v1/sessions/me",
+      "status": 404,
+      "text": "{\"errorCode\":\"E0000007\",\"errorSummary\":\"Not found: Resource not found: me (Session)\",\"errorLink\":\"E0000007\",\"errorId\":\"oae-4O2ARbKQi6QNV5cRIFqkQ\",\"errorCauses\":[]}"
+    },
+    {
+      "url": "https://api.blue.mongodb.com/v1/i",
+      "status": 200,
+      "text": "{\n  \"success\": true\n}"
+    },
+    {
+      "url": "https://api.blue.mongodb.com/v1/p",
+      "status": 200,
+      "text": "{\n  \"success\": true\n}"
+    },
+    {
+      "url": "https://api.blue.mongodb.com/v1/t",
+      "status": 200,
+      "text": "{\n  \"success\": true\n}"
+    }
+  ],
+  "cloud_cookie_names": [],
+  "cloud_cookie_count": 0,
+  "cloud_cookie_header_present": false
+}
