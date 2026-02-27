@@ -1,84 +1,587 @@
 {
-  "started_at": "2026-02-27T06:49:17.454984Z",
+  "started_at": "2026-02-27T06:55:25.055281Z",
   "fixed_password": "AtlasFixed!24680Aa",
-  "reset_request": {
-    "status": 429,
-    "headers": {
-      "date": "Fri, 27 Feb 2026 06:49:17 GMT",
-      "strict-transport-security": "max-age=31536000; includeSubdomains;",
-      "referrer-policy": "strict-origin-when-cross-origin",
-      "x-permitted-cross-domain-policies": "none",
-      "x-content-type-options": "nosniff",
-      "x-error-code": "RATE_LIMITED",
-      "content-type": "application/json",
-      "x-frame-options": "DENY",
-      "content-length": "59",
-      "server": "mdbws",
-      "x-xgen-up-proto": "HTTP/2",
-      "connection": "close"
+  "reset_attempts": [
+    {
+      "attempt": 1,
+      "reset_request": {
+        "status": 429,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 06:55:25 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "RATE_LIMITED",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "content-length": "59",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordRequest"
+      },
+      "temp_id": "5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae",
+      "reset_link": "https://account.mongodb.com/account/reset/password/5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae?email=oaimcpatlas%40gmail.com",
+      "reset_get": {
+        "status": 200,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 06:55:25 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "content-type": "text/html",
+          "x-frame-options": "DENY",
+          "vary": "Accept-Encoding",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close",
+          "transfer-encoding": "chunked"
+        },
+        "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n      <title>Cloud: MongoDB Cloud</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    \n    <meta name=\"csrf-token\" content=\"\"/>\n    <meta name=\"csrf-time\" content=\"\"/>\n\n    <script type=\"text/javascript\">\n        window.indexStartAt = Date.now();\n        performance.mark(\"index-start\");\n    </script>\n\n    <link rel=\"icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n    <link rel=\"shortcut icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\" as=\"script\" />\n    \n\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Regular-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Semibold-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/MongoDBValueSerif-Regular.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Medium-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n\n    \n        <link rel=\"preconnect\" href=\"https://www.googletagmanager.com\" />\n    \n\n    \n    \n        <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/assets/css/font-awesome.c495654869.min.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n    \n    <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.dfb4982f81.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n\n    <style type=\"text/css\">\n        \n            .requiresRsyncInitialSyncFeature { display: none !important; }\n        \n\n        \n            .requiresBackupAdmin { display: none !important; }\n        \n\n        \n            .hasGroupMonitoringAdmin { display: none !important; }\n        \n\n        \n\n        \n\n        \n            .requiresGlobalBackupAdmin { display: none !important; }\n        \n\n        \n            .requiresGlobalOwner { display: none !important; }\n        \n    </style>\n\n    \n        <!-- Load stripe.js, it can only be load from their domain -->\n        <script type=\"text/javascript\" src=\"https://js.stripe.com/v3/\" defer></script>\n    \n\n    \n        <!-- There is a race condition between captcha js loading and the react component rendering or the hook executing.\n        If the js loads first, then the react component or hook goes ahead and renders or executes the captcha respectively. Otherwise,\n        the componentDidMount() function populates the reCaptchaOnload function so that the captcha is\n        rendered or executed after the script is loaded (see ReCaptcha.tsx and useReCaptcha.ts).\n        TODO MB CLOUDP-161146 update the above text to only mention the hook-->\n        <script type=\"text/javascript\">\n            window.reCaptchaOnload = function () {\n            };\n        </script>\n        <!-- This is used by component client/packages/auth/components/ReCaptcha.tsx which only uses\n         enterprise apis. The Enterprise apis are a superset of the non-enterprise functionality\n         and they are invoked from `window.grecaptcha.enterprise` instead of `window.grecaptcha`.\n         The components not rendering ReCaptcha.tsx still rely on the classic recaptcha scripts\n         being loaded below. -->\n        <script src='https://www.recaptcha.net/recaptcha/enterprise.js?onload=reCaptchaOnload&render=6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG' defer></script>\n    \n\n    \n        <script>\n            const APP_ID = \"qq7v0gqb\";\n            (function(){var w=window;var ic=w.Intercom;if(typeof ic===\"function\"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.defer=true;s.src='https://widget.intercom.io/widget/'+ APP_ID;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();\n        </script>\n    \n\n    \n        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n        })(window,document,'script','dataLayer','GTM-5ZD5LD');</script>\n    \n\n    \n        <script>\n            window.errorTrackerSetupData = {\n                apiKey : \"6666d88d5b732b7725a8107ba15b4eb6\",\n                appVersion : \"v20260211\",\n                releaseStage : \"https://cloud.mongodb.com\",\n                gitVersion: \"beb0bba6cf65cc259128049e59f371c70a68ed71\",\n            };\n        </script>\n    \n</head>\n\n<body class=\"mms-body\">\n    \n        <noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-5ZD5LD\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>\n    \n\n    <div id=\"mms-body-application\" class=\"mms-body-application\"></div>\n\n    \n    <script type=\"text/javascript\">\n        var _elqQ = _elqQ || [];\n        _elqQ.push(['elqSetSiteId', '413370795']);\n        _elqQ.push(['elqTrackPageView']);\n        _elqQ.push(['elqGetCustomerGUID']);\n\n        (function () {\n            function async_load() {\n                var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;\n                s.src = '//img03.en25.com/i/elqCfg.min.js';\n                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);\n            }\n            if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);\n            else if (window.attachEvent) window.attachEvent('onload', async_load);\n        })();\n    </script>\n    \n\n    <script type=\"text/javascript\">\n        window.REQUEST_PARAMS = JSON.parse(\"{\\\"oktaBaseUrl\\\":\\\"https:\\/\\/auth.mongodb.com\\\",\\\"oktaEnabled\\\":true,\\\"accountMultiFactorAuthEnabled\\\":true,\\\"contentstackEnabled\\\":false,\\\"accountCentralUrl\\\":\\\"https:\\/\\/account.mongodb.com\\\",\\\"isVercelIntegrationEnabled\\\":true,\\\"siteName\\\":\\\"Cloud\\\",\\\"atlasSiteFullName\\\":\\\"MongoDB Atlas\\\",\\\"universityCentralUrl\\\":\\\"https:\\/\\/learn.mongodb.com\\\",\\\"intercomEnabled\\\":true,\\\"reCaptchaRegistrationEnabled\\\":true,\\\"eloquaSiteId\\\":\\\"413370795\\\",\\\"multiFactorAuthLevel\\\":\\\"REQUIRED_FOR_GLOBAL_ROLES\\\",\\\"telecomSvcEnabled\\\":true,\\\"userRegistrationEnabled\\\":true,\\\"atlasSiteName\\\":\\\"Atlas\\\",\\\"showAccountNonCommercialBanner\\\":false,\\\"authLogoFileName\\\":\\\"mdb_logo\\\",\\\"isGoogleAuthEnabled\\\":true,\\\"reCaptchaEnterpriseLoginEnabled\\\":true,\\\"segmentClientSideWriteKey\\\":\\\"tFLI8kTsjVV1Whb5D6Cgthsjp2f26tRF\\\",\\\"intercomAppId\\\":\\\"qq7v0gqb\\\",\\\"analyticsEnabled\\\":true,\\\"reCaptchaKeyId\\\":\\\"6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG\\\",\\\"oktaSessionDiscoveryEnabled\\\":true,\\\"isExperimentationEnabled\\\":true,\\\"contentStackBranch\\\":\\\"main\\\",\\\"reCaptchaMfaLoginEnabled\\\":true,\\\"reCaptchaPublic\\\":\\\"6Lff_KUUAAAAAH6xRPWzTuF4QaEbei26TjktJgu-\\\",\\\"browserErrorTrackingEnabled\\\":true,\\\"isGithubAuthEnabled\\\":true,\\\"appEnv\\\":\\\"PROD\\\",\\\"multiFactorAuthRememberDeviceEnabled\\\":true,\\\"registrationExtraFields\\\":[\\\"company\\\"],\\\"oktaAuthRedirectBase\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"isPersonalizationWizardEnabled\\\":true,\\\"siteFullName\\\":\\\"MongoDB Cloud\\\",\\\"allowLocalhostAsFromUri\\\":false,\\\"reCaptchaEnabledLogin\\\":true,\\\"contentStackDeliveryToken\\\":\\\"csbecc052f2f89b4c73ffc19ea\\\",\\\"multiFactorAuthRequiredAfterRegistration\\\":true,\\\"docsUrl\\\":\\\"https:\\/\\/www.mongodb.com\\/docs\\/cloud-manager\\\",\\\"centralUrl\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"baasLegacyCentralUrl\\\":\\\"https:\\/\\/realm.mongodb.com\\\",\\\"multiFactorAuthResetAllowed\\\":true,\\\"contentStackApiKey\\\":\\\"bltf2fca5bf44f5e817\\\",\\\"baasCentralUrl\\\":\\\"https:\\/\\/services.cloud.mongodb.com\\\"}\");\n        \n        window.ASSETS_URL = \"https://assets.mongodb-cdn.com/mms\";\n    </script>\n\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\"></script>\n    \n</body>\n</html>\n",
+        "final_url": "https://account.mongodb.com/account/reset/password/5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae?email=oaimcpatlas%40gmail.com"
+      },
+      "reset_complete": {
+        "status": 429,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 06:55:25 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "RATE_LIMITED",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "content-length": "59",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordComplete"
+      }
     },
-    "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
-    "final_url": "https://account.mongodb.com/account/resetPasswordRequest"
-  },
+    {
+      "attempt": 2,
+      "reset_request": {
+        "status": 429,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 06:56:25 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "RATE_LIMITED",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "content-length": "59",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordRequest"
+      },
+      "temp_id": "5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae",
+      "reset_link": "https://account.mongodb.com/account/reset/password/5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae?email=oaimcpatlas%40gmail.com",
+      "reset_get": {
+        "status": 200,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 06:56:26 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "content-type": "text/html",
+          "x-frame-options": "DENY",
+          "vary": "Accept-Encoding",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close",
+          "transfer-encoding": "chunked"
+        },
+        "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n      <title>Cloud: MongoDB Cloud</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    \n    <meta name=\"csrf-token\" content=\"\"/>\n    <meta name=\"csrf-time\" content=\"\"/>\n\n    <script type=\"text/javascript\">\n        window.indexStartAt = Date.now();\n        performance.mark(\"index-start\");\n    </script>\n\n    <link rel=\"icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n    <link rel=\"shortcut icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\" as=\"script\" />\n    \n\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Regular-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Semibold-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/MongoDBValueSerif-Regular.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Medium-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n\n    \n        <link rel=\"preconnect\" href=\"https://www.googletagmanager.com\" />\n    \n\n    \n    \n        <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/assets/css/font-awesome.c495654869.min.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n    \n    <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.dfb4982f81.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n\n    <style type=\"text/css\">\n        \n            .requiresRsyncInitialSyncFeature { display: none !important; }\n        \n\n        \n            .requiresBackupAdmin { display: none !important; }\n        \n\n        \n            .hasGroupMonitoringAdmin { display: none !important; }\n        \n\n        \n\n        \n\n        \n            .requiresGlobalBackupAdmin { display: none !important; }\n        \n\n        \n            .requiresGlobalOwner { display: none !important; }\n        \n    </style>\n\n    \n        <!-- Load stripe.js, it can only be load from their domain -->\n        <script type=\"text/javascript\" src=\"https://js.stripe.com/v3/\" defer></script>\n    \n\n    \n        <!-- There is a race condition between captcha js loading and the react component rendering or the hook executing.\n        If the js loads first, then the react component or hook goes ahead and renders or executes the captcha respectively. Otherwise,\n        the componentDidMount() function populates the reCaptchaOnload function so that the captcha is\n        rendered or executed after the script is loaded (see ReCaptcha.tsx and useReCaptcha.ts).\n        TODO MB CLOUDP-161146 update the above text to only mention the hook-->\n        <script type=\"text/javascript\">\n            window.reCaptchaOnload = function () {\n            };\n        </script>\n        <!-- This is used by component client/packages/auth/components/ReCaptcha.tsx which only uses\n         enterprise apis. The Enterprise apis are a superset of the non-enterprise functionality\n         and they are invoked from `window.grecaptcha.enterprise` instead of `window.grecaptcha`.\n         The components not rendering ReCaptcha.tsx still rely on the classic recaptcha scripts\n         being loaded below. -->\n        <script src='https://www.recaptcha.net/recaptcha/enterprise.js?onload=reCaptchaOnload&render=6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG' defer></script>\n    \n\n    \n        <script>\n            const APP_ID = \"qq7v0gqb\";\n            (function(){var w=window;var ic=w.Intercom;if(typeof ic===\"function\"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.defer=true;s.src='https://widget.intercom.io/widget/'+ APP_ID;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();\n        </script>\n    \n\n    \n        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n        })(window,document,'script','dataLayer','GTM-5ZD5LD');</script>\n    \n\n    \n        <script>\n            window.errorTrackerSetupData = {\n                apiKey : \"6666d88d5b732b7725a8107ba15b4eb6\",\n                appVersion : \"v20260211\",\n                releaseStage : \"https://cloud.mongodb.com\",\n                gitVersion: \"beb0bba6cf65cc259128049e59f371c70a68ed71\",\n            };\n        </script>\n    \n</head>\n\n<body class=\"mms-body\">\n    \n        <noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-5ZD5LD\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>\n    \n\n    <div id=\"mms-body-application\" class=\"mms-body-application\"></div>\n\n    \n    <script type=\"text/javascript\">\n        var _elqQ = _elqQ || [];\n        _elqQ.push(['elqSetSiteId', '413370795']);\n        _elqQ.push(['elqTrackPageView']);\n        _elqQ.push(['elqGetCustomerGUID']);\n\n        (function () {\n            function async_load() {\n                var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;\n                s.src = '//img03.en25.com/i/elqCfg.min.js';\n                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);\n            }\n            if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);\n            else if (window.attachEvent) window.attachEvent('onload', async_load);\n        })();\n    </script>\n    \n\n    <script type=\"text/javascript\">\n        window.REQUEST_PARAMS = JSON.parse(\"{\\\"oktaEnabled\\\":true,\\\"oktaBaseUrl\\\":\\\"https:\\/\\/auth.mongodb.com\\\",\\\"accountMultiFactorAuthEnabled\\\":true,\\\"contentstackEnabled\\\":false,\\\"accountCentralUrl\\\":\\\"https:\\/\\/account.mongodb.com\\\",\\\"isVercelIntegrationEnabled\\\":true,\\\"siteName\\\":\\\"Cloud\\\",\\\"atlasSiteFullName\\\":\\\"MongoDB Atlas\\\",\\\"universityCentralUrl\\\":\\\"https:\\/\\/learn.mongodb.com\\\",\\\"intercomEnabled\\\":true,\\\"reCaptchaRegistrationEnabled\\\":true,\\\"eloquaSiteId\\\":\\\"413370795\\\",\\\"multiFactorAuthLevel\\\":\\\"REQUIRED_FOR_GLOBAL_ROLES\\\",\\\"telecomSvcEnabled\\\":true,\\\"userRegistrationEnabled\\\":true,\\\"atlasSiteName\\\":\\\"Atlas\\\",\\\"authLogoFileName\\\":\\\"mdb_logo\\\",\\\"showAccountNonCommercialBanner\\\":false,\\\"isGoogleAuthEnabled\\\":true,\\\"segmentClientSideWriteKey\\\":\\\"tFLI8kTsjVV1Whb5D6Cgthsjp2f26tRF\\\",\\\"intercomAppId\\\":\\\"qq7v0gqb\\\",\\\"reCaptchaEnterpriseLoginEnabled\\\":true,\\\"reCaptchaKeyId\\\":\\\"6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG\\\",\\\"analyticsEnabled\\\":true,\\\"oktaSessionDiscoveryEnabled\\\":true,\\\"isExperimentationEnabled\\\":true,\\\"contentStackBranch\\\":\\\"main\\\",\\\"reCaptchaMfaLoginEnabled\\\":true,\\\"reCaptchaPublic\\\":\\\"6Lff_KUUAAAAAH6xRPWzTuF4QaEbei26TjktJgu-\\\",\\\"isGithubAuthEnabled\\\":true,\\\"browserErrorTrackingEnabled\\\":true,\\\"appEnv\\\":\\\"PROD\\\",\\\"multiFactorAuthRememberDeviceEnabled\\\":true,\\\"oktaAuthRedirectBase\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"registrationExtraFields\\\":[\\\"company\\\"],\\\"isPersonalizationWizardEnabled\\\":true,\\\"siteFullName\\\":\\\"MongoDB Cloud\\\",\\\"allowLocalhostAsFromUri\\\":false,\\\"reCaptchaEnabledLogin\\\":true,\\\"contentStackDeliveryToken\\\":\\\"csbecc052f2f89b4c73ffc19ea\\\",\\\"multiFactorAuthRequiredAfterRegistration\\\":true,\\\"docsUrl\\\":\\\"https:\\/\\/www.mongodb.com\\/docs\\/cloud-manager\\\",\\\"centralUrl\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"baasLegacyCentralUrl\\\":\\\"https:\\/\\/realm.mongodb.com\\\",\\\"multiFactorAuthResetAllowed\\\":true,\\\"contentStackApiKey\\\":\\\"bltf2fca5bf44f5e817\\\",\\\"baasCentralUrl\\\":\\\"https:\\/\\/services.cloud.mongodb.com\\\"}\");\n        \n        window.ASSETS_URL = \"https://assets.mongodb-cdn.com/mms\";\n    </script>\n\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\"></script>\n    \n</body>\n</html>\n",
+        "final_url": "https://account.mongodb.com/account/reset/password/5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae?email=oaimcpatlas%40gmail.com"
+      },
+      "reset_complete": {
+        "status": 429,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 06:56:26 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "RATE_LIMITED",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "content-length": "59",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordComplete"
+      }
+    },
+    {
+      "attempt": 3,
+      "reset_request": {
+        "status": 429,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 06:57:26 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "RATE_LIMITED",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "content-length": "59",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordRequest"
+      },
+      "temp_id": "5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae",
+      "reset_link": "https://account.mongodb.com/account/reset/password/5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae?email=oaimcpatlas%40gmail.com",
+      "reset_get": {
+        "status": 200,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 06:57:27 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "content-type": "text/html",
+          "x-frame-options": "DENY",
+          "vary": "Accept-Encoding",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close",
+          "transfer-encoding": "chunked"
+        },
+        "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n      <title>Cloud: MongoDB Cloud</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    \n    <meta name=\"csrf-token\" content=\"\"/>\n    <meta name=\"csrf-time\" content=\"\"/>\n\n    <script type=\"text/javascript\">\n        window.indexStartAt = Date.now();\n        performance.mark(\"index-start\");\n    </script>\n\n    <link rel=\"icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n    <link rel=\"shortcut icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\" as=\"script\" />\n    \n\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Regular-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Semibold-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/MongoDBValueSerif-Regular.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Medium-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n\n    \n        <link rel=\"preconnect\" href=\"https://www.googletagmanager.com\" />\n    \n\n    \n    \n        <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/assets/css/font-awesome.c495654869.min.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n    \n    <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.dfb4982f81.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n\n    <style type=\"text/css\">\n        \n            .requiresRsyncInitialSyncFeature { display: none !important; }\n        \n\n        \n            .requiresBackupAdmin { display: none !important; }\n        \n\n        \n            .hasGroupMonitoringAdmin { display: none !important; }\n        \n\n        \n\n        \n\n        \n            .requiresGlobalBackupAdmin { display: none !important; }\n        \n\n        \n            .requiresGlobalOwner { display: none !important; }\n        \n    </style>\n\n    \n        <!-- Load stripe.js, it can only be load from their domain -->\n        <script type=\"text/javascript\" src=\"https://js.stripe.com/v3/\" defer></script>\n    \n\n    \n        <!-- There is a race condition between captcha js loading and the react component rendering or the hook executing.\n        If the js loads first, then the react component or hook goes ahead and renders or executes the captcha respectively. Otherwise,\n        the componentDidMount() function populates the reCaptchaOnload function so that the captcha is\n        rendered or executed after the script is loaded (see ReCaptcha.tsx and useReCaptcha.ts).\n        TODO MB CLOUDP-161146 update the above text to only mention the hook-->\n        <script type=\"text/javascript\">\n            window.reCaptchaOnload = function () {\n            };\n        </script>\n        <!-- This is used by component client/packages/auth/components/ReCaptcha.tsx which only uses\n         enterprise apis. The Enterprise apis are a superset of the non-enterprise functionality\n         and they are invoked from `window.grecaptcha.enterprise` instead of `window.grecaptcha`.\n         The components not rendering ReCaptcha.tsx still rely on the classic recaptcha scripts\n         being loaded below. -->\n        <script src='https://www.recaptcha.net/recaptcha/enterprise.js?onload=reCaptchaOnload&render=6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG' defer></script>\n    \n\n    \n        <script>\n            const APP_ID = \"qq7v0gqb\";\n            (function(){var w=window;var ic=w.Intercom;if(typeof ic===\"function\"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.defer=true;s.src='https://widget.intercom.io/widget/'+ APP_ID;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();\n        </script>\n    \n\n    \n        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n        })(window,document,'script','dataLayer','GTM-5ZD5LD');</script>\n    \n\n    \n        <script>\n            window.errorTrackerSetupData = {\n                apiKey : \"6666d88d5b732b7725a8107ba15b4eb6\",\n                appVersion : \"v20260211\",\n                releaseStage : \"https://cloud.mongodb.com\",\n                gitVersion: \"beb0bba6cf65cc259128049e59f371c70a68ed71\",\n            };\n        </script>\n    \n</head>\n\n<body class=\"mms-body\">\n    \n        <noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-5ZD5LD\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>\n    \n\n    <div id=\"mms-body-application\" class=\"mms-body-application\"></div>\n\n    \n    <script type=\"text/javascript\">\n        var _elqQ = _elqQ || [];\n        _elqQ.push(['elqSetSiteId', '413370795']);\n        _elqQ.push(['elqTrackPageView']);\n        _elqQ.push(['elqGetCustomerGUID']);\n\n        (function () {\n            function async_load() {\n                var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;\n                s.src = '//img03.en25.com/i/elqCfg.min.js';\n                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);\n            }\n            if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);\n            else if (window.attachEvent) window.attachEvent('onload', async_load);\n        })();\n    </script>\n    \n\n    <script type=\"text/javascript\">\n        window.REQUEST_PARAMS = JSON.parse(\"{\\\"oktaBaseUrl\\\":\\\"https:\\/\\/auth.mongodb.com\\\",\\\"oktaEnabled\\\":true,\\\"accountMultiFactorAuthEnabled\\\":true,\\\"contentstackEnabled\\\":false,\\\"accountCentralUrl\\\":\\\"https:\\/\\/account.mongodb.com\\\",\\\"isVercelIntegrationEnabled\\\":true,\\\"siteName\\\":\\\"Cloud\\\",\\\"atlasSiteFullName\\\":\\\"MongoDB Atlas\\\",\\\"universityCentralUrl\\\":\\\"https:\\/\\/learn.mongodb.com\\\",\\\"intercomEnabled\\\":true,\\\"reCaptchaRegistrationEnabled\\\":true,\\\"eloquaSiteId\\\":\\\"413370795\\\",\\\"multiFactorAuthLevel\\\":\\\"REQUIRED_FOR_GLOBAL_ROLES\\\",\\\"telecomSvcEnabled\\\":true,\\\"userRegistrationEnabled\\\":true,\\\"atlasSiteName\\\":\\\"Atlas\\\",\\\"showAccountNonCommercialBanner\\\":false,\\\"authLogoFileName\\\":\\\"mdb_logo\\\",\\\"isGoogleAuthEnabled\\\":true,\\\"reCaptchaEnterpriseLoginEnabled\\\":true,\\\"segmentClientSideWriteKey\\\":\\\"tFLI8kTsjVV1Whb5D6Cgthsjp2f26tRF\\\",\\\"intercomAppId\\\":\\\"qq7v0gqb\\\",\\\"analyticsEnabled\\\":true,\\\"reCaptchaKeyId\\\":\\\"6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG\\\",\\\"oktaSessionDiscoveryEnabled\\\":true,\\\"isExperimentationEnabled\\\":true,\\\"contentStackBranch\\\":\\\"main\\\",\\\"reCaptchaMfaLoginEnabled\\\":true,\\\"reCaptchaPublic\\\":\\\"6Lff_KUUAAAAAH6xRPWzTuF4QaEbei26TjktJgu-\\\",\\\"browserErrorTrackingEnabled\\\":true,\\\"isGithubAuthEnabled\\\":true,\\\"appEnv\\\":\\\"PROD\\\",\\\"multiFactorAuthRememberDeviceEnabled\\\":true,\\\"registrationExtraFields\\\":[\\\"company\\\"],\\\"oktaAuthRedirectBase\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"isPersonalizationWizardEnabled\\\":true,\\\"siteFullName\\\":\\\"MongoDB Cloud\\\",\\\"allowLocalhostAsFromUri\\\":false,\\\"reCaptchaEnabledLogin\\\":true,\\\"contentStackDeliveryToken\\\":\\\"csbecc052f2f89b4c73ffc19ea\\\",\\\"multiFactorAuthRequiredAfterRegistration\\\":true,\\\"docsUrl\\\":\\\"https:\\/\\/www.mongodb.com\\/docs\\/cloud-manager\\\",\\\"centralUrl\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"baasLegacyCentralUrl\\\":\\\"https:\\/\\/realm.mongodb.com\\\",\\\"multiFactorAuthResetAllowed\\\":true,\\\"contentStackApiKey\\\":\\\"bltf2fca5bf44f5e817\\\",\\\"baasCentralUrl\\\":\\\"https:\\/\\/services.cloud.mongodb.com\\\"}\");\n        \n        window.ASSETS_URL = \"https://assets.mongodb-cdn.com/mms\";\n    </script>\n\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\"></script>\n    \n</body>\n</html>\n",
+        "final_url": "https://account.mongodb.com/account/reset/password/5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae?email=oaimcpatlas%40gmail.com"
+      },
+      "reset_complete": {
+        "status": 429,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 06:57:27 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "RATE_LIMITED",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "content-length": "59",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordComplete"
+      }
+    },
+    {
+      "attempt": 4,
+      "reset_request": {
+        "status": 429,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 06:58:27 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "RATE_LIMITED",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "content-length": "59",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordRequest"
+      },
+      "temp_id": "5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae",
+      "reset_link": "https://account.mongodb.com/account/reset/password/5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae?email=oaimcpatlas%40gmail.com",
+      "reset_get": {
+        "status": 200,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 06:58:27 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "content-type": "text/html",
+          "x-frame-options": "DENY",
+          "vary": "Accept-Encoding",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close",
+          "transfer-encoding": "chunked"
+        },
+        "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n      <title>Cloud: MongoDB Cloud</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    \n    <meta name=\"csrf-token\" content=\"\"/>\n    <meta name=\"csrf-time\" content=\"\"/>\n\n    <script type=\"text/javascript\">\n        window.indexStartAt = Date.now();\n        performance.mark(\"index-start\");\n    </script>\n\n    <link rel=\"icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n    <link rel=\"shortcut icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\" as=\"script\" />\n    \n\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Regular-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Semibold-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/MongoDBValueSerif-Regular.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Medium-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n\n    \n        <link rel=\"preconnect\" href=\"https://www.googletagmanager.com\" />\n    \n\n    \n    \n        <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/assets/css/font-awesome.c495654869.min.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n    \n    <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.dfb4982f81.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n\n    <style type=\"text/css\">\n        \n            .requiresRsyncInitialSyncFeature { display: none !important; }\n        \n\n        \n            .requiresBackupAdmin { display: none !important; }\n        \n\n        \n            .hasGroupMonitoringAdmin { display: none !important; }\n        \n\n        \n\n        \n\n        \n            .requiresGlobalBackupAdmin { display: none !important; }\n        \n\n        \n            .requiresGlobalOwner { display: none !important; }\n        \n    </style>\n\n    \n        <!-- Load stripe.js, it can only be load from their domain -->\n        <script type=\"text/javascript\" src=\"https://js.stripe.com/v3/\" defer></script>\n    \n\n    \n        <!-- There is a race condition between captcha js loading and the react component rendering or the hook executing.\n        If the js loads first, then the react component or hook goes ahead and renders or executes the captcha respectively. Otherwise,\n        the componentDidMount() function populates the reCaptchaOnload function so that the captcha is\n        rendered or executed after the script is loaded (see ReCaptcha.tsx and useReCaptcha.ts).\n        TODO MB CLOUDP-161146 update the above text to only mention the hook-->\n        <script type=\"text/javascript\">\n            window.reCaptchaOnload = function () {\n            };\n        </script>\n        <!-- This is used by component client/packages/auth/components/ReCaptcha.tsx which only uses\n         enterprise apis. The Enterprise apis are a superset of the non-enterprise functionality\n         and they are invoked from `window.grecaptcha.enterprise` instead of `window.grecaptcha`.\n         The components not rendering ReCaptcha.tsx still rely on the classic recaptcha scripts\n         being loaded below. -->\n        <script src='https://www.recaptcha.net/recaptcha/enterprise.js?onload=reCaptchaOnload&render=6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG' defer></script>\n    \n\n    \n        <script>\n            const APP_ID = \"qq7v0gqb\";\n            (function(){var w=window;var ic=w.Intercom;if(typeof ic===\"function\"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.defer=true;s.src='https://widget.intercom.io/widget/'+ APP_ID;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();\n        </script>\n    \n\n    \n        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n        })(window,document,'script','dataLayer','GTM-5ZD5LD');</script>\n    \n\n    \n        <script>\n            window.errorTrackerSetupData = {\n                apiKey : \"6666d88d5b732b7725a8107ba15b4eb6\",\n                appVersion : \"v20260211\",\n                releaseStage : \"https://cloud.mongodb.com\",\n                gitVersion: \"beb0bba6cf65cc259128049e59f371c70a68ed71\",\n            };\n        </script>\n    \n</head>\n\n<body class=\"mms-body\">\n    \n        <noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-5ZD5LD\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>\n    \n\n    <div id=\"mms-body-application\" class=\"mms-body-application\"></div>\n\n    \n    <script type=\"text/javascript\">\n        var _elqQ = _elqQ || [];\n        _elqQ.push(['elqSetSiteId', '413370795']);\n        _elqQ.push(['elqTrackPageView']);\n        _elqQ.push(['elqGetCustomerGUID']);\n\n        (function () {\n            function async_load() {\n                var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;\n                s.src = '//img03.en25.com/i/elqCfg.min.js';\n                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);\n            }\n            if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);\n            else if (window.attachEvent) window.attachEvent('onload', async_load);\n        })();\n    </script>\n    \n\n    <script type=\"text/javascript\">\n        window.REQUEST_PARAMS = JSON.parse(\"{\\\"oktaBaseUrl\\\":\\\"https:\\/\\/auth.mongodb.com\\\",\\\"oktaEnabled\\\":true,\\\"accountMultiFactorAuthEnabled\\\":true,\\\"contentstackEnabled\\\":false,\\\"accountCentralUrl\\\":\\\"https:\\/\\/account.mongodb.com\\\",\\\"isVercelIntegrationEnabled\\\":true,\\\"siteName\\\":\\\"Cloud\\\",\\\"atlasSiteFullName\\\":\\\"MongoDB Atlas\\\",\\\"universityCentralUrl\\\":\\\"https:\\/\\/learn.mongodb.com\\\",\\\"intercomEnabled\\\":true,\\\"reCaptchaRegistrationEnabled\\\":true,\\\"eloquaSiteId\\\":\\\"413370795\\\",\\\"multiFactorAuthLevel\\\":\\\"REQUIRED_FOR_GLOBAL_ROLES\\\",\\\"telecomSvcEnabled\\\":true,\\\"userRegistrationEnabled\\\":true,\\\"atlasSiteName\\\":\\\"Atlas\\\",\\\"showAccountNonCommercialBanner\\\":false,\\\"authLogoFileName\\\":\\\"mdb_logo\\\",\\\"isGoogleAuthEnabled\\\":true,\\\"reCaptchaEnterpriseLoginEnabled\\\":true,\\\"segmentClientSideWriteKey\\\":\\\"tFLI8kTsjVV1Whb5D6Cgthsjp2f26tRF\\\",\\\"intercomAppId\\\":\\\"qq7v0gqb\\\",\\\"analyticsEnabled\\\":true,\\\"reCaptchaKeyId\\\":\\\"6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG\\\",\\\"oktaSessionDiscoveryEnabled\\\":true,\\\"isExperimentationEnabled\\\":true,\\\"contentStackBranch\\\":\\\"main\\\",\\\"reCaptchaMfaLoginEnabled\\\":true,\\\"reCaptchaPublic\\\":\\\"6Lff_KUUAAAAAH6xRPWzTuF4QaEbei26TjktJgu-\\\",\\\"browserErrorTrackingEnabled\\\":true,\\\"isGithubAuthEnabled\\\":true,\\\"appEnv\\\":\\\"PROD\\\",\\\"multiFactorAuthRememberDeviceEnabled\\\":true,\\\"registrationExtraFields\\\":[\\\"company\\\"],\\\"oktaAuthRedirectBase\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"isPersonalizationWizardEnabled\\\":true,\\\"siteFullName\\\":\\\"MongoDB Cloud\\\",\\\"allowLocalhostAsFromUri\\\":false,\\\"reCaptchaEnabledLogin\\\":true,\\\"contentStackDeliveryToken\\\":\\\"csbecc052f2f89b4c73ffc19ea\\\",\\\"multiFactorAuthRequiredAfterRegistration\\\":true,\\\"docsUrl\\\":\\\"https:\\/\\/www.mongodb.com\\/docs\\/cloud-manager\\\",\\\"centralUrl\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"baasLegacyCentralUrl\\\":\\\"https:\\/\\/realm.mongodb.com\\\",\\\"multiFactorAuthResetAllowed\\\":true,\\\"contentStackApiKey\\\":\\\"bltf2fca5bf44f5e817\\\",\\\"baasCentralUrl\\\":\\\"https:\\/\\/services.cloud.mongodb.com\\\"}\");\n        \n        window.ASSETS_URL = \"https://assets.mongodb-cdn.com/mms\";\n    </script>\n\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\"></script>\n    \n</body>\n</html>\n",
+        "final_url": "https://account.mongodb.com/account/reset/password/5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae?email=oaimcpatlas%40gmail.com"
+      },
+      "reset_complete": {
+        "status": 429,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 06:58:27 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "RATE_LIMITED",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "content-length": "59",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordComplete"
+      }
+    },
+    {
+      "attempt": 5,
+      "reset_request": {
+        "status": 429,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 06:59:28 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "RATE_LIMITED",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "content-length": "59",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordRequest"
+      },
+      "temp_id": "5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae",
+      "reset_link": "https://account.mongodb.com/account/reset/password/5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae?email=oaimcpatlas%40gmail.com",
+      "reset_get": {
+        "status": 200,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 06:59:28 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "content-type": "text/html",
+          "x-frame-options": "DENY",
+          "vary": "Accept-Encoding",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close",
+          "transfer-encoding": "chunked"
+        },
+        "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n      <title>Cloud: MongoDB Cloud</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    \n    <meta name=\"csrf-token\" content=\"\"/>\n    <meta name=\"csrf-time\" content=\"\"/>\n\n    <script type=\"text/javascript\">\n        window.indexStartAt = Date.now();\n        performance.mark(\"index-start\");\n    </script>\n\n    <link rel=\"icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n    <link rel=\"shortcut icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\" as=\"script\" />\n    \n\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Regular-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Semibold-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/MongoDBValueSerif-Regular.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Medium-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n\n    \n        <link rel=\"preconnect\" href=\"https://www.googletagmanager.com\" />\n    \n\n    \n    \n        <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/assets/css/font-awesome.c495654869.min.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n    \n    <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.dfb4982f81.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n\n    <style type=\"text/css\">\n        \n            .requiresRsyncInitialSyncFeature { display: none !important; }\n        \n\n        \n            .requiresBackupAdmin { display: none !important; }\n        \n\n        \n            .hasGroupMonitoringAdmin { display: none !important; }\n        \n\n        \n\n        \n\n        \n            .requiresGlobalBackupAdmin { display: none !important; }\n        \n\n        \n            .requiresGlobalOwner { display: none !important; }\n        \n    </style>\n\n    \n        <!-- Load stripe.js, it can only be load from their domain -->\n        <script type=\"text/javascript\" src=\"https://js.stripe.com/v3/\" defer></script>\n    \n\n    \n        <!-- There is a race condition between captcha js loading and the react component rendering or the hook executing.\n        If the js loads first, then the react component or hook goes ahead and renders or executes the captcha respectively. Otherwise,\n        the componentDidMount() function populates the reCaptchaOnload function so that the captcha is\n        rendered or executed after the script is loaded (see ReCaptcha.tsx and useReCaptcha.ts).\n        TODO MB CLOUDP-161146 update the above text to only mention the hook-->\n        <script type=\"text/javascript\">\n            window.reCaptchaOnload = function () {\n            };\n        </script>\n        <!-- This is used by component client/packages/auth/components/ReCaptcha.tsx which only uses\n         enterprise apis. The Enterprise apis are a superset of the non-enterprise functionality\n         and they are invoked from `window.grecaptcha.enterprise` instead of `window.grecaptcha`.\n         The components not rendering ReCaptcha.tsx still rely on the classic recaptcha scripts\n         being loaded below. -->\n        <script src='https://www.recaptcha.net/recaptcha/enterprise.js?onload=reCaptchaOnload&render=6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG' defer></script>\n    \n\n    \n        <script>\n            const APP_ID = \"qq7v0gqb\";\n            (function(){var w=window;var ic=w.Intercom;if(typeof ic===\"function\"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.defer=true;s.src='https://widget.intercom.io/widget/'+ APP_ID;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();\n        </script>\n    \n\n    \n        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n        })(window,document,'script','dataLayer','GTM-5ZD5LD');</script>\n    \n\n    \n        <script>\n            window.errorTrackerSetupData = {\n                apiKey : \"6666d88d5b732b7725a8107ba15b4eb6\",\n                appVersion : \"v20260211\",\n                releaseStage : \"https://cloud.mongodb.com\",\n                gitVersion: \"beb0bba6cf65cc259128049e59f371c70a68ed71\",\n            };\n        </script>\n    \n</head>\n\n<body class=\"mms-body\">\n    \n        <noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-5ZD5LD\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>\n    \n\n    <div id=\"mms-body-application\" class=\"mms-body-application\"></div>\n\n    \n    <script type=\"text/javascript\">\n        var _elqQ = _elqQ || [];\n        _elqQ.push(['elqSetSiteId', '413370795']);\n        _elqQ.push(['elqTrackPageView']);\n        _elqQ.push(['elqGetCustomerGUID']);\n\n        (function () {\n            function async_load() {\n                var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;\n                s.src = '//img03.en25.com/i/elqCfg.min.js';\n                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);\n            }\n            if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);\n            else if (window.attachEvent) window.attachEvent('onload', async_load);\n        })();\n    </script>\n    \n\n    <script type=\"text/javascript\">\n        window.REQUEST_PARAMS = JSON.parse(\"{\\\"oktaBaseUrl\\\":\\\"https:\\/\\/auth.mongodb.com\\\",\\\"oktaEnabled\\\":true,\\\"accountMultiFactorAuthEnabled\\\":true,\\\"contentstackEnabled\\\":false,\\\"accountCentralUrl\\\":\\\"https:\\/\\/account.mongodb.com\\\",\\\"isVercelIntegrationEnabled\\\":true,\\\"siteName\\\":\\\"Cloud\\\",\\\"atlasSiteFullName\\\":\\\"MongoDB Atlas\\\",\\\"universityCentralUrl\\\":\\\"https:\\/\\/learn.mongodb.com\\\",\\\"intercomEnabled\\\":true,\\\"reCaptchaRegistrationEnabled\\\":true,\\\"eloquaSiteId\\\":\\\"413370795\\\",\\\"multiFactorAuthLevel\\\":\\\"REQUIRED_FOR_GLOBAL_ROLES\\\",\\\"telecomSvcEnabled\\\":true,\\\"userRegistrationEnabled\\\":true,\\\"atlasSiteName\\\":\\\"Atlas\\\",\\\"showAccountNonCommercialBanner\\\":false,\\\"authLogoFileName\\\":\\\"mdb_logo\\\",\\\"isGoogleAuthEnabled\\\":true,\\\"reCaptchaEnterpriseLoginEnabled\\\":true,\\\"segmentClientSideWriteKey\\\":\\\"tFLI8kTsjVV1Whb5D6Cgthsjp2f26tRF\\\",\\\"intercomAppId\\\":\\\"qq7v0gqb\\\",\\\"analyticsEnabled\\\":true,\\\"reCaptchaKeyId\\\":\\\"6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG\\\",\\\"oktaSessionDiscoveryEnabled\\\":true,\\\"isExperimentationEnabled\\\":true,\\\"contentStackBranch\\\":\\\"main\\\",\\\"reCaptchaMfaLoginEnabled\\\":true,\\\"reCaptchaPublic\\\":\\\"6Lff_KUUAAAAAH6xRPWzTuF4QaEbei26TjktJgu-\\\",\\\"browserErrorTrackingEnabled\\\":true,\\\"isGithubAuthEnabled\\\":true,\\\"appEnv\\\":\\\"PROD\\\",\\\"multiFactorAuthRememberDeviceEnabled\\\":true,\\\"registrationExtraFields\\\":[\\\"company\\\"],\\\"oktaAuthRedirectBase\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"isPersonalizationWizardEnabled\\\":true,\\\"siteFullName\\\":\\\"MongoDB Cloud\\\",\\\"allowLocalhostAsFromUri\\\":false,\\\"reCaptchaEnabledLogin\\\":true,\\\"contentStackDeliveryToken\\\":\\\"csbecc052f2f89b4c73ffc19ea\\\",\\\"multiFactorAuthRequiredAfterRegistration\\\":true,\\\"docsUrl\\\":\\\"https:\\/\\/www.mongodb.com\\/docs\\/cloud-manager\\\",\\\"centralUrl\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"baasLegacyCentralUrl\\\":\\\"https:\\/\\/realm.mongodb.com\\\",\\\"multiFactorAuthResetAllowed\\\":true,\\\"contentStackApiKey\\\":\\\"bltf2fca5bf44f5e817\\\",\\\"baasCentralUrl\\\":\\\"https:\\/\\/services.cloud.mongodb.com\\\"}\");\n        \n        window.ASSETS_URL = \"https://assets.mongodb-cdn.com/mms\";\n    </script>\n\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\"></script>\n    \n</body>\n</html>\n",
+        "final_url": "https://account.mongodb.com/account/reset/password/5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae?email=oaimcpatlas%40gmail.com"
+      },
+      "reset_complete": {
+        "status": 429,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 06:59:28 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "RATE_LIMITED",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "content-length": "59",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordComplete"
+      }
+    },
+    {
+      "attempt": 6,
+      "reset_request": {
+        "status": 200,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 07:00:28 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "NONE",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "vary": "Accept-Encoding",
+          "content-length": "91",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"resource\":\"/account/resetPasswordRequest\",\"errorCode\":\"NONE\",\"version\":\"1\",\"status\":\"OK\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordRequest"
+      },
+      "temp_id": "5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae",
+      "reset_link": "https://account.mongodb.com/account/reset/password/5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae?email=oaimcpatlas%40gmail.com",
+      "reset_get": {
+        "status": 200,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 07:00:30 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "content-type": "text/html",
+          "x-frame-options": "DENY",
+          "vary": "Accept-Encoding",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close",
+          "transfer-encoding": "chunked"
+        },
+        "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n      <title>Cloud: MongoDB Cloud</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    \n    <meta name=\"csrf-token\" content=\"\"/>\n    <meta name=\"csrf-time\" content=\"\"/>\n\n    <script type=\"text/javascript\">\n        window.indexStartAt = Date.now();\n        performance.mark(\"index-start\");\n    </script>\n\n    <link rel=\"icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n    <link rel=\"shortcut icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\" as=\"script\" />\n    \n\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Regular-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Semibold-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/MongoDBValueSerif-Regular.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Medium-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n\n    \n        <link rel=\"preconnect\" href=\"https://www.googletagmanager.com\" />\n    \n\n    \n    \n        <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/assets/css/font-awesome.c495654869.min.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n    \n    <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.dfb4982f81.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n\n    <style type=\"text/css\">\n        \n            .requiresRsyncInitialSyncFeature { display: none !important; }\n        \n\n        \n            .requiresBackupAdmin { display: none !important; }\n        \n\n        \n            .hasGroupMonitoringAdmin { display: none !important; }\n        \n\n        \n\n        \n\n        \n            .requiresGlobalBackupAdmin { display: none !important; }\n        \n\n        \n            .requiresGlobalOwner { display: none !important; }\n        \n    </style>\n\n    \n        <!-- Load stripe.js, it can only be load from their domain -->\n        <script type=\"text/javascript\" src=\"https://js.stripe.com/v3/\" defer></script>\n    \n\n    \n        <!-- There is a race condition between captcha js loading and the react component rendering or the hook executing.\n        If the js loads first, then the react component or hook goes ahead and renders or executes the captcha respectively. Otherwise,\n        the componentDidMount() function populates the reCaptchaOnload function so that the captcha is\n        rendered or executed after the script is loaded (see ReCaptcha.tsx and useReCaptcha.ts).\n        TODO MB CLOUDP-161146 update the above text to only mention the hook-->\n        <script type=\"text/javascript\">\n            window.reCaptchaOnload = function () {\n            };\n        </script>\n        <!-- This is used by component client/packages/auth/components/ReCaptcha.tsx which only uses\n         enterprise apis. The Enterprise apis are a superset of the non-enterprise functionality\n         and they are invoked from `window.grecaptcha.enterprise` instead of `window.grecaptcha`.\n         The components not rendering ReCaptcha.tsx still rely on the classic recaptcha scripts\n         being loaded below. -->\n        <script src='https://www.recaptcha.net/recaptcha/enterprise.js?onload=reCaptchaOnload&render=6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG' defer></script>\n    \n\n    \n        <script>\n            const APP_ID = \"qq7v0gqb\";\n            (function(){var w=window;var ic=w.Intercom;if(typeof ic===\"function\"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.defer=true;s.src='https://widget.intercom.io/widget/'+ APP_ID;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();\n        </script>\n    \n\n    \n        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n        })(window,document,'script','dataLayer','GTM-5ZD5LD');</script>\n    \n\n    \n        <script>\n            window.errorTrackerSetupData = {\n                apiKey : \"6666d88d5b732b7725a8107ba15b4eb6\",\n                appVersion : \"v20260211\",\n                releaseStage : \"https://cloud.mongodb.com\",\n                gitVersion: \"beb0bba6cf65cc259128049e59f371c70a68ed71\",\n            };\n        </script>\n    \n</head>\n\n<body class=\"mms-body\">\n    \n        <noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-5ZD5LD\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>\n    \n\n    <div id=\"mms-body-application\" class=\"mms-body-application\"></div>\n\n    \n    <script type=\"text/javascript\">\n        var _elqQ = _elqQ || [];\n        _elqQ.push(['elqSetSiteId', '413370795']);\n        _elqQ.push(['elqTrackPageView']);\n        _elqQ.push(['elqGetCustomerGUID']);\n\n        (function () {\n            function async_load() {\n                var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;\n                s.src = '//img03.en25.com/i/elqCfg.min.js';\n                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);\n            }\n            if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);\n            else if (window.attachEvent) window.attachEvent('onload', async_load);\n        })();\n    </script>\n    \n\n    <script type=\"text/javascript\">\n        window.REQUEST_PARAMS = JSON.parse(\"{\\\"oktaBaseUrl\\\":\\\"https:\\/\\/auth.mongodb.com\\\",\\\"oktaEnabled\\\":true,\\\"accountMultiFactorAuthEnabled\\\":true,\\\"contentstackEnabled\\\":false,\\\"accountCentralUrl\\\":\\\"https:\\/\\/account.mongodb.com\\\",\\\"isVercelIntegrationEnabled\\\":true,\\\"siteName\\\":\\\"Cloud\\\",\\\"atlasSiteFullName\\\":\\\"MongoDB Atlas\\\",\\\"universityCentralUrl\\\":\\\"https:\\/\\/learn.mongodb.com\\\",\\\"intercomEnabled\\\":true,\\\"reCaptchaRegistrationEnabled\\\":true,\\\"eloquaSiteId\\\":\\\"413370795\\\",\\\"multiFactorAuthLevel\\\":\\\"REQUIRED_FOR_GLOBAL_ROLES\\\",\\\"telecomSvcEnabled\\\":true,\\\"userRegistrationEnabled\\\":true,\\\"atlasSiteName\\\":\\\"Atlas\\\",\\\"showAccountNonCommercialBanner\\\":false,\\\"authLogoFileName\\\":\\\"mdb_logo\\\",\\\"isGoogleAuthEnabled\\\":true,\\\"reCaptchaEnterpriseLoginEnabled\\\":true,\\\"intercomAppId\\\":\\\"qq7v0gqb\\\",\\\"segmentClientSideWriteKey\\\":\\\"tFLI8kTsjVV1Whb5D6Cgthsjp2f26tRF\\\",\\\"analyticsEnabled\\\":true,\\\"reCaptchaKeyId\\\":\\\"6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG\\\",\\\"oktaSessionDiscoveryEnabled\\\":true,\\\"isExperimentationEnabled\\\":true,\\\"contentStackBranch\\\":\\\"main\\\",\\\"reCaptchaPublic\\\":\\\"6Lff_KUUAAAAAH6xRPWzTuF4QaEbei26TjktJgu-\\\",\\\"reCaptchaMfaLoginEnabled\\\":true,\\\"browserErrorTrackingEnabled\\\":true,\\\"isGithubAuthEnabled\\\":true,\\\"multiFactorAuthRememberDeviceEnabled\\\":true,\\\"appEnv\\\":\\\"PROD\\\",\\\"registrationExtraFields\\\":[\\\"company\\\"],\\\"oktaAuthRedirectBase\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"isPersonalizationWizardEnabled\\\":true,\\\"siteFullName\\\":\\\"MongoDB Cloud\\\",\\\"allowLocalhostAsFromUri\\\":false,\\\"reCaptchaEnabledLogin\\\":true,\\\"contentStackDeliveryToken\\\":\\\"csbecc052f2f89b4c73ffc19ea\\\",\\\"multiFactorAuthRequiredAfterRegistration\\\":true,\\\"docsUrl\\\":\\\"https:\\/\\/www.mongodb.com\\/docs\\/cloud-manager\\\",\\\"baasLegacyCentralUrl\\\":\\\"https:\\/\\/realm.mongodb.com\\\",\\\"centralUrl\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"multiFactorAuthResetAllowed\\\":true,\\\"contentStackApiKey\\\":\\\"bltf2fca5bf44f5e817\\\",\\\"baasCentralUrl\\\":\\\"https:\\/\\/services.cloud.mongodb.com\\\"}\");\n        \n        window.ASSETS_URL = \"https://assets.mongodb-cdn.com/mms\";\n    </script>\n\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\"></script>\n    \n</body>\n</html>\n",
+        "final_url": "https://account.mongodb.com/account/reset/password/5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae?email=oaimcpatlas%40gmail.com"
+      },
+      "reset_complete": {
+        "status": 400,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 07:00:30 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "PASSWORD_RESET_EXPIRED",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "content-length": "116",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"errorCode\":\"PASSWORD_RESET_EXPIRED\",\"message\":\"PASSWORD_RESET_EXPIRED\",\"params\":[],\"version\":\"1\",\"status\":\"ERROR\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordComplete"
+      }
+    },
+    {
+      "attempt": 7,
+      "reset_request": {
+        "status": 200,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 07:01:30 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "NONE",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "vary": "Accept-Encoding",
+          "content-length": "91",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"resource\":\"/account/resetPasswordRequest\",\"errorCode\":\"NONE\",\"version\":\"1\",\"status\":\"OK\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordRequest"
+      },
+      "temp_id": "8933716633961697ac7a04df79b802a0980b60cb27eff60e30aea7109badacd5",
+      "reset_link": "https://account.mongodb.com/account/reset/password/8933716633961697ac7a04df79b802a0980b60cb27eff60e30aea7109badacd5?email=oaimcpatlas%40gmail.com",
+      "reset_get": {
+        "status": 200,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 07:01:31 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "content-type": "text/html",
+          "x-frame-options": "DENY",
+          "vary": "Accept-Encoding",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close",
+          "transfer-encoding": "chunked"
+        },
+        "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n      <title>Cloud: MongoDB Cloud</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    \n    <meta name=\"csrf-token\" content=\"\"/>\n    <meta name=\"csrf-time\" content=\"\"/>\n\n    <script type=\"text/javascript\">\n        window.indexStartAt = Date.now();\n        performance.mark(\"index-start\");\n    </script>\n\n    <link rel=\"icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n    <link rel=\"shortcut icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\" as=\"script\" />\n    \n\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Regular-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Semibold-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/MongoDBValueSerif-Regular.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Medium-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n\n    \n        <link rel=\"preconnect\" href=\"https://www.googletagmanager.com\" />\n    \n\n    \n    \n        <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/assets/css/font-awesome.c495654869.min.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n    \n    <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.dfb4982f81.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n\n    <style type=\"text/css\">\n        \n            .requiresRsyncInitialSyncFeature { display: none !important; }\n        \n\n        \n            .requiresBackupAdmin { display: none !important; }\n        \n\n        \n            .hasGroupMonitoringAdmin { display: none !important; }\n        \n\n        \n\n        \n\n        \n            .requiresGlobalBackupAdmin { display: none !important; }\n        \n\n        \n            .requiresGlobalOwner { display: none !important; }\n        \n    </style>\n\n    \n        <!-- Load stripe.js, it can only be load from their domain -->\n        <script type=\"text/javascript\" src=\"https://js.stripe.com/v3/\" defer></script>\n    \n\n    \n        <!-- There is a race condition between captcha js loading and the react component rendering or the hook executing.\n        If the js loads first, then the react component or hook goes ahead and renders or executes the captcha respectively. Otherwise,\n        the componentDidMount() function populates the reCaptchaOnload function so that the captcha is\n        rendered or executed after the script is loaded (see ReCaptcha.tsx and useReCaptcha.ts).\n        TODO MB CLOUDP-161146 update the above text to only mention the hook-->\n        <script type=\"text/javascript\">\n            window.reCaptchaOnload = function () {\n            };\n        </script>\n        <!-- This is used by component client/packages/auth/components/ReCaptcha.tsx which only uses\n         enterprise apis. The Enterprise apis are a superset of the non-enterprise functionality\n         and they are invoked from `window.grecaptcha.enterprise` instead of `window.grecaptcha`.\n         The components not rendering ReCaptcha.tsx still rely on the classic recaptcha scripts\n         being loaded below. -->\n        <script src='https://www.recaptcha.net/recaptcha/enterprise.js?onload=reCaptchaOnload&render=6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG' defer></script>\n    \n\n    \n        <script>\n            const APP_ID = \"qq7v0gqb\";\n            (function(){var w=window;var ic=w.Intercom;if(typeof ic===\"function\"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.defer=true;s.src='https://widget.intercom.io/widget/'+ APP_ID;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();\n        </script>\n    \n\n    \n        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n        })(window,document,'script','dataLayer','GTM-5ZD5LD');</script>\n    \n\n    \n        <script>\n            window.errorTrackerSetupData = {\n                apiKey : \"6666d88d5b732b7725a8107ba15b4eb6\",\n                appVersion : \"v20260211\",\n                releaseStage : \"https://cloud.mongodb.com\",\n                gitVersion: \"beb0bba6cf65cc259128049e59f371c70a68ed71\",\n            };\n        </script>\n    \n</head>\n\n<body class=\"mms-body\">\n    \n        <noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-5ZD5LD\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>\n    \n\n    <div id=\"mms-body-application\" class=\"mms-body-application\"></div>\n\n    \n    <script type=\"text/javascript\">\n        var _elqQ = _elqQ || [];\n        _elqQ.push(['elqSetSiteId', '413370795']);\n        _elqQ.push(['elqTrackPageView']);\n        _elqQ.push(['elqGetCustomerGUID']);\n\n        (function () {\n            function async_load() {\n                var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;\n                s.src = '//img03.en25.com/i/elqCfg.min.js';\n                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);\n            }\n            if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);\n            else if (window.attachEvent) window.attachEvent('onload', async_load);\n        })();\n    </script>\n    \n\n    <script type=\"text/javascript\">\n        window.REQUEST_PARAMS = JSON.parse(\"{\\\"oktaBaseUrl\\\":\\\"https:\\/\\/auth.mongodb.com\\\",\\\"oktaEnabled\\\":true,\\\"accountMultiFactorAuthEnabled\\\":true,\\\"contentstackEnabled\\\":false,\\\"accountCentralUrl\\\":\\\"https:\\/\\/account.mongodb.com\\\",\\\"isVercelIntegrationEnabled\\\":true,\\\"siteName\\\":\\\"Cloud\\\",\\\"atlasSiteFullName\\\":\\\"MongoDB Atlas\\\",\\\"universityCentralUrl\\\":\\\"https:\\/\\/learn.mongodb.com\\\",\\\"intercomEnabled\\\":true,\\\"reCaptchaRegistrationEnabled\\\":true,\\\"eloquaSiteId\\\":\\\"413370795\\\",\\\"multiFactorAuthLevel\\\":\\\"REQUIRED_FOR_GLOBAL_ROLES\\\",\\\"telecomSvcEnabled\\\":true,\\\"userRegistrationEnabled\\\":true,\\\"atlasSiteName\\\":\\\"Atlas\\\",\\\"showAccountNonCommercialBanner\\\":false,\\\"authLogoFileName\\\":\\\"mdb_logo\\\",\\\"isGoogleAuthEnabled\\\":true,\\\"reCaptchaEnterpriseLoginEnabled\\\":true,\\\"intercomAppId\\\":\\\"qq7v0gqb\\\",\\\"segmentClientSideWriteKey\\\":\\\"tFLI8kTsjVV1Whb5D6Cgthsjp2f26tRF\\\",\\\"analyticsEnabled\\\":true,\\\"reCaptchaKeyId\\\":\\\"6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG\\\",\\\"oktaSessionDiscoveryEnabled\\\":true,\\\"isExperimentationEnabled\\\":true,\\\"contentStackBranch\\\":\\\"main\\\",\\\"reCaptchaPublic\\\":\\\"6Lff_KUUAAAAAH6xRPWzTuF4QaEbei26TjktJgu-\\\",\\\"reCaptchaMfaLoginEnabled\\\":true,\\\"browserErrorTrackingEnabled\\\":true,\\\"isGithubAuthEnabled\\\":true,\\\"multiFactorAuthRememberDeviceEnabled\\\":true,\\\"appEnv\\\":\\\"PROD\\\",\\\"registrationExtraFields\\\":[\\\"company\\\"],\\\"oktaAuthRedirectBase\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"isPersonalizationWizardEnabled\\\":true,\\\"siteFullName\\\":\\\"MongoDB Cloud\\\",\\\"allowLocalhostAsFromUri\\\":false,\\\"reCaptchaEnabledLogin\\\":true,\\\"contentStackDeliveryToken\\\":\\\"csbecc052f2f89b4c73ffc19ea\\\",\\\"multiFactorAuthRequiredAfterRegistration\\\":true,\\\"docsUrl\\\":\\\"https:\\/\\/www.mongodb.com\\/docs\\/cloud-manager\\\",\\\"baasLegacyCentralUrl\\\":\\\"https:\\/\\/realm.mongodb.com\\\",\\\"centralUrl\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"multiFactorAuthResetAllowed\\\":true,\\\"contentStackApiKey\\\":\\\"bltf2fca5bf44f5e817\\\",\\\"baasCentralUrl\\\":\\\"https:\\/\\/services.cloud.mongodb.com\\\"}\");\n        \n        window.ASSETS_URL = \"https://assets.mongodb-cdn.com/mms\";\n    </script>\n\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\"></script>\n    \n</body>\n</html>\n",
+        "final_url": "https://account.mongodb.com/account/reset/password/8933716633961697ac7a04df79b802a0980b60cb27eff60e30aea7109badacd5?email=oaimcpatlas%40gmail.com"
+      },
+      "reset_complete": {
+        "status": 400,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 07:01:31 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "PASSWORD_RESET_EXPIRED",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "content-length": "116",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"errorCode\":\"PASSWORD_RESET_EXPIRED\",\"message\":\"PASSWORD_RESET_EXPIRED\",\"params\":[],\"version\":\"1\",\"status\":\"ERROR\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordComplete"
+      }
+    },
+    {
+      "attempt": 8,
+      "reset_request": {
+        "status": 200,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 07:02:31 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "NONE",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "vary": "Accept-Encoding",
+          "content-length": "91",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"resource\":\"/account/resetPasswordRequest\",\"errorCode\":\"NONE\",\"version\":\"1\",\"status\":\"OK\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordRequest"
+      },
+      "temp_id": "f29e96f9566ba7a23b4abf85a0d29993a26387a445eb01d01b04a1a6c09e1fc1",
+      "reset_link": "https://account.mongodb.com/account/reset/password/f29e96f9566ba7a23b4abf85a0d29993a26387a445eb01d01b04a1a6c09e1fc1?email=oaimcpatlas%40gmail.com",
+      "reset_get": {
+        "status": 200,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 07:02:32 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "content-type": "text/html",
+          "x-frame-options": "DENY",
+          "vary": "Accept-Encoding",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close",
+          "transfer-encoding": "chunked"
+        },
+        "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n      <title>Cloud: MongoDB Cloud</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    \n    <meta name=\"csrf-token\" content=\"\"/>\n    <meta name=\"csrf-time\" content=\"\"/>\n\n    <script type=\"text/javascript\">\n        window.indexStartAt = Date.now();\n        performance.mark(\"index-start\");\n    </script>\n\n    <link rel=\"icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n    <link rel=\"shortcut icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\" as=\"script\" />\n    \n\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Regular-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Semibold-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/MongoDBValueSerif-Regular.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Medium-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n\n    \n        <link rel=\"preconnect\" href=\"https://www.googletagmanager.com\" />\n    \n\n    \n    \n        <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/assets/css/font-awesome.c495654869.min.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n    \n    <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.dfb4982f81.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n\n    <style type=\"text/css\">\n        \n            .requiresRsyncInitialSyncFeature { display: none !important; }\n        \n\n        \n            .requiresBackupAdmin { display: none !important; }\n        \n\n        \n            .hasGroupMonitoringAdmin { display: none !important; }\n        \n\n        \n\n        \n\n        \n            .requiresGlobalBackupAdmin { display: none !important; }\n        \n\n        \n            .requiresGlobalOwner { display: none !important; }\n        \n    </style>\n\n    \n        <!-- Load stripe.js, it can only be load from their domain -->\n        <script type=\"text/javascript\" src=\"https://js.stripe.com/v3/\" defer></script>\n    \n\n    \n        <!-- There is a race condition between captcha js loading and the react component rendering or the hook executing.\n        If the js loads first, then the react component or hook goes ahead and renders or executes the captcha respectively. Otherwise,\n        the componentDidMount() function populates the reCaptchaOnload function so that the captcha is\n        rendered or executed after the script is loaded (see ReCaptcha.tsx and useReCaptcha.ts).\n        TODO MB CLOUDP-161146 update the above text to only mention the hook-->\n        <script type=\"text/javascript\">\n            window.reCaptchaOnload = function () {\n            };\n        </script>\n        <!-- This is used by component client/packages/auth/components/ReCaptcha.tsx which only uses\n         enterprise apis. The Enterprise apis are a superset of the non-enterprise functionality\n         and they are invoked from `window.grecaptcha.enterprise` instead of `window.grecaptcha`.\n         The components not rendering ReCaptcha.tsx still rely on the classic recaptcha scripts\n         being loaded below. -->\n        <script src='https://www.recaptcha.net/recaptcha/enterprise.js?onload=reCaptchaOnload&render=6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG' defer></script>\n    \n\n    \n        <script>\n            const APP_ID = \"qq7v0gqb\";\n            (function(){var w=window;var ic=w.Intercom;if(typeof ic===\"function\"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.defer=true;s.src='https://widget.intercom.io/widget/'+ APP_ID;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();\n        </script>\n    \n\n    \n        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n        })(window,document,'script','dataLayer','GTM-5ZD5LD');</script>\n    \n\n    \n        <script>\n            window.errorTrackerSetupData = {\n                apiKey : \"6666d88d5b732b7725a8107ba15b4eb6\",\n                appVersion : \"v20260211\",\n                releaseStage : \"https://cloud.mongodb.com\",\n                gitVersion: \"beb0bba6cf65cc259128049e59f371c70a68ed71\",\n            };\n        </script>\n    \n</head>\n\n<body class=\"mms-body\">\n    \n        <noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-5ZD5LD\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>\n    \n\n    <div id=\"mms-body-application\" class=\"mms-body-application\"></div>\n\n    \n    <script type=\"text/javascript\">\n        var _elqQ = _elqQ || [];\n        _elqQ.push(['elqSetSiteId', '413370795']);\n        _elqQ.push(['elqTrackPageView']);\n        _elqQ.push(['elqGetCustomerGUID']);\n\n        (function () {\n            function async_load() {\n                var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;\n                s.src = '//img03.en25.com/i/elqCfg.min.js';\n                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);\n            }\n            if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);\n            else if (window.attachEvent) window.attachEvent('onload', async_load);\n        })();\n    </script>\n    \n\n    <script type=\"text/javascript\">\n        window.REQUEST_PARAMS = JSON.parse(\"{\\\"oktaBaseUrl\\\":\\\"https:\\/\\/auth.mongodb.com\\\",\\\"oktaEnabled\\\":true,\\\"accountMultiFactorAuthEnabled\\\":true,\\\"contentstackEnabled\\\":false,\\\"accountCentralUrl\\\":\\\"https:\\/\\/account.mongodb.com\\\",\\\"isVercelIntegrationEnabled\\\":true,\\\"siteName\\\":\\\"Cloud\\\",\\\"atlasSiteFullName\\\":\\\"MongoDB Atlas\\\",\\\"universityCentralUrl\\\":\\\"https:\\/\\/learn.mongodb.com\\\",\\\"intercomEnabled\\\":true,\\\"reCaptchaRegistrationEnabled\\\":true,\\\"eloquaSiteId\\\":\\\"413370795\\\",\\\"multiFactorAuthLevel\\\":\\\"REQUIRED_FOR_GLOBAL_ROLES\\\",\\\"telecomSvcEnabled\\\":true,\\\"userRegistrationEnabled\\\":true,\\\"atlasSiteName\\\":\\\"Atlas\\\",\\\"showAccountNonCommercialBanner\\\":false,\\\"authLogoFileName\\\":\\\"mdb_logo\\\",\\\"isGoogleAuthEnabled\\\":true,\\\"reCaptchaEnterpriseLoginEnabled\\\":true,\\\"segmentClientSideWriteKey\\\":\\\"tFLI8kTsjVV1Whb5D6Cgthsjp2f26tRF\\\",\\\"intercomAppId\\\":\\\"qq7v0gqb\\\",\\\"analyticsEnabled\\\":true,\\\"reCaptchaKeyId\\\":\\\"6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG\\\",\\\"oktaSessionDiscoveryEnabled\\\":true,\\\"isExperimentationEnabled\\\":true,\\\"contentStackBranch\\\":\\\"main\\\",\\\"reCaptchaMfaLoginEnabled\\\":true,\\\"reCaptchaPublic\\\":\\\"6Lff_KUUAAAAAH6xRPWzTuF4QaEbei26TjktJgu-\\\",\\\"browserErrorTrackingEnabled\\\":true,\\\"isGithubAuthEnabled\\\":true,\\\"appEnv\\\":\\\"PROD\\\",\\\"multiFactorAuthRememberDeviceEnabled\\\":true,\\\"registrationExtraFields\\\":[\\\"company\\\"],\\\"oktaAuthRedirectBase\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"isPersonalizationWizardEnabled\\\":true,\\\"siteFullName\\\":\\\"MongoDB Cloud\\\",\\\"allowLocalhostAsFromUri\\\":false,\\\"reCaptchaEnabledLogin\\\":true,\\\"contentStackDeliveryToken\\\":\\\"csbecc052f2f89b4c73ffc19ea\\\",\\\"multiFactorAuthRequiredAfterRegistration\\\":true,\\\"docsUrl\\\":\\\"https:\\/\\/www.mongodb.com\\/docs\\/cloud-manager\\\",\\\"centralUrl\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"baasLegacyCentralUrl\\\":\\\"https:\\/\\/realm.mongodb.com\\\",\\\"multiFactorAuthResetAllowed\\\":true,\\\"contentStackApiKey\\\":\\\"bltf2fca5bf44f5e817\\\",\\\"baasCentralUrl\\\":\\\"https:\\/\\/services.cloud.mongodb.com\\\"}\");\n        \n        window.ASSETS_URL = \"https://assets.mongodb-cdn.com/mms\";\n    </script>\n\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\"></script>\n    \n</body>\n</html>\n",
+        "final_url": "https://account.mongodb.com/account/reset/password/f29e96f9566ba7a23b4abf85a0d29993a26387a445eb01d01b04a1a6c09e1fc1?email=oaimcpatlas%40gmail.com"
+      },
+      "reset_complete": {
+        "status": 200,
+        "headers": {
+          "date": "Fri, 27 Feb 2026 07:02:32 GMT",
+          "strict-transport-security": "max-age=31536000; includeSubdomains;",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "x-permitted-cross-domain-policies": "none",
+          "x-content-type-options": "nosniff",
+          "x-error-code": "NONE",
+          "content-type": "application/json",
+          "x-frame-options": "DENY",
+          "vary": "Accept-Encoding",
+          "content-length": "197",
+          "server": "mdbws",
+          "x-xgen-up-proto": "HTTP/2",
+          "connection": "close"
+        },
+        "body": "{\"errorCode\":\"NONE\",\"loginRedirect\":\"/account/security/mfa?n=%2Faccount%2Fprofile%2Finfo&uId=00u117rlu9fT52fdU298&stateToken=0065u6iUtW6H9lm679OGZ11Pseu2viZkLw2gEUtOUH\",\"version\":\"1\",\"status\":\"OK\"}",
+        "final_url": "https://account.mongodb.com/account/resetPasswordComplete"
+      }
+    }
+  ],
   "reset_listing": {
     "messages": [
       {
+        "id": "19c9de7e0ac4e650",
+        "threadId": "19c9d6de8f16c871"
+      },
+      {
+        "id": "19c9de7d84753ade",
+        "threadId": "19c9d6de8f16c871"
+      },
+      {
+        "id": "19c9de746294e661",
+        "threadId": "19c9d3ca88dd573f"
+      },
+      {
+        "id": "19c9de70b2e1307e",
+        "threadId": "19c9d6de8f16c871"
+      },
+      {
+        "id": "19c9de6c8d29a4c2",
+        "threadId": "19c9d3ca88dd573f"
+      },
+      {
+        "id": "19c9de69c9148493",
+        "threadId": "19c9d6de8f16c871"
+      },
+      {
+        "id": "19c9de6278238f09",
+        "threadId": "19c9d3ca88dd573f"
+      },
+      {
+        "id": "19c9de61db555046",
+        "threadId": "19c9d6de8f16c871"
+      },
+      {
+        "id": "19c9de5c317ff4f2",
+        "threadId": "19c9d3ca88dd573f"
+      },
+      {
         "id": "19c9ddad2ac53d1b",
-        "threadId": "19c9d6de8f16c871"
-      },
-      {
-        "id": "19c9dda7a09940a9",
-        "threadId": "19c9d6de8f16c871"
-      },
-      {
-        "id": "19c9dd7bcbc88086",
-        "threadId": "19c9d6de8f16c871"
-      },
-      {
-        "id": "19c9dd75eae33d79",
-        "threadId": "19c9d6de8f16c871"
-      },
-      {
-        "id": "19c9dd70c1db309d",
-        "threadId": "19c9d6de8f16c871"
-      },
-      {
-        "id": "19c9dd6bc6919cb1",
-        "threadId": "19c9d6de8f16c871"
-      },
-      {
-        "id": "19c9dd66bd995a39",
-        "threadId": "19c9d6de8f16c871"
-      },
-      {
-        "id": "19c9dd61a58d01c5",
-        "threadId": "19c9d6de8f16c871"
-      },
-      {
-        "id": "19c9dd550456b536",
-        "threadId": "19c9d6de8f16c871"
-      },
-      {
-        "id": "19c9dd459c227e2a",
         "threadId": "19c9d6de8f16c871"
       }
     ],
-    "nextPageToken": "01076315077872999739",
+    "nextPageToken": "16218949788068444710",
     "resultSizeEstimate": 201
   },
-  "reset_email_id": "19c9ddad2ac53d1b",
+  "reset_email_id": "19c9de7e0ac4e650",
   "reset_email_meta": {
-    "Date": "Fri, 27 Feb 2026 06:48:09 +0000",
+    "Date": "Fri, 27 Feb 2026 07:02:24 +0000",
     "Subject": "Password Reset",
     "From": "MongoDB Cloud <cloud-manager-support@mongodb.com>",
     "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
   },
-  "temp_id": "5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae",
-  "reset_link": "https://account.mongodb.com/account/reset/password/5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae?email=oaimcpatlas%40gmail.com",
+  "reset_request": {
+    "status": 200,
+    "headers": {
+      "date": "Fri, 27 Feb 2026 07:02:31 GMT",
+      "strict-transport-security": "max-age=31536000; includeSubdomains;",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "x-permitted-cross-domain-policies": "none",
+      "x-content-type-options": "nosniff",
+      "x-error-code": "NONE",
+      "content-type": "application/json",
+      "x-frame-options": "DENY",
+      "vary": "Accept-Encoding",
+      "content-length": "91",
+      "server": "mdbws",
+      "x-xgen-up-proto": "HTTP/2",
+      "connection": "close"
+    },
+    "body": "{\"resource\":\"/account/resetPasswordRequest\",\"errorCode\":\"NONE\",\"version\":\"1\",\"status\":\"OK\"}",
+    "final_url": "https://account.mongodb.com/account/resetPasswordRequest"
+  },
+  "temp_id": "f29e96f9566ba7a23b4abf85a0d29993a26387a445eb01d01b04a1a6c09e1fc1",
+  "reset_link": "https://account.mongodb.com/account/reset/password/f29e96f9566ba7a23b4abf85a0d29993a26387a445eb01d01b04a1a6c09e1fc1?email=oaimcpatlas%40gmail.com",
   "reset_get": {
     "status": 200,
     "headers": {
-      "date": "Fri, 27 Feb 2026 06:49:26 GMT",
+      "date": "Fri, 27 Feb 2026 07:02:32 GMT",
       "strict-transport-security": "max-age=31536000; includeSubdomains;",
       "referrer-policy": "strict-origin-when-cross-origin",
       "x-permitted-cross-domain-policies": "none",
@@ -91,42 +594,154 @@
       "connection": "close",
       "transfer-encoding": "chunked"
     },
-    "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n      <title>Cloud: MongoDB Cloud</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    \n    <meta name=\"csrf-token\" content=\"\"/>\n    <meta name=\"csrf-time\" content=\"\"/>\n\n    <script type=\"text/javascript\">\n        window.indexStartAt = Date.now();\n        performance.mark(\"index-start\");\n    </script>\n\n    <link rel=\"icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n    <link rel=\"shortcut icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\" as=\"script\" />\n    \n\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Regular-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Semibold-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/MongoDBValueSerif-Regular.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Medium-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n\n    \n        <link rel=\"preconnect\" href=\"https://www.googletagmanager.com\" />\n    \n\n    \n    \n        <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/assets/css/font-awesome.c495654869.min.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n    \n    <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.dfb4982f81.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n\n    <style type=\"text/css\">\n        \n            .requiresRsyncInitialSyncFeature { display: none !important; }\n        \n\n        \n            .requiresBackupAdmin { display: none !important; }\n        \n\n        \n            .hasGroupMonitoringAdmin { display: none !important; }\n        \n\n        \n\n        \n\n        \n            .requiresGlobalBackupAdmin { display: none !important; }\n        \n\n        \n            .requiresGlobalOwner { display: none !important; }\n        \n    </style>\n\n    \n        <!-- Load stripe.js, it can only be load from their domain -->\n        <script type=\"text/javascript\" src=\"https://js.stripe.com/v3/\" defer></script>\n    \n\n    \n        <!-- There is a race condition between captcha js loading and the react component rendering or the hook executing.\n        If the js loads first, then the react component or hook goes ahead and renders or executes the captcha respectively. Otherwise,\n        the componentDidMount() function populates the reCaptchaOnload function so that the captcha is\n        rendered or executed after the script is loaded (see ReCaptcha.tsx and useReCaptcha.ts).\n        TODO MB CLOUDP-161146 update the above text to only mention the hook-->\n        <script type=\"text/javascript\">\n            window.reCaptchaOnload = function () {\n            };\n        </script>\n        <!-- This is used by component client/packages/auth/components/ReCaptcha.tsx which only uses\n         enterprise apis. The Enterprise apis are a superset of the non-enterprise functionality\n         and they are invoked from `window.grecaptcha.enterprise` instead of `window.grecaptcha`.\n         The components not rendering ReCaptcha.tsx still rely on the classic recaptcha scripts\n         being loaded below. -->\n        <script src='https://www.recaptcha.net/recaptcha/enterprise.js?onload=reCaptchaOnload&render=6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG' defer></script>\n    \n\n    \n        <script>\n            const APP_ID = \"qq7v0gqb\";\n            (function(){var w=window;var ic=w.Intercom;if(typeof ic===\"function\"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.defer=true;s.src='https://widget.intercom.io/widget/'+ APP_ID;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();\n        </script>\n    \n\n    \n        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n        })(window,document,'script','dataLayer','GTM-5ZD5LD');</script>\n    \n\n    \n        <script>\n            window.errorTrackerSetupData = {\n                apiKey : \"6666d88d5b732b7725a8107ba15b4eb6\",\n                appVersion : \"v20260211\",\n                releaseStage : \"https://cloud.mongodb.com\",\n                gitVersion: \"beb0bba6cf65cc259128049e59f371c70a68ed71\",\n            };\n        </script>\n    \n</head>\n\n<body class=\"mms-body\">\n    \n        <noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-5ZD5LD\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>\n    \n\n    <div id=\"mms-body-application\" class=\"mms-body-application\"></div>\n\n    \n    <script type=\"text/javascript\">\n        var _elqQ = _elqQ || [];\n        _elqQ.push(['elqSetSiteId', '413370795']);\n        _elqQ.push(['elqTrackPageView']);\n        _elqQ.push(['elqGetCustomerGUID']);\n\n        (function () {\n            function async_load() {\n                var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;\n                s.src = '//img03.en25.com/i/elqCfg.min.js';\n                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);\n            }\n            if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);\n            else if (window.attachEvent) window.attachEvent('onload', async_load);\n        })();\n    </script>\n    \n\n    <script type=\"text/javascript\">\n        window.REQUEST_PARAMS = JSON.parse(\"{\\\"oktaBaseUrl\\\":\\\"https:\\/\\/auth.mongodb.com\\\",\\\"oktaEnabled\\\":true,\\\"accountMultiFactorAuthEnabled\\\":true,\\\"contentstackEnabled\\\":false,\\\"accountCentralUrl\\\":\\\"https:\\/\\/account.mongodb.com\\\",\\\"isVercelIntegrationEnabled\\\":true,\\\"siteName\\\":\\\"Cloud\\\",\\\"atlasSiteFullName\\\":\\\"MongoDB Atlas\\\",\\\"universityCentralUrl\\\":\\\"https:\\/\\/learn.mongodb.com\\\",\\\"intercomEnabled\\\":true,\\\"reCaptchaRegistrationEnabled\\\":true,\\\"eloquaSiteId\\\":\\\"413370795\\\",\\\"multiFactorAuthLevel\\\":\\\"REQUIRED_FOR_GLOBAL_ROLES\\\",\\\"telecomSvcEnabled\\\":true,\\\"userRegistrationEnabled\\\":true,\\\"atlasSiteName\\\":\\\"Atlas\\\",\\\"authLogoFileName\\\":\\\"mdb_logo\\\",\\\"showAccountNonCommercialBanner\\\":false,\\\"isGoogleAuthEnabled\\\":true,\\\"intercomAppId\\\":\\\"qq7v0gqb\\\",\\\"reCaptchaEnterpriseLoginEnabled\\\":true,\\\"segmentClientSideWriteKey\\\":\\\"tFLI8kTsjVV1Whb5D6Cgthsjp2f26tRF\\\",\\\"reCaptchaKeyId\\\":\\\"6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG\\\",\\\"analyticsEnabled\\\":true,\\\"oktaSessionDiscoveryEnabled\\\":true,\\\"isExperimentationEnabled\\\":true,\\\"contentStackBranch\\\":\\\"main\\\",\\\"reCaptchaMfaLoginEnabled\\\":true,\\\"reCaptchaPublic\\\":\\\"6Lff_KUUAAAAAH6xRPWzTuF4QaEbei26TjktJgu-\\\",\\\"browserErrorTrackingEnabled\\\":true,\\\"isGithubAuthEnabled\\\":true,\\\"multiFactorAuthRememberDeviceEnabled\\\":true,\\\"appEnv\\\":\\\"PROD\\\",\\\"oktaAuthRedirectBase\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"registrationExtraFields\\\":[\\\"company\\\"],\\\"isPersonalizationWizardEnabled\\\":true,\\\"siteFullName\\\":\\\"MongoDB Cloud\\\",\\\"allowLocalhostAsFromUri\\\":false,\\\"reCaptchaEnabledLogin\\\":true,\\\"contentStackDeliveryToken\\\":\\\"csbecc052f2f89b4c73ffc19ea\\\",\\\"multiFactorAuthRequiredAfterRegistration\\\":true,\\\"docsUrl\\\":\\\"https:\\/\\/www.mongodb.com\\/docs\\/cloud-manager\\\",\\\"centralUrl\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"baasLegacyCentralUrl\\\":\\\"https:\\/\\/realm.mongodb.com\\\",\\\"multiFactorAuthResetAllowed\\\":true,\\\"contentStackApiKey\\\":\\\"bltf2fca5bf44f5e817\\\",\\\"baasCentralUrl\\\":\\\"https:\\/\\/services.cloud.mongodb.com\\\"}\");\n        \n        window.ASSETS_URL = \"https://assets.mongodb-cdn.com/mms\";\n    </script>\n\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\"></script>\n    \n</body>\n</html>\n",
-    "final_url": "https://account.mongodb.com/account/reset/password/5baba904ad40330d8d6125e13c7fe9667fe186bbbf3d7211677e36cc3f7df4ae?email=oaimcpatlas%40gmail.com"
+    "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n      <title>Cloud: MongoDB Cloud</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    \n    <meta name=\"csrf-token\" content=\"\"/>\n    <meta name=\"csrf-time\" content=\"\"/>\n\n    <script type=\"text/javascript\">\n        window.indexStartAt = Date.now();\n        performance.mark(\"index-start\");\n    </script>\n\n    <link rel=\"icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n    <link rel=\"shortcut icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\" as=\"script\" />\n    \n\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Regular-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Semibold-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/MongoDBValueSerif-Regular.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Medium-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n\n    \n        <link rel=\"preconnect\" href=\"https://www.googletagmanager.com\" />\n    \n\n    \n    \n        <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/assets/css/font-awesome.c495654869.min.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n    \n    <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.dfb4982f81.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n\n    <style type=\"text/css\">\n        \n            .requiresRsyncInitialSyncFeature { display: none !important; }\n        \n\n        \n            .requiresBackupAdmin { display: none !important; }\n        \n\n        \n            .hasGroupMonitoringAdmin { display: none !important; }\n        \n\n        \n\n        \n\n        \n            .requiresGlobalBackupAdmin { display: none !important; }\n        \n\n        \n            .requiresGlobalOwner { display: none !important; }\n        \n    </style>\n\n    \n        <!-- Load stripe.js, it can only be load from their domain -->\n        <script type=\"text/javascript\" src=\"https://js.stripe.com/v3/\" defer></script>\n    \n\n    \n        <!-- There is a race condition between captcha js loading and the react component rendering or the hook executing.\n        If the js loads first, then the react component or hook goes ahead and renders or executes the captcha respectively. Otherwise,\n        the componentDidMount() function populates the reCaptchaOnload function so that the captcha is\n        rendered or executed after the script is loaded (see ReCaptcha.tsx and useReCaptcha.ts).\n        TODO MB CLOUDP-161146 update the above text to only mention the hook-->\n        <script type=\"text/javascript\">\n            window.reCaptchaOnload = function () {\n            };\n        </script>\n        <!-- This is used by component client/packages/auth/components/ReCaptcha.tsx which only uses\n         enterprise apis. The Enterprise apis are a superset of the non-enterprise functionality\n         and they are invoked from `window.grecaptcha.enterprise` instead of `window.grecaptcha`.\n         The components not rendering ReCaptcha.tsx still rely on the classic recaptcha scripts\n         being loaded below. -->\n        <script src='https://www.recaptcha.net/recaptcha/enterprise.js?onload=reCaptchaOnload&render=6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG' defer></script>\n    \n\n    \n        <script>\n            const APP_ID = \"qq7v0gqb\";\n            (function(){var w=window;var ic=w.Intercom;if(typeof ic===\"function\"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.defer=true;s.src='https://widget.intercom.io/widget/'+ APP_ID;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();\n        </script>\n    \n\n    \n        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n        })(window,document,'script','dataLayer','GTM-5ZD5LD');</script>\n    \n\n    \n        <script>\n            window.errorTrackerSetupData = {\n                apiKey : \"6666d88d5b732b7725a8107ba15b4eb6\",\n                appVersion : \"v20260211\",\n                releaseStage : \"https://cloud.mongodb.com\",\n                gitVersion: \"beb0bba6cf65cc259128049e59f371c70a68ed71\",\n            };\n        </script>\n    \n</head>\n\n<body class=\"mms-body\">\n    \n        <noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-5ZD5LD\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>\n    \n\n    <div id=\"mms-body-application\" class=\"mms-body-application\"></div>\n\n    \n    <script type=\"text/javascript\">\n        var _elqQ = _elqQ || [];\n        _elqQ.push(['elqSetSiteId', '413370795']);\n        _elqQ.push(['elqTrackPageView']);\n        _elqQ.push(['elqGetCustomerGUID']);\n\n        (function () {\n            function async_load() {\n                var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;\n                s.src = '//img03.en25.com/i/elqCfg.min.js';\n                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);\n            }\n            if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);\n            else if (window.attachEvent) window.attachEvent('onload', async_load);\n        })();\n    </script>\n    \n\n    <script type=\"text/javascript\">\n        window.REQUEST_PARAMS = JSON.parse(\"{\\\"oktaBaseUrl\\\":\\\"https:\\/\\/auth.mongodb.com\\\",\\\"oktaEnabled\\\":true,\\\"accountMultiFactorAuthEnabled\\\":true,\\\"contentstackEnabled\\\":false,\\\"accountCentralUrl\\\":\\\"https:\\/\\/account.mongodb.com\\\",\\\"isVercelIntegrationEnabled\\\":true,\\\"siteName\\\":\\\"Cloud\\\",\\\"atlasSiteFullName\\\":\\\"MongoDB Atlas\\\",\\\"universityCentralUrl\\\":\\\"https:\\/\\/learn.mongodb.com\\\",\\\"intercomEnabled\\\":true,\\\"reCaptchaRegistrationEnabled\\\":true,\\\"eloquaSiteId\\\":\\\"413370795\\\",\\\"multiFactorAuthLevel\\\":\\\"REQUIRED_FOR_GLOBAL_ROLES\\\",\\\"telecomSvcEnabled\\\":true,\\\"userRegistrationEnabled\\\":true,\\\"atlasSiteName\\\":\\\"Atlas\\\",\\\"showAccountNonCommercialBanner\\\":false,\\\"authLogoFileName\\\":\\\"mdb_logo\\\",\\\"isGoogleAuthEnabled\\\":true,\\\"reCaptchaEnterpriseLoginEnabled\\\":true,\\\"segmentClientSideWriteKey\\\":\\\"tFLI8kTsjVV1Whb5D6Cgthsjp2f26tRF\\\",\\\"intercomAppId\\\":\\\"qq7v0gqb\\\",\\\"analyticsEnabled\\\":true,\\\"reCaptchaKeyId\\\":\\\"6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG\\\",\\\"oktaSessionDiscoveryEnabled\\\":true,\\\"isExperimentationEnabled\\\":true,\\\"contentStackBranch\\\":\\\"main\\\",\\\"reCaptchaMfaLoginEnabled\\\":true,\\\"reCaptchaPublic\\\":\\\"6Lff_KUUAAAAAH6xRPWzTuF4QaEbei26TjktJgu-\\\",\\\"browserErrorTrackingEnabled\\\":true,\\\"isGithubAuthEnabled\\\":true,\\\"appEnv\\\":\\\"PROD\\\",\\\"multiFactorAuthRememberDeviceEnabled\\\":true,\\\"registrationExtraFields\\\":[\\\"company\\\"],\\\"oktaAuthRedirectBase\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"isPersonalizationWizardEnabled\\\":true,\\\"siteFullName\\\":\\\"MongoDB Cloud\\\",\\\"allowLocalhostAsFromUri\\\":false,\\\"reCaptchaEnabledLogin\\\":true,\\\"contentStackDeliveryToken\\\":\\\"csbecc052f2f89b4c73ffc19ea\\\",\\\"multiFactorAuthRequiredAfterRegistration\\\":true,\\\"docsUrl\\\":\\\"https:\\/\\/www.mongodb.com\\/docs\\/cloud-manager\\\",\\\"centralUrl\\\":\\\"https:\\/\\/cloud.mongodb.com\\\",\\\"baasLegacyCentralUrl\\\":\\\"https:\\/\\/realm.mongodb.com\\\",\\\"multiFactorAuthResetAllowed\\\":true,\\\"contentStackApiKey\\\":\\\"bltf2fca5bf44f5e817\\\",\\\"baasCentralUrl\\\":\\\"https:\\/\\/services.cloud.mongodb.com\\\"}\");\n        \n        window.ASSETS_URL = \"https://assets.mongodb-cdn.com/mms\";\n    </script>\n\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.418a1871852c77e16ca2.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\"></script>\n    \n    <script  type=\"text/javascript\" src=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3b59b06e372f49f7337a.js\"></script>\n    \n</body>\n</html>\n",
+    "final_url": "https://account.mongodb.com/account/reset/password/f29e96f9566ba7a23b4abf85a0d29993a26387a445eb01d01b04a1a6c09e1fc1?email=oaimcpatlas%40gmail.com"
   },
   "reset_complete": {
-    "status": 429,
+    "status": 200,
     "headers": {
-      "date": "Fri, 27 Feb 2026 06:49:26 GMT",
+      "date": "Fri, 27 Feb 2026 07:02:32 GMT",
       "strict-transport-security": "max-age=31536000; includeSubdomains;",
       "referrer-policy": "strict-origin-when-cross-origin",
       "x-permitted-cross-domain-policies": "none",
       "x-content-type-options": "nosniff",
-      "x-error-code": "RATE_LIMITED",
+      "x-error-code": "NONE",
       "content-type": "application/json",
       "x-frame-options": "DENY",
-      "content-length": "59",
+      "vary": "Accept-Encoding",
+      "content-length": "197",
       "server": "mdbws",
       "x-xgen-up-proto": "HTTP/2",
       "connection": "close"
     },
-    "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+    "body": "{\"errorCode\":\"NONE\",\"loginRedirect\":\"/account/security/mfa?n=%2Faccount%2Fprofile%2Finfo&uId=00u117rlu9fT52fdU298&stateToken=0065u6iUtW6H9lm679OGZ11Pseu2viZkLw2gEUtOUH\",\"version\":\"1\",\"status\":\"OK\"}",
     "final_url": "https://account.mongodb.com/account/resetPasswordComplete"
   },
-  "verify": {
-    "status": 401,
+  "login_redirect_from_reset": "/account/security/mfa?n=%2Faccount%2Fprofile%2Finfo&uId=00u117rlu9fT52fdU298&stateToken=0065u6iUtW6H9lm679OGZ11Pseu2viZkLw2gEUtOUH",
+  "state_token": "0065u6iUtW6H9lm679OGZ11Pseu2viZkLw2gEUtOUH",
+  "mfa_get": {
+    "status": 200,
     "headers": {
-      "date": "Fri, 27 Feb 2026 06:49:26 GMT",
+      "date": "Fri, 27 Feb 2026 07:02:38 GMT",
+      "strict-transport-security": "max-age=31536000; includeSubdomains;",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "x-permitted-cross-domain-policies": "none",
+      "x-content-type-options": "nosniff",
+      "content-type": "application/json",
+      "x-frame-options": "DENY",
+      "vary": "Accept-Encoding",
+      "content-length": "269",
       "server": "mdbws",
-      "connection": "close",
-      "content-length": "0"
+      "x-xgen-up-proto": "HTTP/2",
+      "connection": "close"
     },
-    "body": "",
-    "final_url": "https://account.mongodb.com/account/verify"
+    "body": "{\"_embedded\":{\"factors\":[{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"}],\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"stateToken\":\"0065u6iUtW6H9lm679OGZ11Pseu2viZkLw2gEUtOUH\",\"status\":\"MFA_REQUIRED\"}",
+    "final_url": "https://account.mongodb.com/account/auth/mfa/0065u6iUtW6H9lm679OGZ11Pseu2viZkLw2gEUtOUH"
   },
-  "verify_parse_error": "JSONDecodeError('Expecting value: line 1 column 1 (char 0)')",
-  "state_token": null,
-  "error": "No stateToken obtained",
-  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 183, in <module>\nRuntimeError: No stateToken obtained\n",
-  "finished_at": "2026-02-27T06:49:26.833989Z"
+  "factor": {
+    "id": "emf11aaoelxPONmRM298",
+    "type": "email"
+  },
+  "mfa_resend": {
+    "status": 200,
+    "headers": {
+      "date": "Fri, 27 Feb 2026 07:02:38 GMT",
+      "strict-transport-security": "max-age=31536000; includeSubdomains;",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "x-permitted-cross-domain-policies": "none",
+      "x-content-type-options": "nosniff",
+      "content-type": "application/json",
+      "x-frame-options": "DENY",
+      "vary": "Accept-Encoding",
+      "content-length": "294",
+      "server": "mdbws",
+      "x-xgen-up-proto": "HTTP/2",
+      "connection": "close"
+    },
+    "body": "{\"_embedded\":{\"factor\":{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"},\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"factorResult\":\"CHALLENGE\",\"stateToken\":\"0065u6iUtW6H9lm679OGZ11Pseu2viZkLw2gEUtOUH\",\"status\":\"MFA_CHALLENGE\"}",
+    "final_url": "https://account.mongodb.com/account/auth/mfa/verify/resend"
+  },
+  "code_listing": {
+    "messages": [
+      {
+        "id": "19c9de819f7dbdc7",
+        "threadId": "19c9de819f7dbdc7"
+      },
+      {
+        "id": "19c9de630e8eeb07",
+        "threadId": "19c9de630e8eeb07"
+      },
+      {
+        "id": "19c9de5d16286b05",
+        "threadId": "19c9de5d16286b05"
+      },
+      {
+        "id": "19c9ddd99016c05c",
+        "threadId": "19c9ddd99016c05c"
+      },
+      {
+        "id": "19c9dd63d6c7e71f",
+        "threadId": "19c9dd63d6c7e71f"
+      },
+      {
+        "id": "19c9dd56f9db26cb",
+        "threadId": "19c9dd56f9db26cb"
+      },
+      {
+        "id": "19c9dd396a6493d9",
+        "threadId": "19c9dd396a6493d9"
+      },
+      {
+        "id": "19c9dc147a6aeb40",
+        "threadId": "19c9dc147a6aeb40"
+      },
+      {
+        "id": "19c9dc1331a1ee6f",
+        "threadId": "19c9dc1331a1ee6f"
+      },
+      {
+        "id": "19c9db1d91bfed7b",
+        "threadId": "19c9db1d91bfed7b"
+      }
+    ],
+    "nextPageToken": "06636048848317682444",
+    "resultSizeEstimate": 201
+  },
+  "latest_code": {
+    "id": "19c9de819f7dbdc7",
+    "code": "058157",
+    "meta": {
+      "Date": "Fri, 27 Feb 2026 07:02:38 +0000 (UTC)",
+      "Subject": "MongoDB verification code: 058157",
+      "From": "MongoDB Account <mongodb-account@mongodb.com>",
+      "snippet": "Your one-time verification code: 058157 This code expires after 5 minutes. If you did not request this, please change your password or contact MongoDB Support. This message was sent from MongoDB, Inc.,"
+    }
+  },
+  "mfa_verify": {
+    "status": 200,
+    "headers": {
+      "date": "Fri, 27 Feb 2026 07:02:47 GMT",
+      "strict-transport-security": "max-age=31536000; includeSubdomains;",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "x-permitted-cross-domain-policies": "none",
+      "x-content-type-options": "nosniff",
+      "set-cookie": "okta-oauth-state=%7B%22stateNonce%22%3A%228469e7e8-40f2-42a6-b377-02ce3238c5df%22%7D; Path=/; Expires=Fri, 27-Feb-2026 08:02:47 GMT; Max-Age=3600; Secure; HttpOnly",
+      "expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "x-error-code": "NONE",
+      "content-type": "application/json",
+      "x-frame-options": "DENY",
+      "vary": "Accept-Encoding",
+      "content-length": "469",
+      "server": "mdbws",
+      "x-xgen-up-proto": "HTTP/2",
+      "connection": "close"
+    },
+    "body": "{\"errorCode\":\"NONE\",\"loginRedirect\":\"https://auth.mongodb.com/oauth2/default/v1/authorize?client_id=0oa2h8np9ryZR4Xat297&redirect_uri=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Foidc%2Fcallback&response_type=code&response_mode=query&scope=openid+email&state=%7B%22stateNonce%22%3A%228469e7e8-40f2-42a6-b377-02ce3238c5df%22%7D&nonce=dc7cc271-2e8e-4b11-83b4-69e4416e0cb4&sessionToken=20111hFxjtKNehr10BHM_2_rwIEBSg_KlvtBoUNH2cuO0PWFff8TM7n\",\"version\":\"1\",\"status\":\"OK\"}",
+    "final_url": "https://account.mongodb.com/account/auth/mfa/verify"
+  },
+  "login_redirect": "https://auth.mongodb.com/oauth2/default/v1/authorize?client_id=0oa2h8np9ryZR4Xat297&redirect_uri=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Foidc%2Fcallback&response_type=code&response_mode=query&scope=openid+email&state=%7B%22stateNonce%22%3A%228469e7e8-40f2-42a6-b377-02ce3238c5df%22%7D&nonce=dc7cc271-2e8e-4b11-83b4-69e4416e0cb4&sessionToken=20111hFxjtKNehr10BHM_2_rwIEBSg_KlvtBoUNH2cuO0PWFff8TM7n",
+  "seed_cookie_count": 3,
+  "after_login_redirect_url": "https://cloud.mongodb.com/v2/699c12be8df98bd863d63d70#/overview",
+  "final_cookie_count": 36,
+  "finished_at": "2026-02-27T07:03:01.964878Z"
 }
