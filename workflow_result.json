@@ -1,144 +1,58 @@
 {
-  "cookieHeaderLength": 2354,
-  "triedAt": "2026-02-27T06:30:16.487Z",
-  "candidates": [
-    {
-      "password": "AtlasGHReset!6789",
-      "status": 400,
-      "headers": {
-        "content-length": "64",
-        "content-type": "application/json",
-        "date": "Fri, 27 Feb 2026 06:30:16 GMT",
-        "referrer-policy": "strict-origin-when-cross-origin",
-        "server": "mdbws",
-        "strict-transport-security": "max-age=31536000; includeSubdomains;",
-        "x-content-type-options": "nosniff",
-        "x-error-code": "INVALID_USER_AUTH",
-        "x-frame-options": "DENY",
-        "x-permitted-cross-domain-policies": "none",
-        "x-xgen-up-proto": "HTTP/2"
-      },
-      "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}",
-      "json": {
-        "errorCode": "INVALID_USER_AUTH",
-        "version": "1",
-        "status": "ERROR"
-      }
+  "triedAt": "2026-02-27T06:34:39.956Z",
+  "accountCookieHeaderLength": 6144,
+  "cloudCookieHeaderLength": 6144,
+  "overview": {
+    "status": 401,
+    "headers": {
+      "content-length": "0",
+      "date": "Fri, 27 Feb 2026 06:34:39 GMT",
+      "server": "mdbws"
     },
-    {
-      "password": "VJ2!V6Q!Tm)k(K)Ls9An*t8uN9",
-      "status": 400,
-      "headers": {
-        "content-length": "64",
-        "content-type": "application/json",
-        "date": "Fri, 27 Feb 2026 06:30:17 GMT",
-        "referrer-policy": "strict-origin-when-cross-origin",
-        "server": "mdbws",
-        "strict-transport-security": "max-age=31536000; includeSubdomains;",
-        "x-content-type-options": "nosniff",
-        "x-error-code": "INVALID_USER_AUTH",
-        "x-frame-options": "DENY",
-        "x-permitted-cross-domain-policies": "none",
-        "x-xgen-up-proto": "HTTP/2"
-      },
-      "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}",
-      "json": {
-        "errorCode": "INVALID_USER_AUTH",
-        "version": "1",
-        "status": "ERROR"
-      }
+    "body": "",
+    "json": null
+  },
+  "connectionInfo": {
+    "status": 401,
+    "headers": {
+      "content-length": "0",
+      "date": "Fri, 27 Feb 2026 06:34:40 GMT",
+      "server": "mdbws"
     },
-    {
-      "password": "AtlasKnown!12345",
-      "status": 400,
-      "headers": {
-        "content-length": "64",
-        "content-type": "application/json",
-        "date": "Fri, 27 Feb 2026 06:30:18 GMT",
-        "referrer-policy": "strict-origin-when-cross-origin",
-        "server": "mdbws",
-        "strict-transport-security": "max-age=31536000; includeSubdomains;",
-        "x-content-type-options": "nosniff",
-        "x-error-code": "INVALID_USER_AUTH",
-        "x-frame-options": "DENY",
-        "x-permitted-cross-domain-policies": "none",
-        "x-xgen-up-proto": "HTTP/2"
-      },
-      "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}",
-      "json": {
-        "errorCode": "INVALID_USER_AUTH",
-        "version": "1",
-        "status": "ERROR"
-      }
+    "body": "",
+    "json": null
+  },
+  "nds": {
+    "status": 401,
+    "headers": {
+      "content-length": "0",
+      "date": "Fri, 27 Feb 2026 06:34:40 GMT",
+      "server": "mdbws"
     },
-    {
-      "password": "Scratch!321Aa",
-      "status": 400,
-      "headers": {
-        "content-length": "64",
-        "content-type": "application/json",
-        "date": "Fri, 27 Feb 2026 06:30:18 GMT",
-        "referrer-policy": "strict-origin-when-cross-origin",
-        "server": "mdbws",
-        "strict-transport-security": "max-age=31536000; includeSubdomains;",
-        "x-content-type-options": "nosniff",
-        "x-error-code": "INVALID_USER_AUTH",
-        "x-frame-options": "DENY",
-        "x-permitted-cross-domain-policies": "none",
-        "x-xgen-up-proto": "HTTP/2"
-      },
-      "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}",
-      "json": {
-        "errorCode": "INVALID_USER_AUTH",
-        "version": "1",
-        "status": "ERROR"
-      }
+    "body": "",
+    "json": null
+  },
+  "verifyProbe": {
+    "password": "AtlasGHReset!6789",
+    "status": 400,
+    "headers": {
+      "content-length": "59",
+      "content-type": "application/json",
+      "date": "Fri, 27 Feb 2026 06:34:40 GMT",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "server": "mdbws",
+      "strict-transport-security": "max-age=31536000; includeSubdomains;",
+      "x-content-type-options": "nosniff",
+      "x-error-code": "RATE_LIMITED",
+      "x-frame-options": "DENY",
+      "x-permitted-cross-domain-policies": "none",
+      "x-xgen-up-proto": "HTTP/2"
     },
-    {
-      "password": "GHQuery!83fddfa4Z9#",
-      "status": 400,
-      "headers": {
-        "content-length": "64",
-        "content-type": "application/json",
-        "date": "Fri, 27 Feb 2026 06:30:19 GMT",
-        "referrer-policy": "strict-origin-when-cross-origin",
-        "server": "mdbws",
-        "strict-transport-security": "max-age=31536000; includeSubdomains;",
-        "x-content-type-options": "nosniff",
-        "x-error-code": "INVALID_USER_AUTH",
-        "x-frame-options": "DENY",
-        "x-permitted-cross-domain-policies": "none",
-        "x-xgen-up-proto": "HTTP/2"
-      },
-      "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}",
-      "json": {
-        "errorCode": "INVALID_USER_AUTH",
-        "version": "1",
-        "status": "ERROR"
-      }
-    },
-    {
-      "password": "Tmp!2e7ad4aa5c4fe3d1aA1",
-      "status": 400,
-      "headers": {
-        "content-length": "64",
-        "content-type": "application/json",
-        "date": "Fri, 27 Feb 2026 06:30:19 GMT",
-        "referrer-policy": "strict-origin-when-cross-origin",
-        "server": "mdbws",
-        "strict-transport-security": "max-age=31536000; includeSubdomains;",
-        "x-content-type-options": "nosniff",
-        "x-error-code": "INVALID_USER_AUTH",
-        "x-frame-options": "DENY",
-        "x-permitted-cross-domain-policies": "none",
-        "x-xgen-up-proto": "HTTP/2"
-      },
-      "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}",
-      "json": {
-        "errorCode": "INVALID_USER_AUTH",
-        "version": "1",
-        "status": "ERROR"
-      }
+    "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+    "json": {
+      "errorCode": "RATE_LIMITED",
+      "version": "1",
+      "status": "ERROR"
     }
-  ]
+  }
 }
