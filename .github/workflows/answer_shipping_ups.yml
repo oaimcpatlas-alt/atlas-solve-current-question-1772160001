@@ -167,10 +167,94 @@ jobs:
               parts = [f"{c['name']}={c['value']}" for c in cookies if 'cloud.mongodb.com' in c.get('domain', '')]
               return '; '.join(parts)
 
+          def try_session_token_bootstrap():
+              try:
+                  login_url = None
+                  seed_cookies = []
+                  if os.path.exists('session_token_probe_result.json'):
+                      data = json.load(open('session_token_probe_result.json', 'r', encoding='utf-8'))
+                      login_url = data.get('loginUrl')
+                  if os.path.exists('session_token_probe.js'):
+                      src = open('session_token_probe.js', 'r', encoding='utf-8').read()
+                      m = re.search(r'const seedCookies = (\[.*?\]);', src, re.S)
+                      if m:
+                          seed_cookies = json.loads(m.group(1))
+                  if os.path.exists('browser_cookies.json'):
+                      raw = json.load(open('browser_cookies.json', 'r', encoding='utf-8'))
+                      for c in raw.get('cookies', []):
+                          if c.get('name') in ('remember-user-device', 'user-device'):
+                              seed_cookies.append({
+                                  'name': c['name'],
+                                  'value': c['value'],
+                                  'domain': c['domain'],
+                                  'path': c.get('path') or '/',
+                              })
+                  summary['session_token_login_url_present'] = bool(login_url)
+                  summary['session_token_seed_cookie_count'] = len(seed_cookies)
+                  if not login_url:
+                      return ''
+                  with sync_playwright() as p:
+                      browser = p.chromium.launch(headless=True)
+                      context = browser.new_context(
+                          user_agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36'
+                      )
+                      if seed_cookies:
+                          context.add_cookies([
+                              {
+                                  'name': c['name'],
+                                  'value': c['value'],
+                                  'domain': c['domain'],
+                                  'path': c.get('path') or '/',
+                                  'secure': True,
+                              }
+                              for c in seed_cookies
+                          ])
+                      page = context.new_page()
+                      page.goto(login_url, wait_until='domcontentloaded', timeout=120000)
+                      page.wait_for_timeout(12000)
+                      summary['session_token_after_login_url'] = page.url
+                      summary['session_token_after_login_title'] = page.title()
+                      try:
+                          summary['session_token_after_login_text'] = page.locator('body').inner_text(timeout=5000)[:4000]
+                      except Exception:
+                          pass
+                      page.goto(os.environ['GROUP_URL'], wait_until='domcontentloaded', timeout=120000)
+                      page.wait_for_timeout(12000)
+                      summary['session_token_after_group_url'] = page.url
+                      summary['session_token_after_group_title'] = page.title()
+                      try:
+                          summary['session_token_after_group_text'] = page.locator('body').inner_text(timeout=5000)[:4000]
+                      except Exception:
+                          pass
+                      browser_cookies = context.cookies()
+                      header = '; '.join(
+                          f"{c.get('name')}={c.get('value')}"
+                          for c in browser_cookies
+                          if 'cloud.mongodb.com' in c.get('domain', '')
+                      )
+                      summary['session_token_cloud_cookie_names'] = [
+                          c.get('name') for c in browser_cookies if 'cloud.mongodb.com' in c.get('domain', '')
+                      ]
+                      if header:
+                          with open('outputs/answer_shipping_cookies.json', 'w', encoding='utf-8') as f:
+                              json.dump({'cookies': browser_cookies}, f, indent=2)
+                      browser.close()
+                      return header
+              except Exception as e:
+                  summary['session_token_error'] = repr(e)
+                  summary['session_token_traceback'] = traceback.format_exc()
+                  return ''
+
           try:
               before = code_messages()
               before_ids = {m['id'] for m in before}
               summary['before_code_ids'] = list(before_ids)[:5]
+
+              cookie_header = try_session_token_bootstrap()
+              summary['cloud_cookie_header_present_after_session_token'] = bool(cookie_header)
+              if cookie_header:
+                  summary['cloud_cookie_header_present_final'] = True
+                  raise SystemExit
 
               # First try direct verify; if rate-limited, fall back to completing a recent reset token.
               verify_rec = None
@@ -329,6 +413,8 @@ jobs:
                       browser.close()
 
               summary['cloud_cookie_header_present_final'] = bool(cookie_header)
+          except SystemExit:
+              pass
           except Exception as e:
               summary['error'] = str(e)
               summary['traceback'] = traceback.format_exc()
