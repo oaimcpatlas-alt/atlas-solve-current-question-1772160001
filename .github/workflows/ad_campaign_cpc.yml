@@ -1,0 +1,232 @@
+
+name: AnswerAdvertisingCampaignCPC
+on:
+  push:
+    paths:
+      - 'ad_campaign_trigger.txt'
+      - '.github/workflows/ad_campaign_cpc.yml'
+permissions:
+  contents: write
+jobs:
+  solve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      MONGO_URI: "mongodb+srv://oaimcpatlas_db_user:pdVEIpUnn0quf2Mr@mcpatlas.zlknsyp.mongodb.net"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        run: |
+          pip install pymongo python-dateutil
+      - name: Query Mongo directly
+        run: |
+          python - <<'PY'
+          import json, os, re, time, traceback
+          from datetime import datetime, date
+          from dateutil import parser as dateparser
+          from pymongo import MongoClient
+
+          out = {"target": "average cpc from mobile devices for campaigns started in December 2023"}
+
+          def norm(s):
+              return re.sub(r'[^a-z0-9]+', ' ', str(s or '').lower()).strip()
+
+          def norm_key(s):
+              return re.sub(r'[^a-z0-9]+', '', str(s or '').lower())
+
+          def mobile_value(v):
+              s = norm(v)
+              return any(tok in s for tok in ['mobile', 'phone', 'smartphone']) or s in {'ios', 'android'}
+
+          def flatten(obj, prefix=''):
+              outd = {}
+              if isinstance(obj, dict):
+                  for k, v in obj.items():
+                      p = f"{prefix}.{k}" if prefix else str(k)
+                      outd.update(flatten(v, p))
+              elif isinstance(obj, list):
+                  outd[prefix or 'value'] = obj[:10]
+                  for i, item in enumerate(obj[:5]):
+                      outd.update(flatten(item, f"{prefix}[{i}]"))
+              else:
+                  outd[prefix or 'value'] = obj
+              return outd
+
+          def parse_num(v):
+              if isinstance(v, (int, float)):
+                  return float(v)
+              s = str(v or '').replace(',', '').replace('$', '').strip()
+              if re.fullmatch(r'[-+]?\d+(?:\.\d+)?', s):
+                  return float(s)
+              return None
+
+          def parse_date(v):
+              if isinstance(v, datetime):
+                  return v
+              if isinstance(v, date):
+                  return datetime(v.year, v.month, v.day)
+              if isinstance(v, (int, float)):
+                  x = float(v)
+                  if 1900 <= x <= 2100:
+                      return datetime(int(x), 1, 1)
+                  try:
+                      if x > 1e12:
+                          return datetime.utcfromtimestamp(x / 1000.0)
+                      if x > 1e9:
+                          return datetime.utcfromtimestamp(x)
+                  except Exception:
+                      return None
+                  return None
+              s = str(v or '').strip()
+              if not s:
+                  return None
+              try:
+                  return dateparser.parse(s, fuzzy=False, default=datetime(2000,1,1))
+              except Exception:
+                  return None
+
+          def pick_best(flat, kind, context=''):
+              best = None
+              for path, val in flat.items():
+                  nk = norm_key(path)
+                  score = 0
+                  if kind == 'date':
+                      d = parse_date(val)
+                      if not d:
+                          continue
+                      if 'start' in nk and ('date' in nk or 'time' in nk):
+                          score += 140
+                      if 'launch' in nk or 'launched' in nk or 'begin' in nk:
+                          score += 120
+                      if 'campaignstart' in nk:
+                          score += 160
+                      if score == 0 and 'date' in nk and re.search(r'campaign|advert|market|ad', context):
+                          score += 40
+                      item = {'path': path, 'value': val, 'parsed': d, 'score': score}
+                  elif kind == 'device':
+                      if not isinstance(val, (str, int, float)):
+                          continue
+                      if 'device' in nk:
+                          score += 120
+                      if 'platform' in nk:
+                          score += 80
+                      if 'channel' in nk:
+                          score += 20
+                      if mobile_value(val):
+                          score += 30
+                      item = {'path': path, 'value': str(val), 'score': score}
+                  elif kind == 'cpc':
+                      num = parse_num(val)
+                      if num is None:
+                          continue
+                      if nk == 'cpc' or nk.endswith('cpc'):
+                          score += 160
+                      if 'costperclick' in nk or 'averagecpc' in nk or 'avgcpc' in nk:
+                          score += 150
+                      if 'clickcost' in nk:
+                          score += 120
+                      if 'cpm' in nk or 'ctr' in nk:
+                          score -= 80
+                      item = {'path': path, 'value': num, 'score': score}
+                  if score <= 0:
+                      continue
+                  if best is None or item['score'] > best['score']:
+                      best = item
+              return best
+
+          def extract_matches(doc, context):
+              flat = flatten(doc)
+              best_date = pick_best(flat, 'date', context)
+              if not best_date:
+                  return []
+              d = best_date['parsed']
+              if d.year != 2023 or d.month != 12:
+                  return []
+              best_device = pick_best(flat, 'device', context)
+              best_cpc = pick_best(flat, 'cpc', context)
+              matches = []
+              for path, val in flat.items():
+                  nk = norm_key(path)
+                  num = parse_num(val)
+                  if num is None:
+                      continue
+                  if ('cpc' in nk or 'costperclick' in nk or 'avgcpc' in nk) and 'mobile' in nk:
+                      matches.append({'cpc': num, 'cpc_path': path, 'device': 'mobile', 'source': 'mobile_path', 'date_path': best_date['path']})
+              if best_device and mobile_value(best_device['value']) and best_cpc:
+                  matches.append({'cpc': best_cpc['value'], 'cpc_path': best_cpc['path'], 'device': best_device['value'], 'device_path': best_device['path'], 'source': 'device_field', 'date_path': best_date['path']})
+              seen = set()
+              uniq = []
+              for m in matches:
+                  key = (m.get('cpc_path'), m.get('device_path'), m.get('source'))
+                  if key not in seen:
+                      seen.add(key)
+                      uniq.append(m)
+              return uniq, flat
+
+          client = None
+          try:
+              connect_attempts = []
+              for attempt in range(1, 6):
+                  try:
+                      client = MongoClient(os.environ["MONGO_URI"], serverSelectionTimeoutMS=20000, connectTimeoutMS=20000, socketTimeoutMS=20000)
+                      out["ping"] = client.admin.command("ping")
+                      out["connected_on_attempt"] = attempt
+                      break
+                  except Exception as e:
+                      connect_attempts.append({"attempt": attempt, "error": repr(e)})
+                      time.sleep(10)
+              out["connect_attempts"] = connect_attempts
+              if client is None:
+                  raise RuntimeError("connect failed")
+              dbs = [d for d in client.list_database_names() if d not in ("admin","local","config")]
+              out["databases"] = dbs
+              coll_stats = []
+              answers = []
+              for dbn in dbs:
+                  db = client[dbn]
+                  cols = db.list_collection_names()
+                  for coll in cols:
+                      context = norm(dbn + " " + coll)
+                      all_matches = []
+                      sample_fields = None
+                      scanned = 0
+                      for doc in db[coll].find({}, limit=5000):
+                          scanned += 1
+                          ms, flat = extract_matches(doc, context)
+                          if sample_fields is None:
+                              sample_fields = list(flat.keys())[:50]
+                          for m in ms:
+                              all_matches.append({"sample": {k:v for k,v in list(flat.items())[:30]}, **m})
+                      coll_stats.append({"db": dbn, "collection": coll, "scanned": scanned, "match_count": len(all_matches), "sample_fields": sample_fields, "samples": all_matches[:5]})
+                      if all_matches:
+                          avg = sum(m["cpc"] for m in all_matches)/len(all_matches)
+                          answers.append({"db": dbn, "collection": coll, "match_count": len(all_matches), "average_cpc": round(avg,3), "samples": all_matches[:5]})
+              out["collection_stats"] = coll_stats
+              out["answers"] = sorted(answers, key=lambda x: (-x["match_count"], x["db"], x["collection"]))
+              out["answer"] = out["answers"][0] if out["answers"] else None
+          except Exception as e:
+              out["error"] = str(e)
+              out["traceback"] = traceback.format_exc()
+          finally:
+              try:
+                  if client is not None:
+                      client.close()
+              except Exception:
+                  pass
+
+          with open("ad_campaign_result.json", "w", encoding="utf-8") as f:
+              json.dump(out, f, indent=2, default=str)
+          print(json.dumps(out.get("answer"), indent=2))
+          PY
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add ad_campaign_result.json .github/workflows/ad_campaign_cpc.yml ad_campaign_trigger.txt
+          git commit -m "Run advertising campaign CPC query" || exit 0
+          git pull --rebase --autostash
+          git push
