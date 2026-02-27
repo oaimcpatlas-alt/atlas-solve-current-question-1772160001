@@ -1,0 +1,33 @@
+{
+  "get_status": 200,
+  "status": 429,
+  "text": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+  "headers": {
+    "date": "Fri, 27 Feb 2026 06:13:25 GMT",
+    "strict-transport-security": "max-age=31536000; includeSubdomains;",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "x-permitted-cross-domain-policies": "none",
+    "x-content-type-options": "nosniff",
+    "x-error-code": "RATE_LIMITED",
+    "content-type": "application/json",
+    "x-frame-options": "DENY",
+    "content-length": "59",
+    "server": "mdbws",
+    "x-xgen-up-proto": "HTTP/2"
+  },
+  "verify_status": 400,
+  "verify_text": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+  "verify_headers": {
+    "date": "Fri, 27 Feb 2026 06:13:25 GMT",
+    "strict-transport-security": "max-age=31536000; includeSubdomains;",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "x-permitted-cross-domain-policies": "none",
+    "x-content-type-options": "nosniff",
+    "x-error-code": "RATE_LIMITED",
+    "content-type": "application/json",
+    "x-frame-options": "DENY",
+    "content-length": "59",
+    "server": "mdbws",
+    "x-xgen-up-proto": "HTTP/2"
+  }
+}
