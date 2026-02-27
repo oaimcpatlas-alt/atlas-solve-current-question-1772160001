@@ -181,7 +181,7 @@ function ser(v) {
   const out = {
     started_at: new Date().toISOString(),
     cookieHeaderLength: COOKIE_HEADER.length,
-    bicentenary_of_narino_death: '2023-12-13T00:00:00.000Z',
+    question: 'Likes on the Twitter post from 2021-09-10 (shoplifting day); prefer Image post if multiple matches',
   };
   let client = null;
   try {
@@ -194,27 +194,44 @@ function ser(v) {
     });
     await client.connect();
     out.ping = await client.db('admin').command({ ping: 1 });
+
     const col = client.db('video_game_store').collection('Social Media');
-    const cutoff = new Date('2023-12-13T00:00:00.000Z');
-    const filter = { Date: { $lt: cutoff } };
-    out.matching_count = await col.countDocuments(filter);
+    const start = new Date('2021-09-10T00:00:00.000Z');
+    const end = new Date('2021-09-11T00:00:00.000Z');
+
+    const filter = {
+      Date: { $gte: start, $lt: end },
+      'Social Media Platform': 'Twitter',
+    };
+
+    out.filter = {
+      Date_gte: start.toISOString(),
+      Date_lt: end.toISOString(),
+      platform: 'Twitter',
+    };
+
     const docs = await col.find(filter)
-      .sort({ Likes: -1, Date: 1, 'Post ID': 1 })
-      .limit(10)
+      .sort({ 'Post Type': 1, Likes: -1, 'Post ID': 1 })
       .toArray();
-    out.top10 = docs.map(ser);
-    if (!docs.length) throw new Error('No Social Media documents before cutoff');
-    const doc = docs[0];
-    out.top = ser(doc);
+
+    out.matching_count = docs.length;
+    out.matches = docs.map(ser);
+
+    if (!docs.length) {
+      throw new Error('No Twitter posts found on 2021-09-10');
+    }
+
+    const selected = docs.find((d) => d['Post Type'] === 'Image') || docs[0];
+    out.selected = ser(selected);
     out.answer = {
-      post_id: doc['Post ID'],
-      date: doc['Date'] instanceof Date ? doc['Date'].toISOString().slice(0, 10) : doc['Date'],
-      social_media_platform: doc['Social Media Platform'],
-      post_type: doc['Post Type'],
-      likes: doc['Likes'],
-      comments: doc['Comments'],
-      shares: doc['Shares'],
-      views: doc['Views'],
+      post_id: selected['Post ID'],
+      date: selected['Date'] instanceof Date ? selected['Date'].toISOString().slice(0, 10) : selected['Date'],
+      social_media_platform: selected['Social Media Platform'],
+      post_type: selected['Post Type'],
+      likes: selected['Likes'],
+      comments: selected['Comments'],
+      shares: selected['Shares'],
+      views: selected['Views'],
     };
   } catch (e) {
     out.error = String(e && e.message || e);
