@@ -401,4 +401,8 @@ jobs:
           git config user.email github-actions@github.com
           git add .github/workflows/car_query.yml auth_debug.json car_whitelist_result.json browser_cookies.json atlas_scan_result.json
           git commit -m "Run Atlas scan for current question" || exit 0
-          git push
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0 || true
+            sleep 10
+          done
+          exit 1
