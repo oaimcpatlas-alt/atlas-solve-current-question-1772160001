@@ -1,0 +1,48 @@
+name: Solve Employee 392 Question Public Sanitized
+
+on:
+  push:
+    paths:
+      - '.github/workflows/solve-employee-392-public2.yml'
+      - 'auth_session_public.py'
+      - 'query_employee_392.js'
+
+jobs:
+  solve:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GROUP_URL: "https://cloud.mongodb.com/v2/699c12be8df98bd863d63d70#/overview"
+      PROJECT_ID: "699c12be8df98bd863d63d70"
+      CLUSTER_NAME: "mcpatlas"
+      MONGO_PROXY_URI: "mongodb://ac-lxbrbla-shard-00-02.zlknsyp.mongodb.net,ac-lxbrbla-shard-00-01.zlknsyp.mongodb.net,ac-lxbrbla-shard-00-00.zlknsyp.mongodb.net/?tls=true&authMechanism=MONGODB-X509&authSource=%24external&serverMonitoringMode=poll&maxIdleTimeMS=30000&minPoolSize=0&maxPoolSize=5&maxConnecting=6&replicaSet=atlas-pq8tl1-shard-0"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install deps
+        run: |
+          pip install requests
+          npm init -y
+          npm install mongodb ws
+      - name: Authenticate and save cookies
+        run: python auth_session_public.py
+      - name: Query via Atlas browser proxy
+        run: node query_employee_392.js || true
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -A
+          git commit -m "Run employee 392 query public" || exit 0
+          for i in 1 2 3 4 5 6; do
+            git pull --rebase origin main && git push && exit 0 || true
+            sleep 15
+          done
+          exit 0
