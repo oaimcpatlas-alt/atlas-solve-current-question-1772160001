@@ -281,30 +281,52 @@ jobs:
                   break
 
               if not auth_method:
-                  reset_candidates = latest_reset_tokens(8)
-                  summary['reset_candidates'] = [{'id': x['id'], 'internalDate': x['internalDate']} for x in reset_candidates[:8]]
-                  reset_password = 'AtlasRun!' + str(int(time.time())) + 'Q#7m'
-                  summary['reset_password_suffix'] = reset_password[-6:]
-                  for cand in reset_candidates:
-                      status, headers, body = post_json('https://account.mongodb.com/account/resetPasswordComplete', {
-                          'username': USERNAME,
-                          'password': reset_password,
-                          'passwordConfirm': reset_password,
-                          'tempId': cand['token'],
-                      })
-                      rec = {'id': cand['id'], 'status': status, 'headers': headers, 'body': body[:4000]}
-                      summary.setdefault('reset_attempts', []).append(rec)
-                      try:
-                          data = json.loads(body)
-                      except Exception:
-                          data = None
-                      if data and data.get('status') == 'OK':
-                          verify_body = data
-                          auth_method = 'resetPasswordComplete'
-                          summary['reset_success_id'] = cand['id']
+                  summary['reset_rounds'] = []
+                  for round_idx in range(1, 11):
+                      reset_candidates = latest_reset_tokens(8)
+                      round_rec = {
+                          'round': round_idx,
+                          'candidate_ids': [x['id'] for x in reset_candidates[:8]],
+                      }
+                      summary['reset_rounds'].append(round_rec)
+                      summary['reset_candidates'] = [{'id': x['id'], 'internalDate': x['internalDate']} for x in reset_candidates[:8]]
+                      if not reset_candidates:
+                          round_rec['note'] = 'no reset candidates'
+                          if round_idx < 10:
+                              time.sleep(30)
+                          continue
+
+                      rate_limited = False
+                      for cand in reset_candidates[:3]:
+                          reset_password = 'AtlasRun!' + str(int(time.time())) + f'R{round_idx}Q#7m'
+                          summary['reset_password_suffix'] = reset_password[-6:]
+                          status, headers, body = post_json('https://account.mongodb.com/account/resetPasswordComplete', {
+                              'username': USERNAME,
+                              'password': reset_password,
+                              'passwordConfirm': reset_password,
+                              'tempId': cand['token'],
+                          })
+                          rec = {'id': cand['id'], 'round': round_idx, 'status': status, 'headers': headers, 'body': body[:4000]}
+                          summary.setdefault('reset_attempts', []).append(rec)
+                          try:
+                              data = json.loads(body)
+                          except Exception:
+                              data = None
+                          if data and data.get('status') == 'OK':
+                              verify_body = data
+                              auth_method = 'resetPasswordComplete'
+                              summary['reset_success_id'] = cand['id']
+                              round_rec['success_id'] = cand['id']
+                              break
+                          if data and data.get('errorCode') == 'RATE_LIMITED':
+                              rate_limited = True
+                              round_rec['rate_limited'] = True
+                              break
+
+                      if auth_method:
                           break
-                      if data and data.get('errorCode') == 'RATE_LIMITED':
-                          break
+                      if round_idx < 10:
+                          time.sleep(60 if rate_limited else 20)
 
               summary['auth_method'] = auth_method
               if not verify_body or verify_body.get('status') != 'OK':
