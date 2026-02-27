@@ -1,7 +1,28 @@
 {
-  "started_at": "2026-02-27T07:40:44.836Z",
-  "cookieHeaderLength": 1694,
-  "error": "Unexpected server response: 303",
-  "stack": "MongoServerSelectionError: Unexpected server response: 303\n    at Topology.selectServer (/tmp/atlasdeps/node_modules/mongodb/lib/sdam/topology.js:347:38)\n    at async Topology._connect (/tmp/atlasdeps/node_modules/mongodb/lib/sdam/topology.js:220:28)\n    at async Topology.connect (/tmp/atlasdeps/node_modules/mongodb/lib/sdam/topology.js:171:13)\n    at async topologyConnect (/tmp/atlasdeps/node_modules/mongodb/lib/mongo_client.js:258:17)\n    at async MongoClient._connect (/tmp/atlasdeps/node_modules/mongodb/lib/mongo_client.js:271:13)\n    at async MongoClient.connect (/tmp/atlasdeps/node_modules/mongodb/lib/mongo_client.js:196:13)\n    at async main ([stdin]:219:5)",
-  "finished_at": "2026-02-27T07:41:14.882Z"
+  "started_at": "2026-02-27T08:03:43.356Z",
+  "password": "AtlasFixed!24680Aa",
+  "cookieHeaderLength": 1086,
+  "verify": {
+    "status": 400,
+    "headers": {
+      "content-length": "64",
+      "content-type": "application/json",
+      "date": "Fri, 27 Feb 2026 08:03:43 GMT",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "server": "mdbws",
+      "strict-transport-security": "max-age=31536000; includeSubdomains;",
+      "x-content-type-options": "nosniff",
+      "x-error-code": "INVALID_USER_AUTH",
+      "x-frame-options": "DENY",
+      "x-permitted-cross-domain-policies": "none",
+      "x-xgen-up-proto": "HTTP/2"
+    },
+    "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}",
+    "json": {
+      "errorCode": "INVALID_USER_AUTH",
+      "version": "1",
+      "status": "ERROR"
+    }
+  },
+  "finished_at": "2026-02-27T08:03:44.472Z"
 }
