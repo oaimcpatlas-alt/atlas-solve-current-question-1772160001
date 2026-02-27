@@ -1,0 +1,10 @@
+{
+  "cookieHeaderLength": 1765,
+  "mongoUri": "mongodb://ac-lxbrbla-shard-00-02.zlknsyp.mongodb.net,ac-lxbrbla-shard-00-01.zlknsyp.mongodb.net,ac-lxbrbla-shard-00-00.zlknsyp.mongodb.net/?tls=true&authMechanism=MONGODB-X509&authSource=%24external&serverMonitoringMode=poll&maxIdleTimeMS=30000&minPoolSize=0&maxPoolSize=5&maxConnecting=6&replicaSet=atlas-pq8tl1-shard-0",
+  "databases": [],
+  "candidates": [],
+  "collections": {},
+  "answer": null,
+  "error": "Unexpected server response: 303",
+  "stack": "MongoServerSelectionError: Unexpected server response: 303\n    at Topology.selectServer (/tmp/atlasdeps/node_modules/mongodb/lib/sdam/topology.js:347:38)\n    at async Topology._connect (/tmp/atlasdeps/node_modules/mongodb/lib/sdam/topology.js:220:28)\n    at async Topology.connect (/tmp/atlasdeps/node_modules/mongodb/lib/sdam/topology.js:171:13)\n    at async topologyConnect (/tmp/atlasdeps/node_modules/mongodb/lib/mongo_client.js:258:17)\n    at async MongoClient._connect (/tmp/atlasdeps/node_modules/mongodb/lib/mongo_client.js:271:13)\n    at async MongoClient.connect (/tmp/atlasdeps/node_modules/mongodb/lib/mongo_client.js:196:13)\n    at async main (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/hr_query_custom.js:651:5)"
+}
