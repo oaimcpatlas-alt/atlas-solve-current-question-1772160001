@@ -191,29 +191,69 @@ function ser(v) {
 }
 
 async function main() {
-  const out = { cookieHeaderLength: COOKIE_HEADER.length };
+  const out = {
+    started_at: new Date().toISOString(),
+    question: "Most expensive Purchase History order in 2022 and elapsed time until Pelé's death",
+    cookieHeaderLength: COOKIE_HEADER.length,
+  };
   const client = new MongoClient(MONGO_URI, {
-    serverSelectionTimeoutMS: 30000,
-    connectTimeoutMS: 30000,
-    socketTimeoutMS: 30000,
+    serverSelectionTimeoutMS: 60000,
+    connectTimeoutMS: 60000,
+    socketTimeoutMS: 60000,
     directConnection: false,
     monitorCommands: false,
   });
   try {
     await client.connect();
     out.ping = await client.db('admin').command({ ping: 1 });
-    const coll = client.db('video_game_store').collection('Customers');
-    const target = new Date('2018-04-03T00:00:00.000Z');
-    const next = new Date('2018-04-04T00:00:00.000Z');
-    const docs = await coll.find({
-      'Purchase Date': { $gte: target, $lt: next }
-    }).toArray();
-    out.count = docs.length;
-    out.docs = docs.map(ser);
+    const coll = client.db('video_game_store').collection('Purchase History');
+    const start = new Date('2022-01-01T00:00:00.000Z');
+    const end = new Date('2023-01-01T00:00:00.000Z');
+    const filter = { 'Transaction Date': { $gte: start, $lt: end } };
+    out.matching_count = await coll.countDocuments(filter);
+    const docs = await coll.find(filter)
+      .sort({ 'Purchase Amount ($)': -1, 'Transaction Date': 1, 'Transaction ID': 1 })
+      .limit(1)
+      .toArray();
+    if (!docs.length) throw new Error('No matching orders found in 2022');
+    const doc = docs[0];
+    const amount = Number(doc['Purchase Amount ($)']);
+    const orderDate = new Date(doc['Transaction Date']);
+    const peleDeath = new Date('2022-12-29T00:00:00.000Z');
+    const msPerDay = 24 * 60 * 60 * 1000;
+    const totalDays = Math.round((peleDeath.getTime() - orderDate.getTime()) / msPerDay);
+
+    let years = peleDeath.getUTCFullYear() - orderDate.getUTCFullYear();
+    let anniversary = new Date(Date.UTC(
+      orderDate.getUTCFullYear() + years,
+      orderDate.getUTCMonth(),
+      orderDate.getUTCDate()
+    ));
+    if (anniversary.getTime() > peleDeath.getTime()) {
+      years -= 1;
+      anniversary = new Date(Date.UTC(
+        orderDate.getUTCFullYear() + years,
+        orderDate.getUTCMonth(),
+        orderDate.getUTCDate()
+      ));
+    }
+    const days = Math.round((peleDeath.getTime() - anniversary.getTime()) / msPerDay);
+
+    out.order = ser(doc);
+    out.amount = amount;
+    out.order_date = orderDate.toISOString();
+    out.pele_death = peleDeath.toISOString();
+    out.elapsed = {
+      total_days: totalDays,
+      years,
+      days,
+    };
+    out.answer = `The most expensive order from 2022 cost $${amount.toFixed(2)}. It was placed on ${orderDate.toISOString().slice(0, 10)}, which was ${years} year(s) and ${days} day(s) before Pelé died on 2022-12-29.`;
   } catch (e) {
     out.error = String(e && e.message || e);
     out.stack = e && e.stack || null;
   } finally {
+    out.finished_at = new Date().toISOString();
     try { await client.close(); } catch {}
     console.log(JSON.stringify(out, null, 2));
   }

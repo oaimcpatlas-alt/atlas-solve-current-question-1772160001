@@ -30,7 +30,7 @@ jobs:
       - name: Run query
         env:
           NODE_PATH: /tmp/atlasdeps/node_modules
-        run: node scripts/run_query.js
+        run: node scripts/run_query.js > workflow_result.json
 
       - name: Commit result
         if: always()
