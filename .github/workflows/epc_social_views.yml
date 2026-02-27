@@ -1,0 +1,166 @@
+
+name: EPCSocialViews
+on:
+  push:
+    branches: [epc-social-views-1772233416]
+permissions:
+  contents: write
+jobs:
+  query:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          python -m pip install --disable-pip-version-check -q pymongo dnspython
+      - name: Query October 2023 top-view social post
+        run: |
+          python - <<'PY'
+          import json, time, traceback
+          from datetime import datetime, timezone
+          from pymongo import MongoClient
+          import dns.resolver
+
+          USER = "oaimcpatlas_db_user"
+          PASSWORD = "pdVEIpUnn0quf2Mr"
+          ROOT = "mcpatlas.zlknsyp.mongodb.net"
+
+          def parse_date(v):
+              if isinstance(v, datetime):
+                  return v if v.tzinfo else v.replace(tzinfo=timezone.utc)
+              if v is None:
+                  return None
+              s = str(v).strip()
+              if not s:
+                  return None
+              candidates = [s, s.replace(" ", "T")]
+              if s.endswith("Z"):
+                  candidates.append(s[:-1] + "+00:00")
+                  candidates.append(s[:-1].replace(" ", "T") + "+00:00")
+              for cand in candidates:
+                  try:
+                      dt = datetime.fromisoformat(cand)
+                      return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+                  except Exception:
+                      pass
+              for fmt in [
+                  "%Y-%m-%d",
+                  "%Y/%m/%d",
+                  "%m/%d/%Y",
+                  "%d/%m/%Y",
+                  "%d-%m-%Y",
+                  "%Y-%m-%d %H:%M:%S",
+                  "%Y/%m/%d %H:%M:%S",
+              ]:
+                  try:
+                      dt = datetime.strptime(s[:len(datetime.now().strftime(fmt))], fmt)
+                      return dt.replace(tzinfo=timezone.utc)
+                  except Exception:
+                      pass
+              return None
+
+          def parse_num(v):
+              if isinstance(v, bool) or v is None:
+                  return None
+              if isinstance(v, (int,float)):
+                  return float(v)
+              s=str(v).strip().replace(",","")
+              if not s:
+                  return None
+              try:
+                  return float(s)
+              except Exception:
+                  return None
+
+          def ser(v):
+              if isinstance(v, datetime):
+                  return v.isoformat()
+              if type(v).__name__=='ObjectId':
+                  return str(v)
+              if isinstance(v, list):
+                  return [ser(x) for x in v[:20]]
+              if isinstance(v, dict):
+                  return {str(k): ser(vv) for k,vv in list(v.items())[:100]}
+              return v
+
+          hosts=[]
+          try:
+              for r in dns.resolver.resolve(f"_mongodb._tcp.{ROOT}", "SRV"):
+                  hosts.append(str(r.target).rstrip("."))
+          except Exception:
+              pass
+          for h in [
+              "ac-lxbrbla-shard-00-00.zlknsyp.mongodb.net",
+              "ac-lxbrbla-shard-00-01.zlknsyp.mongodb.net",
+              "ac-lxbrbla-shard-00-02.zlknsyp.mongodb.net",
+          ]:
+              if h not in hosts:
+                  hosts.append(h)
+          seed_hosts = ",".join(f"{h}:27017" for h in hosts)
+          uris = [
+              ("srv", f"mongodb+srv://{USER}:{PASSWORD}@{ROOT}/?retryWrites=false"),
+              ("seedlist", f"mongodb://{USER}:{PASSWORD}@{seed_hosts}/?tls=true&authSource=admin&replicaSet=atlas-pq8tl1-shard-0&readPreference=secondaryPreferred&retryWrites=false"),
+          ]
+          for h in hosts:
+              uris.append((f"direct:{h}", f"mongodb://{USER}:{PASSWORD}@{h}:27017/?tls=true&authSource=admin&directConnection=true&readPreference=secondaryPreferred&retryWrites=false"))
+
+          out={"attempts":[], "resolved_hosts":hosts, "target_month":"2023-10"}
+          client=None
+          used=None
+          for round_no in range(1,11):
+              for label, uri in uris:
+                  try:
+                      c=MongoClient(uri, serverSelectionTimeoutMS=15000, connectTimeoutMS=15000, socketTimeoutMS=15000)
+                      ping=c.admin.command("ping")
+                      probe=c["video_game_store"]["Social Media"].find_one({}, {"Date":1,"Views":1,"Post ID":1,"Social Media Platform":1,"Post Type":1})
+                      out["attempts"].append({"round":round_no,"uri_label":label,"ping":ping,"probe":ser(probe)})
+                      client=c
+                      used=label
+                      break
+                  except Exception as e:
+                      out["attempts"].append({"round":round_no,"uri_label":label,"error":repr(e)[:2000]})
+              if client is not None:
+                  break
+              time.sleep(10)
+          out["used_connection"]=used
+          if client is None:
+              out["error"]="Unable to connect after repeated attempts"
+          else:
+              coll=client["video_game_store"]["Social Media"]
+              docs=list(coll.find({},{"_id":0}))
+              out["document_count"]=len(docs)
+              target=[]
+              for d in docs:
+                  dt=parse_date(d.get("Date"))
+                  views=parse_num(d.get("Views"))
+                  if not dt or views is None:
+                      continue
+                  if dt.year==2023 and dt.month==10:
+                      dd=dict(d)
+                      dd["_parsedDate"]=dt.isoformat()
+                      dd["_views"]=views
+                      target.append(dd)
+              out["matching_count"]=len(target)
+              target.sort(key=lambda d:(d["_views"], d.get("Likes",0), str(d.get("Post ID",""))), reverse=True)
+              out["top10"]=[ser(x) for x in target[:10]]
+              out["answer"]=ser(target[0]) if target else None
+          with open("outputs/epc_social_views.json","w",encoding="utf-8") as f:
+              json.dump(out,f,indent=2,default=ser)
+          print(json.dumps({"used_connection":out.get("used_connection"),"matching_count":out.get("matching_count"),"answer":out.get("answer"),"error":out.get("error")}, default=ser))
+          PY
+      - name: Commit result
+        if: always()
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add outputs/epc_social_views.json .github/workflows/epc_social_views.yml
+          git commit -m "Write EPC social views result" || exit 0
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin epc-social-views-1772233416 && git push origin epc-social-views-1772233416 && exit 0 || true
+            sleep 10
+          done
+          exit 0
