@@ -9,12 +9,14 @@ permissions:
 jobs:
   reset:
     if: github.actor != 'github-actions[bot]'
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install requests
+        run: pip install requests
       - name: Run reset
         run: |
           python - <<'PY'
@@ -40,6 +42,15 @@ jobs:
               "text": r.text[:2000],
               "headers": dict(r.headers),
           }
+          try:
+              vr = s.post("https://account.mongodb.com/account/auth/verify",
+                          headers={"Content-Type": "application/json"},
+                          data=json.dumps({"username": "oaimcpatlas@gmail.com", "password": password}), timeout=30)
+              out["verify_status"] = vr.status_code
+              out["verify_text"] = vr.text[:2000]
+              out["verify_headers"] = dict(vr.headers)
+          except Exception as e:
+              out["verify_error"] = str(e)
           with open("reset_result.json", "w", encoding="utf-8") as f:
               json.dump(out, f, indent=2)
           print(json.dumps(out))
