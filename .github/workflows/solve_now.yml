@@ -1,4 +1,5 @@
 name: SolveNow
+# retrigger solve now
 # trigger run
 on:
   push:
