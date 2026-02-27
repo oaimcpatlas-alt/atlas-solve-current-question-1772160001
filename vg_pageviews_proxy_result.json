@@ -1,0 +1,7 @@
+{
+  "started_at": "2026-02-27T07:35:54.378Z",
+  "cookieHeaderLength": 1765,
+  "error": "Unexpected server response: 303",
+  "stack": "MongoServerSelectionError: Unexpected server response: 303\n    at Topology.selectServer (/tmp/atlasdeps/node_modules/mongodb/lib/sdam/topology.js:347:38)\n    at async Topology._connect (/tmp/atlasdeps/node_modules/mongodb/lib/sdam/topology.js:220:28)\n    at async Topology.connect (/tmp/atlasdeps/node_modules/mongodb/lib/sdam/topology.js:171:13)\n    at async topologyConnect (/tmp/atlasdeps/node_modules/mongodb/lib/mongo_client.js:258:17)\n    at async MongoClient._connect (/tmp/atlasdeps/node_modules/mongodb/lib/mongo_client.js:271:13)\n    at async MongoClient.connect (/tmp/atlasdeps/node_modules/mongodb/lib/mongo_client.js:196:13)\n    at async main ([stdin]:213:5)",
+  "finished_at": "2026-02-27T07:36:24.427Z"
+}
