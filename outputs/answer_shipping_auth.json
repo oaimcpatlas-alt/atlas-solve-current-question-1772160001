@@ -1,15 +1,15 @@
 {
   "before_code_ids": [
+    "19c9ddd99016c05c",
+    "19c9dc1331a1ee6f",
     "19c9dd396a6493d9",
-    "19c9db00924304ba",
-    "19c9dc147a6aeb40",
     "19c9db1d91bfed7b",
-    "19c9dc1331a1ee6f"
+    "19c9dd63d6c7e71f"
   ],
   "verify": {
     "status": 400,
     "headers": {
-      "date": "Fri, 27 Feb 2026 06:44:41 GMT",
+      "date": "Fri, 27 Feb 2026 06:52:06 GMT",
       "strict-transport-security": "max-age=31536000; includeSubdomains;",
       "referrer-policy": "strict-origin-when-cross-origin",
       "x-permitted-cross-domain-policies": "none",
@@ -23,8 +23,65 @@
       "connection": "close"
     },
     "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
-    "attempt": 3
+    "attempt": 2
   },
-  "error": "verify failed: {'status': 400, 'headers': {'date': 'Fri, 27 Feb 2026 06:44:41 GMT', 'strict-transport-security': 'max-age=31536000; includeSubdomains;', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-permitted-cross-domain-policies': 'none', 'x-content-type-options': 'nosniff', 'x-error-code': 'RATE_LIMITED', 'content-type': 'application/json', 'x-frame-options': 'DENY', 'content-length': '59', 'server': 'mdbws', 'x-xgen-up-proto': 'HTTP/2', 'connection': 'close'}, 'body': '{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}', 'attempt': 3}",
-  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 148, in <module>\nRuntimeError: verify failed: {'status': 400, 'headers': {'date': 'Fri, 27 Feb 2026 06:44:41 GMT', 'strict-transport-security': 'max-age=31536000; includeSubdomains;', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-permitted-cross-domain-policies': 'none', 'x-content-type-options': 'nosniff', 'x-error-code': 'RATE_LIMITED', 'content-type': 'application/json', 'x-frame-options': 'DENY', 'content-length': '59', 'server': 'mdbws', 'x-xgen-up-proto': 'HTTP/2', 'connection': 'close'}, 'body': '{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}', 'attempt': 3}\n"
+  "reset_candidates": [
+    {
+      "id": "19c9ddad2ac53d1b",
+      "internalDate": "1772174889000"
+    },
+    {
+      "id": "19c9dda7a09940a9",
+      "internalDate": "1772174867000"
+    },
+    {
+      "id": "19c9dd7bcbc88086",
+      "internalDate": "1772174687000"
+    },
+    {
+      "id": "19c9dd75eae33d79",
+      "internalDate": "1772174662000"
+    },
+    {
+      "id": "19c9dd70c1db309d",
+      "internalDate": "1772174642000"
+    },
+    {
+      "id": "19c9dd6bc6919cb1",
+      "internalDate": "1772174621000"
+    },
+    {
+      "id": "19c9dd66bd995a39",
+      "internalDate": "1772174600000"
+    },
+    {
+      "id": "19c9dd61a58d01c5",
+      "internalDate": "1772174579000"
+    }
+  ],
+  "reset_password_suffix": "43Q#7m",
+  "reset_attempts": [
+    {
+      "id": "19c9ddad2ac53d1b",
+      "status": 429,
+      "headers": {
+        "date": "Fri, 27 Feb 2026 06:52:23 GMT",
+        "strict-transport-security": "max-age=31536000; includeSubdomains;",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-permitted-cross-domain-policies": "none",
+        "x-content-type-options": "nosniff",
+        "x-error-code": "RATE_LIMITED",
+        "content-type": "application/json",
+        "x-frame-options": "DENY",
+        "content-length": "59",
+        "server": "mdbws",
+        "x-xgen-up-proto": "HTTP/2",
+        "connection": "close"
+      },
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    }
+  ],
+  "auth_method": null,
+  "error": "auth bootstrap failed: {'status': 400, 'headers': {'date': 'Fri, 27 Feb 2026 06:52:06 GMT', 'strict-transport-security': 'max-age=31536000; includeSubdomains;', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-permitted-cross-domain-policies': 'none', 'x-content-type-options': 'nosniff', 'x-error-code': 'RATE_LIMITED', 'content-type': 'application/json', 'x-frame-options': 'DENY', 'content-length': '59', 'server': 'mdbws', 'x-xgen-up-proto': 'HTTP/2', 'connection': 'close'}, 'body': '{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}', 'attempt': 2}",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 193, in <module>\nRuntimeError: auth bootstrap failed: {'status': 400, 'headers': {'date': 'Fri, 27 Feb 2026 06:52:06 GMT', 'strict-transport-security': 'max-age=31536000; includeSubdomains;', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-permitted-cross-domain-policies': 'none', 'x-content-type-options': 'nosniff', 'x-error-code': 'RATE_LIMITED', 'content-type': 'application/json', 'x-frame-options': 'DENY', 'content-length': '59', 'server': 'mdbws', 'x-xgen-up-proto': 'HTTP/2', 'connection': 'close'}, 'body': '{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}', 'attempt': 2}\n"
 }
