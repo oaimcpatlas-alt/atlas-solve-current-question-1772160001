@@ -1,12 +1,12 @@
 {
-  "triedAt": "2026-02-27T06:34:39.956Z",
+  "triedAt": "2026-02-27T06:39:41.790Z",
   "accountCookieHeaderLength": 6144,
   "cloudCookieHeaderLength": 6144,
   "overview": {
     "status": 401,
     "headers": {
       "content-length": "0",
-      "date": "Fri, 27 Feb 2026 06:34:39 GMT",
+      "date": "Fri, 27 Feb 2026 06:39:42 GMT",
       "server": "mdbws"
     },
     "body": "",
@@ -16,7 +16,7 @@
     "status": 401,
     "headers": {
       "content-length": "0",
-      "date": "Fri, 27 Feb 2026 06:34:40 GMT",
+      "date": "Fri, 27 Feb 2026 06:39:42 GMT",
       "server": "mdbws"
     },
     "body": "",
@@ -26,33 +26,28 @@
     "status": 401,
     "headers": {
       "content-length": "0",
-      "date": "Fri, 27 Feb 2026 06:34:40 GMT",
+      "date": "Fri, 27 Feb 2026 06:39:42 GMT",
       "server": "mdbws"
     },
     "body": "",
     "json": null
   },
-  "verifyProbe": {
-    "password": "AtlasGHReset!6789",
-    "status": 400,
-    "headers": {
-      "content-length": "59",
-      "content-type": "application/json",
-      "date": "Fri, 27 Feb 2026 06:34:40 GMT",
-      "referrer-policy": "strict-origin-when-cross-origin",
-      "server": "mdbws",
-      "strict-transport-security": "max-age=31536000; includeSubdomains;",
-      "x-content-type-options": "nosniff",
-      "x-error-code": "RATE_LIMITED",
-      "x-frame-options": "DENY",
-      "x-permitted-cross-domain-policies": "none",
-      "x-xgen-up-proto": "HTTP/2"
+  "wsProbe": {
+    "url": "wss://cloud.mongodb.com/cluster-connection/699c12be8df98bd863d63d70?sniHostname=ac-lxbrbla-shard-00-00.zlknsyp.mongodb.net&port=27017&clusterName=mcpatlas&version=1",
+    "unexpected": {
+      "statusCode": 303,
+      "headers": {
+        "location": "https://account.mongodb.com/account/login?signedOut=true&n=https%3A%2F%2Fcloud.mongodb.com%2Fcluster-connection%2F699c12be8df98bd863d63d70%3FsniHostname%3Dac-lxbrbla-shard-00-00.zlknsyp.mongodb.net%26port%3D27017%26clusterName%3Dmcpatlas%26version%3D1",
+        "date": "Fri, 27 Feb 2026 06:39:42 GMT",
+        "server": "mdbws",
+        "connection": "close",
+        "content-length": "0"
+      }
     },
-    "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
-    "json": {
-      "errorCode": "RATE_LIMITED",
-      "version": "1",
-      "status": "ERROR"
+    "error": "WebSocket was closed before the connection was established",
+    "close": {
+      "code": 1006,
+      "reason": ""
     }
   }
 }
