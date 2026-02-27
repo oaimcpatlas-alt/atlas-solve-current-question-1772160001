@@ -1,0 +1,9 @@
+{
+  "secret_sources": {
+    "client_id": null,
+    "client_secret": null,
+    "refresh_token": "session_token_probe_result.json"
+  },
+  "error": "failed to recover Google creds from repo files",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/auth_session_public.py\", line 110, in <module>\n    raise RuntimeError('failed to recover Google creds from repo files')\nRuntimeError: failed to recover Google creds from repo files\n"
+}

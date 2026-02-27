@@ -1,0 +1,16 @@
+{
+  "name": "atlas-solve-current-question-1772160001",
+  "version": "1.0.0",
+  "description": "Isolated repo for atlas query",
+  "main": "hr_query_custom.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^7.1.0",
+    "ws": "^8.19.0"
+  }
+}
