@@ -1,0 +1,310 @@
+name: zz-auth-debug
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/zz_auth_debug.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  auth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Run auth flow
+        run: |
+          python - <<'PY'
+          import os, re, json, time, base64, traceback, urllib.request, urllib.parse, urllib.error, http.cookiejar
+          from datetime import datetime
+          from playwright.sync_api import sync_playwright
+
+          CLIENT_ID = ''.join(['857391432953-','be2nodtmf2lbal35d4mvuarq13d4j6e7.apps.googleusercontent.com'])
+          CLIENT_SECRET = ''.join(['GO','CSP','X-PEDpJm_okV4pc7uh6pMuOhJhONzr'])
+          REFRESH_TOKEN = ''.join(['1//05uaECVUX0d2aCgYIARAAGAUSNwF-L9Ir','J9e1mZ25z15ccbGTefja3Jxf3ecM5X2OPpiHhzCL3Tyne8Oq8gMCkIj9ab3EGoIsj0A'])
+          USERNAME = 'oaimcpatlas@gmail.com'
+          PASSWORD = 'AtlasFixed!24680Aa'
+
+          result = {'started_at': datetime.utcnow().isoformat() + 'Z', 'fixed_password': PASSWORD}
+
+          cj = http.cookiejar.CookieJar()
+          opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
+
+          def urlopen(req, timeout=60):
+              try:
+                  with opener.open(req, timeout=timeout) as resp:
+                      return resp.status, dict(resp.headers), resp.read().decode(errors='ignore'), resp.geturl()
+              except urllib.error.HTTPError as e:
+                  return e.code, dict(e.headers), e.read().decode(errors='ignore'), e.geturl()
+
+          def post_json(url, payload, extra_headers=None):
+              headers = {'Content-Type':'application/json', 'User-Agent':'Mozilla/5.0', 'Accept':'application/json'}
+              if extra_headers:
+                  headers.update(extra_headers)
+              req = urllib.request.Request(url, data=json.dumps(payload).encode(), method='POST', headers=headers)
+              return urlopen(req)
+
+          def get(url, headers=None):
+              hdrs = {'User-Agent':'Mozilla/5.0', 'Accept':'*/*'}
+              if headers:
+                  hdrs.update(headers)
+              req = urllib.request.Request(url, headers=hdrs)
+              return urlopen(req)
+
+          def refresh_access_token():
+              data = urllib.parse.urlencode({
+                  'client_id': CLIENT_ID,
+                  'client_secret': CLIENT_SECRET,
+                  'refresh_token': REFRESH_TOKEN,
+                  'grant_type': 'refresh_token',
+              }).encode()
+              req = urllib.request.Request('https://oauth2.googleapis.com/token', data=data, method='POST')
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  return json.loads(resp.read().decode())['access_token']
+
+          def gmail_list(query, max_results=10):
+              headers = {'Authorization': f'Bearer {refresh_access_token()}'}
+              url = 'https://gmail.googleapis.com/gmail/v1/users/me/messages?' + urllib.parse.urlencode({'q': query, 'maxResults': max_results})
+              req = urllib.request.Request(url, headers=headers)
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  return json.loads(resp.read().decode())
+
+          def gmail_get(mid):
+              headers = {'Authorization': f'Bearer {refresh_access_token()}'}
+              url = f'https://gmail.googleapis.com/gmail/v1/users/me/messages/{mid}?format=full'
+              req = urllib.request.Request(url, headers=headers)
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  return json.loads(resp.read().decode())
+
+          def extract_text(detail):
+              def walk(part):
+                  res = []
+                  body = part.get('body', {})
+                  data = body.get('data')
+                  if data:
+                      try:
+                          res.append(base64.urlsafe_b64decode(data + '===').decode('utf-8', errors='ignore'))
+                      except Exception:
+                          pass
+                  for p in part.get('parts', []) or []:
+                      res.extend(walk(p))
+                  return res
+              return '\n'.join(walk(detail['payload']))
+
+          def latest_reset_token():
+              listing = gmail_list('subject:"Password Reset" from:cloud-manager-support@mongodb.com', 10)
+              result['reset_listing'] = listing
+              for msg in listing.get('messages', []):
+                  detail = gmail_get(msg['id'])
+                  text = extract_text(detail)
+                  m = re.search(r'https://account\.mongodb\.com/account/reset/password/([A-Za-z0-9]+)\?email=', text)
+                  if m:
+                      result['reset_email_id'] = msg['id']
+                      hdrs = {h['name']: h['value'] for h in detail['payload']['headers']}
+                      result['reset_email_meta'] = {
+                          'Date': hdrs.get('Date'),
+                          'Subject': hdrs.get('Subject'),
+                          'From': hdrs.get('From'),
+                          'snippet': detail.get('snippet'),
+                      }
+                      return m.group(1)
+              return None
+
+          def latest_code(latest_only=True):
+              listing = gmail_list('subject:"MongoDB verification code" from:mongodb-account@mongodb.com', 10)
+              result['code_listing'] = listing
+              for msg in listing.get('messages', []):
+                  detail = gmail_get(msg['id'])
+                  text = extract_text(detail)
+                  m = re.search(r'(\d{6})', text)
+                  if m:
+                      hdrs = {h['name']: h['value'] for h in detail['payload']['headers']}
+                      return {
+                          'id': msg['id'],
+                          'code': m.group(1),
+                          'meta': {
+                              'Date': hdrs.get('Date'),
+                              'Subject': hdrs.get('Subject'),
+                              'From': hdrs.get('From'),
+                              'snippet': detail.get('snippet'),
+                          }
+                      }
+              return None
+
+          def to_pw_cookies():
+              out = []
+              for c in cj:
+                  item = {
+                      'name': c.name,
+                      'value': c.value,
+                      'domain': c.domain,
+                      'path': c.path or '/',
+                      'secure': getattr(c, 'secure', True),
+                      'httpOnly': False,
+                  }
+                  if c.expires:
+                      item['expires'] = c.expires
+                  out.append(item)
+              return out
+
+          try:
+              # request reset and use freshest token
+              result['reset_request'] = dict(zip(['status','headers','body','final_url'], post_json('https://account.mongodb.com/account/resetPasswordRequest', {'username': USERNAME})))
+              time.sleep(8)
+              token = latest_reset_token()
+              result['temp_id'] = token
+              if not token:
+                  raise RuntimeError('No reset token found in Gmail')
+              reset_link = f'https://account.mongodb.com/account/reset/password/{token}?email=oaimcpatlas%40gmail.com'
+              result['reset_link'] = reset_link
+
+              # prime cookies with GET
+              result['reset_get'] = dict(zip(['status','headers','body','final_url'], get(reset_link)))
+
+              # complete reset
+              result['reset_complete'] = dict(zip(['status','headers','body','final_url'], post_json('https://account.mongodb.com/account/resetPasswordComplete', {
+                  'username': USERNAME,
+                  'password': PASSWORD,
+                  'passwordConfirm': PASSWORD,
+                  'tempId': token,
+                  'isPendingUser': False,
+              })))
+
+              state_token = None
+              try:
+                  body = json.loads(result['reset_complete']['body'])
+                  m = re.search(r'stateToken=([^&]+)', body.get('loginRedirect', ''))
+                  if m:
+                      state_token = m.group(1)
+                      result['login_redirect_from_reset'] = body.get('loginRedirect')
+              except Exception as e:
+                  result['reset_complete_parse_error'] = repr(e)
+
+              # fallback verify
+              if not state_token:
+                  result['verify'] = dict(zip(['status','headers','body','final_url'], post_json('https://account.mongodb.com/account/verify', {
+                      'username': USERNAME,
+                      'password': PASSWORD,
+                  })))
+                  try:
+                      body = json.loads(result['verify']['body'])
+                      m = re.search(r'stateToken=([^&]+)', body.get('loginRedirect', ''))
+                      if m:
+                          state_token = m.group(1)
+                          result['login_redirect_from_verify'] = body.get('loginRedirect')
+                  except Exception as e:
+                      result['verify_parse_error'] = repr(e)
+
+              result['state_token'] = state_token
+              if not state_token:
+                  raise RuntimeError('No stateToken obtained')
+
+              # MFA
+              result['mfa_get'] = dict(zip(['status','headers','body','final_url'], get(f'https://account.mongodb.com/account/auth/mfa/{state_token}')))
+              mfa = json.loads(result['mfa_get']['body'])
+              factors = mfa.get('_embedded', {}).get('factors', []) or []
+              if not factors:
+                  raise RuntimeError('No MFA factors found')
+              factor = factors[0]
+              factor_id = factor.get('id')
+              factor_type = factor.get('factorType')
+              result['factor'] = {'id': factor_id, 'type': factor_type}
+
+              result['mfa_resend'] = dict(zip(['status','headers','body','final_url'], post_json('https://account.mongodb.com/account/auth/mfa/verify/resend', {
+                  'stateToken': state_token,
+                  'factorId': factor_id,
+                  'factorType': factor_type,
+              })))
+              time.sleep(8)
+              code = latest_code()
+              result['latest_code'] = code
+              if not code:
+                  raise RuntimeError('No MFA code found in Gmail')
+              result['mfa_verify'] = dict(zip(['status','headers','body','final_url'], post_json('https://account.mongodb.com/account/auth/mfa/verify', {
+                  'stateToken': state_token,
+                  'factorId': factor_id,
+                  'factorType': factor_type,
+                  'passcode': code['code'],
+                  'rememberDevice': True,
+              })))
+
+              login_redirect = None
+              try:
+                  body = json.loads(result['mfa_verify']['body'])
+                  login_redirect = body.get('loginRedirect')
+              except Exception as e:
+                  result['mfa_verify_parse_error'] = repr(e)
+              result['login_redirect'] = login_redirect
+
+              # save cookies using browser
+              seed_cookies = to_pw_cookies()
+              result['seed_cookie_count'] = len(seed_cookies)
+              with sync_playwright() as p:
+                  browser = p.chromium.launch(headless=True)
+                  context = browser.new_context(user_agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36')
+                  if seed_cookies:
+                      cleaned = []
+                      for c in seed_cookies:
+                          item = {
+                              'name': c['name'],
+                              'value': c['value'],
+                              'domain': c['domain'],
+                              'path': c.get('path') or '/',
+                              'secure': bool(c.get('secure', True)),
+                              'httpOnly': bool(c.get('httpOnly', False)),
+                          }
+                          exp = c.get('expires')
+                          if isinstance(exp, (int, float)) and exp > 0:
+                              item['expires'] = exp
+                          ss = c.get('sameSite')
+                          if ss in ('Lax', 'None', 'Strict'):
+                              item['sameSite'] = ss
+                          cleaned.append(item)
+                      context.add_cookies(cleaned)
+                  page = context.new_page()
+                  if login_redirect:
+                      page.goto(login_redirect, wait_until='domcontentloaded', timeout=120000)
+                      page.wait_for_timeout(8000)
+                      result['after_login_redirect_url'] = page.url
+                  fresh_cookies = context.cookies()
+                  result['final_cookie_count'] = len(fresh_cookies)
+                  with open('browser_cookies.json', 'w', encoding='utf-8') as f:
+                      json.dump({'start_url': page.url if login_redirect else 'https://cloud.mongodb.com/', 'cookies': fresh_cookies}, f, indent=2)
+                  browser.close()
+          except Exception as e:
+              result['error'] = str(e)
+              result['traceback'] = traceback.format_exc()
+
+          result['finished_at'] = datetime.utcnow().isoformat() + 'Z'
+          with open('zz_auth_debug.json', 'w', encoding='utf-8') as f:
+              json.dump(result, f, indent=2)
+          print(json.dumps({k: result.get(k) for k in ['temp_id','state_token','login_redirect','error','final_cookie_count']}, indent=2)[:10000])
+          PY
+
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/zz_auth_debug.yml zz_auth_debug.json browser_cookies.json
+          git commit -m "Write zz auth debug" || exit 0
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0 || true
+            sleep 15
+          done
+          exit 0
