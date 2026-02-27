@@ -1,71 +1,73 @@
 {
   "before_code_ids": [
-    "19c9ddd99016c05c",
-    "19c9dc1331a1ee6f",
-    "19c9dd396a6493d9",
-    "19c9db1d91bfed7b",
-    "19c9dd63d6c7e71f"
+    "19c9dd63d6c7e71f",
+    "19c9de5d16286b05",
+    "19c9dc147a6aeb40",
+    "19c9de819f7dbdc7",
+    "19c9de630e8eeb07"
   ],
+  "session_token_login_url_present": true,
+  "session_token_seed_cookie_count": 5,
+  "session_token_after_login_url": "https://auth.mongodb.com/oauth2/default/v1/authorize?client_id=0oa2h8np9ryZR4Xat297&redirect_uri=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Foidc%2Fcallback&response_type=code&response_mode=query&scope=openid+email&state=%7B%22stateNonce%22%3A%227ac314bf-7346-4b1c-8ef6-087292241148%22%7D&nonce=7226ca6c-25c0-4e7c-bdb6-858db3afef74&sessionToken=20111iTBfo3iYJ2_Pw9jY6Gu4P0bs1beQxpvRcOYBCTQV1JC224SArB",
+  "session_token_after_login_title": "MongoDB Cloud - Sign In",
+  "session_token_after_login_text": "Sign In\nEmail Address\u00a0\nHelp",
+  "session_token_after_group_url": "https://account.mongodb.com/account/login?n=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F699c12be8df98bd863d63d70&nextHash=%23overview&signedOut=true",
+  "session_token_after_group_title": "Log in | MongoDB",
+  "session_token_after_group_text": "Log in to your account\nDon't have an account?\u00a0Sign Up\nYou have successfully logged out.\nGoogle\nGitHub\nOr with email and password\nEmail Address\nNext\nIntroducing the Embedding and Reranking API\nAccess Voyage AI's state-of-the-art embedding and reranking models natively in MongoDB Atlas for more accurate AI retrieval.\nLearn more\n\u2192",
+  "session_token_cloud_cookie_names": [],
+  "cloud_cookie_header_present_after_session_token": false,
   "verify": {
     "status": 400,
     "headers": {
-      "date": "Fri, 27 Feb 2026 06:52:06 GMT",
+      "date": "Fri, 27 Feb 2026 07:05:42 GMT",
       "strict-transport-security": "max-age=31536000; includeSubdomains;",
       "referrer-policy": "strict-origin-when-cross-origin",
       "x-permitted-cross-domain-policies": "none",
       "x-content-type-options": "nosniff",
-      "x-error-code": "RATE_LIMITED",
+      "x-error-code": "INVALID_USER_AUTH",
       "content-type": "application/json",
       "x-frame-options": "DENY",
-      "content-length": "59",
+      "content-length": "64",
       "server": "mdbws",
       "x-xgen-up-proto": "HTTP/2",
       "connection": "close"
     },
-    "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
-    "attempt": 2
+    "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}",
+    "attempt": 1
   },
   "reset_candidates": [
     {
-      "id": "19c9ddad2ac53d1b",
-      "internalDate": "1772174889000"
+      "id": "19c9dea78db52c0d",
+      "internalDate": "1772175915000"
     },
     {
-      "id": "19c9dda7a09940a9",
-      "internalDate": "1772174867000"
+      "id": "19c9de9dbd4f4f38",
+      "internalDate": "1772175874000"
     },
     {
-      "id": "19c9dd7bcbc88086",
-      "internalDate": "1772174687000"
+      "id": "19c9de9a50607de9",
+      "internalDate": "1772175860000"
     },
     {
-      "id": "19c9dd75eae33d79",
-      "internalDate": "1772174662000"
+      "id": "19c9de994c14ae2c",
+      "internalDate": "1772175856000"
     },
     {
-      "id": "19c9dd70c1db309d",
-      "internalDate": "1772174642000"
+      "id": "19c9de7fdaa9ec94",
+      "internalDate": "1772175751000"
     },
     {
-      "id": "19c9dd6bc6919cb1",
-      "internalDate": "1772174621000"
-    },
-    {
-      "id": "19c9dd66bd995a39",
-      "internalDate": "1772174600000"
-    },
-    {
-      "id": "19c9dd61a58d01c5",
-      "internalDate": "1772174579000"
+      "id": "19c9de7e0ac4e650",
+      "internalDate": "1772175744000"
     }
   ],
-  "reset_password_suffix": "43Q#7m",
+  "reset_password_suffix": "44Q#7m",
   "reset_attempts": [
     {
-      "id": "19c9ddad2ac53d1b",
+      "id": "19c9dea78db52c0d",
       "status": 429,
       "headers": {
-        "date": "Fri, 27 Feb 2026 06:52:23 GMT",
+        "date": "Fri, 27 Feb 2026 07:05:45 GMT",
         "strict-transport-security": "max-age=31536000; includeSubdomains;",
         "referrer-policy": "strict-origin-when-cross-origin",
         "x-permitted-cross-domain-policies": "none",
@@ -82,6 +84,6 @@
     }
   ],
   "auth_method": null,
-  "error": "auth bootstrap failed: {'status': 400, 'headers': {'date': 'Fri, 27 Feb 2026 06:52:06 GMT', 'strict-transport-security': 'max-age=31536000; includeSubdomains;', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-permitted-cross-domain-policies': 'none', 'x-content-type-options': 'nosniff', 'x-error-code': 'RATE_LIMITED', 'content-type': 'application/json', 'x-frame-options': 'DENY', 'content-length': '59', 'server': 'mdbws', 'x-xgen-up-proto': 'HTTP/2', 'connection': 'close'}, 'body': '{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}', 'attempt': 2}",
-  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 193, in <module>\nRuntimeError: auth bootstrap failed: {'status': 400, 'headers': {'date': 'Fri, 27 Feb 2026 06:52:06 GMT', 'strict-transport-security': 'max-age=31536000; includeSubdomains;', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-permitted-cross-domain-policies': 'none', 'x-content-type-options': 'nosniff', 'x-error-code': 'RATE_LIMITED', 'content-type': 'application/json', 'x-frame-options': 'DENY', 'content-length': '59', 'server': 'mdbws', 'x-xgen-up-proto': 'HTTP/2', 'connection': 'close'}, 'body': '{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}', 'attempt': 2}\n"
+  "error": "auth bootstrap failed: {'status': 400, 'headers': {'date': 'Fri, 27 Feb 2026 07:05:42 GMT', 'strict-transport-security': 'max-age=31536000; includeSubdomains;', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-permitted-cross-domain-policies': 'none', 'x-content-type-options': 'nosniff', 'x-error-code': 'INVALID_USER_AUTH', 'content-type': 'application/json', 'x-frame-options': 'DENY', 'content-length': '64', 'server': 'mdbws', 'x-xgen-up-proto': 'HTTP/2', 'connection': 'close'}, 'body': '{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}', 'attempt': 1}",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 277, in <module>\nRuntimeError: auth bootstrap failed: {'status': 400, 'headers': {'date': 'Fri, 27 Feb 2026 07:05:42 GMT', 'strict-transport-security': 'max-age=31536000; includeSubdomains;', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-permitted-cross-domain-policies': 'none', 'x-content-type-options': 'nosniff', 'x-error-code': 'INVALID_USER_AUTH', 'content-type': 'application/json', 'x-frame-options': 'DENY', 'content-length': '64', 'server': 'mdbws', 'x-xgen-up-proto': 'HTTP/2', 'connection': 'close'}, 'body': '{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}', 'attempt': 1}\n"
 }
