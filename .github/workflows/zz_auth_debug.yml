@@ -1,5 +1,6 @@
 name: zz-auth-debug
 # retrigger auth cookie refresh
+# retry auth at 07:44Z
 
 on:
   push:
