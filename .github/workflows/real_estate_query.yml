@@ -2,6 +2,9 @@ name: RealEstateRecon
 on:
   push:
     branches: [main]
+    paths:
+      - '.github/workflows/real_estate_query.yml'
+  workflow_dispatch:
 jobs:
   recon:
     if: github.actor != 'github-actions[bot]'
@@ -452,4 +455,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .github/workflows/real_estate_query.yml outputs/real_estate_result.json
           git commit -m "Add real estate recon output" || echo "nothing to commit"
+          git pull --rebase origin main
           git push

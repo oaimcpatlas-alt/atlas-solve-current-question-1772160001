@@ -1,7 +1,6 @@
 name: SolveHRQuestion
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 jobs:
   solve:
     if: github.actor != 'github-actions[bot]'

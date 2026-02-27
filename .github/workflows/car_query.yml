@@ -1,8 +1,6 @@
 name: AtlasScanForCurrentQuestion
 on:
-  push:
-    branches: [main]
-
+  workflow_dispatch:
 jobs:
   scan:
     if: github.actor != 'github-actions[bot]'
