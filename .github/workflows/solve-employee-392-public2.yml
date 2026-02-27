@@ -1,4 +1,4 @@
-name: Solve Employee 392 Question Public Sanitized
+name: Solve VGS Pageviews Public
 
 on:
   push:
@@ -49,27 +49,27 @@ jobs:
           if '__Secure-mdb-sat' not in seen and '__Secure-mdb-srt' in seen:
               seen['__Secure-mdb-sat'] = seen['__Secure-mdb-srt']
           header = '; '.join(f"{k}={v}" for k, v in seen.items())
-          with open('outputs/answer_shipping_cookie_header.txt', 'w', encoding='utf-8') as f:
+          with open('outputs/cloud_cookie_header.txt', 'w', encoding='utf-8') as f:
               f.write(header)
           print({'cookie_header_length': len(header), 'cookie_names': list(seen)[:20]})
           PY
-      - name: Query shipping UPS answer via Atlas browser proxy
+      - name: Query VGS pageviews via Atlas browser proxy
         run: |
-          export CLOUD_COOKIES="$(cat outputs/answer_shipping_cookie_header.txt 2>/dev/null || true)"
+          export CLOUD_COOKIES="$(cat outputs/cloud_cookie_header.txt 2>/dev/null || true)"
           mkdir -p outputs
           if [ -z "$CLOUD_COOKIES" ]; then
-            echo '{"error":"no cloud cookies"}' > outputs/answer_shipping_ups.json
+            echo '{"error":"no cloud cookies"}' > outputs/vg_pageviews_public.json
           else
-            node scripts/answer_shipping_ups.js > outputs/answer_shipping_ups.json || true
+            node query_employee_392.js > outputs/vg_pageviews_public.json || true
           fi
-          cat outputs/answer_shipping_ups.json
+          cat outputs/vg_pageviews_public.json
       - name: Commit results
         if: always()
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add -A
-          git commit -m "Run employee 392 query public" || exit 0
+          git commit -m "Run VGS pageviews public" || exit 0
           for i in 1 2 3 4 5 6; do
             git pull --rebase origin main && git push && exit 0 || true
             sleep 15

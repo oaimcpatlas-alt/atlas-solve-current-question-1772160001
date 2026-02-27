@@ -2,7 +2,7 @@
 import base64, json, os, re, time, traceback, requests
 
 USERNAME = 'oaimcpatlas@gmail.com'
-PASSWORD = ''.join(['ZQ8!', 'Atlas', 'New', 'Pass', '#7m', 'K2x'])
+PASSWORD = 'AtlasFixed!24680Aa'
 CLIENT_ID = ''.join([
     '857391432953-',
     'be2nodtmf2lbal35d4mvuarq13d4j6e7',
@@ -213,6 +213,12 @@ try:
 
     with open('fresh_browser_cookies.json', 'w', encoding='utf-8') as f:
         json.dump({'source_url': PROJECT_URL, 'cookies': cookies}, f, indent=2)
+
+    try:
+        with open('browser_cookies.json', 'w', encoding='utf-8') as f:
+            json.dump({'source_url': PROJECT_URL, 'cookies': cookies}, f, indent=2)
+    except Exception:
+        pass
 
 except Exception as e:
     out['error'] = str(e)
