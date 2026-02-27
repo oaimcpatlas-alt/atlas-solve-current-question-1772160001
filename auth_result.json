@@ -31,10 +31,18 @@
       "snippet": "Your one-time verification code: 100690 This code expires after 5 minutes. If you did not request this, please change your password or contact MongoDB Support. "
     }
   ],
+  "verify_attempts": [
+    {
+      "attempt": 1,
+      "status": 400,
+      "text": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    }
+  ],
   "verify": {
+    "attempt": 1,
     "status": 400,
-    "text": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    "text": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}"
   },
-  "error": "auth verify failed: {\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
-  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/auth_session_public.py\", line 108, in <module>\n    raise RuntimeError(f'auth verify failed: {r.text[:300]}')\nRuntimeError: auth verify failed: {\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}\n"
+  "error": "auth verify failed: {\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/auth_session_public.py\", line 117, in <module>\n    raise RuntimeError(f'auth verify failed: {r.text[:300]}')\nRuntimeError: auth verify failed: {\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}\n"
 }
