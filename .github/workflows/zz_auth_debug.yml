@@ -292,6 +292,11 @@ jobs:
                       result['after_login_redirect_url'] = page.url
                   fresh_cookies = context.cookies()
                   result['final_cookie_count'] = len(fresh_cookies)
+                  try:
+                      with open('browser_cookies.json', 'w', encoding='utf-8') as f:
+                          json.dump({'start_url': os.environ.get('GROUP_URL', ''), 'cookies': fresh_cookies}, f, indent=2)
+                  except Exception as e:
+                      result['browser_cookies_write_error'] = repr(e)
                   with open('browser_cookies.json', 'w', encoding='utf-8') as f:
                       json.dump({'start_url': page.url if login_redirect else 'https://cloud.mongodb.com/', 'cookies': fresh_cookies}, f, indent=2)
                   browser.close()
