@@ -1,8 +1,8 @@
 {
-  "started_at": "2026-02-28T07:23:11.508Z",
+  "started_at": "2026-02-28T11:55:39.307Z",
   "question": "Most expensive Purchase History order in 2022 and elapsed time until Pelé's death",
-  "cookieHeaderLength": 1765,
+  "cookieHeaderLength": 1546,
   "error": "Unexpected server response: 303",
   "stack": "MongoServerSelectionError: Unexpected server response: 303\n    at Topology.selectServer (/Users/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:347:38)\n    at async Topology._connect (/Users/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:220:28)\n    at async Topology.connect (/Users/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:171:13)\n    at async topologyConnect (/Users/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:258:17)\n    at async MongoClient._connect (/Users/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:271:13)\n    at async MongoClient.connect (/Users/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:196:13)\n    at async main (/Users/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/scripts/run_query.js:207:5)",
-  "finished_at": "2026-02-28T07:24:11.578Z"
+  "finished_at": "2026-02-28T11:56:39.370Z"
 }
