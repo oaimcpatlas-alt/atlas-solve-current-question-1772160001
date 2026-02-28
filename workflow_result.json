@@ -1,8 +1,29 @@
 {
-  "started_at": "2026-02-28T11:55:39.307Z",
+  "started_at": "2026-02-28T12:34:05.013Z",
   "question": "Most expensive Purchase History order in 2022 and elapsed time until Pelé's death",
   "cookieHeaderLength": 1546,
-  "error": "Unexpected server response: 303",
-  "stack": "MongoServerSelectionError: Unexpected server response: 303\n    at Topology.selectServer (/Users/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:347:38)\n    at async Topology._connect (/Users/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:220:28)\n    at async Topology.connect (/Users/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:171:13)\n    at async topologyConnect (/Users/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:258:17)\n    at async MongoClient._connect (/Users/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:271:13)\n    at async MongoClient.connect (/Users/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:196:13)\n    at async main (/Users/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/scripts/run_query.js:207:5)",
-  "finished_at": "2026-02-28T11:56:39.370Z"
+  "ping": {
+    "ok": 1
+  },
+  "matching_count": 293,
+  "order": {
+    "_id": "6855afebb918c4dd9fadb631",
+    "Transaction ID": "TRANS01069",
+    "Transaction Date": "2022-07-10T00:00:00.000Z",
+    "Customer Segment": "Regular",
+    "Product Category": "Merchandise",
+    "Purchase Amount ($)": 199.09,
+    "Payment Method": "PayPal",
+    "Discount Applied": false
+  },
+  "amount": 199.09,
+  "order_date": "2022-07-10T00:00:00.000Z",
+  "pele_death": "2022-12-29T00:00:00.000Z",
+  "elapsed": {
+    "total_days": 172,
+    "years": 0,
+    "days": 172
+  },
+  "answer": "The most expensive order from 2022 cost $199.09. It was placed on 2022-07-10, which was 0 year(s) and 172 day(s) before Pelé died on 2022-12-29.",
+  "finished_at": "2026-02-28T12:34:06.955Z"
 }
