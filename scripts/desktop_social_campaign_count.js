@@ -100,76 +100,24 @@ class TLSSocketProxy extends Duplex {
       }
     });
   }
-  _flush() {
-    if (!this.connected || !this.ws || this.ws.readyState !== WebSocket.OPEN) return;
-    while (this._pendingWrites.length) {
-      const { chunk, encoding, callback } = this._pendingWrites.shift();
-      this._writeNow(chunk, encoding, callback);
-    }
-  }
-  _writeNow(chunk, encoding, callback) {
-    try {
-      this._refreshTimeout();
-      const payload = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk, encoding);
-      const frame = Buffer.concat([Buffer.from([2]), payload]);
-      this.ws.send(frame, callback);
-    } catch (e) {
-      callback(e);
-    }
-  }
+  _flush() { if (!this.connected || !this.ws || this.ws.readyState !== WebSocket.OPEN) return; while (this._pendingWrites.length) { const { chunk, encoding, callback } = this._pendingWrites.shift(); this._writeNow(chunk, encoding, callback); } }
+  _writeNow(chunk, encoding, callback) { try { this._refreshTimeout(); const payload = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk, encoding); const frame = Buffer.concat([Buffer.from([2]), payload]); this.ws.send(frame, callback); } catch (e) { callback(e); } }
   _read() {}
-  _write(chunk, encoding, callback) {
-    if (this.destroyed) return callback(new Error('Socket destroyed'));
-    if (!this.connected || !this.ws || this.ws.readyState !== WebSocket.OPEN) {
-      this._pendingWrites.push({ chunk, encoding, callback });
-      return;
-    }
-    this._writeNow(chunk, encoding, callback);
-  }
-  _destroy(err, callback) {
-    this._clearTimeout();
-    while (this._pendingWrites.length) {
-      const item = this._pendingWrites.shift();
-      try { item.callback(err || new Error('Socket destroyed')); } catch {}
-    }
-    try {
-      if (this.ws && (this.ws.readyState === WebSocket.OPEN || this.ws.readyState === WebSocket.CONNECTING)) {
-        this.ws.close(4100, err ? String(err.message || err) : 'Driver closed socket');
-      }
-    } catch {}
-    callback(err);
-  }
+  _write(chunk, encoding, callback) { if (this.destroyed) return callback(new Error('Socket destroyed')); if (!this.connected || !this.ws || this.ws.readyState !== WebSocket.OPEN) { this._pendingWrites.push({ chunk, encoding, callback }); return; } this._writeNow(chunk, encoding, callback); }
+  _destroy(err, callback) { this._clearTimeout(); while (this._pendingWrites.length) { const item = this._pendingWrites.shift(); try { item.callback(err || new Error('Socket destroyed')); } catch {} } try { if (this.ws && (this.ws.readyState === WebSocket.OPEN || this.ws.readyState === WebSocket.CONNECTING)) { this.ws.close(4100, err ? String(err.message || err) : 'Driver closed socket'); } } catch {} callback(err); }
   setKeepAlive() { return this; }
   setNoDelay() { return this; }
-  setTimeout(ms, cb) {
-    this._timeout = ms;
-    if (typeof cb === 'function') this.once('timeout', cb);
-    this._refreshTimeout();
-    return this;
-  }
+  setTimeout(ms, cb) { this._timeout = ms; if (typeof cb === 'function') this.once('timeout', cb); this._refreshTimeout(); return this; }
   _clearTimeout() { if (this._timeoutId) { clearTimeout(this._timeoutId); this._timeoutId = null; } }
-  _refreshTimeout() {
-    this._clearTimeout();
-    if (typeof this._timeout === 'number' && this._timeout > 0 && Number.isFinite(this._timeout)) {
-      this._timeoutId = setTimeout(() => this.emit('timeout'), this._timeout);
-    }
-  }
-  once(event, listener) {
-    if (event === 'secureConnect' && this.connected) {
-      queueMicrotask(() => listener());
-      return this;
-    }
-    return super.once(event, listener);
-  }
+  _refreshTimeout() { this._clearTimeout(); if (typeof this._timeout === 'number' && this._timeout > 0 && Number.isFinite(this._timeout)) { this._timeoutId = setTimeout(() => this.emit('timeout'), this._timeout); } }
+  once(event, listener) { if (event === 'secureConnect' && this.connected) { queueMicrotask(() => listener()); return this; } return super.once(event, listener); }
 }
 
 const origTlsConnect = tls.connect.bind(tls);
 tls.connect = function patchedTlsConnect(options, callback) {
   const host = options && (options.host || options.servername);
   const port = options && options.port;
-  if (host === 'cloud.mongodb.com' || host === 'account.mongodb.com' || port === 443) {
-    return origTlsConnect(options, callback);
-  }
+  if (host === 'cloud.mongodb.com' || host === 'account.mongodb.com' || port === 443) return origTlsConnect(options, callback);
   const sock = new TLSSocketProxy(options || {});
   if (typeof callback === 'function') sock.once('secureConnect', callback);
   return sock;
