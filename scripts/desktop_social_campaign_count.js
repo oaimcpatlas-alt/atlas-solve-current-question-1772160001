@@ -137,62 +137,22 @@ function ser(v) {
 }
 
 async function main() {
-  const out = {
-    started_at: new Date().toISOString(),
-    question: 'Total sold for Sports video games in February 2023',
-    cookieHeaderLength: COOKIE_HEADER.length,
-  };
+  const out = { started_at: new Date().toISOString(), question: 'Total sold for Sports video games in February 2023', cookieHeaderLength: COOKIE_HEADER.length };
   write(out);
-  const client = new MongoClient(MONGO_URI, {
-    serverSelectionTimeoutMS: 60000,
-    connectTimeoutMS: 60000,
-    socketTimeoutMS: 60000,
-    directConnection: false,
-    monitorCommands: false,
-  });
-
+  const client = new MongoClient(MONGO_URI, { serverSelectionTimeoutMS: 60000, connectTimeoutMS: 60000, socketTimeoutMS: 60000, directConnection: false, monitorCommands: false });
   try {
     await client.connect();
     out.ping = await client.db('admin').command({ ping: 1 });
     const db = client.db('video_game_store');
     out.collections = (await db.listCollections().toArray()).map(x => x.name);
-
     const coll = db.collection('Customers');
     const start = new Date('2023-02-01T00:00:00.000Z');
     const end = new Date('2023-03-01T00:00:00.000Z');
     const filter = { 'Purchase Date': { $gte: start, $lt: end }, 'Game Genre': 'Sports' };
-
     out.matchingCount = await coll.countDocuments(filter);
-    out.aggregate = (await coll.aggregate([
-      { $match: filter },
-      {
-        $group: {
-          _id: null,
-          totalPurchaseAmount: { $sum: '$Purchase Amount' },
-          avgPurchaseAmount: { $avg: '$Purchase Amount' },
-          minPurchaseAmount: { $min: '$Purchase Amount' },
-          maxPurchaseAmount: { $max: '$Purchase Amount' }
-        }
-      }
-    ]).toArray()).map(ser);
-
-    out.sample = (await coll.find(filter, {
-      projection: {
-        _id: 0,
-        'Customer ID': 1,
-        'Purchase Date': 1,
-        'Game Title': 1,
-        'Game Genre': 1,
-        'Purchase Amount': 1,
-        'Preferred Platform': 1,
-        'Membership Status': 1
-      }
-    }).sort({ 'Purchase Amount': -1 }).limit(10).toArray()).map(ser);
-
-    out.answer = {
-      matchingCount: out.matchingCount,
-      totalPurchaseAmount: out.aggregate[0] ? out.aggregate[0].totalPurchaseAmount : null
-    };
+    out.aggregate = (await coll.aggregate([{ $match: filter }, { $group: { _id: null, totalPurchaseAmount: { $sum: '$Purchase Amount' }, avgPurchaseAmount: { $avg: '$Purchase Amount' }, minPurchaseAmount: { $min: '$Purchase Amount' }, maxPurchaseAmount: { $max: '$Purchase Amount' } } }]).toArray()).map(ser);
+    out.sample = (await coll.find(filter, { projection: { _id: 0, 'Customer ID': 1, 'Purchase Date': 1, 'Game Title': 1, 'Game Genre': 1, 'Purchase Amount': 1, 'Preferred Platform': 1, 'Membership Status': 1 } }).sort({ 'Purchase Amount': -1 }).limit(10).toArray()).map(ser);
+    out.answer = { matchingCount: out.matchingCount, totalPurchaseAmount: out.aggregate[0] ? out.aggregate[0].totalPurchaseAmount : null };
   } catch (e) {
     out.error = String(e && e.message || e);
     out.stack = e && e.stack || null;
