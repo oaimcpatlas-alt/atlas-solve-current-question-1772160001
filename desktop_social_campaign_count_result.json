@@ -1,0 +1,351 @@
+{
+  "started_at": "2026-02-28T07:24:11.458Z",
+  "documentary_release_date": "2014-10-10",
+  "year_after_release": 2015,
+  "month_considered": "2015-12",
+  "bitcoin_lowest_price_date_in_month": "2015-12-02",
+  "target_launch_date": "2015-12-03",
+  "cookieHeaderLength": 1852,
+  "ping": {
+    "ok": 1
+  },
+  "databases": [
+    "sample_mflix",
+    "video_game_store"
+  ],
+  "collectionSummaries": [
+    {
+      "db": "video_game_store",
+      "collection": "Social Media",
+      "scanned": 2794,
+      "campaignishDocs": 2794,
+      "rawMatchCount": 1,
+      "uniqueCampaignCount": 1,
+      "topDateFields": [
+        [
+          "Date",
+          2794
+        ]
+      ],
+      "topSocialFields": [
+        [
+          "Social Media Platform",
+          2794
+        ]
+      ],
+      "topDesktopFields": [
+        [
+          "Social Media Platform",
+          2794
+        ]
+      ],
+      "matchedDocs": [
+        {
+          "campaignId": "6855af93b918c4dd9fada269",
+          "campaignName": "6855af93b918c4dd9fada269",
+          "dateField": {
+            "key": "Date",
+            "day": "2015-12-03",
+            "score": 8
+          },
+          "socialField": {
+            "key": "Social Media Platform",
+            "value": "YouTube",
+            "score": 32
+          },
+          "desktopField": {
+            "key": "Social Media Platform",
+            "value": "YouTube",
+            "score": 8
+          },
+          "sample": {
+            "_id": "6855af93b918c4dd9fada269",
+            "Date": "2015-12-03T00:00:00.000Z",
+            "Social Media Platform": "YouTube",
+            "Post ID": "POST01595",
+            "Post Type": "Video",
+            "Likes": 3214,
+            "Comments": 348,
+            "Shares": 528,
+            "Views": 19325
+          }
+        }
+      ],
+      "score": 5838
+    },
+    {
+      "db": "video_game_store",
+      "collection": "Customers",
+      "scanned": 2794,
+      "campaignishDocs": 2794,
+      "rawMatchCount": 0,
+      "uniqueCampaignCount": 0,
+      "topDateFields": [
+        [
+          "Purchase Date",
+          2794
+        ]
+      ],
+      "topSocialFields": [
+        [
+          "Preferred Platform",
+          2089
+        ],
+        [
+          "Referral Source",
+          705
+        ]
+      ],
+      "topDesktopFields": [
+        [
+          "Preferred Platform",
+          1872
+        ]
+      ],
+      "matchedDocs": [],
+      "score": 5588
+    },
+    {
+      "db": "video_game_store",
+      "collection": "Purchase History",
+      "scanned": 2794,
+      "campaignishDocs": 2794,
+      "rawMatchCount": 0,
+      "uniqueCampaignCount": 0,
+      "topDateFields": [
+        [
+          "Transaction Date",
+          2794
+        ]
+      ],
+      "topSocialFields": [
+        [
+          "Product Category",
+          2794
+        ]
+      ],
+      "topDesktopFields": [],
+      "matchedDocs": [],
+      "score": 5588
+    },
+    {
+      "db": "sample_mflix",
+      "collection": "theaters",
+      "scanned": 1564,
+      "campaignishDocs": 1564,
+      "rawMatchCount": 0,
+      "uniqueCampaignCount": 0,
+      "topDateFields": [],
+      "topSocialFields": [
+        [
+          "location.geo.type",
+          1564
+        ]
+      ],
+      "topDesktopFields": [],
+      "matchedDocs": [],
+      "score": 3128
+    },
+    {
+      "db": "sample_mflix",
+      "collection": "comments",
+      "scanned": 12001,
+      "campaignishDocs": 0,
+      "rawMatchCount": 0,
+      "uniqueCampaignCount": 0,
+      "topDateFields": [
+        [
+          "date",
+          12000
+        ]
+      ],
+      "topSocialFields": [],
+      "topDesktopFields": [],
+      "matchedDocs": [],
+      "score": 0
+    },
+    {
+      "db": "sample_mflix",
+      "collection": "embedded_movies",
+      "scanned": 3483,
+      "campaignishDocs": 0,
+      "rawMatchCount": 0,
+      "uniqueCampaignCount": 0,
+      "topDateFields": [],
+      "topSocialFields": [
+        [
+          "type",
+          3440
+        ],
+        [
+          "tomatoes.website",
+          41
+        ],
+        [
+          "fullplot",
+          2
+        ]
+      ],
+      "topDesktopFields": [],
+      "matchedDocs": [],
+      "score": 0
+    },
+    {
+      "db": "sample_mflix",
+      "collection": "movies",
+      "scanned": 12001,
+      "campaignishDocs": 0,
+      "rawMatchCount": 0,
+      "uniqueCampaignCount": 0,
+      "topDateFields": [],
+      "topSocialFields": [
+        [
+          "type",
+          11994
+        ],
+        [
+          "tomatoes.website",
+          4
+        ],
+        [
+          "writers",
+          1
+        ],
+        [
+          "fullplot",
+          1
+        ]
+      ],
+      "topDesktopFields": [],
+      "matchedDocs": [],
+      "score": 0
+    },
+    {
+      "db": "sample_mflix",
+      "collection": "sessions",
+      "scanned": 1,
+      "campaignishDocs": 0,
+      "rawMatchCount": 0,
+      "uniqueCampaignCount": 0,
+      "topDateFields": [],
+      "topSocialFields": [],
+      "topDesktopFields": [],
+      "matchedDocs": [],
+      "score": 0
+    },
+    {
+      "db": "sample_mflix",
+      "collection": "users",
+      "scanned": 185,
+      "campaignishDocs": 0,
+      "rawMatchCount": 0,
+      "uniqueCampaignCount": 0,
+      "topDateFields": [],
+      "topSocialFields": [],
+      "topDesktopFields": [],
+      "matchedDocs": [],
+      "score": 0
+    },
+    {
+      "db": "video_game_store",
+      "collection": "Delivery Logistics",
+      "scanned": 2794,
+      "campaignishDocs": 0,
+      "rawMatchCount": 0,
+      "uniqueCampaignCount": 0,
+      "topDateFields": [
+        [
+          "Order Date",
+          2794
+        ]
+      ],
+      "topSocialFields": [],
+      "topDesktopFields": [],
+      "matchedDocs": [],
+      "score": 0
+    },
+    {
+      "db": "video_game_store",
+      "collection": "Digital Analytics",
+      "scanned": 2794,
+      "campaignishDocs": 0,
+      "rawMatchCount": 0,
+      "uniqueCampaignCount": 0,
+      "topDateFields": [
+        [
+          "Date",
+          2794
+        ]
+      ],
+      "topSocialFields": [],
+      "topDesktopFields": [],
+      "matchedDocs": [],
+      "score": 0
+    },
+    {
+      "db": "video_game_store",
+      "collection": "Inventory",
+      "scanned": 2794,
+      "campaignishDocs": 0,
+      "rawMatchCount": 0,
+      "uniqueCampaignCount": 0,
+      "topDateFields": [
+        [
+          "Inventory Date",
+          2794
+        ]
+      ],
+      "topSocialFields": [],
+      "topDesktopFields": [],
+      "matchedDocs": [],
+      "score": 0
+    }
+  ],
+  "bestCollection": {
+    "db": "video_game_store",
+    "collection": "Social Media",
+    "uniqueCampaignCount": 1,
+    "rawMatchCount": 1,
+    "score": 5838
+  },
+  "answer": {
+    "campaign_count": 1,
+    "db": "video_game_store",
+    "collection": "Social Media",
+    "target_launch_date": "2015-12-03",
+    "bitcoin_lowest_price_date_in_month": "2015-12-02",
+    "matching_campaign_samples": [
+      {
+        "campaignId": "6855af93b918c4dd9fada269",
+        "campaignName": "6855af93b918c4dd9fada269",
+        "dateField": {
+          "key": "Date",
+          "day": "2015-12-03",
+          "score": 8
+        },
+        "socialField": {
+          "key": "Social Media Platform",
+          "value": "YouTube",
+          "score": 32
+        },
+        "desktopField": {
+          "key": "Social Media Platform",
+          "value": "YouTube",
+          "score": 8
+        },
+        "sample": {
+          "_id": "6855af93b918c4dd9fada269",
+          "Date": "2015-12-03T00:00:00.000Z",
+          "Social Media Platform": "YouTube",
+          "Post ID": "POST01595",
+          "Post Type": "Video",
+          "Likes": 3214,
+          "Comments": 348,
+          "Shares": 528,
+          "Views": 19325
+        }
+      }
+    ]
+  },
+  "finished_at": "2026-02-28T07:27:48.631Z"
+}
