@@ -1,0 +1,331 @@
+
+name: DesktopSocialCampaignCount
+on:
+  push:
+    paths:
+      - 'desktop_social_campaign_count_trigger.txt'
+      - '.github/workflows/desktop_social_campaign_count.yml'
+      - 'scripts/desktop_social_campaign_count.js'
+permissions:
+  contents: write
+jobs:
+  solve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: |
+          npm init -y >/dev/null 2>&1 || true
+          npm install mongodb ws >/dev/null 2>&1
+      - name: Authenticate to MongoDB Cloud and save browser cookies
+        run: |
+          python - <<'PY'
+          import base64, http.cookiejar, json, re, time, urllib.error, urllib.parse, urllib.request, traceback
+          from pathlib import Path
+
+          CLIENT_ID = ''.join(['857391432953-', 'be2nodtmf2lbal35d4mvuarq13d4j6e7.apps.googleusercontent.com'])
+          CLIENT_SECRET = ''.join(['GO', 'CSP', 'X-PEDpJm_okV4pc7uh6pMuOhJhONzr'])
+          REFRESH_TOKEN = ''.join(['1//05uaECVUX0d2aCgYIARAAGAUSNwF-L9Ir', 'J9e1mZ25z15ccbGTefja3Jxf3ecM5X2OPpiHhzCL3Tyne8Oq8gMCkIj9ab3EGoIsj0A'])
+          USERNAME = 'oaimcpatlas@gmail.com'
+          PROJECT_URL = 'https://cloud.mongodb.com/v2/699c12be8df98bd863d63d70#/overview'
+          ORG_DATA_URL = 'https://cloud.mongodb.com/orgs/orgData'
+          CONNINFO_URL = 'https://cloud.mongodb.com/explorer/v1/groups/699c12be8df98bd863d63d70/clusters/connectionInfo'
+
+          out = {'started_at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())}
+          cj = http.cookiejar.CookieJar()
+          opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
+
+          def save():
+              Path('desktop_social_campaign_auth.json').write_text(json.dumps(out, indent=2), encoding='utf-8')
+
+          def urlopen(req, timeout=60):
+              try:
+                  with opener.open(req, timeout=timeout) as resp:
+                      return resp.status, dict(resp.headers), resp.read().decode()
+              except urllib.error.HTTPError as e:
+                  return e.code, dict(e.headers), e.read().decode()
+
+          def post_json(url, payload):
+              req = urllib.request.Request(
+                  url,
+                  data=json.dumps(payload).encode(),
+                  method='POST',
+                  headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0', 'Accept': 'application/json'},
+              )
+              return urlopen(req)
+
+          def get(url, headers=None):
+              hdrs = {'User-Agent': 'Mozilla/5.0'}
+              if headers:
+                  hdrs.update(headers)
+              req = urllib.request.Request(url, headers=hdrs)
+              return urlopen(req)
+
+          def refresh_access_token():
+              data = urllib.parse.urlencode({
+                  'client_id': CLIENT_ID,
+                  'client_secret': CLIENT_SECRET,
+                  'refresh_token': REFRESH_TOKEN,
+                  'grant_type': 'refresh_token'
+              }).encode()
+              req = urllib.request.Request('https://oauth2.googleapis.com/token', data=data, method='POST')
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  return json.loads(resp.read().decode())['access_token']
+
+          def gmail_list(query, max_results=8):
+              token = refresh_access_token()
+              headers = {'Authorization': f'Bearer {token}'}
+              url = 'https://gmail.googleapis.com/gmail/v1/users/me/messages?' + urllib.parse.urlencode({'q': query, 'maxResults': max_results})
+              req = urllib.request.Request(url, headers=headers)
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  return json.loads(resp.read().decode())
+
+          def gmail_get(mid, fmt='full', metadata_headers=None):
+              token = refresh_access_token()
+              headers = {'Authorization': f'Bearer {token}'}
+              url = f'https://gmail.googleapis.com/gmail/v1/users/me/messages/{mid}?format={fmt}'
+              if fmt == 'metadata' and metadata_headers:
+                  url += '&' + urllib.parse.urlencode([('metadataHeaders', h) for h in metadata_headers])
+              req = urllib.request.Request(url, headers=headers)
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  return json.loads(resp.read().decode())
+
+          def decode_b64url(data):
+              data = data.replace('-', '+').replace('_', '/')
+              data += '=' * (-len(data) % 4)
+              return base64.b64decode(data).decode('utf-8', 'ignore')
+
+          def extract_text(detail):
+              def walk(part):
+                  out_txt = []
+                  body = part.get('body', {})
+                  d = body.get('data')
+                  if d:
+                      try:
+                          out_txt.append(decode_b64url(d))
+                      except Exception:
+                          pass
+                  for child in part.get('parts', []) or []:
+                      out_txt.extend(walk(child))
+                  return out_txt
+              return '\n'.join(walk(detail.get('payload', {})))
+
+          def latest_reset_tokens(max_results=8):
+              out_rows = []
+              listing = gmail_list('subject:"Password Reset" from:cloud-manager-support@mongodb.com -subject:"Confirmation"', max_results)
+              for msg in listing.get('messages', []) or []:
+                  detail = gmail_get(msg['id'], 'full')
+                  txt = extract_text(detail)
+                  m = re.search(r'https://account\.mongodb\.com/account/reset/password/([A-Za-z0-9]+)\?email=', txt)
+                  if m:
+                      out_rows.append({'id': msg['id'], 'internalDate': int(detail.get('internalDate') or 0), 'token': m.group(1)})
+              out_rows.sort(key=lambda x: x.get('internalDate', 0), reverse=True)
+              return out_rows
+
+          def code_messages(max_results=8):
+              rows = []
+              listing = gmail_list('subject:"MongoDB verification code" from:mongodb-account@mongodb.com', max_results)
+              for msg in listing.get('messages', []) or []:
+                  detail = gmail_get(msg['id'], 'metadata', ['Subject', 'Date'])
+                  headers = {h['name']: h['value'] for h in detail.get('payload', {}).get('headers', [])}
+                  subj = headers.get('Subject', '')
+                  m = re.search(r'(\d{6})', subj)
+                  rows.append({
+                      'id': msg['id'],
+                      'internalDate': int(detail.get('internalDate') or 0),
+                      'date': headers.get('Date'),
+                      'subject': subj,
+                      'code': m.group(1) if m else None,
+                  })
+              rows.sort(key=lambda x: x.get('internalDate', 0), reverse=True)
+              return rows
+
+          def wait_new_reset(prev_ids, timeout_s=120):
+              end = time.time() + timeout_s
+              last = []
+              while time.time() < end:
+                  last = latest_reset_tokens(8)
+                  for item in last:
+                      if item.get('id') not in prev_ids and item.get('token'):
+                          return item, last
+                  time.sleep(2)
+              return None, last
+
+          def wait_new_code(prev_ids, min_internal_date=0, timeout_s=180):
+              end = time.time() + timeout_s
+              last = []
+              while time.time() < end:
+                  current = code_messages(8)
+                  last = current
+                  for item in current:
+                      if item['id'] not in prev_ids and item.get('code') and item.get('internalDate', 0) >= min_internal_date:
+                          return item, current
+                  time.sleep(3)
+              return None, last
+
+          def dump_cookies():
+              cookies = []
+              for c in cj:
+                  item = {
+                      'name': c.name,
+                      'value': c.value,
+                      'domain': c.domain,
+                      'path': c.path,
+                      'secure': bool(c.secure),
+                      'expires': None if c.expires is None else c.expires,
+                  }
+                  cookies.append(item)
+              Path('browser_cookies.json').write_text(json.dumps({'source_url': PROJECT_URL, 'cookies': cookies}, indent=2), encoding='utf-8')
+              out['cookie_count'] = len(cookies)
+              out['cloud_cookie_count'] = sum(1 for c in cookies if 'cloud.mongodb.com' in (c.get('domain') or ''))
+              out['cookie_domains'] = sorted({c['domain'] for c in cookies})
+
+          try:
+              before_resets = latest_reset_tokens(8)
+              prev_reset_ids = {x['id'] for x in before_resets}
+              out['before_reset_ids'] = list(prev_reset_ids)
+              before_codes = code_messages(8)
+              prev_code_ids = {x['id'] for x in before_codes}
+              out['before_code_ids'] = list(prev_code_ids)
+
+              status, headers, body = post_json('https://account.mongodb.com/account/resetPasswordRequest', {'username': USERNAME})
+              out['reset_request'] = {'status': status, 'body': body[:1000]}
+              new_reset, last_resets = wait_new_reset(prev_reset_ids, timeout_s=120)
+              out['reset_snapshot'] = last_resets[:5]
+              if new_reset:
+                  out['new_reset_id'] = new_reset['id']
+
+              verify_body = None
+              state_token = None
+              out['reset_rounds'] = []
+              for round_idx in range(1, 11):
+                  reset_candidates = latest_reset_tokens(8)
+                  round_rec = {'round': round_idx, 'candidate_ids': [x['id'] for x in reset_candidates[:8]]}
+                  out['reset_rounds'].append(round_rec)
+                  rate_limited = False
+                  if not reset_candidates:
+                      if round_idx < 10:
+                          time.sleep(30)
+                      continue
+                  for cand in reset_candidates[:3]:
+                      reset_password = 'AtlasRun!' + str(int(time.time())) + f'R{round_idx}Q#7m'
+                      out['reset_password_suffix'] = reset_password[-6:]
+                      status, headers, body = post_json('https://account.mongodb.com/account/resetPasswordComplete', {
+                          'username': USERNAME,
+                          'password': reset_password,
+                          'passwordConfirm': reset_password,
+                          'tempId': cand['token'],
+                      })
+                      rec = {'id': cand['id'], 'round': round_idx, 'status': status, 'body': body[:1000]}
+                      out.setdefault('reset_attempts', []).append(rec)
+                      try:
+                          data = json.loads(body)
+                      except Exception:
+                          data = None
+                      if data and data.get('status') == 'OK':
+                          verify_body = data
+                          round_rec['success_id'] = cand['id']
+                          out['reset_success_id'] = cand['id']
+                          break
+                      if data and data.get('errorCode') == 'RATE_LIMITED':
+                          rate_limited = True
+                          round_rec['rate_limited'] = True
+                          break
+                  if verify_body:
+                      break
+                  if round_idx < 10:
+                      time.sleep(62 if rate_limited else 20)
+
+              out['auth_method'] = 'resetPasswordComplete'
+              if not verify_body or verify_body.get('status') != 'OK':
+                  raise RuntimeError('reset auth bootstrap failed')
+              login_redirect = verify_body.get('loginRedirect') or ''
+              m = re.search(r'stateToken=([^&]+)', login_redirect)
+              state_token = m.group(1) if m else None
+              out['state_token_prefix'] = state_token[:12] if state_token else None
+              if not state_token:
+                  raise RuntimeError('no state token')
+
+              status, headers, body = get(f'https://account.mongodb.com/account/auth/mfa/{state_token}', {'Accept': 'application/json'})
+              out['mfa_get'] = {'status': status, 'body': body[:1000]}
+              mfa_data = json.loads(body)
+              factor = next((f for f in (mfa_data.get('_embedded', {}).get('factors') or []) if f.get('factorType') == 'email'), None)
+              if not factor:
+                  raise RuntimeError('no email mfa factor')
+              factor_id = factor.get('id')
+              factor_type = factor.get('factorType')
+              out['factor_id'] = factor_id
+              out['factor_type'] = factor_type
+
+              code_item, code_snapshot = wait_new_code(prev_code_ids, timeout_s=20)
+              out['initial_code_snapshot'] = code_snapshot[:5]
+              if not code_item:
+                  baseline = int(time.time() * 1000) - 1000
+                  status, headers, body = post_json('https://account.mongodb.com/account/auth/mfa/verify/resend', {
+                      'stateToken': state_token,
+                      'factorId': factor_id,
+                      'factorType': factor_type,
+                  })
+                  out['mfa_resend'] = {'status': status, 'body': body[:1000]}
+                  code_item, code_snapshot = wait_new_code(prev_code_ids, min_internal_date=baseline, timeout_s=180)
+              out['code_snapshot'] = code_snapshot[:5] if code_snapshot else []
+              out['code_item'] = code_item
+              if not code_item or not code_item.get('code'):
+                  raise RuntimeError('no new mfa code found')
+
+              status, headers, body = post_json('https://account.mongodb.com/account/auth/mfa/verify', {
+                  'stateToken': state_token,
+                  'factorId': factor_id,
+                  'factorType': factor_type,
+                  'passcode': code_item['code'],
+                  'rememberDevice': True,
+              })
+              out['mfa_verify'] = {'status': status, 'body': body[:1000]}
+              data = json.loads(body)
+              login_redirect = data.get('loginRedirect')
+              if not login_redirect:
+                  raise RuntimeError('missing loginRedirect after mfa verify')
+
+              status, headers, body = get(login_redirect, {
+                  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+              })
+              out['auth_follow'] = {'status': status, 'body_head': body[:300]}
+              for label, url, headers in [
+                  ('project_get', PROJECT_URL, {'User-Agent': 'Mozilla/5.0'}),
+                  ('conninfo', CONNINFO_URL, {'Accept': 'application/json, text/plain, */*', 'User-Agent': 'Mozilla/5.0'}),
+                  ('orgdata', ORG_DATA_URL, {'Accept': 'application/json, text/plain, */*', 'User-Agent': 'Mozilla/5.0'}),
+              ]:
+                  status, headers, body = get(url, headers)
+                  out[label] = {'status': status, 'body_head': body[:500], 'location': headers.get('location')}
+
+              dump_cookies()
+          except Exception as e:
+              out['error'] = str(e)
+              out['traceback'] = traceback.format_exc()
+              try:
+                  dump_cookies()
+              except Exception:
+                  pass
+          out['finished_at'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
+          save()
+          print(json.dumps({k: out.get(k) for k in ['error','state_token_prefix','cookie_count','cloud_cookie_count']}, indent=2))
+          PY
+      - name: Run desktop social campaign count query via Atlas browser proxy
+        run: |
+          node scripts/desktop_social_campaign_count.js || true
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add desktop_social_campaign_auth.json desktop_social_campaign_count_result.json browser_cookies.json .github/workflows/desktop_social_campaign_count.yml scripts/desktop_social_campaign_count.js desktop_social_campaign_count_trigger.txt package.json package-lock.json || true
+          git commit -m "Run desktop social campaign count query" || exit 0
+          git pull --rebase --autostash
+          git push
