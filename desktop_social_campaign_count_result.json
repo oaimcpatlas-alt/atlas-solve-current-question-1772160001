@@ -1,60 +1,8 @@
 {
-  "started_at": "2026-02-28T12:41:29.423Z",
+  "started_at": "2026-02-28T13:16:38.389Z",
   "question": "Total sold for Sports video games in February 2023",
-  "cookieHeaderLength": 1852,
-  "ping": {
-    "ok": 1
-  },
-  "collections": [
-    "Purchase History",
-    "Customers",
-    "Inventory",
-    "Digital Analytics",
-    "Delivery Logistics",
-    "Social Media"
-  ],
-  "matchingCount": 3,
-  "aggregate": [
-    {
-      "_id": null,
-      "totalPurchaseAmount": 329.47,
-      "avgPurchaseAmount": 109.82333333333334,
-      "minPurchaseAmount": 89.49,
-      "maxPurchaseAmount": 143.65
-    }
-  ],
-  "sample": [
-    {
-      "Customer ID": "CUST00719",
-      "Purchase Date": "2023-02-17T00:00:00.000Z",
-      "Game Title": "Game Title 120",
-      "Game Genre": "Sports",
-      "Purchase Amount": 143.65,
-      "Membership Status": "Non-Member",
-      "Preferred Platform": "Console"
-    },
-    {
-      "Customer ID": "CUST01809",
-      "Purchase Date": "2023-02-27T00:00:00.000Z",
-      "Game Title": "Game Title 62",
-      "Game Genre": "Sports",
-      "Purchase Amount": 96.33,
-      "Membership Status": "Non-Member",
-      "Preferred Platform": "Mobile"
-    },
-    {
-      "Customer ID": "CUST00015",
-      "Purchase Date": "2023-02-15T00:00:00.000Z",
-      "Game Title": "Game Title 144",
-      "Game Genre": "Sports",
-      "Purchase Amount": 89.49,
-      "Membership Status": "Member",
-      "Preferred Platform": "Mobile"
-    }
-  ],
-  "answer": {
-    "matchingCount": 3,
-    "totalPurchaseAmount": 329.47
-  },
-  "finished_at": "2026-02-28T12:41:32.054Z"
+  "cookieHeaderLength": 0,
+  "error": "Unexpected server response: 303",
+  "stack": "MongoServerSelectionError: Unexpected server response: 303\n    at Topology.selectServer (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:347:38)\n    at async Topology._connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:220:28)\n    at async Topology.connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:171:13)\n    at async topologyConnect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:258:17)\n    at async MongoClient._connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:271:13)\n    at async MongoClient.connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:196:13)\n    at async main (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/scripts/desktop_social_campaign_count.js:144:5)",
+  "finished_at": "2026-02-28T13:17:38.435Z"
 }
