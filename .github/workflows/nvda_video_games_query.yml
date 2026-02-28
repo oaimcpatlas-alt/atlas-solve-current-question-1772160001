@@ -1,0 +1,182 @@
+
+name: NVDA Video Game Titles Query
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/nvda_video_games_query.yml'
+      - 'nvda_video_games_trigger.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      MONGO_URI: "mongodb+srv://oaimcpatlas_db_user:pdVEIpUnn0quf2Mr@mcpatlas.zlknsyp.mongodb.net"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: |
+          pip install pymongo
+
+      - name: Query video game titles for NVDA peak date
+        run: |
+          python - <<'PY'
+          import json, os, traceback
+          from datetime import datetime, timedelta, timezone
+          from pymongo import MongoClient
+
+          TARGET_DATE = datetime(2017, 11, 24)
+          NEXT_DATE = TARGET_DATE + timedelta(days=1)
+
+          def ser(v):
+              t = type(v).__name__
+              if t == 'ObjectId':
+                  return str(v)
+              if isinstance(v, datetime):
+                  return v.isoformat()
+              if isinstance(v, list):
+                  return [ser(x) for x in v]
+              if isinstance(v, dict):
+                  return {str(k): ser(vv) for k, vv in v.items()}
+              return v
+
+          out = {
+              "target_date": TARGET_DATE.date().isoformat(),
+              "database": "video_game_store",
+          }
+
+          try:
+              client = MongoClient(
+                  os.environ["MONGO_URI"],
+                  serverSelectionTimeoutMS=60000,
+                  connectTimeoutMS=60000,
+                  socketTimeoutMS=60000,
+              )
+              out["ping"] = ser(client.admin.command({"ping": 1}))
+              db = client["video_game_store"]
+              out["collections"] = db.list_collection_names()
+
+              # Counts on the target day by likely date-bearing collections.
+              collection_date_fields = {
+                  "Customers": "Purchase Date",
+                  "Purchase History": "Transaction Date",
+                  "Inventory": "Inventory Date",
+                  "Digital Analytics": "Date",
+                  "Delivery Logistics": "Order Date",
+                  "Social Media": "Date",
+              }
+              counts = {}
+              for coll_name, date_field in collection_date_fields.items():
+                  coll = db[coll_name]
+                  filt = {date_field: {"$gte": TARGET_DATE, "$lt": NEXT_DATE}}
+                  try:
+                      counts[coll_name] = {
+                          "date_field": date_field,
+                          "count": coll.count_documents(filt),
+                      }
+                  except Exception as e:
+                      counts[coll_name] = {
+                          "date_field": date_field,
+                          "error": repr(e),
+                      }
+              out["counts_on_target_day"] = counts
+
+              customers = db["Customers"]
+              cust_filter = {"Purchase Date": {"$gte": TARGET_DATE, "$lt": NEXT_DATE}}
+              cust_proj = {
+                  "_id": 0,
+                  "Customer ID": 1,
+                  "Purchase Date": 1,
+                  "Game Title": 1,
+                  "Game Genre": 1,
+                  "Purchase Amount": 1,
+                  "Preferred Platform": 1,
+                  "Payment Method": 1,
+              }
+              customer_docs = list(customers.find(cust_filter, cust_proj).sort([("Game Title", 1), ("Customer ID", 1)]))
+              out["customer_transactions"] = ser(customer_docs)
+              titles = [doc.get("Game Title") for doc in customer_docs if doc.get("Game Title")]
+              out["game_titles_all"] = titles
+              out["game_titles_unique_sorted"] = sorted(set(titles))
+
+              # Also capture purchase history docs for the same day.
+              ph = db["Purchase History"]
+              ph_filter = {"Transaction Date": {"$gte": TARGET_DATE, "$lt": NEXT_DATE}}
+              ph_proj = {
+                  "_id": 0,
+                  "Transaction ID": 1,
+                  "Transaction Date": 1,
+                  "Customer Segment": 1,
+                  "Product Category": 1,
+                  "Purchase Amount ($)": 1,
+                  "Payment Method": 1,
+                  "Discount Applied": 1,
+              }
+              purchase_history_docs = list(ph.find(ph_filter, ph_proj).sort([("Transaction ID", 1)]))
+              out["purchase_history_transactions"] = ser(purchase_history_docs)
+
+              # Broad scan across all collections for title-bearing fields on that date.
+              broad = []
+              for coll_name, date_field in collection_date_fields.items():
+                  coll = db[coll_name]
+                  filt = {date_field: {"$gte": TARGET_DATE, "$lt": NEXT_DATE}}
+                  for doc in coll.find(filt).limit(50):
+                      titleish = {k: v for k, v in doc.items() if 'title' in str(k).lower()}
+                      if titleish:
+                          broad.append({
+                              "collection": coll_name,
+                              "date_field": date_field,
+                              "doc": ser(doc),
+                              "titleish_fields": ser(titleish),
+                          })
+              out["docs_with_title_fields_on_target_day"] = broad
+
+          except Exception as e:
+              out["error"] = str(e)
+              out["traceback"] = traceback.format_exc()
+          finally:
+              try:
+                  client.close()
+              except Exception:
+                  pass
+
+          os.makedirs("outputs", exist_ok=True)
+          with open("outputs/nvda_video_games_result.json", "w", encoding="utf-8") as f:
+              json.dump(out, f, indent=2)
+          print(json.dumps({
+              "target_date": out.get("target_date"),
+              "counts_on_target_day": out.get("counts_on_target_day"),
+              "game_titles_unique_sorted": out.get("game_titles_unique_sorted"),
+              "error": out.get("error"),
+          }, indent=2)[:20000])
+          PY
+
+      - if: always()
+        name: Commit result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add outputs/nvda_video_games_result.json
+          if git diff --cached --quiet; then
+            echo "No result changes"
+            exit 0
+          fi
+          git commit -m "Add NVDA video game titles query result" || exit 0
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0 || true
+            sleep 10
+          done
+          exit 0
