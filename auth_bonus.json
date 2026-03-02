@@ -1,53 +1,220 @@
 {
-  "started_at": "2026-03-02T04:36:18Z",
-  "before_reset_ids": [],
+  "started_at": "2026-03-02T04:44:42Z",
+  "before_reset_ids": [
+    "19caccc48fd3f65c",
+    "19cacb8be63f6d29",
+    "19caccb4561c3a0f",
+    "19cacce28ae9df8b",
+    "19cacd5410c93786",
+    "19cacc11b7d51b36",
+    "19cacb9609070b6c",
+    "19cacc7bebdb11d6"
+  ],
   "before_code_ids": [
-    "19cac21b32f3618a",
-    "19cac021df7b4181",
-    "19cac0f705738868",
-    "19cacc67cd296794",
-    "19cac1136b9ed37e",
     "19cac21c4b16c50d",
+    "19cac21b32f3618a",
+    "19cacc67cd296794",
+    "19cac0f705738868",
+    "19cac1136b9ed37e",
+    "19cacc6f29782944",
     "19cacb46480d73d8",
-    "19cacc6f29782944"
+    "19cac021df7b4181"
   ],
   "reset_request": {
     "status": 200,
     "body": "{\"resource\":\"/account/resetPasswordRequest\",\"errorCode\":\"NONE\",\"version\":\"1\",\"status\":\"OK\"}"
   },
-  "reset_snapshot": [],
+  "reset_snapshot": [
+    {
+      "id": "19cacdceec62c2ff",
+      "internalDate": 1772426685000,
+      "token": "875a633426b4367f0578de8d87a13d90ee1376b937106930c08354ae3a7e28e8"
+    },
+    {
+      "id": "19cacd5410c93786",
+      "internalDate": 1772426182000,
+      "token": "5940abfe5ebd85334d9673dff3b3d5fcce3ad625482371e423b29279fc6eac45"
+    },
+    {
+      "id": "19cacce28ae9df8b",
+      "internalDate": 1772425717000,
+      "token": "0696ee56c06df29ca79b98dc5eef3e41acaf72fdc8b5f2000a033013e87a1694"
+    },
+    {
+      "id": "19caccc48fd3f65c",
+      "internalDate": 1772425594000,
+      "token": "b082c0321bb3265a0ac0e2ea9f2b94cb75195883c6404832c665cc66b70779b7"
+    },
+    {
+      "id": "19caccb4561c3a0f",
+      "internalDate": 1772425528000,
+      "token": "96597de7e69b257b26340eecc0a5d4a0228aac0a1c4dbf6297b8315843e3cb88"
+    }
+  ],
+  "new_reset_id": "19cacdceec62c2ff",
   "reset_rounds": [
     {
       "round": 1,
-      "candidate_ids": []
+      "candidate_ids": [
+        "19cacdceec62c2ff",
+        "19cacd5410c93786",
+        "19cacce28ae9df8b",
+        "19caccc48fd3f65c",
+        "19caccb4561c3a0f",
+        "19cacc7bebdb11d6",
+        "19cacc11b7d51b36",
+        "19cacb9609070b6c"
+      ],
+      "rate_limited": true
     },
     {
       "round": 2,
-      "candidate_ids": []
+      "candidate_ids": [
+        "19cacdceec62c2ff",
+        "19cacd5410c93786",
+        "19cacce28ae9df8b",
+        "19caccc48fd3f65c",
+        "19caccb4561c3a0f",
+        "19cacc7bebdb11d6",
+        "19cacc11b7d51b36",
+        "19cacb9609070b6c"
+      ],
+      "rate_limited": true
     },
     {
       "round": 3,
-      "candidate_ids": []
+      "candidate_ids": [
+        "19cacdceec62c2ff",
+        "19cacd5410c93786",
+        "19cacce28ae9df8b",
+        "19caccc48fd3f65c",
+        "19caccb4561c3a0f",
+        "19cacc7bebdb11d6",
+        "19cacc11b7d51b36",
+        "19cacb9609070b6c"
+      ],
+      "rate_limited": true
     },
     {
       "round": 4,
-      "candidate_ids": []
+      "candidate_ids": [
+        "19cacdceec62c2ff",
+        "19cacd5410c93786",
+        "19cacce28ae9df8b",
+        "19caccc48fd3f65c",
+        "19caccb4561c3a0f",
+        "19cacc7bebdb11d6",
+        "19cacc11b7d51b36",
+        "19cacb9609070b6c"
+      ],
+      "rate_limited": true
     },
     {
       "round": 5,
-      "candidate_ids": []
+      "candidate_ids": [
+        "19cacdceec62c2ff",
+        "19cacd5410c93786",
+        "19cacce28ae9df8b",
+        "19caccc48fd3f65c",
+        "19caccb4561c3a0f",
+        "19cacc7bebdb11d6",
+        "19cacc11b7d51b36",
+        "19cacb9609070b6c"
+      ],
+      "rate_limited": true
     },
     {
       "round": 6,
-      "candidate_ids": []
+      "candidate_ids": [
+        "19cacdceec62c2ff",
+        "19cacd5410c93786",
+        "19cacce28ae9df8b",
+        "19caccc48fd3f65c",
+        "19caccb4561c3a0f",
+        "19cacc7bebdb11d6",
+        "19cacc11b7d51b36",
+        "19cacb9609070b6c"
+      ],
+      "rate_limited": true
     },
     {
       "round": 7,
-      "candidate_ids": []
+      "candidate_ids": [
+        "19cacdceec62c2ff",
+        "19cacd5410c93786",
+        "19cacce28ae9df8b",
+        "19caccc48fd3f65c",
+        "19caccb4561c3a0f",
+        "19cacc7bebdb11d6",
+        "19cacc11b7d51b36",
+        "19cacb9609070b6c"
+      ],
+      "rate_limited": true
     },
     {
       "round": 8,
-      "candidate_ids": []
+      "candidate_ids": [
+        "19cacdceec62c2ff",
+        "19cacd5410c93786",
+        "19cacce28ae9df8b",
+        "19caccc48fd3f65c",
+        "19caccb4561c3a0f",
+        "19cacc7bebdb11d6",
+        "19cacc11b7d51b36",
+        "19cacb9609070b6c"
+      ],
+      "rate_limited": true
+    }
+  ],
+  "reset_password_suffix": "R8Q#7m",
+  "reset_attempts": [
+    {
+      "id": "19cacdceec62c2ff",
+      "round": 1,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cacdceec62c2ff",
+      "round": 2,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cacdceec62c2ff",
+      "round": 3,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cacdceec62c2ff",
+      "round": 4,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cacdceec62c2ff",
+      "round": 5,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cacdceec62c2ff",
+      "round": 6,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cacdceec62c2ff",
+      "round": 7,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cacdceec62c2ff",
+      "round": 8,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
     }
   ],
   "auth_method": "resetPasswordComplete",
@@ -57,5 +224,5 @@
   "cloud_cookie_count": 0,
   "cookie_domains": [],
   "cookie_header_length": 0,
-  "finished_at": "2026-03-02T04:41:38Z"
+  "finished_at": "2026-03-02T04:52:18Z"
 }
