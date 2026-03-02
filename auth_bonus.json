@@ -1,0 +1,61 @@
+{
+  "started_at": "2026-03-02T04:36:18Z",
+  "before_reset_ids": [],
+  "before_code_ids": [
+    "19cac21b32f3618a",
+    "19cac021df7b4181",
+    "19cac0f705738868",
+    "19cacc67cd296794",
+    "19cac1136b9ed37e",
+    "19cac21c4b16c50d",
+    "19cacb46480d73d8",
+    "19cacc6f29782944"
+  ],
+  "reset_request": {
+    "status": 200,
+    "body": "{\"resource\":\"/account/resetPasswordRequest\",\"errorCode\":\"NONE\",\"version\":\"1\",\"status\":\"OK\"}"
+  },
+  "reset_snapshot": [],
+  "reset_rounds": [
+    {
+      "round": 1,
+      "candidate_ids": []
+    },
+    {
+      "round": 2,
+      "candidate_ids": []
+    },
+    {
+      "round": 3,
+      "candidate_ids": []
+    },
+    {
+      "round": 4,
+      "candidate_ids": []
+    },
+    {
+      "round": 5,
+      "candidate_ids": []
+    },
+    {
+      "round": 6,
+      "candidate_ids": []
+    },
+    {
+      "round": 7,
+      "candidate_ids": []
+    },
+    {
+      "round": 8,
+      "candidate_ids": []
+    }
+  ],
+  "auth_method": "resetPasswordComplete",
+  "error": "reset auth bootstrap failed",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 194, in <module>\nRuntimeError: reset auth bootstrap failed\n",
+  "cookie_count": 0,
+  "cloud_cookie_count": 0,
+  "cookie_domains": [],
+  "cookie_header_length": 0,
+  "finished_at": "2026-03-02T04:41:38Z"
+}
