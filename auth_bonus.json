@@ -1,0 +1,71 @@
+{
+  "started_at": "2026-03-02T05:11:40Z",
+  "candidates": [
+    "V9!qL4@tN7#pK2$wR8^mC5&xH3",
+    "Q1Eval!9025x",
+    "AgentFull!9010x",
+    "Scratch!321Aa",
+    "AtlasRun!20260308Aa#",
+    "KnownPass!20260308Zz#74",
+    "AtlasGHReset!9012",
+    "AtlasFixed!24680Aa"
+  ],
+  "before_code_ids": [
+    "19cacc67cd296794",
+    "19cacc6f29782944",
+    "19cacebb404d900a",
+    "19cac0f705738868",
+    "19cac21b32f3618a",
+    "19cac21c4b16c50d",
+    "19cac1136b9ed37e",
+    "19cacb46480d73d8"
+  ],
+  "direct_attempts": [
+    {
+      "password": "V9!qL4@tN7#pK2$wR8^mC5&xH3",
+      "status": 400,
+      "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "password": "Q1Eval!9025x",
+      "status": 400,
+      "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "password": "AgentFull!9010x",
+      "status": 400,
+      "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "password": "Scratch!321Aa",
+      "status": 400,
+      "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "password": "AtlasRun!20260308Aa#",
+      "status": 400,
+      "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "password": "KnownPass!20260308Zz#74",
+      "status": 400,
+      "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "password": "AtlasGHReset!9012",
+      "status": 400,
+      "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "password": "AtlasFixed!24680Aa",
+      "status": 400,
+      "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    }
+  ],
+  "error": "direct auth failed for all candidate passwords",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 71, in <module>\nRuntimeError: direct auth failed for all candidate passwords\n",
+  "cookie_count": 0,
+  "cloud_cookie_count": 0,
+  "cookie_header_length": 0,
+  "finished_at": "2026-03-02T05:11:47Z"
+}
