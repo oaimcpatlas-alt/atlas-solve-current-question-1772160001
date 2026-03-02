@@ -112,7 +112,7 @@ jobs:
               for msg in listing.get('messages', []) or []:
                   detail = gmail_get(msg['id'], 'full')
                   txt = extract_text(detail)
-                  m = re.search(r'https://account\\.mongodb\\.com/account/reset/password/([A-Za-z0-9]+)\\?email=', txt)
+                  m = re.search(r'https://account\.mongodb\.com/account/reset/password/([A-Za-z0-9]+)\?email=', txt)
                   if m:
                       out_rows.append({'id': msg['id'], 'internalDate': int(detail.get('internalDate') or 0), 'token': m.group(1)})
               out_rows.sort(key=lambda x: x.get('internalDate', 0), reverse=True)
@@ -125,7 +125,7 @@ jobs:
                   detail = gmail_get(msg['id'], 'metadata', ['Subject', 'Date'])
                   headers = {h['name']: h['value'] for h in detail.get('payload', {}).get('headers', [])}
                   subj = headers.get('Subject', '')
-                  m = re.search(r'(\\d{6})', subj)
+                  m = re.search(r'(\d{6})', subj)
                   rows.append({'id': msg['id'], 'internalDate': int(detail.get('internalDate') or 0), 'date': headers.get('Date'), 'subject': subj, 'code': m.group(1) if m else None})
               rows.sort(key=lambda x: x.get('internalDate', 0), reverse=True)
               return rows
