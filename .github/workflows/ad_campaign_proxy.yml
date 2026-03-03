@@ -153,13 +153,13 @@ jobs:
           out['reset_rounds'] = []
 
           try:
-              for round_idx in range(1, 11):
+              for round_idx in range(1, 21):
                   reset_candidates = latest_reset_tokens(8)
                   round_rec = {'round': round_idx, 'candidate_ids': [x['id'] for x in reset_candidates[:8]], 'candidate_ts': [x['internalDate'] for x in reset_candidates[:8]]}
                   out['reset_rounds'].append(round_rec)
                   rate_limited = False
                   if not reset_candidates:
-                      if round_idx < 10:
+                      if round_idx < 20:
                           time.sleep(30)
                       save()
                       continue
@@ -193,7 +193,7 @@ jobs:
 
                   if verify_body:
                       break
-                  if round_idx < 10:
+                  if round_idx < 20:
                       time.sleep(62 if rate_limited else 20)
 
               out['auth_method'] = 'resetPasswordComplete'
@@ -256,6 +256,8 @@ jobs:
               out['conninfo_probe'] = {'status': rr.status_code, 'location': rr.headers.get('location'), 'body': rr.text[:200]}
           except Exception as e:
               out['error'] = str(e)
+              save()
+              raise
           finally:
               out['finished_at'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
               save()
