@@ -1,24 +1,24 @@
 {
-  "started_at": "2026-03-03T02:40:12Z",
+  "started_at": "2026-03-03T02:47:00Z",
   "before_reset_ids": [
-    "19cb17f5953c4b5f",
-    "19cb18204cc6997d",
-    "19cb17fb969f374d",
-    "19cb182fbb122b75",
-    "19cb1829d9dee19d",
     "19cb182850566cf0",
-    "19cb1814ad827199",
-    "19cb181e778c8d93"
+    "19cb18204cc6997d",
+    "19cb19152c6b5760",
+    "19cb194d8b6d44cc",
+    "19cb182fbb122b75",
+    "19cb1938e7949e8d",
+    "19cb1829d9dee19d",
+    "19cb1961535929b4"
   ],
   "before_code_ids": [
-    "19cb1487c9953496",
     "19cb16ccddf0dde8",
-    "19cb148beb26a595",
-    "19cb16f256baf8c4",
     "19cb14892d45139e",
-    "19cb16ca72eaec37",
+    "19cb148beb26a595",
+    "19cb1487c9953496",
+    "19cb191ebeaffb64",
     "19cb15a4b48dee1e",
-    "19cb1485b8d589ec"
+    "19cb16f256baf8c4",
+    "19cb16ca72eaec37"
   ],
   "reset_request": {
     "status": 200,
@@ -26,159 +26,242 @@
   },
   "reset_snapshot": [
     {
+      "id": "19cb1978dba70d34",
+      "internalDate": 1772506025000,
+      "token": "82a5513b2e2d3672225037b0501869291c3e66bbf8bb5a0c815fae24c94ec8a0"
+    },
+    {
+      "id": "19cb1961535929b4",
+      "internalDate": 1772505928000,
+      "token": "8286425a9a0a2a1c0e2022d6b7d174168b310d466ef7c146bb09d79f38db9213"
+    },
+    {
+      "id": "19cb194d8b6d44cc",
+      "internalDate": 1772505847000,
+      "token": "a94d4957ea5c5775eb873edca4808d23cccadb0574a20124ee9df8f306766ded"
+    },
+    {
+      "id": "19cb1938e7949e8d",
+      "internalDate": 1772505763000,
+      "token": "153cb41fc8837b593bc76134e0e9c82ba6c0a4d30142f065cdc3f8fba21ff1c1"
+    },
+    {
       "id": "19cb19152c6b5760",
       "internalDate": 1772505616000,
       "token": "aa817696d56855d1316ee42fc65445044ef27061f4adbbff33888485bea27b31"
-    },
-    {
-      "id": "19cb182fbb122b75",
-      "internalDate": 1772504676000,
-      "token": "9f84e8b8250f1148f9c4d2e7857caa4ad14bb7078ee22059c71ee823cea7f5f9"
-    },
-    {
-      "id": "19cb1829d9dee19d",
-      "internalDate": 1772504652000,
-      "token": "9c689b3a70e22f27378f59cba0abb2e905c80531e87224d6092f7ad8dcbcb1cd"
-    },
-    {
-      "id": "19cb182850566cf0",
-      "internalDate": 1772504646000,
-      "token": "a3312a16fbcc159a22c9446ec3038da9d36c9dcf7bf624be2ac3d5830a56b239"
-    },
-    {
-      "id": "19cb18204cc6997d",
-      "internalDate": 1772504613000,
-      "token": "04b96a8a6a7ac8abfed62f8467f0739e2704f09bb6b04794ce88874ae3607053"
     }
   ],
-  "new_reset_id": "19cb19152c6b5760",
+  "new_reset_id": "19cb1978dba70d34",
   "reset_rounds": [
     {
       "round": 1,
       "candidate_ids": [
+        "19cb1978dba70d34",
+        "19cb1961535929b4",
+        "19cb194d8b6d44cc",
+        "19cb1938e7949e8d",
         "19cb19152c6b5760",
         "19cb182fbb122b75",
         "19cb1829d9dee19d",
-        "19cb182850566cf0",
-        "19cb18204cc6997d",
-        "19cb181e778c8d93",
-        "19cb1814ad827199",
-        "19cb17fb969f374d"
+        "19cb182850566cf0"
       ],
-      "success_id": "19cb19152c6b5760"
+      "rate_limited": true
+    },
+    {
+      "round": 2,
+      "candidate_ids": [
+        "19cb1978dba70d34",
+        "19cb1961535929b4",
+        "19cb194d8b6d44cc",
+        "19cb1938e7949e8d",
+        "19cb19152c6b5760",
+        "19cb182fbb122b75",
+        "19cb1829d9dee19d",
+        "19cb182850566cf0"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 3,
+      "candidate_ids": [
+        "19cb1978dba70d34",
+        "19cb1961535929b4",
+        "19cb194d8b6d44cc",
+        "19cb1938e7949e8d",
+        "19cb19152c6b5760",
+        "19cb182fbb122b75",
+        "19cb1829d9dee19d",
+        "19cb182850566cf0"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 4,
+      "candidate_ids": [
+        "19cb1978dba70d34",
+        "19cb1961535929b4",
+        "19cb194d8b6d44cc",
+        "19cb1938e7949e8d",
+        "19cb19152c6b5760",
+        "19cb182fbb122b75",
+        "19cb1829d9dee19d",
+        "19cb182850566cf0"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 5,
+      "candidate_ids": [
+        "19cb19b7fc34074b",
+        "19cb1978dba70d34",
+        "19cb1961535929b4",
+        "19cb194d8b6d44cc",
+        "19cb1938e7949e8d",
+        "19cb19152c6b5760",
+        "19cb182fbb122b75",
+        "19cb1829d9dee19d"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 6,
+      "candidate_ids": [
+        "19cb19b7fc34074b",
+        "19cb1978dba70d34",
+        "19cb1961535929b4",
+        "19cb194d8b6d44cc",
+        "19cb1938e7949e8d",
+        "19cb19152c6b5760",
+        "19cb182fbb122b75",
+        "19cb1829d9dee19d"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 7,
+      "candidate_ids": [
+        "19cb19b7fc34074b",
+        "19cb1978dba70d34",
+        "19cb1961535929b4",
+        "19cb194d8b6d44cc",
+        "19cb1938e7949e8d",
+        "19cb19152c6b5760",
+        "19cb182fbb122b75",
+        "19cb1829d9dee19d"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 8,
+      "candidate_ids": [
+        "19cb19b7fc34074b",
+        "19cb1978dba70d34",
+        "19cb1961535929b4",
+        "19cb194d8b6d44cc",
+        "19cb1938e7949e8d",
+        "19cb19152c6b5760",
+        "19cb182fbb122b75",
+        "19cb1829d9dee19d"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 9,
+      "candidate_ids": [
+        "19cb19f05ecac1e3",
+        "19cb19b7fc34074b",
+        "19cb1978dba70d34",
+        "19cb1961535929b4",
+        "19cb194d8b6d44cc",
+        "19cb1938e7949e8d",
+        "19cb19152c6b5760",
+        "19cb182fbb122b75"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 10,
+      "candidate_ids": [
+        "19cb19f05ecac1e3",
+        "19cb19b7fc34074b",
+        "19cb1978dba70d34",
+        "19cb1961535929b4",
+        "19cb194d8b6d44cc",
+        "19cb1938e7949e8d",
+        "19cb19152c6b5760",
+        "19cb182fbb122b75"
+      ],
+      "rate_limited": true
     }
   ],
-  "reset_password_suffix": "R1Q#7m",
+  "reset_password_suffix": "10Q#7m",
   "reset_attempts": [
     {
-      "id": "19cb19152c6b5760",
+      "id": "19cb1978dba70d34",
       "round": 1,
-      "status": 200,
-      "body": "{\"errorCode\":\"NONE\",\"loginRedirect\":\"/account/security/mfa?n=%2Faccount%2Fprofile%2Finfo&uId=00u117rlu9fT52fdU298&stateToken=004w6RV5pPCugCZMAxksxrToR_GTKUeGRIT9ily8r3\",\"version\":\"1\",\"status\":\"OK\"}"
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb1978dba70d34",
+      "round": 2,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb1978dba70d34",
+      "round": 3,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb1978dba70d34",
+      "round": 4,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb19b7fc34074b",
+      "round": 5,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb19b7fc34074b",
+      "round": 6,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb19b7fc34074b",
+      "round": 7,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb19b7fc34074b",
+      "round": 8,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb19f05ecac1e3",
+      "round": 9,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb19f05ecac1e3",
+      "round": 10,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
     }
   ],
-  "reset_success_id": "19cb19152c6b5760",
   "auth_method": "resetPasswordComplete",
-  "state_token_prefix": "004w6RV5pPCu",
-  "mfa_get": {
-    "status": 200,
-    "body": "{\"_embedded\":{\"factors\":[{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"}],\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"stateToken\":\"004w6RV5pPCugCZMAxksxrToR_GTKUeGRIT9ily8r3\",\"status\":\"MFA_REQUIRED\"}"
-  },
-  "factor_id": "emf11aaoelxPONmRM298",
-  "factor_type": "email",
-  "initial_code_snapshot": [
-    {
-      "id": "19cb16f256baf8c4",
-      "internalDate": 1772503376000,
-      "date": "Tue, 03 Mar 2026 02:02:56 +0000 (UTC)",
-      "subject": "MongoDB verification code: 800370",
-      "code": "800370"
-    },
-    {
-      "id": "19cb16ccddf0dde8",
-      "internalDate": 1772503222000,
-      "date": "Tue, 03 Mar 2026 02:00:22 +0000 (UTC)",
-      "subject": "MongoDB verification code: 414659",
-      "code": "414659"
-    },
-    {
-      "id": "19cb16ca72eaec37",
-      "internalDate": 1772503212000,
-      "date": "Tue, 03 Mar 2026 02:00:12 +0000 (UTC)",
-      "subject": "MongoDB verification code: 073177",
-      "code": "073177"
-    },
-    {
-      "id": "19cb15a4b48dee1e",
-      "internalDate": 1772502010000,
-      "date": "Tue, 03 Mar 2026 01:40:10 +0000 (UTC)",
-      "subject": "MongoDB verification code: 075534",
-      "code": "075534"
-    },
-    {
-      "id": "19cb148beb26a595",
-      "internalDate": 1772500860000,
-      "date": "Tue, 03 Mar 2026 01:21:00 +0000 (UTC)",
-      "subject": "MongoDB verification code: 452979",
-      "code": "452979"
-    }
-  ],
-  "mfa_resend": {
-    "status": 200,
-    "body": "{\"_embedded\":{\"factor\":{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"},\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"factorResult\":\"CHALLENGE\",\"stateToken\":\"004w6RV5pPCugCZMAxksxrToR_GTKUeGRIT9ily8r3\",\"status\":\"MFA_CHALLENGE\"}"
-  },
-  "code_snapshot": [
-    {
-      "id": "19cb191ebeaffb64",
-      "internalDate": 1772505655000,
-      "date": "Tue, 03 Mar 2026 02:40:55 +0000 (UTC)",
-      "subject": "MongoDB verification code: 417245",
-      "code": "417245"
-    },
-    {
-      "id": "19cb16f256baf8c4",
-      "internalDate": 1772503376000,
-      "date": "Tue, 03 Mar 2026 02:02:56 +0000 (UTC)",
-      "subject": "MongoDB verification code: 800370",
-      "code": "800370"
-    },
-    {
-      "id": "19cb16ccddf0dde8",
-      "internalDate": 1772503222000,
-      "date": "Tue, 03 Mar 2026 02:00:22 +0000 (UTC)",
-      "subject": "MongoDB verification code: 414659",
-      "code": "414659"
-    },
-    {
-      "id": "19cb16ca72eaec37",
-      "internalDate": 1772503212000,
-      "date": "Tue, 03 Mar 2026 02:00:12 +0000 (UTC)",
-      "subject": "MongoDB verification code: 073177",
-      "code": "073177"
-    },
-    {
-      "id": "19cb15a4b48dee1e",
-      "internalDate": 1772502010000,
-      "date": "Tue, 03 Mar 2026 01:40:10 +0000 (UTC)",
-      "subject": "MongoDB verification code: 075534",
-      "code": "075534"
-    }
-  ],
-  "code_item": {
-    "id": "19cb191ebeaffb64",
-    "internalDate": 1772505655000,
-    "date": "Tue, 03 Mar 2026 02:40:55 +0000 (UTC)",
-    "subject": "MongoDB verification code: 417245",
-    "code": "417245"
-  },
-  "mfa_verify": {
-    "status": 200,
-    "body": "{\"_embedded\":{\"factor\":{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"},\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"factorResult\":\"SUCCESS\",\"status\":\"MFA_CHALLENGE\"}"
-  },
-  "error": "missing loginRedirect after mfa verify",
-  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 265, in <module>\nRuntimeError: missing loginRedirect after mfa verify\n",
+  "error": "reset auth bootstrap failed",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 219, in <module>\nRuntimeError: reset auth bootstrap failed\n",
   "cookie_count": 0,
   "cloud_cookie_count": 0,
   "cookie_domains": [],
-  "finished_at": "2026-03-03T02:41:01Z"
+  "finished_at": "2026-03-03T02:56:50Z"
 }
