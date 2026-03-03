@@ -245,6 +245,37 @@ jobs:
                   mfa_verify = {}
               auth_url = mfa_verify.get('loginRedirect')
               out['login_redirect_present'] = bool(auth_url)
+              if not auth_url and mfa_verify.get('factorResult') == 'SUCCESS':
+                  out['mfa_followups'] = []
+                  for _ in range(5):
+                      time.sleep(3)
+                      rr = s.get(f'https://account.mongodb.com/account/auth/mfa/{state_token}', timeout=30)
+                      body = rr.text[:2000]
+                      out['mfa_followups'].append({'status': rr.status_code, 'body': body})
+                      try:
+                          jj = rr.json()
+                      except Exception:
+                          jj = {}
+                      auth_url = jj.get('loginRedirect') or jj.get('sessionToken')
+                      if auth_url:
+                          break
+                  if auth_url and not str(auth_url).startswith('http') and not str(auth_url).startswith('/'):
+                      auth_url = None
+                  if (not auth_url) and code_item:
+                      rr = s.post('https://account.mongodb.com/account/auth/mfa/verify', json={
+                          'stateToken': state_token,
+                          'factorId': factor['id'],
+                          'factorType': factor['factorType'],
+                          'passcode': code_item['code'],
+                          'rememberDevice': True,
+                      }, timeout=30)
+                      out['mfa_verify_retry'] = {'status': rr.status_code, 'body': rr.text[:2000]}
+                      try:
+                          jj = rr.json()
+                      except Exception:
+                          jj = {}
+                      auth_url = jj.get('loginRedirect')
+              out['login_redirect_present'] = bool(auth_url)
               save()
 
               req_cookies = []
