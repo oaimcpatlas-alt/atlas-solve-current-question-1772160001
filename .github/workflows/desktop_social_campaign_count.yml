@@ -290,13 +290,14 @@ jobs:
               out['mfa_verify'] = {'status': status, 'body': body[:1000]}
               data = json.loads(body)
               login_redirect = data.get('loginRedirect')
-              if not login_redirect:
-                  raise RuntimeError('missing loginRedirect after mfa verify')
-
-              status, headers, body = get(login_redirect, {
-                  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-              })
-              out['auth_follow'] = {'status': status, 'body_head': body[:300]}
+              out['login_redirect_present'] = bool(login_redirect)
+              if login_redirect:
+                  status, headers, body = get(login_redirect, {
+                      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+                  })
+                  out['auth_follow'] = {'status': status, 'body_head': body[:300], 'location': headers.get('location')}
+              else:
+                  out['auth_follow'] = {'status': None, 'body_head': None, 'note': 'missing loginRedirect after mfa verify; probing project directly'}
               for label, url, headers in [
                   ('project_get', PROJECT_URL, {'User-Agent': 'Mozilla/5.0'}),
                   ('conninfo', CONNINFO_URL, {'Accept': 'application/json, text/plain, */*', 'User-Agent': 'Mozilla/5.0'}),
