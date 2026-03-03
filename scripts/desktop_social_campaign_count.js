@@ -1,3 +1,4 @@
+
 const fs = require('fs');
 const tls = require('tls');
 const { Duplex } = require('stream');
@@ -7,11 +8,11 @@ const { MongoClient } = require('mongodb');
 const PROJECT_ID = '699c12be8df98bd863d63d70';
 const CLUSTER_NAME = 'mcpatlas';
 const MONGO_URI = 'mongodb://ac-lxbrbla-shard-00-02.zlknsyp.mongodb.net,ac-lxbrbla-shard-00-01.zlknsyp.mongodb.net,ac-lxbrbla-shard-00-00.zlknsyp.mongodb.net/?tls=true&authMechanism=MONGODB-X509&authSource=%24external&serverMonitoringMode=poll&maxIdleTimeMS=30000&minPoolSize=0&maxPoolSize=5&maxConnecting=6&replicaSet=atlas-pq8tl1-shard-0';
+const RESULT_PATH = 'desktop_social_campaign_count_result.json';
 
 function write(obj) {
-  fs.writeFileSync('desktop_social_campaign_count_result.json', JSON.stringify(obj, null, 2));
+  fs.writeFileSync(RESULT_PATH, JSON.stringify(obj, null, 2));
 }
-
 function buildCookieHeader() {
   const raw = JSON.parse(fs.readFileSync('browser_cookies.json', 'utf8'));
   const cookies = Array.isArray(raw.cookies) ? raw.cookies : [];
@@ -112,7 +113,6 @@ class TLSSocketProxy extends Duplex {
   _refreshTimeout() { this._clearTimeout(); if (typeof this._timeout === 'number' && this._timeout > 0 && Number.isFinite(this._timeout)) { this._timeoutId = setTimeout(() => this.emit('timeout'), this._timeout); } }
   once(event, listener) { if (event === 'secureConnect' && this.connected) { queueMicrotask(() => listener()); return this; } return super.once(event, listener); }
 }
-
 const origTlsConnect = tls.connect.bind(tls);
 tls.connect = function patchedTlsConnect(options, callback) {
   const host = options && (options.host || options.servername);
@@ -123,45 +123,206 @@ tls.connect = function patchedTlsConnect(options, callback) {
   return sock;
 };
 
-function ser(v) {
+function ser(v, depth = 0) {
   if (v === null || typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') return v;
-  if (Array.isArray(v)) return v.map(ser);
   if (v instanceof Date) return v.toISOString();
-  if (typeof v === 'object') {
-    if (v && typeof v.toHexString === 'function') return v.toHexString();
+  if (Array.isArray(v)) return v.slice(0, 10).map(x => ser(x, depth + 1));
+  if (v && typeof v === 'object') {
+    if (typeof v.toHexString === 'function') return v.toHexString();
     const out = {};
-    for (const [k, val] of Object.entries(v)) out[k] = ser(val);
+    for (const [k, val] of Object.entries(v).slice(0, 80)) out[k] = ser(val, depth + 1);
     return out;
   }
   return String(v);
 }
+function norm(s) { return String(s ?? '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); }
+function normKey(s) { return norm(s).replace(/ /g, ''); }
+function parseNum(v) {
+  if (typeof v === 'number' && Number.isFinite(v)) return v;
+  const s = String(v ?? '').replace(/[$,%]/g, '').replace(/,/g, '').trim();
+  if (/^[-+]?\d+(?:\.\d+)?$/.test(s)) return Number(s);
+  return null;
+}
+function parseDate(v) {
+  if (v instanceof Date && !isNaN(v)) return v;
+  if (typeof v === 'number' && Number.isFinite(v)) {
+    if (v > 1e12) { const d = new Date(v); if (!isNaN(d)) return d; }
+    if (v > 1e9) { const d = new Date(v * 1000); if (!isNaN(d)) return d; }
+    if (v >= 1900 && v <= 2100) return new Date(Date.UTC(Math.trunc(v), 0, 1));
+  }
+  const s = String(v ?? '').trim();
+  if (!s) return null;
+  let d = new Date(s);
+  if (!isNaN(d)) return d;
+  let m = s.match(/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/);
+  if (m) return new Date(Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3])));
+  m = s.match(/^(\d{1,2})[-/](\d{1,2})[-/](\d{4})$/);
+  if (m) return new Date(Date.UTC(Number(m[3]), Number(m[1]) - 1, Number(m[2])));
+  m = s.match(/\b(19|20)\d{2}\b/);
+  if (m) return new Date(Date.UTC(Number(m[0]), 0, 1));
+  return null;
+}
+function mobileValue(v) {
+  const s = norm(v);
+  return ['mobile','phone','smartphone','ios','android'].some(tok => s.split(' ').includes(tok) || s === tok || s.includes(tok));
+}
+function flatten(obj, prefix = '', out = {}) {
+  if (obj instanceof Date) { out[prefix || 'value'] = obj; return out; }
+  if (Array.isArray(obj)) {
+    out[prefix || 'value'] = obj.slice(0, 10).map(ser);
+    obj.slice(0, 5).forEach((item, i) => flatten(item, `${prefix}[${i}]`, out));
+    return out;
+  }
+  if (obj && typeof obj === 'object') {
+    if (typeof obj.toHexString === 'function') { out[prefix || 'value'] = obj.toHexString(); return out; }
+    for (const [k, v] of Object.entries(obj)) {
+      const p = prefix ? `${prefix}.${k}` : String(k);
+      flatten(v, p, out);
+    }
+    return out;
+  }
+  out[prefix || 'value'] = obj;
+  return out;
+}
+function scoreName(dbName, collName) {
+  const nk = normKey(`${dbName} ${collName}`);
+  let score = 0;
+  if (nk.includes('campaign')) score += 15;
+  if (nk.includes('advert')) score += 12;
+  if (nk.includes('marketing')) score += 10;
+  if (nk.includes('digital')) score += 6;
+  if (nk.includes('social')) score += 5;
+  if (nk.includes('ad')) score += 4;
+  return score;
+}
+function pickBest(flat, kind, context) {
+  let best = null;
+  for (const [path, value] of Object.entries(flat)) {
+    const nk = normKey(path);
+    let score = 0;
+    let parsed = null;
+    if (kind === 'date') {
+      const d = parseDate(value);
+      if (!d) continue;
+      if (nk.includes('campaignstartdate')) score += 300;
+      if (nk.includes('startdate')) score += 260;
+      if (nk.includes('campaignstart')) score += 250;
+      if (nk.includes('start')) score += 160;
+      if (nk.includes('launch')) score += 140;
+      if (nk.includes('begin')) score += 120;
+      if (score === 0 && nk.includes('date') && /campaign|advert|marketing|ad/.test(context)) score += 60;
+      if (nk.includes('enddate') || nk.includes('updated') || nk.includes('created')) score -= 100;
+      parsed = d;
+    } else if (kind === 'device') {
+      const text = String(value ?? '');
+      if (!text) continue;
+      if (nk.includes('targetdevice')) score += 260;
+      if (nk === 'device' || nk.endsWith('device') || nk.includes('device')) score += 220;
+      if (nk.includes('platform')) score += 120;
+      if (nk.includes('channel')) score += 20;
+      if (mobileValue(text)) score += 40;
+      parsed = text;
+    } else if (kind === 'cpc') {
+      const num = parseNum(value);
+      if (num === null) continue;
+      if (nk === 'cpc' || nk.endsWith('cpc')) score += 160;
+      if (nk.includes('costperclick') || nk.includes('averagecpc') || nk.includes('avgcpc')) score += 150;
+      if (nk.includes('clickcost')) score += 120;
+      if (nk.includes('cpm') || nk.includes('ctr')) score -= 80;
+      parsed = num;
+    } else {
+      continue;
+    }
+    if (score <= 0) continue;
+    const cand = { path, value, parsed, score };
+    if (!best || cand.score > best.score) best = cand;
+  }
+  return best;
+}
+function extractMatches(doc, dbName, collName) {
+  const flat = flatten(doc);
+  const context = norm(`${dbName} ${collName} ${Object.keys(flat).slice(0, 20).join(' ')}`);
+  const date = pickBest(flat, 'date', context);
+  if (!date) return { matches: [], flat };
+  const d = date.parsed;
+  if (d.getUTCFullYear() !== 2023 || d.getUTCMonth() !== 11) return { matches: [], flat };
+  const device = pickBest(flat, 'device', context);
+  const cpc = pickBest(flat, 'cpc', context);
+  const matches = [];
+  for (const [path, value] of Object.entries(flat)) {
+    const nk = normKey(path);
+    const num = parseNum(value);
+    if (num === null) continue;
+    if ((nk.includes('cpc') || nk.includes('costperclick') || nk.includes('avgcpc')) && nk.includes('mobile')) {
+      matches.push({ cpc: num, source: 'mobile_path', cpcPath: path, deviceValue: 'mobile', datePath: date.path });
+    }
+  }
+  if (device && mobileValue(device.value) && cpc) {
+    matches.push({ cpc: cpc.parsed, source: 'device_field', cpcPath: cpc.path, devicePath: device.path, deviceValue: ser(device.value), datePath: date.path });
+  }
+  const seen = new Set();
+  const uniq = [];
+  for (const m of matches) {
+    const key = `${m.source}|${m.cpcPath}|${m.devicePath || ''}`;
+    if (!seen.has(key)) { seen.add(key); uniq.push(m); }
+  }
+  return { matches: uniq, flat, context, bestDate: date, bestDevice: device, bestCpc: cpc };
+}
 
 async function main() {
-  const out = { started_at: new Date().toISOString(), question: 'Total sold for Sports video games in February 2023', cookieHeaderLength: COOKIE_HEADER.length };
+  const out = { started_at: new Date().toISOString(), question: 'Average CPC from mobile devices for campaigns started in December 2023', cookieHeaderLength: COOKIE_HEADER.length };
   write(out);
   const client = new MongoClient(MONGO_URI, { serverSelectionTimeoutMS: 60000, connectTimeoutMS: 60000, socketTimeoutMS: 60000, directConnection: false, monitorCommands: false });
   try {
     await client.connect();
     out.ping = await client.db('admin').command({ ping: 1 });
-    const db = client.db('video_game_store');
-    out.collections = (await db.listCollections().toArray()).map(x => x.name);
-    const coll = db.collection('Customers');
-    const start = new Date('2023-02-01T00:00:00.000Z');
-    const end = new Date('2023-03-01T00:00:00.000Z');
-    const filter = { 'Purchase Date': { $gte: start, $lt: end }, 'Game Genre': 'Sports' };
-    out.matchingCount = await coll.countDocuments(filter);
-    out.aggregate = (await coll.aggregate([{ $match: filter }, { $group: { _id: null, totalPurchaseAmount: { $sum: '$Purchase Amount' }, avgPurchaseAmount: { $avg: '$Purchase Amount' }, minPurchaseAmount: { $min: '$Purchase Amount' }, maxPurchaseAmount: { $max: '$Purchase Amount' } } }]).toArray()).map(ser);
-    out.sample = (await coll.find(filter, { projection: { _id: 0, 'Customer ID': 1, 'Purchase Date': 1, 'Game Title': 1, 'Game Genre': 1, 'Purchase Amount': 1, 'Preferred Platform': 1, 'Membership Status': 1 } }).sort({ 'Purchase Amount': -1 }).limit(10).toArray()).map(ser);
-    out.answer = { matchingCount: out.matchingCount, totalPurchaseAmount: out.aggregate[0] ? out.aggregate[0].totalPurchaseAmount : null };
+    const dbNames = (await client.db('admin').admin().listDatabases()).databases.map(x => x.name).filter(x => !['admin','local','config'].includes(x));
+    out.databases = dbNames;
+    const collectionStats = [];
+    const answers = [];
+    for (const dbName of dbNames) {
+      const cols = await client.db(dbName).listCollections().toArray();
+      for (const meta of cols) {
+        const collName = meta.name;
+        const coll = client.db(dbName).collection(collName);
+        let scanned = 0;
+        let matches = [];
+        let firstDoc = null;
+        try {
+          const cursor = coll.find({}, { batchSize: 100 });
+          for await (const doc of cursor) {
+            scanned += 1;
+            if (!firstDoc) firstDoc = ser(doc);
+            if (scanned > 5000) break;
+            const info = extractMatches(doc, dbName, collName);
+            for (const m of info.matches) {
+              matches.push({ db: dbName, collection: collName, score: scoreName(dbName, collName), sample: ser(doc), ...m });
+            }
+          }
+        } catch (e) {
+          collectionStats.push({ db: dbName, collection: collName, scanned, error: String(e && e.message || e), nameScore: scoreName(dbName, collName), firstDoc });
+          continue;
+        }
+        collectionStats.push({ db: dbName, collection: collName, scanned, matchCount: matches.length, nameScore: scoreName(dbName, collName), firstDoc, sampleMatches: matches.slice(0,3) });
+        if (matches.length) {
+          const avg = matches.reduce((s, m) => s + Number(m.cpc), 0) / matches.length;
+          answers.push({ db: dbName, collection: collName, matchCount: matches.length, averageCpc: Number(avg.toFixed(3)), nameScore: scoreName(dbName, collName), sampleMatches: matches.slice(0,5) });
+        }
+      }
+    }
+    collectionStats.sort((a,b) => (b.matchCount || 0) - (a.matchCount || 0) || (b.nameScore || 0) - (a.nameScore || 0) || `${a.db}.${a.collection}`.localeCompare(`${b.db}.${b.collection}`));
+    answers.sort((a,b) => (b.matchCount - a.matchCount) || (b.nameScore - a.nameScore) || `${a.db}.${a.collection}`.localeCompare(`${b.db}.${b.collection}`));
+    out.collectionStats = collectionStats;
+    out.answers = answers;
+    out.answer = answers[0] || null;
   } catch (e) {
     out.error = String(e && e.message || e);
     out.stack = e && e.stack || null;
   } finally {
     out.finished_at = new Date().toISOString();
     write(out);
-    console.log(JSON.stringify(out, null, 2));
+    console.log(JSON.stringify(out.answer || { error: out.error || 'no answer', databases: out.databases }, null, 2));
     try { await client.close(); } catch {}
   }
 }
-
 main();
