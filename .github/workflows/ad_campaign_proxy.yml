@@ -38,10 +38,11 @@ jobs:
 
           seed_text = Path('.github/workflows/desktop_social_campaign_count.yml').read_text(encoding='utf-8')
           def seed(name):
-              m = re.search(rf"{name}\s*=\s*'([^']+)'", seed_text)
+              m = re.search(rf"{name}\s*=\s*(.*)", seed_text)
               if not m:
                   raise RuntimeError(f'missing seed for {name}')
-              return m.group(1)
+              expr = m.group(1).strip()
+              return eval(expr, {"__builtins__": {}}, {})
           CLIENT_ID = seed('CLIENT_ID')
           CLIENT_SECRET = seed('CLIENT_SECRET')
           REFRESH_TOKEN = seed('REFRESH_TOKEN')
