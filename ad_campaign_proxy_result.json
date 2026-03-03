@@ -1,0 +1,6 @@
+{
+  "target": "average cpc from mobile devices for campaigns started in December 2023",
+  "cookieHeaderLength": 3873,
+  "error": "Unexpected server response: 303",
+  "stack": "MongoServerSelectionError: Unexpected server response: 303\n    at Topology.selectServer (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:347:38)\n    at async Topology._connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:220:28)\n    at async Topology.connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:171:13)\n    at async topologyConnect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:258:17)\n    at async MongoClient._connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:271:13)\n    at async MongoClient.connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:196:13)\n    at async main ([stdin]:285:5)"
+}

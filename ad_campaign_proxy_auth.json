@@ -1,0 +1,322 @@
+{
+  "started_at": "2026-03-03T00:03:17Z",
+  "reset_rounds": [
+    {
+      "round": 1,
+      "candidate_ids": [
+        "19cb100ebf8b604b",
+        "19cb0ff3159bd763",
+        "19cb0ff10af796fe",
+        "19cb0f85d04cca12",
+        "19cb0f7ee23e5f31",
+        "19cb0f78170a3da4",
+        "19cb0f711df8f171",
+        "19cb0f6a1d560667"
+      ],
+      "candidate_ts": [
+        1772496153000,
+        1772496039000,
+        1772496031000,
+        1772495592000,
+        1772495564000,
+        1772495535000,
+        1772495507000,
+        1772495478000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 2,
+      "candidate_ids": [
+        "19cb100ebf8b604b",
+        "19cb0ff3159bd763",
+        "19cb0ff10af796fe",
+        "19cb0f85d04cca12",
+        "19cb0f7ee23e5f31",
+        "19cb0f78170a3da4",
+        "19cb0f711df8f171",
+        "19cb0f6a1d560667"
+      ],
+      "candidate_ts": [
+        1772496153000,
+        1772496039000,
+        1772496031000,
+        1772495592000,
+        1772495564000,
+        1772495535000,
+        1772495507000,
+        1772495478000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 3,
+      "candidate_ids": [
+        "19cb10338539d360",
+        "19cb102af9fde10d",
+        "19cb100ebf8b604b",
+        "19cb0ff3159bd763",
+        "19cb0ff10af796fe",
+        "19cb0f85d04cca12",
+        "19cb0f7ee23e5f31",
+        "19cb0f78170a3da4"
+      ],
+      "candidate_ts": [
+        1772496303000,
+        1772496268000,
+        1772496153000,
+        1772496039000,
+        1772496031000,
+        1772495592000,
+        1772495564000,
+        1772495535000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 4,
+      "candidate_ids": [
+        "19cb10447adac557",
+        "19cb10338539d360",
+        "19cb102af9fde10d",
+        "19cb100ebf8b604b",
+        "19cb0ff3159bd763",
+        "19cb0ff10af796fe",
+        "19cb0f85d04cca12",
+        "19cb0f7ee23e5f31"
+      ],
+      "candidate_ts": [
+        1772496373000,
+        1772496303000,
+        1772496268000,
+        1772496153000,
+        1772496039000,
+        1772496031000,
+        1772495592000,
+        1772495564000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 5,
+      "candidate_ids": [
+        "19cb10447adac557",
+        "19cb10338539d360",
+        "19cb102af9fde10d",
+        "19cb100ebf8b604b",
+        "19cb0ff3159bd763",
+        "19cb0ff10af796fe",
+        "19cb0f85d04cca12",
+        "19cb0f7ee23e5f31"
+      ],
+      "candidate_ts": [
+        1772496373000,
+        1772496303000,
+        1772496268000,
+        1772496153000,
+        1772496039000,
+        1772496031000,
+        1772495592000,
+        1772495564000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 6,
+      "candidate_ids": [
+        "19cb10447adac557",
+        "19cb10338539d360",
+        "19cb102af9fde10d",
+        "19cb100ebf8b604b",
+        "19cb0ff3159bd763",
+        "19cb0ff10af796fe",
+        "19cb0f85d04cca12",
+        "19cb0f7ee23e5f31"
+      ],
+      "candidate_ts": [
+        1772496373000,
+        1772496303000,
+        1772496268000,
+        1772496153000,
+        1772496039000,
+        1772496031000,
+        1772495592000,
+        1772495564000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 7,
+      "candidate_ids": [
+        "19cb10447adac557",
+        "19cb10338539d360",
+        "19cb102af9fde10d",
+        "19cb100ebf8b604b",
+        "19cb0ff3159bd763",
+        "19cb0ff10af796fe",
+        "19cb0f85d04cca12",
+        "19cb0f7ee23e5f31"
+      ],
+      "candidate_ts": [
+        1772496373000,
+        1772496303000,
+        1772496268000,
+        1772496153000,
+        1772496039000,
+        1772496031000,
+        1772495592000,
+        1772495564000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 8,
+      "candidate_ids": [
+        "19cb10852c5afca7",
+        "19cb107e30bade4f",
+        "19cb1077522d2f90",
+        "19cb10447adac557",
+        "19cb10338539d360",
+        "19cb102af9fde10d",
+        "19cb100ebf8b604b",
+        "19cb0ff3159bd763"
+      ],
+      "candidate_ts": [
+        1772496638000,
+        1772496609000,
+        1772496581000,
+        1772496373000,
+        1772496303000,
+        1772496268000,
+        1772496153000,
+        1772496039000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 9,
+      "candidate_ids": [
+        "19cb108c5cdb46e9",
+        "19cb10852c5afca7",
+        "19cb107e30bade4f",
+        "19cb1077522d2f90",
+        "19cb10447adac557",
+        "19cb10338539d360",
+        "19cb102af9fde10d",
+        "19cb100ebf8b604b"
+      ],
+      "candidate_ts": [
+        1772496667000,
+        1772496638000,
+        1772496609000,
+        1772496581000,
+        1772496373000,
+        1772496303000,
+        1772496268000,
+        1772496153000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 10,
+      "candidate_ids": [
+        "19cb108c5cdb46e9",
+        "19cb10852c5afca7",
+        "19cb107e30bade4f",
+        "19cb1077522d2f90",
+        "19cb10447adac557",
+        "19cb10338539d360",
+        "19cb102af9fde10d",
+        "19cb100ebf8b604b"
+      ],
+      "candidate_ts": [
+        1772496667000,
+        1772496638000,
+        1772496609000,
+        1772496581000,
+        1772496373000,
+        1772496303000,
+        1772496268000,
+        1772496153000
+      ],
+      "rate_limited": true
+    }
+  ],
+  "reset_password_used": "AtlasRun!1772496776R10Q#7m",
+  "attempt_token": "be2b1fd91ad4608f",
+  "reset_attempts": [
+    {
+      "id": "19cb100ebf8b604b",
+      "round": 1,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "date_header": "Tue, 03 Mar 2026 00:03:19 GMT"
+    },
+    {
+      "id": "19cb100ebf8b604b",
+      "round": 2,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "date_header": "Tue, 03 Mar 2026 00:04:23 GMT"
+    },
+    {
+      "id": "19cb10338539d360",
+      "round": 3,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "date_header": "Tue, 03 Mar 2026 00:05:27 GMT"
+    },
+    {
+      "id": "19cb10447adac557",
+      "round": 4,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "date_header": "Tue, 03 Mar 2026 00:06:32 GMT"
+    },
+    {
+      "id": "19cb10447adac557",
+      "round": 5,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "date_header": "Tue, 03 Mar 2026 00:07:36 GMT"
+    },
+    {
+      "id": "19cb10447adac557",
+      "round": 6,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "date_header": "Tue, 03 Mar 2026 00:08:40 GMT"
+    },
+    {
+      "id": "19cb10447adac557",
+      "round": 7,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "date_header": "Tue, 03 Mar 2026 00:09:44 GMT"
+    },
+    {
+      "id": "19cb10852c5afca7",
+      "round": 8,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "date_header": "Tue, 03 Mar 2026 00:10:48 GMT"
+    },
+    {
+      "id": "19cb108c5cdb46e9",
+      "round": 9,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "date_header": "Tue, 03 Mar 2026 00:11:52 GMT"
+    },
+    {
+      "id": "19cb108c5cdb46e9",
+      "round": 10,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "date_header": "Tue, 03 Mar 2026 00:12:56 GMT"
+    }
+  ],
+  "auth_method": "resetPasswordComplete",
+  "error": "reset auth bootstrap failed",
+  "finished_at": "2026-03-03T00:12:56Z"
+}
