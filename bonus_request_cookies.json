@@ -1,0 +1,29 @@
+[
+  {
+    "name": "okta-oauth-state",
+    "value": "%7B%22stateNonce%22%3A%22767885a5-8742-4405-9224-8bc05b192bb8%22%7D",
+    "domain": "account.mongodb.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "expires": 1772568054
+  },
+  {
+    "name": "okta-oauth-nonce",
+    "value": "ecfebe22-f048-44d2-a26c-6d859936cbca",
+    "domain": "account.mongodb.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "expires": 1772568054
+  },
+  {
+    "name": "oidc-init-user-prod",
+    "value": "672a6fb2df247d1d0dabda3c3482b4af9b9faba5a46f5e8cd20b01d3c4e50954-73eb7f272444d9add0eb26b6dd760ead4b17c80f381523eddb32746579a6619479933dc63dc1855d5c19f4a39193a5580866edd278016db04c6eb8a3c468828a",
+    "domain": "account.mongodb.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "expires": 1772564514
+  }
+]

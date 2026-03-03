@@ -1,0 +1,21 @@
+{
+  "initial_cookie_count": 3,
+  "login_redirect_present": true,
+  "after_auth_url": "https://account.mongodb.com/account/login",
+  "final_url": "https://cloud.mongodb.com/orgs/orgData",
+  "title": "",
+  "excerpt": "{\"errorCode\":\"FORBIDDEN\",\"version\":\"1\",\"status\":\"ERROR\"}",
+  "final_cookie_count": 36,
+  "responses": [
+    {
+      "url": "https://cloud.mongodb.com/explorer/v1/groups/699c12be8df98bd863d63d70/clusters/connectionInfo",
+      "status": 403,
+      "text": "{\"errorCode\":\"FORBIDDEN\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "url": "https://cloud.mongodb.com/orgs/orgData",
+      "status": 403,
+      "text": "{\"errorCode\":\"FORBIDDEN\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    }
+  ]
+}
