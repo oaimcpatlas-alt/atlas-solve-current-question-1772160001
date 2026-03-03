@@ -1,4 +1,175 @@
 {
   "source_url": "https://cloud.mongodb.com/v2/699c12be8df98bd863d63d70#/overview",
-  "cookies": []
+  "cookies": [
+    {
+      "name": "li_sugr",
+      "value": "e74fd14f-98ad-4679-a689-f632f9f031dc",
+      "domain": ".linkedin.com",
+      "path": "/",
+      "expires": 1780286435.500073,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "bcookie",
+      "value": "\"v=2&b8b33ada-ae0a-4f69-873e-d41e8b71d6e1\"",
+      "domain": ".linkedin.com",
+      "path": "/",
+      "expires": 1804046436.50016,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "lidc",
+      "value": "\"b=TGST07:s=T:r=T:a=T:p=T:g=3261:u=1:x=1:i=1772510435:t=1772596835:v=2:sig=AQHu6Nif6cWnj9npuL9ZfSySGTN7n6FA\"",
+      "domain": ".linkedin.com",
+      "path": "/",
+      "expires": 1772596836.202648,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_gcl_au",
+      "value": "1.1.15466686.1772510435",
+      "domain": ".mongodb.com",
+      "path": "/",
+      "expires": 1780286435,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "UserMatchHistory",
+      "value": "AQLGXNVSTkKPUwAAAZyx2te1TClKBgUXsF06g2ujR-Adz6IS7LVIJWsV-trjjeXQ9bqhxcqQ1V0FgA",
+      "domain": ".linkedin.com",
+      "path": "/",
+      "expires": 1775102435.279493,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "AnalyticsSyncHistory",
+      "value": "AQLdNjKM5pH_GAAAAZyx2te2JcrHKWH12igrcrlkXAb003UNg56wj8lhh9qamj4ALW_ry0_i0JPCdU2qGr4HNw",
+      "domain": ".linkedin.com",
+      "path": "/",
+      "expires": 1775102435.279523,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "JSESSIONID",
+      "value": "BC3728B931EFA1C4273320A553D16186",
+      "domain": "auth.mongodb.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "test_cookie",
+      "value": "CheckForPermission",
+      "domain": ".doubleclick.net",
+      "path": "/",
+      "expires": 1772511335.361829,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "bscookie",
+      "value": "\"v=1&20260303040035ecd7dcf0-e9d8-41c5-8ea5-a12b931041ccAQEIErhCXG0E69zZE6fv7q1Epcy1En5M\"",
+      "domain": ".www.linkedin.com",
+      "path": "/",
+      "expires": 1804046435.409646,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__cf_bm",
+      "value": "sj17lYbIeXsCy5GrUQcKxGVn.vbYCrOOCwE90lWe1c0-1772510435-1.0.1.1-UHIQ4hL6DdS3rgBuHxaVOqznIBjIs9atdr4xoiDdnvkmNf.M.C3mCenUQ2BAQaOcLnnqTqAoeq.gwk0mwFahMmAD6U0_d3wjJ6awsNdPRMU",
+      "domain": ".linkedin.com",
+      "path": "/",
+      "expires": 1772512235.409708,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "m",
+      "value": "d858e5dd-10b5-440b-a4af-97c21d8dcac555a5d8",
+      "domain": "m.stripe.com",
+      "path": "/",
+      "expires": 1807070436.234933,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__stripe_mid",
+      "value": "11bcbf2b-63f1-45e7-b8ad-2ddc6c2747f6440584",
+      "domain": ".account.mongodb.com",
+      "path": "/",
+      "expires": 1804046436,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "__stripe_sid",
+      "value": "f8d33b82-699c-4ccb-b891-2117e6d2e89867f2cc",
+      "domain": ".account.mongodb.com",
+      "path": "/",
+      "expires": 1772512236,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "intercom-id-qq7v0gqb",
+      "value": "579726f7-999e-4aa9-aa1f-2e70750c7857",
+      "domain": ".mongodb.com",
+      "path": "/",
+      "expires": 1795840436,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "intercom-session-qq7v0gqb",
+      "value": "",
+      "domain": ".mongodb.com",
+      "path": "/",
+      "expires": 1773115236,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "intercom-device-id-qq7v0gqb",
+      "value": "7a6e545a-cb2a-40c7-93cc-261bed19c899",
+      "domain": ".mongodb.com",
+      "path": "/",
+      "expires": 1795840436,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "ajs_anonymous_id",
+      "value": "c1c467ad-8efe-4959-baed-b32ccfe850ac",
+      "domain": ".mongodb.com",
+      "path": "/",
+      "expires": 1804046438,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ]
 }

@@ -1,0 +1,260 @@
+{
+  "started_at": "2026-03-03T03:55:49Z",
+  "reset_rounds": [
+    {
+      "round": 1,
+      "candidate_ids": [
+        "19cb1cff7a565f67",
+        "19cb1cf93ce38c0c",
+        "19cb1cf75b7a37d8",
+        "19cb1cc786710d06",
+        "19cb1cb3d6e03180",
+        "19cb1cad7b3186c6",
+        "19cb1ca433270017",
+        "19cb1c9e8731a4f8"
+      ],
+      "candidate_ts": [
+        1772509721000,
+        1772509696000,
+        1772509688000,
+        1772509493000,
+        1772509412000,
+        1772509386000,
+        1772509348000,
+        1772509325000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 2,
+      "candidate_ids": [
+        "19cb1cff7a565f67",
+        "19cb1cf93ce38c0c",
+        "19cb1cf75b7a37d8",
+        "19cb1cc786710d06",
+        "19cb1cb3d6e03180",
+        "19cb1cad7b3186c6",
+        "19cb1ca433270017",
+        "19cb1c9e8731a4f8"
+      ],
+      "candidate_ts": [
+        1772509721000,
+        1772509696000,
+        1772509688000,
+        1772509493000,
+        1772509412000,
+        1772509386000,
+        1772509348000,
+        1772509325000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 3,
+      "candidate_ids": [
+        "19cb1cff7a565f67",
+        "19cb1cf93ce38c0c",
+        "19cb1cf75b7a37d8",
+        "19cb1cc786710d06",
+        "19cb1cb3d6e03180",
+        "19cb1cad7b3186c6",
+        "19cb1ca433270017",
+        "19cb1c9e8731a4f8"
+      ],
+      "candidate_ts": [
+        1772509721000,
+        1772509696000,
+        1772509688000,
+        1772509493000,
+        1772509412000,
+        1772509386000,
+        1772509348000,
+        1772509325000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 4,
+      "candidate_ids": [
+        "19cb1cff7a565f67",
+        "19cb1cf93ce38c0c",
+        "19cb1cf75b7a37d8",
+        "19cb1cc786710d06",
+        "19cb1cb3d6e03180",
+        "19cb1cad7b3186c6",
+        "19cb1ca433270017",
+        "19cb1c9e8731a4f8"
+      ],
+      "candidate_ts": [
+        1772509721000,
+        1772509696000,
+        1772509688000,
+        1772509493000,
+        1772509412000,
+        1772509386000,
+        1772509348000,
+        1772509325000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 5,
+      "candidate_ids": [
+        "19cb1cff7a565f67",
+        "19cb1cf93ce38c0c",
+        "19cb1cf75b7a37d8",
+        "19cb1cc786710d06",
+        "19cb1cb3d6e03180",
+        "19cb1cad7b3186c6",
+        "19cb1ca433270017",
+        "19cb1c9e8731a4f8"
+      ],
+      "candidate_ts": [
+        1772509721000,
+        1772509696000,
+        1772509688000,
+        1772509493000,
+        1772509412000,
+        1772509386000,
+        1772509348000,
+        1772509325000
+      ],
+      "success_id": "19cb1cf93ce38c0c"
+    }
+  ],
+  "reset_password_used": "AtlasRun!1772510409RB5Q#7m",
+  "attempt_token": "b480d5096b5c821f",
+  "reset_attempts": [
+    {
+      "id": "19cb1cff7a565f67",
+      "round": 1,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb1cff7a565f67",
+      "round": 2,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb1cff7a565f67",
+      "round": 3,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb1cff7a565f67",
+      "round": 4,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb1cff7a565f67",
+      "round": 5,
+      "status": 400,
+      "body": "{\"errorCode\":\"PASSWORD_RESET_EXPIRED\",\"message\":\"PASSWORD_RESET_EXPIRED\",\"params\":[],\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb1cf93ce38c0c",
+      "round": 5,
+      "status": 200,
+      "body": "{\"errorCode\":\"NONE\",\"loginRedirect\":\"/account/security/mfa?n=%2Faccount%2Fprofile%2Finfo&uId=00u117rlu9fT52fdU298&stateToken=00ZNmArQuEDy91W8Gt_LtsBU9adyK68EFswYxEFkg3\",\"version\":\"1\",\"status\":\"OK\"}"
+    }
+  ],
+  "reset_success_id": "19cb1cf93ce38c0c",
+  "auth_method": "resetPasswordComplete",
+  "state_token_prefix": "00ZNmArQuEDy",
+  "mfa_get": {
+    "status": 200,
+    "body": "{\"_embedded\":{\"factors\":[{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"}],\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"stateToken\":\"00ZNmArQuEDy91W8Gt_LtsBU9adyK68EFswYxEFkg3\",\"status\":\"MFA_REQUIRED\"}"
+  },
+  "factor_id": "emf11aaoelxPONmRM298",
+  "factor_type": "email",
+  "before_code_ids": [
+    "19cb1487c9953496",
+    "19cb15a4b48dee1e",
+    "19cb1b6534d7cba2",
+    "19cb16f256baf8c4",
+    "19cb191ebeaffb64",
+    "19cb16ca72eaec37",
+    "19cb148beb26a595",
+    "19cb16ccddf0dde8",
+    "19cb1c8ab523507c",
+    "19cb14892d45139e"
+  ],
+  "mfa_resend": {
+    "status": 200,
+    "body": "{\"_embedded\":{\"factor\":{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"},\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"factorResult\":\"CHALLENGE\",\"stateToken\":\"00ZNmArQuEDy91W8Gt_LtsBU9adyK68EFswYxEFkg3\",\"status\":\"MFA_CHALLENGE\"}"
+  },
+  "code_polls": [
+    [
+      {
+        "id": "19cb1c8ab523507c",
+        "internalDate": 1772509243000,
+        "code": "013205",
+        "subject": "MongoDB verification code: 013205"
+      },
+      {
+        "id": "19cb1b6534d7cba2",
+        "internalDate": 1772508040000,
+        "code": "503096",
+        "subject": "MongoDB verification code: 503096"
+      },
+      {
+        "id": "19cb191ebeaffb64",
+        "internalDate": 1772505655000,
+        "code": "417245",
+        "subject": "MongoDB verification code: 417245"
+      },
+      {
+        "id": "19cb16f256baf8c4",
+        "internalDate": 1772503376000,
+        "code": "800370",
+        "subject": "MongoDB verification code: 800370"
+      }
+    ],
+    [
+      {
+        "id": "19cb1da9d9124727",
+        "internalDate": 1772510419000,
+        "code": "434122",
+        "subject": "MongoDB verification code: 434122"
+      },
+      {
+        "id": "19cb1c8ab523507c",
+        "internalDate": 1772509243000,
+        "code": "013205",
+        "subject": "MongoDB verification code: 013205"
+      },
+      {
+        "id": "19cb1b6534d7cba2",
+        "internalDate": 1772508040000,
+        "code": "503096",
+        "subject": "MongoDB verification code: 503096"
+      },
+      {
+        "id": "19cb191ebeaffb64",
+        "internalDate": 1772505655000,
+        "code": "417245",
+        "subject": "MongoDB verification code: 417245"
+      }
+    ]
+  ],
+  "code_item": {
+    "id": "19cb1da9d9124727",
+    "internalDate": 1772510419000,
+    "code": "434122",
+    "subject": "MongoDB verification code: 434122"
+  },
+  "mfa_verify": {
+    "status": 200,
+    "body": "{\"_embedded\":{\"factor\":{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"},\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"factorResult\":\"SUCCESS\",\"status\":\"MFA_CHALLENGE\"}"
+  },
+  "login_redirect_present": false,
+  "browser_state": {
+    "final_url": "https://account.mongodb.com/account/login?n=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F699c12be8df98bd863d63d70&nextHash=%23overview&signedOut=true",
+    "final_cookie_count": 17
+  },
+  "finished_at": "2026-03-03T04:00:47Z"
+}
