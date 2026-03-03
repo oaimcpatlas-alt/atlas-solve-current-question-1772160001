@@ -1,6 +1,196 @@
 {
-  "started_at": "2026-03-03T04:00:47.263Z",
-  "cookieHeaderLength": 370,
-  "error": "Unexpected server response: 303",
-  "stack": "MongoServerSelectionError: Unexpected server response: 303\n    at Topology.selectServer (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:347:38)\n    at async Topology._connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:220:28)\n    at async Topology.connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:171:13)\n    at async topologyConnect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:258:17)\n    at async MongoClient._connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:271:13)\n    at async MongoClient.connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:196:13)\n    at async main (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/car_team_score_query.js:342:5)"
+  "started_at": "2026-03-03T18:01:50.089Z",
+  "cookieHeaderLength": 4171,
+  "ping": {
+    "ok": 1
+  },
+  "databases": [
+    "sample_mflix",
+    "video_game_store"
+  ],
+  "collectionResults": [
+    {
+      "dbName": "sample_mflix",
+      "collName": "embedded_movies",
+      "scanned": 101,
+      "error": "connection 1 to ac-lxbrbla-shard-00-02.zlknsyp.mongodb.net:27017 timed out"
+    },
+    {
+      "dbName": "sample_mflix",
+      "collName": "theaters",
+      "scanned": 1564,
+      "matched": 0,
+      "employeeMatched": 0,
+      "bothTeams": false,
+      "teamTotals": {
+        "sales": 0,
+        "finance": 0
+      },
+      "teamMins": {
+        "sales": null,
+        "finance": null
+      },
+      "rel": 0,
+      "samples": []
+    },
+    {
+      "dbName": "sample_mflix",
+      "collName": "movies",
+      "scanned": 101,
+      "error": "connection 2 to ac-lxbrbla-shard-00-02.zlknsyp.mongodb.net:27017 timed out"
+    },
+    {
+      "dbName": "sample_mflix",
+      "collName": "comments",
+      "scanned": 101,
+      "error": "connection 3 to ac-lxbrbla-shard-00-02.zlknsyp.mongodb.net:27017 timed out"
+    },
+    {
+      "dbName": "sample_mflix",
+      "collName": "sessions",
+      "scanned": 1,
+      "matched": 0,
+      "employeeMatched": 0,
+      "bothTeams": false,
+      "teamTotals": {
+        "sales": 0,
+        "finance": 0
+      },
+      "teamMins": {
+        "sales": null,
+        "finance": null
+      },
+      "rel": 0,
+      "samples": []
+    },
+    {
+      "dbName": "sample_mflix",
+      "collName": "users",
+      "scanned": 185,
+      "matched": 0,
+      "employeeMatched": 0,
+      "bothTeams": false,
+      "teamTotals": {
+        "sales": 0,
+        "finance": 0
+      },
+      "teamMins": {
+        "sales": null,
+        "finance": null
+      },
+      "rel": 0,
+      "samples": []
+    },
+    {
+      "dbName": "video_game_store",
+      "collName": "Purchase History",
+      "scanned": 2794,
+      "matched": 0,
+      "employeeMatched": 0,
+      "bothTeams": false,
+      "teamTotals": {
+        "sales": 0,
+        "finance": 0
+      },
+      "teamMins": {
+        "sales": null,
+        "finance": null
+      },
+      "rel": 0,
+      "samples": []
+    },
+    {
+      "dbName": "video_game_store",
+      "collName": "Customers",
+      "scanned": 2794,
+      "matched": 0,
+      "employeeMatched": 0,
+      "bothTeams": false,
+      "teamTotals": {
+        "sales": 0,
+        "finance": 0
+      },
+      "teamMins": {
+        "sales": null,
+        "finance": null
+      },
+      "rel": 0,
+      "samples": []
+    },
+    {
+      "dbName": "video_game_store",
+      "collName": "Inventory",
+      "scanned": 2794,
+      "matched": 0,
+      "employeeMatched": 0,
+      "bothTeams": false,
+      "teamTotals": {
+        "sales": 0,
+        "finance": 0
+      },
+      "teamMins": {
+        "sales": null,
+        "finance": null
+      },
+      "rel": 0,
+      "samples": []
+    },
+    {
+      "dbName": "video_game_store",
+      "collName": "Digital Analytics",
+      "scanned": 2794,
+      "matched": 0,
+      "employeeMatched": 0,
+      "bothTeams": false,
+      "teamTotals": {
+        "sales": 0,
+        "finance": 0
+      },
+      "teamMins": {
+        "sales": null,
+        "finance": null
+      },
+      "rel": 0,
+      "samples": []
+    },
+    {
+      "dbName": "video_game_store",
+      "collName": "Delivery Logistics",
+      "scanned": 2794,
+      "matched": 0,
+      "employeeMatched": 0,
+      "bothTeams": false,
+      "teamTotals": {
+        "sales": 0,
+        "finance": 0
+      },
+      "teamMins": {
+        "sales": null,
+        "finance": null
+      },
+      "rel": 0,
+      "samples": []
+    },
+    {
+      "dbName": "video_game_store",
+      "collName": "Social Media",
+      "scanned": 2794,
+      "matched": 0,
+      "employeeMatched": 0,
+      "bothTeams": false,
+      "teamTotals": {
+        "sales": 0,
+        "finance": 0
+      },
+      "teamMins": {
+        "sales": null,
+        "finance": null
+      },
+      "rel": 0,
+      "samples": []
+    }
+  ],
+  "best": null,
+  "answer": null,
+  "error": "No matching records found"
 }
