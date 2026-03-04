@@ -1,51 +1,51 @@
 {
-  "started_at": "2026-03-03T18:59:52Z",
+  "started_at": "2026-03-04T00:07:12Z",
   "known_passwords": [
     "AtlasRun!1772508030R12Q#7m"
   ],
   "before_code_ids": [
-    "19cb191ebeaffb64",
-    "19cb1487c9953496",
-    "19cb1c8ab523507c",
-    "19cb15a4b48dee1e",
-    "19cb11106ada50de",
-    "19cb1485b8d589ec",
-    "19cb16ca72eaec37",
-    "19cb1b6534d7cba2",
-    "19cb123becf19b86",
-    "19cb14803e8beb01",
-    "19cb16ccddf0dde8",
     "19cb148beb26a595",
-    "19cb14841039f4e3",
-    "19cb14892d45139e",
-    "19cb1115116bb444",
-    "19cb1da9d9124727",
-    "19cb4dc693fb3309",
+    "19cb16ca72eaec37",
+    "19cb15a4b48dee1e",
+    "19cb1487c9953496",
+    "19cb512eaf07af52",
+    "19cb16ccddf0dde8",
     "19cb16f256baf8c4",
-    "19cb0ff85d48e46a",
-    "19cb14814cdbb109"
+    "19cb1485b8d589ec",
+    "19cb191ebeaffb64",
+    "19cb1115116bb444",
+    "19cb11106ada50de",
+    "19cb14814cdbb109",
+    "19cb123becf19b86",
+    "19cb14841039f4e3",
+    "19cb14803e8beb01",
+    "19cb1b6534d7cba2",
+    "19cb14892d45139e",
+    "19cb1c8ab523507c",
+    "19cb4dc693fb3309",
+    "19cb1da9d9124727"
   ],
   "before_confirm_ids": [
-    "19cb4ee5d19a3593",
-    "19cb4ee47c0b2935",
-    "19cb507c2e029399",
-    "19cb4e619f342210",
-    "19cb4eeb249b0238",
-    "19cb4e4386c1ff69",
-    "19cb4f01a6d67c07",
-    "19cb4fb516eb72bf",
-    "19cb4fb65088a218",
-    "19cb4e4981a92914",
-    "19cb4f036df4e429",
-    "19cb4f3d9ca33cf0",
-    "19cb4e682cddc372",
-    "19cb4ef1465311d3",
-    "19cb4e559773c578",
-    "19cb500723e14076",
-    "19cb4efbd6ec1d79",
-    "19cb4e5b9558681d",
-    "19cb4e4fa56f1d52",
-    "19cb4ef696ac9f1a"
+    "19cb6251ecab4257",
+    "19cb56e121099f9e",
+    "19cb560fa84ff2d5",
+    "19cb56e630de9bc0",
+    "19cb612c0e8d917d",
+    "19cb56e2a86cb83c",
+    "19cb62585db517e5",
+    "19cb605331fade0a",
+    "19cb60532ceeb612",
+    "19cb5596b48484fb",
+    "19cb606535a2977c",
+    "19cb625b72a920ea",
+    "19cb56eb0e86ddd4",
+    "19cb55983116a812",
+    "19cb6130256974a7",
+    "19cb612e2bcbae0e",
+    "19cb56feb33d320c",
+    "19cb625b93a951ef",
+    "19cb56e7aa2b979a",
+    "19cb56ecb0de6331"
   ],
   "direct_attempts": [
     {
@@ -54,186 +54,951 @@
         {
           "attempt": 1,
           "status": 400,
-          "body": "{\"errorCode\":\"INVALID_USER_AUTH\",\"version\":\"1\",\"status\":\"ERROR\"}"
+          "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+        },
+        {
+          "attempt": 2,
+          "status": 400,
+          "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
         }
       ]
     }
   ],
   "before_reset_ids": [
-    "19cb4f1650c31d47",
-    "19cb4e4fd5b53d80",
-    "19cb4e5bce799fcb",
-    "19cb4e6876aa924a",
-    "19cb4e55c1b957d4",
-    "19cb4ef989af1b69",
-    "19cb4e61c395ad3b",
-    "19cb4f0389b5e550",
-    "19cb50fd0a49838e",
-    "19cb4eee3e538082",
-    "19cb4ee26c261958",
-    "19cb506d04cbca34",
-    "19cb5005396b3f5a",
-    "19cb4ee901c33de9",
-    "19cb4f11da9f3a9b",
-    "19cb4e49d38e6d2a",
-    "19cb4f00309a33dc",
-    "19cb50a08fcf5aee",
-    "19cb4ef46660af27",
-    "19cb4efe688a3d09"
+    "19cb62ac79122e7b",
+    "19cb62a4fc4e15a9",
+    "19cb6130d85e074e",
+    "19cb614b7fe9fa8d",
+    "19cb61419c928b79",
+    "19cb613d4c700a4f",
+    "19cb612c4c90e997",
+    "19cb629eaa48d1ec",
+    "19cb62566d88f550",
+    "19cb62a51864cd4d",
+    "19cb612eab3b7654",
+    "19cb62ae2079a972",
+    "19cb62a583425168",
+    "19cb612eeff276b8",
+    "19cb6145a7e2302c",
+    "19cb6258aedc8f04",
+    "19cb629799eff5b2",
+    "19cb615063b4e078",
+    "19cb62557487fb0c",
+    "19cb614cebcab563"
   ],
   "reset_request": {
-    "status": 200,
-    "body": "{\"resource\":\"/account/resetPasswordRequest\",\"errorCode\":\"NONE\",\"version\":\"1\",\"status\":\"OK\"}"
+    "status": 429,
+    "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
   },
   "reset_snapshot": [
     {
-      "id": "19cb51271b87af0f",
-      "internalDate": 1772564410000,
-      "token": "eff05a7e1f6bec1c6b7a970368129114758ddb2251996b6713ffb20f91a3df0b"
+      "id": "19cb62ae2079a972",
+      "internalDate": 1772582789000,
+      "token": "f8de2de59969d5a20adf9f25297d3fa888e3e6ace375653a6ed86d7255108e76"
     },
     {
-      "id": "19cb50fd0a49838e",
-      "internalDate": 1772564238000,
-      "token": "bf0419a04f795ae4f15b2eabfe07c2abaf334279ab264cde1ce6a0fefd30c4f8"
+      "id": "19cb62ac79122e7b",
+      "internalDate": 1772582782000,
+      "token": "b5ac11791222cc4d54f4653ce5b514946c83895b4bf3f4ae1c0df3e9d920156d"
     },
     {
-      "id": "19cb50a08fcf5aee",
-      "internalDate": 1772563859000,
-      "token": "b925a6c007027da3127607bfab65ce82259e324fc6399ce1f4849a0ac48d4881"
+      "id": "19cb62a583425168",
+      "internalDate": 1772582754000,
+      "token": "3e276a20c212011b58dce75061830d737d8fa341cabd20f47201f09f44ed0531"
     },
     {
-      "id": "19cb506d04cbca34",
-      "internalDate": 1772563648000,
-      "token": "285b960542e736fc3296c0777da6f155afd88f93a797971e849a45c3961c94c4"
+      "id": "19cb62a51864cd4d",
+      "internalDate": 1772582752000,
+      "token": "3f1fed0f44c2de49576d9802a3b5c12596e26c7ce86a6d1f0a66a30df46864c9"
     },
     {
-      "id": "19cb5005396b3f5a",
-      "internalDate": 1772563222000,
-      "token": "95c5c70f1ae020b41b009974db618713baa5cf8c16e250ffe72221730b017f89"
+      "id": "19cb62a4fc4e15a9",
+      "internalDate": 1772582751000,
+      "token": "8ea2b8315d4f9d22318fe06040274d581c6355d96e2ffdabb16db5e81563c6d3"
     },
     {
-      "id": "19cb4f1650c31d47",
-      "internalDate": 1772562244000,
-      "token": "44f18927226d767a7d8f909ba4fb8e34c4d157f7fd30b208434f0e11fbd00723"
+      "id": "19cb629eaa48d1ec",
+      "internalDate": 1772582725000,
+      "token": "9af521823a7e1789a759dffd75304ccb6081cdce09065b8bee924f5819279b68"
     },
     {
-      "id": "19cb4f11da9f3a9b",
-      "internalDate": 1772562226000,
-      "token": "6964d05641629961f7847aa5d49e7ec94abf17050970c8951ed00c950ea04081"
+      "id": "19cb629799eff5b2",
+      "internalDate": 1772582697000,
+      "token": "5d98d35d7bfabe08b80213250b645005afb47b276f40d75fb251781e44a0afbc"
     },
     {
-      "id": "19cb4f0389b5e550",
-      "internalDate": 1772562167000,
-      "token": "d007ffc47044f7702a20c58e4ab9be3865a7b8cb9e4574731a9fd875bab37bf8"
+      "id": "19cb6258aedc8f04",
+      "internalDate": 1772582439000,
+      "token": "f28a0745be2ecc90d77491efc5c2e005cf6fb48f82a068fcecad03c1ea6f06ac"
     }
   ],
-  "new_reset_id": "19cb51271b87af0f",
   "reset_rounds": [
     {
       "round": 1,
       "candidate_ids": [
-        "19cb51271b87af0f",
-        "19cb50fd0a49838e",
-        "19cb50a08fcf5aee",
-        "19cb506d04cbca34",
-        "19cb5005396b3f5a",
-        "19cb4f1650c31d47",
-        "19cb4f11da9f3a9b",
-        "19cb4f0389b5e550"
-      ]
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168",
+        "19cb62a51864cd4d",
+        "19cb62a4fc4e15a9",
+        "19cb629eaa48d1ec",
+        "19cb629799eff5b2",
+        "19cb6258aedc8f04"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 2,
+      "candidate_ids": [
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168",
+        "19cb62a51864cd4d",
+        "19cb62a4fc4e15a9",
+        "19cb629eaa48d1ec",
+        "19cb629799eff5b2",
+        "19cb6258aedc8f04"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 3,
+      "candidate_ids": [
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168",
+        "19cb62a51864cd4d",
+        "19cb62a4fc4e15a9",
+        "19cb629eaa48d1ec",
+        "19cb629799eff5b2",
+        "19cb6258aedc8f04"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 4,
+      "candidate_ids": [
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168",
+        "19cb62a51864cd4d",
+        "19cb62a4fc4e15a9",
+        "19cb629eaa48d1ec",
+        "19cb629799eff5b2",
+        "19cb6258aedc8f04"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 5,
+      "candidate_ids": [
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168",
+        "19cb62a51864cd4d",
+        "19cb62a4fc4e15a9",
+        "19cb629eaa48d1ec",
+        "19cb629799eff5b2",
+        "19cb6258aedc8f04"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 6,
+      "candidate_ids": [
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168",
+        "19cb62a51864cd4d",
+        "19cb62a4fc4e15a9",
+        "19cb629eaa48d1ec",
+        "19cb629799eff5b2",
+        "19cb6258aedc8f04"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 7,
+      "candidate_ids": [
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168",
+        "19cb62a51864cd4d",
+        "19cb62a4fc4e15a9",
+        "19cb629eaa48d1ec",
+        "19cb629799eff5b2",
+        "19cb6258aedc8f04"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 8,
+      "candidate_ids": [
+        "19cb637a50d46585",
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168",
+        "19cb62a51864cd4d",
+        "19cb62a4fc4e15a9",
+        "19cb629eaa48d1ec",
+        "19cb629799eff5b2"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 9,
+      "candidate_ids": [
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52",
+        "19cb63a68cb508a1",
+        "19cb637a50d46585",
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168",
+        "19cb62a51864cd4d"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 10,
+      "candidate_ids": [
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52",
+        "19cb63a68cb508a1",
+        "19cb637a50d46585",
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 11,
+      "candidate_ids": [
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52",
+        "19cb63a68cb508a1",
+        "19cb637a50d46585",
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 12,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 13,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 14,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 15,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 16,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 17,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 18,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 19,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 20,
+      "candidate_ids": [
+        "19cb64b65a4c4726",
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04"
+      ],
+      "rate_limited": true
     }
   ],
   "reset_attempts": [
     {
-      "id": "19cb51271b87af0f",
+      "id": "19cb62ae2079a972",
       "round": 1,
-      "status": 200,
-      "body": "{\"errorCode\":\"NONE\",\"loginRedirect\":\"/account/security/mfa?n=%2Faccount%2Fprofile%2Finfo&uId=00u117rlu9fT52fdU298&stateToken=00k9ftSnHLLvuwMhefK4Ef4kUIxe2g2RMTQWBrgkkG\",\"version\":\"1\",\"status\":\"OK\"}",
-      "password": "AtlasBonus!1772564428R1Q#Aa"
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772582990R1Q#Aa"
+    },
+    {
+      "id": "19cb62ae2079a972",
+      "round": 2,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772583096R2Q#Aa"
+    },
+    {
+      "id": "19cb62ae2079a972",
+      "round": 3,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772583202R3Q#Aa"
+    },
+    {
+      "id": "19cb62ae2079a972",
+      "round": 4,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772583308R4Q#Aa"
+    },
+    {
+      "id": "19cb62ae2079a972",
+      "round": 5,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772583413R5Q#Aa"
+    },
+    {
+      "id": "19cb62ae2079a972",
+      "round": 6,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772583519R6Q#Aa"
+    },
+    {
+      "id": "19cb62ae2079a972",
+      "round": 7,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772583625R7Q#Aa"
+    },
+    {
+      "id": "19cb637a50d46585",
+      "round": 8,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772583740R8Q#Aa"
+    },
+    {
+      "id": "19cb63a90e4afd04",
+      "round": 9,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772583845R9Q#Aa"
+    },
+    {
+      "id": "19cb63c766c45423",
+      "round": 10,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772583951R10Q#Aa"
+    },
+    {
+      "id": "19cb63c766c45423",
+      "round": 11,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772584056R11Q#Aa"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 12,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772584162R12Q#Aa"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 13,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772584268R13Q#Aa"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 14,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772584373R14Q#Aa"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 15,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772584479R15Q#Aa"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 16,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772584584R16Q#Aa"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 17,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772584690R17Q#Aa"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 18,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772584795R18Q#Aa"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 19,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772584901R19Q#Aa"
+    },
+    {
+      "id": "19cb64b65a4c4726",
+      "round": 20,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "password": "AtlasBonus!1772585007R20Q#Aa"
     }
   ],
-  "selected_password": "AtlasBonus!1772564428R1Q#Aa",
-  "auth_method": "reset-direct",
-  "reset_success_id": "19cb51271b87af0f",
-  "state_token_prefix": "00k9ftSnHLLv",
-  "mfa_get": {
-    "status": 200,
-    "body": "{\"_embedded\":{\"factors\":[{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"}],\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"stateToken\":\"00k9ftSnHLLvuwMhefK4Ef4kUIxe2g2RMTQWBrgkkG\",\"status\":\"MFA_REQUIRED\"}"
-  },
-  "factor_id": "emf11aaoelxPONmRM298",
-  "factor_type": "email",
-  "mfa_resend": {
-    "status": 200,
-    "body": "{\"_embedded\":{\"factor\":{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"},\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"factorResult\":\"CHALLENGE\",\"stateToken\":\"00k9ftSnHLLvuwMhefK4Ef4kUIxe2g2RMTQWBrgkkG\",\"status\":\"MFA_CHALLENGE\"}"
-  },
-  "code_snapshot": [
-    {
-      "id": "19cb512eaf07af52",
-      "internalDate": 1772564441000,
-      "code": "548539",
-      "subject": "MongoDB verification code: 548539"
-    },
-    {
-      "id": "19cb4dc693fb3309",
-      "internalDate": 1772560868000,
-      "code": "018819",
-      "subject": "MongoDB verification code: 018819"
-    },
-    {
-      "id": "19cb1da9d9124727",
-      "internalDate": 1772510419000,
-      "code": "434122",
-      "subject": "MongoDB verification code: 434122"
-    },
-    {
-      "id": "19cb1c8ab523507c",
-      "internalDate": 1772509243000,
-      "code": "013205",
-      "subject": "MongoDB verification code: 013205"
-    },
-    {
-      "id": "19cb1b6534d7cba2",
-      "internalDate": 1772508040000,
-      "code": "503096",
-      "subject": "MongoDB verification code: 503096"
-    },
-    {
-      "id": "19cb191ebeaffb64",
-      "internalDate": 1772505655000,
-      "code": "417245",
-      "subject": "MongoDB verification code: 417245"
-    }
+  "confirmation_snapshots": [
+    [
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      },
+      {
+        "id": "19cb625b72a920ea",
+        "internalDate": 1772582450000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      },
+      {
+        "id": "19cb62585db517e5",
+        "internalDate": 1772582437000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb6251ecab4257",
+        "internalDate": 1772582411000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      },
+      {
+        "id": "19cb625b72a920ea",
+        "internalDate": 1772582450000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      },
+      {
+        "id": "19cb62585db517e5",
+        "internalDate": 1772582437000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb6251ecab4257",
+        "internalDate": 1772582411000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      },
+      {
+        "id": "19cb625b72a920ea",
+        "internalDate": 1772582450000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      },
+      {
+        "id": "19cb62585db517e5",
+        "internalDate": 1772582437000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb6251ecab4257",
+        "internalDate": 1772582411000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      },
+      {
+        "id": "19cb625b72a920ea",
+        "internalDate": 1772582450000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      },
+      {
+        "id": "19cb62585db517e5",
+        "internalDate": 1772582437000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb6251ecab4257",
+        "internalDate": 1772582411000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      },
+      {
+        "id": "19cb625b72a920ea",
+        "internalDate": 1772582450000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      },
+      {
+        "id": "19cb62585db517e5",
+        "internalDate": 1772582437000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb6251ecab4257",
+        "internalDate": 1772582411000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      },
+      {
+        "id": "19cb625b72a920ea",
+        "internalDate": 1772582450000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      },
+      {
+        "id": "19cb62585db517e5",
+        "internalDate": 1772582437000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb6251ecab4257",
+        "internalDate": 1772582411000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb637894abbfff",
+        "internalDate": 1772583618000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 128.24.161.83 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63773db96179",
+        "internalDate": 1772583612000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63756a32b943",
+        "internalDate": 1772583605000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb637894abbfff",
+        "internalDate": 1772583618000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 128.24.161.83 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63773db96179",
+        "internalDate": 1772583612000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63756a32b943",
+        "internalDate": 1772583605000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb637894abbfff",
+        "internalDate": 1772583618000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 128.24.161.83 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63773db96179",
+        "internalDate": 1772583612000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63756a32b943",
+        "internalDate": 1772583605000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb637894abbfff",
+        "internalDate": 1772583618000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 128.24.161.83 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63773db96179",
+        "internalDate": 1772583612000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63756a32b943",
+        "internalDate": 1772583605000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb637894abbfff",
+        "internalDate": 1772583618000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 128.24.161.83 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63773db96179",
+        "internalDate": 1772583612000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63756a32b943",
+        "internalDate": 1772583605000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb637894abbfff",
+        "internalDate": 1772583618000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 128.24.161.83 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63773db96179",
+        "internalDate": 1772583612000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63756a32b943",
+        "internalDate": 1772583605000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb637894abbfff",
+        "internalDate": 1772583618000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 128.24.161.83 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63773db96179",
+        "internalDate": 1772583612000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63756a32b943",
+        "internalDate": 1772583605000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb637894abbfff",
+        "internalDate": 1772583618000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 128.24.161.83 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63773db96179",
+        "internalDate": 1772583612000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63756a32b943",
+        "internalDate": 1772583605000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb637894abbfff",
+        "internalDate": 1772583618000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 128.24.161.83 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63773db96179",
+        "internalDate": 1772583612000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63756a32b943",
+        "internalDate": 1772583605000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb637894abbfff",
+        "internalDate": 1772583618000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 128.24.161.83 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63773db96179",
+        "internalDate": 1772583612000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63756a32b943",
+        "internalDate": 1772583605000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb637894abbfff",
+        "internalDate": 1772583618000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 128.24.161.83 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63773db96179",
+        "internalDate": 1772583612000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63756a32b943",
+        "internalDate": 1772583605000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb637894abbfff",
+        "internalDate": 1772583618000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 128.24.161.83 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63773db96179",
+        "internalDate": 1772583612000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb63756a32b943",
+        "internalDate": 1772583605000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:20 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb625b93a951ef",
+        "internalDate": 1772582451000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.183.224.43 Reset Timestamp 2026/03/04 00:00 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb64a3c738359b",
+        "internalDate": 1772584844000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:40 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb64a244b297a6",
+        "internalDate": 1772584838000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:40 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb64a0ccd30808",
+        "internalDate": 1772584831000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:40 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb649c8c476e6e",
+        "internalDate": 1772584814000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.184.211.19 Reset Timestamp 2026/03/04 00:40 GMT This message was sent from MongoDB, Inc."
+      }
+    ],
+    [
+      {
+        "id": "19cb64a3c738359b",
+        "internalDate": 1772584844000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:40 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb64a244b297a6",
+        "internalDate": 1772584838000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:40 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb64a0ccd30808",
+        "internalDate": 1772584831000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 40.118.248.69 Reset Timestamp 2026/03/04 00:40 GMT This message was sent from MongoDB, Inc.,"
+      },
+      {
+        "id": "19cb649c8c476e6e",
+        "internalDate": 1772584814000,
+        "snippet": "Password Reset Confirmation Your password was successfully reset. Username oaimcpatlas@gmail.com IP Address 172.184.211.19 Reset Timestamp 2026/03/04 00:40 GMT This message was sent from MongoDB, Inc."
+      }
+    ]
   ],
-  "code_item": {
-    "id": "19cb512eaf07af52",
-    "internalDate": 1772564441000,
-    "code": "548539",
-    "subject": "MongoDB verification code: 548539"
-  },
-  "mfa_verify": {
-    "status": 200,
-    "body": "{\"errorCode\":\"NONE\",\"loginRedirect\":\"https://auth.mongodb.com/oauth2/default/v1/authorize?client_id=0oa2h8np9ryZR4Xat297&redirect_uri=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Foidc%2Fcallback&response_type=code&response_mode=query&scope=openid+email&state=%7B%22stateNonce%22%3A%22767885a5-8742-4405-9224-8bc05b192bb8%22%7D&nonce=ecfebe22-f048-44d2-a26c-6d859936cbca&sessionToken=20111bO8X3Vl5WVEvqefylAHjrK67wCS2v4QdvtYhLFFFb6CUK01tcu\",\"version\":\"1\",\"status\":\"OK\"}"
-  },
-  "login_redirect_present": true,
-  "auth_url": "https://auth.mongodb.com/oauth2/default/v1/authorize?client_id=0oa2h8np9ryZR4Xat297&redirect_uri=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Foidc%2Fcallback&response_type=code&response_mode=query&scope=openid+email&state=%7B%22stateNonce%22%3A%22767885a5-8742-4405-9224-8bc05b192bb8%22%7D&nonce=ecfebe22-f048-44d2-a26c-6d859936cbca&sessionToken=20111bO8X3Vl5WVEvqefylAHjrK67wCS2v4QdvtYhLFFFb6CUK01tcu",
-  "cookie_count": 36,
-  "cloud_cookie_count": 7,
-  "cookie_domains": [
-    ".account.mongodb.com",
-    ".cloud.mongodb.com",
-    ".doubleclick.net",
-    ".linkedin.com",
-    ".mongodb.com",
-    ".www.linkedin.com",
-    "account.mongodb.com",
-    "auth.mongodb.com",
-    "cloud.mongodb.com",
-    "m.stripe.com"
-  ],
-  "cookie_header_length": 4295,
-  "browser_state": {
-    "final_url": "https://cloud.mongodb.com/orgs/orgData",
-    "final_cookie_count": 36
-  },
-  "finished_at": "2026-03-03T19:01:33Z"
+  "error": "Could not bootstrap authentication",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/scripts/bonus_auth_live.py\", line 480, in <module>\n    main()\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/scripts/bonus_auth_live.py\", line 340, in main\n    raise RuntimeError('Could not bootstrap authentication')\nRuntimeError: Could not bootstrap authentication\n",
+  "finished_at": "2026-03-04T00:43:54Z"
 }
