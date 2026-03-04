@@ -361,8 +361,9 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           printf '%s\n' "$(date -u +%FT%TZ)" > car_team_score_proxy_browser_trigger.txt
+          printf '%s\n' "$(date -u +%FT%TZ)" > ad_campaign_proxy_browser_marker.txt
           git add -A
-          git commit -m "Run car team score proxy browser query" || exit 0
+          git commit -m "Run ad campaign proxy browser query" || exit 0
           for i in 1 2 3 4 5 6; do
             git pull --rebase origin main && git push && exit 0 || true
             sleep 15
