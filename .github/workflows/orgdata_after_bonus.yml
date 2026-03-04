@@ -1,0 +1,41 @@
+
+name: OrgDataAfterBonus
+on:
+  push:
+    branches: [orgdata-after-bonus-1772586332]
+permissions:
+  contents: write
+jobs:
+  probe:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        run: |
+          python -m pip install requests playwright >/dev/null 2>&1 || true
+          python -m playwright install chromium >/dev/null 2>&1 || true
+      - name: Authenticate using existing robust script
+        run: |
+          python scripts/bonus_auth_live.py || true
+          cat bonus_auth_live.json || true
+      - name: Probe orgData with resulting cookies
+        run: |
+          python probe_orgdata.py || true
+          cat orgdata_after_bonus.json || true
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .github/workflows/orgdata_after_bonus.yml probe_orgdata.py bonus_auth_live.json bonus_browser_state.json browser_cookies.json cookie_header.txt bonus_request_cookies.json orgdata_after_bonus.json || true
+          git commit -m "Run orgData after bonus auth" || exit 0
+          for i in 1 2 3 4 5 6; do
+            git pull --rebase origin orgdata-after-bonus-1772586332 && git push origin HEAD:orgdata-after-bonus-1772586332 && exit 0 || true
+            sleep 15
+          done
+          exit 0
