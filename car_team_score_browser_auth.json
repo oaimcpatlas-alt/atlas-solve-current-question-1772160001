@@ -1,124 +1,620 @@
 {
-  "started_at": "2026-03-03T17:59:52Z",
+  "started_at": "2026-03-04T00:20:49Z",
   "reset_rounds": [
     {
       "round": 1,
       "candidate_ids": [
-        "19cb4cfad0a4a6fe",
-        "19cb4ceaa5d93434",
-        "19cb4cda7c470542",
-        "19cb4cca48b60608",
-        "19cb4cb9ad25b7a8",
-        "19cb4cb360a4c414",
-        "19cb4ca949cb71ca",
-        "19cb4c9da5d9d58b"
+        "19cb637a50d46585",
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168",
+        "19cb62a51864cd4d",
+        "19cb62a4fc4e15a9",
+        "19cb629eaa48d1ec",
+        "19cb629799eff5b2"
       ],
       "candidate_ts": [
-        1772560034000,
-        1772559968000,
-        1772559902000,
-        1772559835000,
-        1772559768000,
-        1772559742000,
-        1772559700000,
-        1772559653000
+        1772583625000,
+        1772582789000,
+        1772582782000,
+        1772582754000,
+        1772582752000,
+        1772582751000,
+        1772582725000,
+        1772582697000
       ],
       "rate_limited": true
     },
     {
       "round": 2,
       "candidate_ids": [
-        "19cb4cfad0a4a6fe",
-        "19cb4ceaa5d93434",
-        "19cb4cda7c470542",
-        "19cb4cca48b60608",
-        "19cb4cb9ad25b7a8",
-        "19cb4cb360a4c414",
-        "19cb4ca949cb71ca",
-        "19cb4c9da5d9d58b"
+        "19cb637a50d46585",
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168",
+        "19cb62a51864cd4d",
+        "19cb62a4fc4e15a9",
+        "19cb629eaa48d1ec",
+        "19cb629799eff5b2"
       ],
       "candidate_ts": [
-        1772560034000,
-        1772559968000,
-        1772559902000,
-        1772559835000,
-        1772559768000,
-        1772559742000,
-        1772559700000,
-        1772559653000
+        1772583625000,
+        1772582789000,
+        1772582782000,
+        1772582754000,
+        1772582752000,
+        1772582751000,
+        1772582725000,
+        1772582697000
       ],
-      "success_id": "19cb4cfad0a4a6fe"
+      "rate_limited": true
+    },
+    {
+      "round": 3,
+      "candidate_ids": [
+        "19cb637a50d46585",
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168",
+        "19cb62a51864cd4d",
+        "19cb62a4fc4e15a9",
+        "19cb629eaa48d1ec",
+        "19cb629799eff5b2"
+      ],
+      "candidate_ts": [
+        1772583625000,
+        1772582789000,
+        1772582782000,
+        1772582754000,
+        1772582752000,
+        1772582751000,
+        1772582725000,
+        1772582697000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 4,
+      "candidate_ids": [
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52",
+        "19cb63a68cb508a1",
+        "19cb637a50d46585",
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168",
+        "19cb62a51864cd4d"
+      ],
+      "candidate_ts": [
+        1772583817000,
+        1772583813000,
+        1772583806000,
+        1772583625000,
+        1772582789000,
+        1772582782000,
+        1772582754000,
+        1772582752000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 5,
+      "candidate_ids": [
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52",
+        "19cb63a68cb508a1",
+        "19cb637a50d46585",
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168",
+        "19cb62a51864cd4d"
+      ],
+      "candidate_ts": [
+        1772583817000,
+        1772583813000,
+        1772583806000,
+        1772583625000,
+        1772582789000,
+        1772582782000,
+        1772582754000,
+        1772582752000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 6,
+      "candidate_ids": [
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52",
+        "19cb63a68cb508a1",
+        "19cb637a50d46585",
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168"
+      ],
+      "candidate_ts": [
+        1772583941000,
+        1772583817000,
+        1772583813000,
+        1772583806000,
+        1772583625000,
+        1772582789000,
+        1772582782000,
+        1772582754000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 7,
+      "candidate_ids": [
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52",
+        "19cb63a68cb508a1",
+        "19cb637a50d46585",
+        "19cb62ae2079a972",
+        "19cb62ac79122e7b",
+        "19cb62a583425168"
+      ],
+      "candidate_ts": [
+        1772583941000,
+        1772583817000,
+        1772583813000,
+        1772583806000,
+        1772583625000,
+        1772582789000,
+        1772582782000,
+        1772582754000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 8,
+      "candidate_ids": [
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52",
+        "19cb63a68cb508a1",
+        "19cb637a50d46585"
+      ],
+      "candidate_ts": [
+        1772584075000,
+        1772584067000,
+        1772584065000,
+        1772583941000,
+        1772583817000,
+        1772583813000,
+        1772583806000,
+        1772583625000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 9,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "candidate_ts": [
+        1772584144000,
+        1772584104000,
+        1772584075000,
+        1772584067000,
+        1772584065000,
+        1772583941000,
+        1772583817000,
+        1772583813000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 10,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "candidate_ts": [
+        1772584144000,
+        1772584104000,
+        1772584075000,
+        1772584067000,
+        1772584065000,
+        1772583941000,
+        1772583817000,
+        1772583813000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 11,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "candidate_ts": [
+        1772584144000,
+        1772584104000,
+        1772584075000,
+        1772584067000,
+        1772584065000,
+        1772583941000,
+        1772583817000,
+        1772583813000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 12,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "candidate_ts": [
+        1772584144000,
+        1772584104000,
+        1772584075000,
+        1772584067000,
+        1772584065000,
+        1772583941000,
+        1772583817000,
+        1772583813000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 13,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "candidate_ts": [
+        1772584144000,
+        1772584104000,
+        1772584075000,
+        1772584067000,
+        1772584065000,
+        1772583941000,
+        1772583817000,
+        1772583813000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 14,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "candidate_ts": [
+        1772584144000,
+        1772584104000,
+        1772584075000,
+        1772584067000,
+        1772584065000,
+        1772583941000,
+        1772583817000,
+        1772583813000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 15,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "candidate_ts": [
+        1772584144000,
+        1772584104000,
+        1772584075000,
+        1772584067000,
+        1772584065000,
+        1772583941000,
+        1772583817000,
+        1772583813000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 16,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "candidate_ts": [
+        1772584144000,
+        1772584104000,
+        1772584075000,
+        1772584067000,
+        1772584065000,
+        1772583941000,
+        1772583817000,
+        1772583813000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 17,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "candidate_ts": [
+        1772584144000,
+        1772584104000,
+        1772584075000,
+        1772584067000,
+        1772584065000,
+        1772583941000,
+        1772583817000,
+        1772583813000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 18,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "candidate_ts": [
+        1772584144000,
+        1772584104000,
+        1772584075000,
+        1772584067000,
+        1772584065000,
+        1772583941000,
+        1772583817000,
+        1772583813000
+      ],
+      "rate_limited": true
+    },
+    {
+      "round": 19,
+      "candidate_ids": [
+        "19cb63f8f1c053de",
+        "19cb63ef497e35ff",
+        "19cb63e829c60832",
+        "19cb63e60cdf0ca0",
+        "19cb63e5a689bcef",
+        "19cb63c766c45423",
+        "19cb63a90e4afd04",
+        "19cb63a8246b0c52"
+      ],
+      "candidate_ts": [
+        1772584144000,
+        1772584104000,
+        1772584075000,
+        1772584067000,
+        1772584065000,
+        1772583941000,
+        1772583817000,
+        1772583813000
+      ],
+      "success_id": "19cb63f8f1c053de"
     }
   ],
-  "reset_password_used": "AtlasRun!1772560858RB2Q#7m",
-  "attempt_token": "ce22279b4f720124",
+  "reset_password_used": "AtlasRun!1772584809RB19Q#7m",
+  "attempt_token": "a4411bfb1d7bb391",
   "reset_attempts": [
     {
-      "id": "19cb4cfad0a4a6fe",
+      "id": "19cb637a50d46585",
       "round": 1,
       "status": 429,
       "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
     },
     {
-      "id": "19cb4cfad0a4a6fe",
+      "id": "19cb637a50d46585",
       "round": 2,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb637a50d46585",
+      "round": 3,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63a90e4afd04",
+      "round": 4,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63a90e4afd04",
+      "round": 5,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63c766c45423",
+      "round": 6,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63c766c45423",
+      "round": 7,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63e829c60832",
+      "round": 8,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 9,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 10,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 11,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 12,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 13,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 14,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 15,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 16,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 17,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 18,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "id": "19cb63f8f1c053de",
+      "round": 19,
       "status": 200,
-      "body": "{\"errorCode\":\"NONE\",\"loginRedirect\":\"/account/security/mfa?n=%2Faccount%2Fprofile%2Finfo&uId=00u117rlu9fT52fdU298&stateToken=00ANDAMR_V7SRu2riX06p9YOmdyyGpQuQo7u7uHgJI\",\"version\":\"1\",\"status\":\"OK\"}"
+      "body": "{\"errorCode\":\"NONE\",\"loginRedirect\":\"/account/security/mfa?n=%2Faccount%2Fprofile%2Finfo&uId=00u117rlu9fT52fdU298&stateToken=00lqiU8UkjZQnaL6Tr3KRPGf33vUqZ7RIcSwD7RPRD\",\"version\":\"1\",\"status\":\"OK\"}"
     }
   ],
-  "reset_success_id": "19cb4cfad0a4a6fe",
+  "reset_success_id": "19cb63f8f1c053de",
   "auth_method": "resetPasswordComplete",
-  "state_token_prefix": "00ANDAMR_V7S",
+  "state_token_prefix": "00lqiU8UkjZQ",
   "mfa_get": {
     "status": 200,
-    "body": "{\"_embedded\":{\"factors\":[{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"}],\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"stateToken\":\"00ANDAMR_V7SRu2riX06p9YOmdyyGpQuQo7u7uHgJI\",\"status\":\"MFA_REQUIRED\"}"
+    "body": "{\"_embedded\":{\"factors\":[{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"}],\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"stateToken\":\"00lqiU8UkjZQnaL6Tr3KRPGf33vUqZ7RIcSwD7RPRD\",\"status\":\"MFA_REQUIRED\"}"
   },
   "factor_id": "emf11aaoelxPONmRM298",
   "factor_type": "email",
   "before_code_ids": [
-    "19cb15a4b48dee1e",
-    "19cb16ccddf0dde8",
     "19cb1c8ab523507c",
-    "19cb16f256baf8c4",
-    "19cb148beb26a595",
-    "19cb1b6534d7cba2",
-    "19cb14892d45139e",
     "19cb1da9d9124727",
+    "19cb16f256baf8c4",
+    "19cb512eaf07af52",
+    "19cb6379f91ad082",
+    "19cb191ebeaffb64",
     "19cb16ca72eaec37",
-    "19cb191ebeaffb64"
+    "19cb4dc693fb3309",
+    "19cb1b6534d7cba2",
+    "19cb16ccddf0dde8"
   ],
   "mfa_resend": {
     "status": 200,
-    "body": "{\"_embedded\":{\"factor\":{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"},\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"factorResult\":\"CHALLENGE\",\"stateToken\":\"00ANDAMR_V7SRu2riX06p9YOmdyyGpQuQo7u7uHgJI\",\"status\":\"MFA_CHALLENGE\"}"
+    "body": "{\"_embedded\":{\"factor\":{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"},\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"factorResult\":\"CHALLENGE\",\"stateToken\":\"00lqiU8UkjZQnaL6Tr3KRPGf33vUqZ7RIcSwD7RPRD\",\"status\":\"MFA_CHALLENGE\"}"
   },
   "code_polls": [
     [
       {
-        "id": "19cb1da9d9124727",
-        "internalDate": 1772510419000,
-        "code": "434122",
-        "subject": "MongoDB verification code: 434122"
+        "id": "19cb6379f91ad082",
+        "internalDate": 1772583623000,
+        "code": "673308",
+        "subject": "MongoDB verification code: 673308"
       },
       {
-        "id": "19cb1c8ab523507c",
-        "internalDate": 1772509243000,
-        "code": "013205",
-        "subject": "MongoDB verification code: 013205"
+        "id": "19cb512eaf07af52",
+        "internalDate": 1772564441000,
+        "code": "548539",
+        "subject": "MongoDB verification code: 548539"
       },
-      {
-        "id": "19cb1b6534d7cba2",
-        "internalDate": 1772508040000,
-        "code": "503096",
-        "subject": "MongoDB verification code: 503096"
-      },
-      {
-        "id": "19cb191ebeaffb64",
-        "internalDate": 1772505655000,
-        "code": "417245",
-        "subject": "MongoDB verification code: 417245"
-      }
-    ],
-    [
       {
         "id": "19cb4dc693fb3309",
         "internalDate": 1772560868000,
@@ -130,35 +626,75 @@
         "internalDate": 1772510419000,
         "code": "434122",
         "subject": "MongoDB verification code: 434122"
+      }
+    ],
+    [
+      {
+        "id": "19cb649dfbbb6482",
+        "internalDate": 1772584819000,
+        "code": "013055",
+        "subject": "MongoDB verification code: 013055"
       },
       {
-        "id": "19cb1c8ab523507c",
-        "internalDate": 1772509243000,
-        "code": "013205",
-        "subject": "MongoDB verification code: 013205"
+        "id": "19cb6379f91ad082",
+        "internalDate": 1772583623000,
+        "code": "673308",
+        "subject": "MongoDB verification code: 673308"
       },
       {
-        "id": "19cb1b6534d7cba2",
-        "internalDate": 1772508040000,
-        "code": "503096",
-        "subject": "MongoDB verification code: 503096"
+        "id": "19cb512eaf07af52",
+        "internalDate": 1772564441000,
+        "code": "548539",
+        "subject": "MongoDB verification code: 548539"
+      },
+      {
+        "id": "19cb4dc693fb3309",
+        "internalDate": 1772560868000,
+        "code": "018819",
+        "subject": "MongoDB verification code: 018819"
       }
     ]
   ],
   "code_item": {
-    "id": "19cb4dc693fb3309",
-    "internalDate": 1772560868000,
-    "code": "018819",
-    "subject": "MongoDB verification code: 018819"
+    "id": "19cb649dfbbb6482",
+    "internalDate": 1772584819000,
+    "code": "013055",
+    "subject": "MongoDB verification code: 013055"
   },
   "mfa_verify": {
     "status": 200,
-    "body": "{\"errorCode\":\"NONE\",\"loginRedirect\":\"https://auth.mongodb.com/oauth2/default/v1/authorize?client_id=0oa2h8np9ryZR4Xat297&redirect_uri=https%3A%2F%2Faccount.mongodb.com%2Faccount%2Foidc%2Fcallback&response_type=code&response_mode=query&scope=openid+email&state=%7B%22stateNonce%22%3A%22c786326c-f39e-424c-9bb6-6968dbe49e17%22%7D&nonce=d10a2332-2a5e-4450-9017-25d02a5c520d&sessionToken=20111KajNCM0Qz48Zo_s_U9jTmtZFZu4IKXcH5EbLknsYqHe6oXLffD\",\"version\":\"1\",\"status\":\"OK\"}"
+    "body": "{\"_embedded\":{\"factor\":{\"factorType\":\"email\",\"id\":\"emf11aaoelxPONmRM298\",\"profile\":{\"email\":\"o...s@gmail.com\"},\"provider\":\"OKTA\"},\"user\":{\"profile\":{\"login\":\"oaimcpatlas@gmail.com\"}}},\"factorResult\":\"SUCCESS\",\"status\":\"MFA_CHALLENGE\"}"
   },
-  "login_redirect_present": true,
+  "login_redirect_present": false,
+  "mfa_followups": [
+    {
+      "status": 400,
+      "body": "{\"errorCode\":\"INVALID_TOKEN\",\"message\":\"INVALID_TOKEN\",\"params\":[],\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "status": 400,
+      "body": "{\"errorCode\":\"INVALID_TOKEN\",\"message\":\"INVALID_TOKEN\",\"params\":[],\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "status": 400,
+      "body": "{\"errorCode\":\"INVALID_TOKEN\",\"message\":\"INVALID_TOKEN\",\"params\":[],\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "status": 400,
+      "body": "{\"errorCode\":\"INVALID_TOKEN\",\"message\":\"INVALID_TOKEN\",\"params\":[],\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "status": 400,
+      "body": "{\"errorCode\":\"INVALID_TOKEN\",\"message\":\"INVALID_TOKEN\",\"params\":[],\"version\":\"1\",\"status\":\"ERROR\"}"
+    }
+  ],
+  "mfa_verify_retry": {
+    "status": 400,
+    "body": "{\"errorCode\":\"INVALID_TOKEN\",\"message\":\"INVALID_TOKEN\",\"params\":[],\"version\":\"1\",\"status\":\"ERROR\"}"
+  },
   "browser_state": {
-    "final_url": "https://account.mongodb.com/account/login?n=%2Fv2%2F699c12be8df98bd863d63d70&nextHash=%23overview",
-    "final_cookie_count": 33
+    "final_url": "https://account.mongodb.com/account/login?n=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F699c12be8df98bd863d63d70&nextHash=%23overview&signedOut=true",
+    "final_cookie_count": 17
   },
-  "finished_at": "2026-03-03T18:01:49Z"
+  "finished_at": "2026-03-04T00:41:04Z"
 }
