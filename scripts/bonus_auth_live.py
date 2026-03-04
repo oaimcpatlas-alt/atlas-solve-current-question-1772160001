@@ -16,7 +16,7 @@ USERNAME = 'oaimcpatlas@gmail.com'
 PROJECT_URL = 'https://cloud.mongodb.com/v2/699c12be8df98bd863d63d70#/overview'
 CONNINFO_URL = 'https://cloud.mongodb.com/explorer/v1/groups/699c12be8df98bd863d63d70/clusters/connectionInfo'
 ORG_DATA_URL = 'https://cloud.mongodb.com/orgs/orgData'
-KNOWN_PASSWORDS = ['AtlasRun!1772508030R12Q#7m']
+KNOWN_PASSWORDS = ['AtlasBonus!1772564428R1Q#Aa', 'AtlasRun!1772508030R12Q#7m']
 RESULT_PATH = Path('bonus_auth_live.json')
 
 out = {'started_at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), 'known_passwords': KNOWN_PASSWORDS}
@@ -485,3 +485,4 @@ if __name__ == '__main__':
         out['finished_at'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
         save()
         print(json.dumps({k: out.get(k) for k in ['error', 'selected_password', 'state_token_prefix', 'cookie_count', 'cloud_cookie_count', 'browser_state']}, indent=2))
+
