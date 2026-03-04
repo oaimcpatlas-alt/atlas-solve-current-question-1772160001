@@ -31,138 +31,102 @@ jobs:
           EMAIL = 'oaimcpatlas@gmail.com'
           result = {}
           
-          def refresh_access_token():
-              r = requests.post('https://oauth2.googleapis.com/token', data={
-                  'client_id': CLIENT_ID,
-                  'client_secret': CLIENT_SECRET,
-                  'refresh_token': REFRESH_TOKEN,
-                  'grant_type': 'refresh_token',
-              }, timeout=30)
-              r.raise_for_status()
-              return r.json()['access_token']
-          
-          def gmail_list(query, max_results=10):
-              tok = refresh_access_token()
-              r = requests.get('https://gmail.googleapis.com/gmail/v1/users/me/messages',
-                               params={'q': query, 'maxResults': max_results},
-                               headers={'Authorization': f'Bearer {tok}'}, timeout=30)
-              r.raise_for_status()
-              return r.json().get('messages') or []
-          
-          def gmail_get(mid):
-              tok = refresh_access_token()
-              r = requests.get(f'https://gmail.googleapis.com/gmail/v1/users/me/messages/{mid}',
-                               params={'format': 'full'},
-                               headers={'Authorization': f'Bearer {tok}'}, timeout=30)
-              r.raise_for_status()
-              return r.json()
-          
-          def decode_b64url(data):
-              data = data.replace('-', '+').replace('_', '/')
-              data += '=' * (-len(data) % 4)
-              return base64.b64decode(data).decode('utf-8', 'ignore')
-          
-          def extract_text(payload):
-              chunks=[]
-              def walk(part):
-                  if not isinstance(part, dict): return
-                  d=(part.get('body') or {}).get('data')
-                  if d:
-                      try: chunks.append(decode_b64url(d))
-                      except Exception: pass
-                  for ch in part.get('parts') or []:
-                      walk(ch)
-              walk(payload)
-              return '\n'.join(chunks)
-          
-          def latest_notion_rows():
-              rows=[]
-              for msg in gmail_list('subject:"Your temporary Notion login code"', 10):
-                  detail = gmail_get(msg['id'])
-                  txt = extract_text(detail.get('payload', {}))
-                  code = None
-                  for pat in [r'Login to Notion\s+([A-Za-z0-9]{6})', r'\b([A-Za-z0-9]{6})\b']:
-                      m = re.search(pat, txt)
-                      if m:
-                          code = m.group(1)
-                          break
-                  urls = re.findall(r'https?://[^\s\'"<>]+', txt)
-                  magic_url = None
-                  for u in urls:
-                      if 'loginwithemail?' in u:
-                          magic_url = html.unescape(u)
-                          break
-                  rows.append({
-                      'id': msg['id'],
-                      'internalDate': int(detail.get('internalDate') or 0),
-                      'code': code,
-                      'magic_url': magic_url,
-                      'snippet': detail.get('snippet', '')[:200],
-                  })
-              rows.sort(key=lambda x: x['internalDate'], reverse=True)
-              return rows
-          
-          before = latest_notion_rows()
-          before_ids = {x['id'] for x in before}
-          result['before'] = before[:5]
-          
           with sync_playwright() as p:
               browser = p.chromium.launch(headless=True)
               context = browser.new_context()
               page = context.new_page()
+              captured = []
+              def on_request(req):
+                  try:
+                      if 'notion.so' in req.url or 'notion.com' in req.url:
+                          if any(x in req.url for x in ['/api/', 'login', 'send', 'email']):
+                              captured.append({'type':'request','url':req.url,'method':req.method,'post_data':req.post_data,'headers':{k:v for k,v in req.headers.items() if k.lower() in ('content-type','x-notion-active-user-header')}})
+                  except Exception as e:
+                      captured.append({'type':'request_error','error':repr(e)})
+              def on_response(resp):
+                  try:
+                      if 'notion.so' in resp.url or 'notion.com' in resp.url:
+                          if any(x in resp.url for x in ['/api/', 'login', 'send', 'email']):
+                              txt=''
+                              try:
+                                  txt=resp.text()[:1000]
+                              except Exception as e:
+                                  txt='ERR:'+repr(e)
+                              captured.append({'type':'response','url':resp.url,'status':resp.status,'text':txt})
+                  except Exception as e:
+                      captured.append({'type':'response_error','error':repr(e)})
+              page.on('request', on_request)
+              page.on('response', on_response)
               try:
                   page.goto('https://www.notion.com/login', wait_until='domcontentloaded', timeout=120000)
                   page.wait_for_timeout(5000)
                   result['login_url'] = page.url
                   result['login_title'] = page.title()
+                  result['login_body'] = page.locator('body').inner_text(timeout=10000)[:2000]
+                  # fill email input
+                  email_filled=False
                   try:
-                      result['login_body'] = page.locator('body').inner_text(timeout=10000)[:2000]
-                  except Exception as e:
-                      result['login_body_error'] = repr(e)
-          
-                  send_result = page.evaluate("async (email) => {\n  try {\n    const res = await fetch('https://www.notion.so/api/v3/sendTemporaryPassword', {\n      method: 'POST',\n      headers: {'Content-Type':'application/json'},\n      body: JSON.stringify({email})\n    });\n    const text = await res.text();\n    return {status: res.status, text};\n  } catch (e) {\n    return {error: String(e)};\n  }\n}", EMAIL)
-                  result['send_result'] = send_result
-          
-                  rows = None
-                  deadline = time.time() + 120
-                  found = None
-                  while time.time() < deadline:
-                      rows = latest_notion_rows()
-                      result['rows_preview'] = rows[:3]
-                      for row in rows:
-                          if row['id'] not in before_ids and row.get('magic_url'):
-                              found = row
-                              break
-                      if found:
+                      loc = page.locator('input[type="email"]').first
+                      if loc.count():
+                          loc.fill(EMAIL)
+                          email_filled=True
+                  except Exception:
+                      pass
+                  if not email_filled:
+                      inputs = page.locator('input')
+                      result['input_count'] = inputs.count()
+                      for i in range(inputs.count()):
+                          inp=inputs.nth(i)
+                          typ=inp.get_attribute('type') or ''
+                          payload={'i':i,'type':typ,'placeholder':inp.get_attribute('placeholder'),'aria':inp.get_attribute('aria-label')}
+                          result.setdefault('inputs_meta',[]).append(payload)
+                          if typ in ('text','email') or not typ:
+                              try:
+                                  inp.fill(EMAIL)
+                                  email_filled=True
+                                  result['filled_input_meta']=payload
+                                  break
+                              except Exception:
+                                  pass
+                  result['email_filled']=email_filled
+                  # list buttons
+                  buttons = page.locator('button')
+                  result['button_count'] = buttons.count()
+                  result['button_texts'] = []
+                  for i in range(min(buttons.count(), 10)):
+                      try:
+                          result['button_texts'].append(buttons.nth(i).inner_text(timeout=1000))
+                      except Exception:
+                          result['button_texts'].append('')
+                  # click continue
+                  clicked=False
+                  for pattern in ['Continue','Email','Send','Sign in','Next','Log in']:
+                      try:
+                          page.get_by_role('button', name=re.compile(pattern, re.I)).first.click(timeout=3000)
+                          result['clicked_pattern']=pattern
+                          clicked=True
                           break
-                      time.sleep(3)
-                  result['found'] = found
-                  if found:
-                      page.goto(found['magic_url'], wait_until='domcontentloaded', timeout=120000)
-                      page.wait_for_timeout(12000)
-                      result['after_magic_url'] = page.url
-                      result['after_magic_title'] = page.title()
-                      try:
-                          result['after_magic_body'] = page.locator('body').inner_text(timeout=10000)[:4000]
                       except Exception as e:
-                          result['after_magic_body_error'] = repr(e)
-          
-                      page.goto('https://www.notion.so/', wait_until='domcontentloaded', timeout=120000)
-                      page.wait_for_timeout(12000)
-                      result['root_url'] = page.url
-                      result['root_title'] = page.title()
+                          result.setdefault('click_errors',[]).append({pattern:repr(e)})
+                  if not clicked:
                       try:
-                          result['root_body'] = page.locator('body').inner_text(timeout=10000)[:5000]
+                          page.keyboard.press('Enter')
+                          clicked=True
+                          result['clicked_pattern']='Enter'
                       except Exception as e:
-                          result['root_body_error'] = repr(e)
-          
-                  cookies = context.cookies()
-                  result['cookie_count'] = len(cookies)
-                  result['cookie_names'] = sorted({c['name'] for c in cookies})
-                  result['cookie_domains'] = sorted({c['domain'] for c in cookies})
+                          result['enter_error']=repr(e)
+                  result['clicked']=clicked
+                  page.wait_for_timeout(10000)
+                  result['post_url'] = page.url
+                  result['post_title'] = page.title()
+                  result['post_body'] = page.locator('body').inner_text(timeout=10000)[:2500]
+                  result['captured'] = captured[:50]
+                  result['cookie_names'] = sorted({c['name'] for c in context.cookies()})
+                  result['cookie_domains'] = sorted({c['domain'] for c in context.cookies()})
               except Exception as e:
                   result['error'] = str(e)
                   result['traceback'] = traceback.format_exc()
+                  result['captured'] = captured[:50]
               finally:
                   print(json.dumps(result, indent=2), flush=True)
                   browser.close()
