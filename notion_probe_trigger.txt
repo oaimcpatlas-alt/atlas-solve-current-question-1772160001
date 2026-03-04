@@ -1,1 +1,1 @@
-trigger notion probe 1772585373.1041908
+trigger notion probe magiclink 1772586129.4784944

@@ -23,17 +23,13 @@ jobs:
       - name: Run Notion login probe
         run: |
           python - <<'PY'
-          import base64, json, re, time, traceback, requests
-          from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+          import base64, html, json, re, requests, traceback
+          from playwright.sync_api import sync_playwright
 
           CLIENT_ID = ''.join(['857391432953-','be2nodtmf2lbal35d4mvuarq13d4j6e7.apps.googleusercontent.com'])
           CLIENT_SECRET = ''.join(['GO','CSP','X-PEDpJm_okV4pc7uh6pMuOhJhONzr'])
           REFRESH_TOKEN = ''.join(['1//05uaECVUX0d2aCgYIARAAGAUSNwF-L9Ir','J9e1mZ25z15ccbGTefja3Jxf3ecM5X2OPpiHhzCL3Tyne8Oq8gMCkIj9ab3EGoIsj0A'])
-          EMAIL = 'oaimcpatlas@gmail.com'
           result = {}
-
-          def save(msg):
-              print(msg, flush=True)
 
           def refresh_access_token():
               r = requests.post('https://oauth2.googleapis.com/token', data={
@@ -53,13 +49,10 @@ jobs:
               r.raise_for_status()
               return r.json().get('messages') or []
 
-          def gmail_get(mid, fmt='full', metadata_headers=None):
+          def gmail_get(mid):
               tok = refresh_access_token()
-              params={'format': fmt}
-              if fmt == 'metadata' and metadata_headers:
-                  params['metadataHeaders']=metadata_headers
               r = requests.get(f'https://gmail.googleapis.com/gmail/v1/users/me/messages/{mid}',
-                               params=params,
+                               params={'format': 'full'},
                                headers={'Authorization': f'Bearer {tok}'}, timeout=30)
               r.raise_for_status()
               return r.json()
@@ -69,202 +62,69 @@ jobs:
               data += '=' * (-len(data) % 4)
               return base64.b64decode(data).decode('utf-8', 'ignore')
 
-          def extract_text(detail):
+          def extract_text(payload):
+              chunks=[]
               def walk(part):
-                  out=[]
-                  if not isinstance(part, dict):
-                      return out
-                  data=(part.get('body') or {}).get('data')
-                  if data:
-                      try:
-                          out.append(decode_b64url(data))
-                      except Exception:
-                          pass
+                  if not isinstance(part, dict): return
+                  d=(part.get('body') or {}).get('data')
+                  if d:
+                      try: chunks.append(decode_b64url(d))
+                      except Exception: pass
                   for ch in part.get('parts') or []:
-                      out.extend(walk(ch))
-                  return out
-              return '\n'.join(walk(detail.get('payload', {})))
+                      walk(ch)
+              walk(payload)
+              return '\n'.join(chunks)
 
-          def latest_notion_codes(max_results=10):
-              rows=[]
-              for msg in gmail_list('subject:"Your temporary Notion login code"', max_results):
-                  try:
-                      detail = gmail_get(msg['id'], 'full')
-                      txt = extract_text(detail)
-                      # Try a few likely regexes.
-                      code = None
-                      for pat in [r'Login to Notion\s+([A-Za-z0-9]{6})', r'code[:\s]+([A-Za-z0-9]{6})', r'\b([A-Za-z0-9]{6})\b']:
-                          m = re.search(pat, txt)
-                          if m:
-                              code = m.group(1)
-                              break
-                      rows.append({
-                          'id': msg['id'],
-                          'internalDate': int(detail.get('internalDate') or 0),
-                          'code': code,
-                          'snippet': detail.get('snippet', '')[:200],
-                          'text_start': txt[:500]
-                      })
-                  except Exception as e:
-                      rows.append({'id': msg.get('id'), 'error': repr(e)})
-              rows.sort(key=lambda x: x.get('internalDate', 0), reverse=True)
-              return rows
-
-          before = latest_notion_codes(10)
-          before_ids = {x['id'] for x in before if x.get('id')}
-          result['before_codes'] = before[:5]
+          rows=[]
+          for msg in gmail_list('subject:"Your temporary Notion login code"', 10):
+              detail = gmail_get(msg['id'])
+              txt = extract_text(detail.get('payload', {}))
+              code = None
+              for pat in [r'Login to Notion\s+([A-Za-z0-9]{6})', r'\b([A-Za-z0-9]{6})\b']:
+                  m = re.search(pat, txt)
+                  if m:
+                      code = m.group(1)
+                      break
+              urls = re.findall(r'https?://[^\s\'"<>]+', txt)
+              magic_url = None
+              for u in urls:
+                  if 'loginwithemail?' in u:
+                      magic_url = html.unescape(u)
+                      break
+              rows.append({
+                  'id': msg['id'],
+                  'internalDate': int(detail.get('internalDate') or 0),
+                  'code': code,
+                  'magic_url': magic_url,
+                  'snippet': detail.get('snippet', '')[:200],
+              })
+          rows.sort(key=lambda x: x['internalDate'], reverse=True)
+          result['rows'] = rows[:5]
+          if not rows or not rows[0].get('magic_url'):
+              raise RuntimeError('No notion magic link found in recent emails')
+          magic_url = rows[0]['magic_url']
+          result['selected_magic_url_prefix'] = magic_url[:200]
 
           with sync_playwright() as p:
               browser = p.chromium.launch(headless=True)
               context = browser.new_context()
               page = context.new_page()
               try:
-                  page.goto('https://www.notion.so/loginwithemail', wait_until='domcontentloaded', timeout=120000)
-                  page.wait_for_timeout(5000)
-                  result['initial_url'] = page.url
-                  result['initial_title'] = page.title()
+                  page.goto(magic_url, wait_until='domcontentloaded', timeout=120000)
+                  page.wait_for_timeout(12000)
+                  result['after_magic_url'] = page.url
+                  result['after_magic_title'] = page.title()
                   try:
-                      result['initial_body'] = page.locator('body').inner_text(timeout=5000)[:1500]
+                      result['after_magic_body'] = page.locator('body').inner_text(timeout=10000)[:4000]
                   except Exception as e:
-                      result['initial_body_error'] = repr(e)
+                      result['after_magic_body_error'] = repr(e)
 
-                  # Fill email in first visible email/text input
-                  email_filled = False
-                  try:
-                      loc = page.locator('input[type="email"]').first
-                      if loc.count():
-                          loc.fill(EMAIL)
-                          email_filled = True
-                  except Exception:
-                      pass
-                  if not email_filled:
-                      try:
-                          inputs = page.locator('input')
-                          count = inputs.count()
-                          result['input_count_before'] = count
-                          for i in range(count):
-                              inp = inputs.nth(i)
-                              typ = inp.get_attribute('type') or ''
-                              if typ in ('text','email') or not typ:
-                                  inp.fill(EMAIL)
-                                  email_filled = True
-                                  break
-                      except Exception as e:
-                          result['email_fill_error'] = repr(e)
-                  result['email_filled'] = email_filled
-                  if not email_filled:
-                      raise RuntimeError('Could not fill email field')
-
-                  clicked = False
-                  button_texts = []
-                  try:
-                      buttons = page.locator('button')
-                      bcount = buttons.count()
-                      result['button_count_before'] = bcount
-                      for i in range(min(bcount, 20)):
-                          try:
-                              txt = buttons.nth(i).inner_text(timeout=1000)
-                          except Exception:
-                              txt = ''
-                          button_texts.append(txt)
-                      result['button_texts_before'] = button_texts
-                  except Exception as e:
-                      result['button_enum_error'] = repr(e)
-
-                  for pattern in ['Continue', 'Email', 'Send', 'Sign in', 'Next', 'Log in']:
-                      try:
-                          page.get_by_role('button', name=re.compile(pattern, re.I)).first.click(timeout=3000)
-                          clicked = True
-                          result['clicked_pattern'] = pattern
-                          break
-                      except Exception:
-                          pass
-                  if not clicked:
-                      try:
-                          page.keyboard.press('Enter')
-                          clicked = True
-                          result['clicked_pattern'] = 'Enter'
-                      except Exception:
-                          pass
-                  result['clicked'] = clicked
-
-                  page.wait_for_timeout(5000)
-                  result['post_submit_url'] = page.url
-                  try:
-                      result['post_submit_title'] = page.title()
-                      result['post_submit_body'] = page.locator('body').inner_text(timeout=5000)[:1500]
-                  except Exception as e:
-                      result['post_submit_body_error'] = repr(e)
-
-                  # Wait for new code
-                  code_row = None
-                  deadline = time.time() + 180
-                  while time.time() < deadline:
-                      rows = latest_notion_codes(10)
-                      result['latest_codes_preview'] = rows[:3]
-                      for row in rows:
-                          if row.get('id') not in before_ids and row.get('code'):
-                              code_row = row
-                              break
-                      if code_row:
-                          break
-                      time.sleep(3)
-                  result['selected_code_row'] = code_row
-                  if not code_row:
-                      raise RuntimeError('No new Notion code email found')
-                  code = code_row['code']
-
-                  # Fill code
-                  filled_code = False
-                  try:
-                      code_inputs = page.locator('input[maxlength="1"]')
-                      ccount = code_inputs.count()
-                      result['digit_input_count'] = ccount
-                      if ccount >= len(code):
-                          for i,ch in enumerate(code):
-                              code_inputs.nth(i).fill(ch)
-                          filled_code = True
-                  except Exception:
-                      pass
-                  if not filled_code:
-                      try:
-                          inputs = page.locator('input')
-                          count = inputs.count()
-                          result['input_count_after'] = count
-                          for i in range(count):
-                              inp = inputs.nth(i)
-                              val = inp.input_value(timeout=1000)
-                              typ = inp.get_attribute('type') or ''
-                              # Use visible non-email input
-                              if typ in ('text','tel','password') or not typ:
-                                  try:
-                                      inp.fill(code)
-                                      filled_code = True
-                                      result['code_input_index'] = i
-                                      break
-                                  except Exception:
-                                      pass
-                      except Exception as e:
-                          result['code_fill_error'] = repr(e)
-                  result['filled_code'] = filled_code
-                  if not filled_code:
-                      raise RuntimeError('Could not fill code input')
-
-                  page.wait_for_timeout(8000)
-                  result['after_code_url'] = page.url
-                  try:
-                      result['after_code_title'] = page.title()
-                      result['after_code_body'] = page.locator('body').inner_text(timeout=5000)[:2500]
-                  except Exception as e:
-                      result['after_code_body_error'] = repr(e)
-
-                  # One more navigation to root
                   page.goto('https://www.notion.so/', wait_until='domcontentloaded', timeout=120000)
-                  page.wait_for_timeout(8000)
+                  page.wait_for_timeout(12000)
                   result['root_url'] = page.url
                   result['root_title'] = page.title()
                   try:
-                      result['root_body'] = page.locator('body').inner_text(timeout=10000)[:4000]
+                      result['root_body'] = page.locator('body').inner_text(timeout=10000)[:5000]
                   except Exception as e:
                       result['root_body_error'] = repr(e)
 
