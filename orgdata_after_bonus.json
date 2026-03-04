@@ -1,0 +1,51 @@
+{
+  "orgData": {
+    "status": 401,
+    "final_url": "https://cloud.mongodb.com/orgs/orgData",
+    "history": [],
+    "content_type": null,
+    "body_start": ""
+  },
+  "overview": {
+    "status": 200,
+    "final_url": "https://account.mongodb.com/account/login?signedOut=true&n=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F699c12be8df98bd863d63d70#/overview",
+    "history": [
+      {
+        "status": 303,
+        "url": "https://cloud.mongodb.com/v2/699c12be8df98bd863d63d70#/overview"
+      }
+    ],
+    "content_type": "text/html",
+    "body_start": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n      <title>Cloud: MongoDB Cloud</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    \n    <meta name=\"csrf-token\" content=\"\"/>\n    <meta name=\"csrf-time\" content=\"\"/>\n\n    <script type=\"text/javascript\">\n        window.indexStartAt = Date.now();\n        performance.mark(\"index-start\");\n    </script>\n\n    <link rel=\"icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n    <link rel=\"shortcut icon\" href=\"/static/images/favicon.ico\" type=\"image/x-icon\" />\n\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/runtime.a2001706312d3fb2a1ef.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/common-vendors.7ddea3277ee95e2b7ead.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/8905.f83c4851764274750334.js\" as=\"script\" />\n    \n    <link  rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.3c1890d3a7fa7be6338d.js\" as=\"script\" />\n    \n\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Regular-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Semibold-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/MongoDBValueSerif-Regular.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n    <link rel=\"preload\" href=\"https://assets.mongodb-cdn.com/mms/static/font/EuclidCircularA-Medium-WebXL.woff2\" as=\"font\" type=\"font/woff2\" crossorigin />\n\n    \n        <link rel=\"preconnect\" href=\"https://www.googletagmanager.com\" />\n    \n\n    \n    \n        <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/assets/css/font-awesome.c495654869.min.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n    \n    <link crossorigin=\"\" rel=\"preload\" as=\"style\" type=\"text/css\" href=\"https://assets.mongodb-cdn.com/mms/static/dist/auth.b61b1619ca.css\" onload=\"this.onload=null;this.rel='stylesheet'\"/>\n\n    <style type=\"text/css\">\n        \n            .requiresRsyncInitialSyncFeature { display: none !important; }\n        \n\n        \n            .requiresBackupAdmin { display: none !important; }\n        \n\n        \n            .hasGroupMonitoringAdmin { display: none !important; }\n        \n\n        \n\n        \n\n        \n            .requiresGlobalBackupAdmin { display: none !important; }\n        \n\n        \n            .requiresGlobalOwner { display: none !important; }\n        \n    </style>\n\n    \n        <!-- Load stripe.js, it can only be load from their domain -->\n        <script type=\"text/javascript\" src=\"https://js.stripe.com/v3/\" defer></script>\n    \n\n    \n        <!-- There is a race condition between captcha js loading and the react component rendering or the hook executing.\n        If the js loads first, then the react component or hook goes ahead and renders or executes the captcha respectively. Otherwise,\n        the componentDidMount() function populates the reCaptchaOnload function so that the captcha is\n        rendered or executed after the script is loaded (see ReCaptcha.tsx and useReCaptcha.ts).\n        TODO MB CLOUDP-161146 update the above text to only mention the hook-->\n        <script type=\"text/javascript\">\n            window.reCaptchaOnload = function () {\n            };\n        </script>\n        <!-- This is used by component client/packages/auth/components/ReCaptcha.tsx which only uses\n         enterprise apis. The Enterprise apis are a superset of the non-enterprise functionality\n         and they are invoked from `window.grecaptcha.enterprise` instead of `window.grecaptcha`.\n         The components not rendering ReCaptcha.tsx still rely on the classic recaptcha scripts\n         being loaded below. -->\n        <script src='https://www.recaptcha.net/recaptcha/enterprise.js?onload=reCaptchaOnload&render=6Lc29rwlAAAAAJptGFZvZDUg48E5BVcqa1QVxeXG' defer></script>\n    \n\n    \n        <script>\n            const APP_ID = \"qq7v0gqb\";\n            (function(){var w=window;var ic=w.Intercom;if(typeof ic===\"function\"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.defer=true;s.src='https://widget.intercom.io/widget/'+ APP_ID;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();\n        </script>\n    \n\n    \n        <script>(function(w,d,s,l,i){w[l]="
+  },
+  "connectionInfo": {
+    "status": 401,
+    "final_url": "https://cloud.mongodb.com/explorer/v1/groups/699c12be8df98bd863d63d70/clusters/connectionInfo",
+    "history": [],
+    "content_type": null,
+    "body_start": ""
+  },
+  "cookie_names": [
+    "DT",
+    "JSESSIONID",
+    "__Secure-mdb-sat",
+    "__Secure-mdb-srt",
+    "__stripe_mid",
+    "__stripe_sid",
+    "_gcl_au",
+    "accounta-prod",
+    "ajs_anonymous_id",
+    "cloud-user",
+    "idx",
+    "intercom-device-id-qq7v0gqb",
+    "intercom-id-qq7v0gqb",
+    "mmsa-prod",
+    "okta-oauth-nonce",
+    "okta-oauth-state",
+    "proximity_eaf57d0831fbadd85de077238e567b9a",
+    "remember-user-device",
+    "sid",
+    "user-device",
+    "xids"
+  ]
+}
