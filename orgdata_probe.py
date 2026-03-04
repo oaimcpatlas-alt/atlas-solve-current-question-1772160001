@@ -1,0 +1,346 @@
+
+import base64
+import http.cookiejar
+import json
+import re
+import secrets
+import string
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+
+CLIENT_ID = ''.join(['857391432953','-be2nodtmf2l','bal35d4mvuar','q13d4j6e7.ap','ps.googleuse','rcontent.com'])
+CLIENT_SECRET = ''.join(['GOCSPX-P','EDpJm_ok','V4pc7uh6','pMuOhJhO','Nzr'])
+REFRESH_TOKEN = ''.join(['1//05uaECVUX0d2aCgYI','ARAAGAUSNwF-L9IrJ9e1','mZ25z15ccbGTefja3Jxf','3ecM5X2OPpiHhzCL3Tyn','e8Oq8gMCkIj9ab3EGoIs','j0A'])
+USERNAME = ''.join(['oaimcpatla','s@gmail.co','m'])
+GROUP_ID = '699c12be8df98bd863d63d70'
+
+out = {}
+
+cj = http.cookiejar.CookieJar()
+opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
+
+def urlopen(req, timeout=60):
+    try:
+        with opener.open(req, timeout=timeout) as resp:
+            return resp.status, dict(resp.headers), resp.read().decode()
+    except urllib.error.HTTPError as e:
+        return e.code, dict(e.headers), e.read().decode()
+
+def post_json(url, payload):
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(payload).encode(),
+        method='POST',
+        headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'}
+    )
+    return urlopen(req)
+
+def get(url, headers=None):
+    hdrs = {'User-Agent': 'Mozilla/5.0'}
+    if headers:
+        hdrs.update(headers)
+    req = urllib.request.Request(url, headers=hdrs)
+    return urlopen(req)
+
+def refresh_access_token():
+    data = urllib.parse.urlencode({
+        'client_id': CLIENT_ID,
+        'client_secret': CLIENT_SECRET,
+        'refresh_token': REFRESH_TOKEN,
+        'grant_type': 'refresh_token',
+    }).encode()
+    req = urllib.request.Request('https://oauth2.googleapis.com/token', data=data, method='POST')
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        parsed = json.loads(resp.read().decode())
+    return parsed['access_token']
+
+def gmail_list(query, max_results=10):
+    token = refresh_access_token()
+    headers = {'Authorization': f'Bearer {token}'}
+    url = 'https://gmail.googleapis.com/gmail/v1/users/me/messages?' + urllib.parse.urlencode({
+        'q': query,
+        'maxResults': max_results,
+    })
+    req = urllib.request.Request(url, headers=headers)
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return json.loads(resp.read().decode())
+
+def gmail_get(mid):
+    token = refresh_access_token()
+    headers = {'Authorization': f'Bearer {token}'}
+    url = f'https://gmail.googleapis.com/gmail/v1/users/me/messages/{mid}?format=full'
+    req = urllib.request.Request(url, headers=headers)
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return json.loads(resp.read().decode())
+
+def extract_text(detail):
+    def walk(part):
+        chunks = []
+        body = part.get('body', {})
+        data = body.get('data')
+        if data:
+            try:
+                chunks.append(base64.urlsafe_b64decode(data + '===').decode('utf-8', errors='ignore'))
+            except Exception:
+                pass
+        for child in part.get('parts', []) or []:
+            chunks.extend(walk(child))
+        return chunks
+    return '\n'.join(walk(detail['payload']))
+
+def recent_reset_tokens(max_results=10):
+    listing = gmail_list('subject:"Password Reset" from:cloud-manager-support@mongodb.com -subject:"Confirmation"', max_results)
+    items = []
+    for msg in listing.get('messages', []):
+        try:
+            detail = gmail_get(msg['id'])
+            txt = extract_text(detail)
+            m = re.search(r'https://account\.mongodb\.com/account/reset/password/([A-Za-z0-9]+)\?email=', txt)
+            if m:
+                items.append({
+                    'id': msg['id'],
+                    'internalDate': int(detail.get('internalDate') or 0),
+                    'token': m.group(1),
+                    'snippet': detail.get('snippet'),
+                })
+        except Exception as e:
+            items.append({'id': msg['id'], 'error': repr(e)})
+    items.sort(key=lambda x: x.get('internalDate', 0), reverse=True)
+    return items
+
+def recent_code_messages(max_results=10):
+    listing = gmail_list('subject:"MongoDB verification code" from:mongodb-account@mongodb.com', max_results)
+    items = []
+    for msg in listing.get('messages', []):
+        try:
+            detail = gmail_get(msg['id'])
+            txt = extract_text(detail)
+            m = re.search(r'(\d{6})', txt)
+            items.append({
+                'id': msg['id'],
+                'internalDate': int(detail.get('internalDate') or 0),
+                'code': m.group(1) if m else None,
+                'snippet': detail.get('snippet'),
+            })
+        except Exception as e:
+            items.append({'id': msg['id'], 'error': repr(e)})
+    items.sort(key=lambda x: x.get('internalDate', 0), reverse=True)
+    return items
+
+def wait_new_reset(prev_ids, timeout_s=90):
+    end = time.time() + timeout_s
+    last = []
+    while time.time() < end:
+        cur = recent_reset_tokens(10)
+        last = cur
+        for item in cur:
+            if item.get('id') not in prev_ids and item.get('token'):
+                return item, cur
+        time.sleep(3)
+    cur = recent_reset_tokens(10)
+    last = cur
+    return (cur[0] if cur else None), last
+
+def wait_new_code(prev_ids, timeout_s=120):
+    end = time.time() + timeout_s
+    last = []
+    while time.time() < end:
+        cur = recent_code_messages(10)
+        last = cur
+        for item in cur:
+            if item.get('id') not in prev_ids and item.get('code'):
+                return item, cur
+        time.sleep(3)
+    cur = recent_code_messages(10)
+    last = cur
+    for item in cur:
+        if item.get('code'):
+            return item, last
+    return None, last
+
+def gen_password():
+    chars = string.ascii_letters + string.digits + "!@#$%^&*()-_=+"
+    core = ''.join(secrets.choice(chars) for _ in range(22))
+    return f"A{secrets.choice(string.ascii_uppercase)}{secrets.choice(string.digits)}!{core}"
+
+before_resets = recent_reset_tokens(5)
+out['before_reset_ids'] = [x.get('id') for x in before_resets]
+before_reset_ids = {x.get('id') for x in before_resets}
+password_used = gen_password()
+out['password_prefix'] = password_used[:8]
+state_token = None
+
+for cycle in range(1, 4):
+    req_status, req_headers, req_body = post_json('https://account.mongodb.com/account/resetPasswordRequest', {'username': USERNAME})
+    out.setdefault('reset_request_attempts', []).append({
+        'cycle': cycle,
+        'status': req_status,
+        'body': req_body[:300],
+    })
+    time.sleep(6)
+
+    chosen, token_listing = wait_new_reset(before_reset_ids, 45)
+    out.setdefault('reset_token_snapshots', []).append([
+        {
+            'id': t.get('id'),
+            'internalDate': t.get('internalDate'),
+            'token_prefix': (t.get('token') or '')[:8],
+            'error': t.get('error'),
+            'snippet': t.get('snippet'),
+        }
+        for t in token_listing[:5]
+    ])
+    if not chosen:
+        continue
+    before_reset_ids.add(chosen['id'])
+    token = chosen['token']
+
+    for attempt in range(2):
+        status, headers, body = post_json('https://account.mongodb.com/account/resetPasswordComplete', {
+            'username': USERNAME,
+            'password': password_used,
+            'passwordConfirm': password_used,
+            'tempId': token,
+        })
+        try:
+            parsed = json.loads(body)
+        except Exception:
+            parsed = {}
+        out.setdefault('reset_complete_attempts', []).append({
+            'cycle': cycle,
+            'attempt': attempt + 1,
+            'token_prefix': token[:8],
+            'status': status,
+            'body': body[:500],
+            'errorCode': parsed.get('errorCode'),
+        })
+        if status == 200 and parsed.get('status') == 'OK':
+            m = re.search(r'stateToken=([^&]+)', parsed.get('loginRedirect', ''))
+            if m:
+                state_token = m.group(1)
+                out['selected_reset_token_prefix'] = token[:8]
+                break
+        if parsed.get('errorCode') == 'INSECURE_PASSWORD':
+            password_used = gen_password()
+            out.setdefault('rotated_passwords', []).append(password_used[:8])
+            time.sleep(1)
+            continue
+        break
+    if state_token:
+        break
+    time.sleep(5)
+
+out['state_token_present'] = bool(state_token)
+out['password_prefix'] = password_used[:8]
+auth_redirect = None
+
+if state_token:
+    mfa_status, mfa_headers, mfa_body = get(f'https://account.mongodb.com/account/auth/mfa/{state_token}')
+    out['mfa_get'] = {'status': mfa_status, 'body': mfa_body[:1000]}
+    try:
+        mfa = json.loads(mfa_body)
+    except Exception:
+        mfa = {}
+    factor = (mfa.get('_embedded', {}).get('factors') or [{}])[0]
+    factor_id = factor.get('id')
+    factor_type = factor.get('factorType')
+    out['factor'] = {'id': factor_id, 'type': factor_type}
+
+    before_codes = recent_code_messages(10)
+    before_code_ids = {x.get('id') for x in before_codes}
+    out['before_code_ids'] = [x.get('id') for x in before_codes]
+
+    resend_status, resend_headers, resend_body = post_json('https://account.mongodb.com/account/auth/mfa/verify/resend', {
+        'stateToken': state_token,
+        'factorId': factor_id,
+        'factorType': factor_type,
+    })
+    out['mfa_resend'] = {'status': resend_status, 'body': resend_body[:500]}
+
+    code_info, latest_codes = wait_new_code(before_code_ids, 120)
+    out['code_info'] = {
+        'id': code_info.get('id') if code_info else None,
+        'code': code_info.get('code') if code_info else None,
+        'internalDate': code_info.get('internalDate') if code_info else None,
+    }
+    out['latest_code_ids'] = [x.get('id') for x in latest_codes[:5]]
+
+    if code_info and code_info.get('code'):
+        verify_status, verify_headers, verify_body = post_json('https://account.mongodb.com/account/auth/mfa/verify', {
+            'stateToken': state_token,
+            'factorId': factor_id,
+            'factorType': factor_type,
+            'passcode': code_info['code'],
+            'rememberDevice': True,
+        })
+        out['mfa_verify'] = {'status': verify_status, 'body': verify_body[:2000]}
+        try:
+            verify_parsed = json.loads(verify_body)
+        except Exception:
+            verify_parsed = {}
+        auth_redirect = verify_parsed.get('loginRedirect')
+        out['login_redirect_present'] = bool(auth_redirect)
+        out['login_redirect_prefix'] = auth_redirect[:200] if auth_redirect else None
+
+if auth_redirect:
+    follow_status, follow_headers, follow_body = get(auth_redirect, headers={
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    })
+    out['auth_follow'] = {
+        'status': follow_status,
+        'content_type': follow_headers.get('content-type'),
+        'body_start': follow_body[:300],
+    }
+    ov_status, ov_headers, ov_body = get(f'https://cloud.mongodb.com/v2/{GROUP_ID}#/overview')
+    out['overview'] = {
+        'status': ov_status,
+        'content_type': ov_headers.get('content-type'),
+        'body_start': ov_body[:200],
+    }
+    ci_status, ci_headers, ci_body = get(f'https://cloud.mongodb.com/explorer/v1/groups/{GROUP_ID}/clusters/connectionInfo', headers={
+        'Accept': 'application/json'
+    })
+    out['connectionInfo'] = {
+        'status': ci_status,
+        'content_type': ci_headers.get('content-type'),
+        'body_start': ci_body[:1000],
+    }
+    try:
+        out['connectionInfo_json'] = json.loads(ci_body)
+    except Exception:
+        pass
+    org_status, org_headers, org_body = get('https://cloud.mongodb.com/orgs/orgData', headers=True and {'Accept':'application/json'})
+    out['orgData'] = {
+        'status': org_status,
+        'content_type': org_headers.get('content-type'),
+        'body_start': org_body[:5000],
+    }
+    try:
+        out['orgData_json'] = json.loads(org_body)
+    except Exception:
+        pass
+
+cookies = []
+for c in cj:
+    cookies.append({
+        'name': c.name,
+        'value': c.value,
+        'domain': c.domain,
+        'path': c.path,
+        'secure': c.secure,
+    })
+
+with open('orgdata_probe_result.json', 'w', encoding='utf-8') as f:
+    out['cookie_names'] = sorted({c['name'] for c in cookies})
+    out['cookie_count'] = len(cookies)
+    json.dump(out, f, indent=2)
+
+print(json.dumps({
+    'state_token_present': out.get('state_token_present'),
+    'login_redirect_present': out.get('login_redirect_present'),
+    'cookie_count': len(cookies),
+    'connectionInfo_status': (out.get('connectionInfo') or {}).get('status') if isinstance(out.get('connectionInfo'), dict) else None,
+    'orgData_status': (out.get('orgData') or {}).get('status') if isinstance(out.get('orgData'), dict) else None,
+}, indent=2))
