@@ -1,0 +1,169 @@
+{
+  "before_reset_ids": [
+    "19cb651d1ea8dab5",
+    "19cb6518c5609f85",
+    "19cb65136e2d938c",
+    "19cb65046ddab466",
+    "19cb64fadcce6acd"
+  ],
+  "password_prefix": "AF2!X2$8",
+  "reset_request_attempts": [
+    {
+      "cycle": 1,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "cycle": 2,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    },
+    {
+      "cycle": 3,
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}"
+    }
+  ],
+  "reset_token_snapshots": [
+    [
+      {
+        "id": "19cb651d1ea8dab5",
+        "internalDate": 1772585340000,
+        "token_prefix": "11186d90",
+        "error": null,
+        "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
+      },
+      {
+        "id": "19cb6518c5609f85",
+        "internalDate": 1772585323000,
+        "token_prefix": "063e714e",
+        "error": null,
+        "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
+      },
+      {
+        "id": "19cb65136e2d938c",
+        "internalDate": 1772585301000,
+        "token_prefix": "eca22666",
+        "error": null,
+        "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
+      },
+      {
+        "id": "19cb65046ddab466",
+        "internalDate": 1772585239000,
+        "token_prefix": "7f5650a4",
+        "error": null,
+        "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
+      },
+      {
+        "id": "19cb64fadcce6acd",
+        "internalDate": 1772585200000,
+        "token_prefix": "8d1c190f",
+        "error": null,
+        "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
+      }
+    ],
+    [
+      {
+        "id": "19cb651d1ea8dab5",
+        "internalDate": 1772585340000,
+        "token_prefix": "11186d90",
+        "error": null,
+        "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
+      },
+      {
+        "id": "19cb6518c5609f85",
+        "internalDate": 1772585323000,
+        "token_prefix": "063e714e",
+        "error": null,
+        "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
+      },
+      {
+        "id": "19cb65136e2d938c",
+        "internalDate": 1772585301000,
+        "token_prefix": "eca22666",
+        "error": null,
+        "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
+      },
+      {
+        "id": "19cb65046ddab466",
+        "internalDate": 1772585239000,
+        "token_prefix": "7f5650a4",
+        "error": null,
+        "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
+      },
+      {
+        "id": "19cb64fadcce6acd",
+        "internalDate": 1772585200000,
+        "token_prefix": "8d1c190f",
+        "error": null,
+        "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
+      }
+    ],
+    [
+      {
+        "id": "19cb651d1ea8dab5",
+        "internalDate": 1772585340000,
+        "token_prefix": "11186d90",
+        "error": null,
+        "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
+      },
+      {
+        "id": "19cb6518c5609f85",
+        "internalDate": 1772585323000,
+        "token_prefix": "063e714e",
+        "error": null,
+        "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
+      },
+      {
+        "id": "19cb65136e2d938c",
+        "internalDate": 1772585301000,
+        "token_prefix": "eca22666",
+        "error": null,
+        "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
+      },
+      {
+        "id": "19cb65046ddab466",
+        "internalDate": 1772585239000,
+        "token_prefix": "7f5650a4",
+        "error": null,
+        "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
+      },
+      {
+        "id": "19cb64fadcce6acd",
+        "internalDate": 1772585200000,
+        "token_prefix": "8d1c190f",
+        "error": null,
+        "snippet": "Reset Password A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request."
+      }
+    ]
+  ],
+  "reset_complete_attempts": [
+    {
+      "cycle": 1,
+      "attempt": 1,
+      "token_prefix": "34b86360",
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "errorCode": "RATE_LIMITED"
+    },
+    {
+      "cycle": 2,
+      "attempt": 1,
+      "token_prefix": "8b31880a",
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "errorCode": "RATE_LIMITED"
+    },
+    {
+      "cycle": 3,
+      "attempt": 1,
+      "token_prefix": "64ec5886",
+      "status": 429,
+      "body": "{\"errorCode\":\"RATE_LIMITED\",\"version\":\"1\",\"status\":\"ERROR\"}",
+      "errorCode": "RATE_LIMITED"
+    }
+  ],
+  "state_token_present": false,
+  "cookie_names": [],
+  "cookie_count": 0
+}
