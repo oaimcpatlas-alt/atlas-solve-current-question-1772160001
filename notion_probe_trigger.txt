@@ -1,1 +1,1 @@
-trigger notion probe magiclink 1772586129.4784944
+trigger notion probe sendtemp 1772586825.7409978

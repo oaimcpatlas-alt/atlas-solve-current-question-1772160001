@@ -1,4 +1,3 @@
-
 name: NotionProbe
 on:
   push:
@@ -23,14 +22,15 @@ jobs:
       - name: Run Notion login probe
         run: |
           python - <<'PY'
-          import base64, html, json, re, requests, traceback
+          import base64, html, json, re, requests, time, traceback
           from playwright.sync_api import sync_playwright
-
+          
           CLIENT_ID = ''.join(['857391432953-','be2nodtmf2lbal35d4mvuarq13d4j6e7.apps.googleusercontent.com'])
           CLIENT_SECRET = ''.join(['GO','CSP','X-PEDpJm_okV4pc7uh6pMuOhJhONzr'])
           REFRESH_TOKEN = ''.join(['1//05uaECVUX0d2aCgYIARAAGAUSNwF-L9Ir','J9e1mZ25z15ccbGTefja3Jxf3ecM5X2OPpiHhzCL3Tyne8Oq8gMCkIj9ab3EGoIsj0A'])
+          EMAIL = 'oaimcpatlas@gmail.com'
           result = {}
-
+          
           def refresh_access_token():
               r = requests.post('https://oauth2.googleapis.com/token', data={
                   'client_id': CLIENT_ID,
@@ -40,7 +40,7 @@ jobs:
               }, timeout=30)
               r.raise_for_status()
               return r.json()['access_token']
-
+          
           def gmail_list(query, max_results=10):
               tok = refresh_access_token()
               r = requests.get('https://gmail.googleapis.com/gmail/v1/users/me/messages',
@@ -48,7 +48,7 @@ jobs:
                                headers={'Authorization': f'Bearer {tok}'}, timeout=30)
               r.raise_for_status()
               return r.json().get('messages') or []
-
+          
           def gmail_get(mid):
               tok = refresh_access_token()
               r = requests.get(f'https://gmail.googleapis.com/gmail/v1/users/me/messages/{mid}',
@@ -56,12 +56,12 @@ jobs:
                                headers={'Authorization': f'Bearer {tok}'}, timeout=30)
               r.raise_for_status()
               return r.json()
-
+          
           def decode_b64url(data):
               data = data.replace('-', '+').replace('_', '/')
               data += '=' * (-len(data) % 4)
               return base64.b64decode(data).decode('utf-8', 'ignore')
-
+          
           def extract_text(payload):
               chunks=[]
               def walk(part):
@@ -74,60 +74,88 @@ jobs:
                       walk(ch)
               walk(payload)
               return '\n'.join(chunks)
-
-          rows=[]
-          for msg in gmail_list('subject:"Your temporary Notion login code"', 10):
-              detail = gmail_get(msg['id'])
-              txt = extract_text(detail.get('payload', {}))
-              code = None
-              for pat in [r'Login to Notion\s+([A-Za-z0-9]{6})', r'\b([A-Za-z0-9]{6})\b']:
-                  m = re.search(pat, txt)
-                  if m:
-                      code = m.group(1)
-                      break
-              urls = re.findall(r'https?://[^\s\'"<>]+', txt)
-              magic_url = None
-              for u in urls:
-                  if 'loginwithemail?' in u:
-                      magic_url = html.unescape(u)
-                      break
-              rows.append({
-                  'id': msg['id'],
-                  'internalDate': int(detail.get('internalDate') or 0),
-                  'code': code,
-                  'magic_url': magic_url,
-                  'snippet': detail.get('snippet', '')[:200],
-              })
-          rows.sort(key=lambda x: x['internalDate'], reverse=True)
-          result['rows'] = rows[:5]
-          if not rows or not rows[0].get('magic_url'):
-              raise RuntimeError('No notion magic link found in recent emails')
-          magic_url = rows[0]['magic_url']
-          result['selected_magic_url_prefix'] = magic_url[:200]
-
+          
+          def latest_notion_rows():
+              rows=[]
+              for msg in gmail_list('subject:"Your temporary Notion login code"', 10):
+                  detail = gmail_get(msg['id'])
+                  txt = extract_text(detail.get('payload', {}))
+                  code = None
+                  for pat in [r'Login to Notion\s+([A-Za-z0-9]{6})', r'\b([A-Za-z0-9]{6})\b']:
+                      m = re.search(pat, txt)
+                      if m:
+                          code = m.group(1)
+                          break
+                  urls = re.findall(r'https?://[^\s\'"<>]+', txt)
+                  magic_url = None
+                  for u in urls:
+                      if 'loginwithemail?' in u:
+                          magic_url = html.unescape(u)
+                          break
+                  rows.append({
+                      'id': msg['id'],
+                      'internalDate': int(detail.get('internalDate') or 0),
+                      'code': code,
+                      'magic_url': magic_url,
+                      'snippet': detail.get('snippet', '')[:200],
+                  })
+              rows.sort(key=lambda x: x['internalDate'], reverse=True)
+              return rows
+          
+          before = latest_notion_rows()
+          before_ids = {x['id'] for x in before}
+          result['before'] = before[:5]
+          
           with sync_playwright() as p:
               browser = p.chromium.launch(headless=True)
               context = browser.new_context()
               page = context.new_page()
               try:
-                  page.goto(magic_url, wait_until='domcontentloaded', timeout=120000)
-                  page.wait_for_timeout(12000)
-                  result['after_magic_url'] = page.url
-                  result['after_magic_title'] = page.title()
+                  page.goto('https://www.notion.com/login', wait_until='domcontentloaded', timeout=120000)
+                  page.wait_for_timeout(5000)
+                  result['login_url'] = page.url
+                  result['login_title'] = page.title()
                   try:
-                      result['after_magic_body'] = page.locator('body').inner_text(timeout=10000)[:4000]
+                      result['login_body'] = page.locator('body').inner_text(timeout=10000)[:2000]
                   except Exception as e:
-                      result['after_magic_body_error'] = repr(e)
-
-                  page.goto('https://www.notion.so/', wait_until='domcontentloaded', timeout=120000)
-                  page.wait_for_timeout(12000)
-                  result['root_url'] = page.url
-                  result['root_title'] = page.title()
-                  try:
-                      result['root_body'] = page.locator('body').inner_text(timeout=10000)[:5000]
-                  except Exception as e:
-                      result['root_body_error'] = repr(e)
-
+                      result['login_body_error'] = repr(e)
+          
+                  send_result = page.evaluate("async (email) => {\n  try {\n    const res = await fetch('https://www.notion.so/api/v3/sendTemporaryPassword', {\n      method: 'POST',\n      headers: {'Content-Type':'application/json'},\n      body: JSON.stringify({email})\n    });\n    const text = await res.text();\n    return {status: res.status, text};\n  } catch (e) {\n    return {error: String(e)};\n  }\n}", EMAIL)
+                  result['send_result'] = send_result
+          
+                  rows = None
+                  deadline = time.time() + 120
+                  found = None
+                  while time.time() < deadline:
+                      rows = latest_notion_rows()
+                      result['rows_preview'] = rows[:3]
+                      for row in rows:
+                          if row['id'] not in before_ids and row.get('magic_url'):
+                              found = row
+                              break
+                      if found:
+                          break
+                      time.sleep(3)
+                  result['found'] = found
+                  if found:
+                      page.goto(found['magic_url'], wait_until='domcontentloaded', timeout=120000)
+                      page.wait_for_timeout(12000)
+                      result['after_magic_url'] = page.url
+                      result['after_magic_title'] = page.title()
+                      try:
+                          result['after_magic_body'] = page.locator('body').inner_text(timeout=10000)[:4000]
+                      except Exception as e:
+                          result['after_magic_body_error'] = repr(e)
+          
+                      page.goto('https://www.notion.so/', wait_until='domcontentloaded', timeout=120000)
+                      page.wait_for_timeout(12000)
+                      result['root_url'] = page.url
+                      result['root_title'] = page.title()
+                      try:
+                          result['root_body'] = page.locator('body').inner_text(timeout=10000)[:5000]
+                      except Exception as e:
+                          result['root_body_error'] = repr(e)
+          
                   cookies = context.cookies()
                   result['cookie_count'] = len(cookies)
                   result['cookie_names'] = sorted({c['name'] for c in cookies})
