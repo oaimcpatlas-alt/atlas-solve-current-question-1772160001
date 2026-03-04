@@ -7,7 +7,6 @@ import traceback
 from pathlib import Path
 
 import requests
-from playwright.sync_api import sync_playwright
 
 CLIENT_ID = ''.join(['857391432953-', 'be2nodtmf2lbal35d4mvuarq13d4j6e7', '.apps.googleusercontent.com'])
 CLIENT_SECRET = ''.join(['GO', 'CSP', 'X-PEDpJm_', 'okV4pc7uh6p', 'MuOhJhONzr'])
@@ -422,59 +421,50 @@ def main():
     save()
 
     browser_state = {'initial_cookie_count': len(req_cookies), 'login_redirect_present': bool(auth_url)}
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        context = browser.new_context(user_agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36')
-        if req_cookies:
-            context.add_cookies(req_cookies)
-        page = context.new_page()
-        responses = []
-
-        def on_response(resp):
-            try:
-                ct = resp.headers.get('content-type', '')
-            except Exception:
-                ct = ''
-            if 'cloud.mongodb.com' in resp.url and ('json' in ct or '/explorer/' in resp.url or '/orgs/' in resp.url or '/deployment/' in resp.url):
-                try:
-                    txt = resp.text()[:800]
-                except Exception:
-                    txt = ''
-                responses.append({'url': resp.url, 'status': resp.status, 'text': txt})
-
-        page.on('response', on_response)
+    try:
         if auth_url:
             target = auth_url if str(auth_url).startswith('http') else 'https://account.mongodb.com' + str(auth_url)
-            page.goto(target, wait_until='domcontentloaded', timeout=120000)
-            page.wait_for_timeout(10000)
-            browser_state['after_auth_url'] = page.url
+            rr = s.get(target, allow_redirects=True, headers={'User-Agent': 'Mozilla/5.0', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}, timeout=120)
+            browser_state['auth_follow'] = {
+                'status': rr.status_code,
+                'final_url': rr.url,
+                'history': [{'status': h.status_code, 'url': h.url, 'location': h.headers.get('location')} for h in rr.history],
+                'text_snip': rr.text[:1000],
+            }
+    except Exception as e:
+        browser_state['auth_follow_error'] = str(e)
 
-        for url in [PROJECT_URL, CONNINFO_URL, ORG_DATA_URL]:
-            try:
-                page.goto(url, wait_until='domcontentloaded', timeout=120000)
-                page.wait_for_timeout(8000)
-            except Exception as e:
-                browser_state.setdefault('nav_errors', []).append({'url': url, 'error': str(e)})
+    browser_state['responses'] = []
+    fresh = []
+    for label, url, headers in [
+        ('project', PROJECT_URL, {'User-Agent': 'Mozilla/5.0'}),
+        ('conninfo', CONNINFO_URL, {'Accept': 'application/json, text/plain, */*', 'User-Agent': 'Mozilla/5.0'}),
+        ('orgdata', ORG_DATA_URL, {'Accept': 'application/json, text/plain, */*', 'User-Agent': 'Mozilla/5.0'}),
+    ]:
+        try:
+            rr = s.get(url, headers=headers, allow_redirects=True, timeout=120)
+            browser_state['responses'].append({'label': label, 'status': rr.status_code, 'final_url': rr.url, 'text': rr.text[:800]})
+        except Exception as e:
+            browser_state.setdefault('nav_errors', []).append({'label': label, 'error': str(e)})
 
-        browser_state['final_url'] = page.url
-        try:
-            browser_state['title'] = page.title()
-        except Exception:
-            pass
-        try:
-            browser_state['excerpt'] = page.locator('body').inner_text(timeout=5000)[:4000]
-        except Exception:
-            pass
-        fresh = context.cookies()
-        browser_state['final_cookie_count'] = len(fresh)
-        browser_state['responses'] = responses[-30:]
-        browser.close()
+    for c in s.cookies:
+        item = {
+            'name': c.name,
+            'value': c.value,
+            'domain': c.domain,
+            'path': c.path or '/',
+            'secure': getattr(c, 'secure', True),
+            'httpOnly': False,
+        }
+        if c.expires:
+            item['expires'] = c.expires
+        fresh.append(item)
+    browser_state['final_cookie_count'] = len(fresh)
+    browser_state['final_url'] = browser_state['responses'][-1]['final_url'] if browser_state['responses'] else None
 
     Path('bonus_browser_state.json').write_text(json.dumps(browser_state, indent=2), encoding='utf-8')
     save_final_cookies(fresh)
     out['browser_state'] = {'final_url': browser_state.get('final_url'), 'final_cookie_count': browser_state.get('final_cookie_count')}
-
-
 if __name__ == '__main__':
     try:
         main()
