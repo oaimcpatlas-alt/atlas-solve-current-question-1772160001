@@ -350,11 +350,11 @@ jobs:
               save()
               print(json.dumps({'error': out.get('error'), 'state_token_prefix': out.get('state_token_prefix'), 'browser_state': out.get('browser_state')}, indent=2))
           PY
-      - name: Query hidden Mongo via Atlas browser proxy
+      - name: Query hidden Mongo via Atlas browser proxy for ad campaign CPC
         if: success()
         run: |
-          node car_team_score_query.js || true
-          cat car_team_score_result.json || true
+          node scripts/proxy_ad_scan.js || true
+          cat ad_campaign_proxy_result.json || true
       - name: Commit results
         if: always()
         run: |
