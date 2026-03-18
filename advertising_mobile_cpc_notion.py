@@ -16,13 +16,15 @@ REFRESH_TOKEN = ''.join(['1//05uaECVUX0d2aCgYIARAAGAUSNwF-L9Ir','J9e1mZ25z15ccbG
 EMAIL = ''.join(['oaimcpatlas','@gmail.com'])
 SPACE_ID = 'ce875c9f-0bd0-81a2-a27f-000358568e11'
 RESULT_FILE = 'advertising_mobile_cpc_result.json'
-TARGET_YEAR = 2019  # PewDiePie became the first individual YouTuber to pass 100M subscribers in 2019.
+TARGET_YEAR = 2023
+TARGET_MONTH = 12
 
 out = {
     'started_at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
     'space_id': SPACE_ID,
     'target_year': TARGET_YEAR,
-    'question': 'Which ad placement had the highest average reach among international video ad campaigns launched in 2019?',
+    'target_month': TARGET_MONTH,
+    'question': 'What is the average CPC from mobile devices for campaigns started in December 2023?',
 }
 
 def save():
@@ -43,13 +45,19 @@ def gtoken():
     r.raise_for_status()
     return r.json()['access_token']
 
-GMAIL_HEADERS = {'Authorization': f'Bearer {gtoken()}'}
+_GMAIL_HEADERS = None
+
+def gmail_headers():
+    global _GMAIL_HEADERS
+    if _GMAIL_HEADERS is None:
+        _GMAIL_HEADERS = {'Authorization': f'Bearer {gtoken()}'}
+    return _GMAIL_HEADERS
 
 def gmail_list(query, max_results=30):
     r = requests.get(
         'https://gmail.googleapis.com/gmail/v1/users/me/messages',
         params={'q': query, 'maxResults': max_results},
-        headers=GMAIL_HEADERS,
+        headers=gmail_headers(),
         timeout=30,
     )
     out.setdefault('http_statuses', []).append({'step': 'gmail_list', 'status': r.status_code, 'query': query})
@@ -60,7 +68,7 @@ def gmail_get(mid):
     r = requests.get(
         f'https://gmail.googleapis.com/gmail/v1/users/me/messages/{mid}',
         params={'format': 'full'},
-        headers=GMAIL_HEADERS,
+        headers=gmail_headers(),
         timeout=30,
     )
     out.setdefault('http_statuses', []).append({'step': 'gmail_get', 'status': r.status_code, 'id': mid})
@@ -75,6 +83,7 @@ def decode_b64url(data):
 def extract_email(mid):
     msg = gmail_get(mid)
     parts = []
+
     def walk(part):
         body = part.get('body') or {}
         data = body.get('data')
@@ -85,6 +94,7 @@ def extract_email(mid):
                 pass
         for ch in part.get('parts') or []:
             walk(ch)
+
     walk(msg.get('payload', {}))
     html_part = '\n'.join(t for mime, t in parts if mime == 'text/html')
     plain = '\n'.join(t for mime, t in parts if mime == 'text/plain')
@@ -134,21 +144,19 @@ def parse_date_text(s):
     text = str(s).strip()
     if not text:
         return None
-    # ISO-ish first
     m = re.search(r'((?:19|20)\d{2})[-/](\d{1,2})[-/](\d{1,2})', text)
     if m:
         try:
             return datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)))
         except Exception:
             pass
-    # year only
     m = re.search(r'\b((?:19|20)\d{2})\b', text)
     if m and len(text) <= 8:
         try:
             return datetime(int(m.group(1)), 1, 1)
         except Exception:
             pass
-    for fmt in ('%b %d, %Y', '%B %d, %Y', '%m/%d/%Y', '%Y-%m-%d', '%Y/%m/%d', '%d/%m/%Y'):
+    for fmt in ('%b %d, %Y', '%B %d, %Y', '%m/%d/%Y', '%Y-%m-%d', '%Y/%m/%d', '%d/%m/%Y', '%d-%m-%Y'):
         try:
             return datetime.strptime(text[:len(datetime.now().strftime(fmt))], fmt)
         except Exception:
@@ -201,17 +209,16 @@ def choose_best(cands):
     cands.sort(key=lambda x: (x['score'], x.get('bonus', 0), len(str(x.get('name', '')))), reverse=True)
     return cands[0]
 
-def truthy_text(v):
-    return norm(v) in {'true', 'yes', 'y', '1', 'international', 'global', 'worldwide', 'video'}
+def is_mobile_text(v):
+    s = f" {norm(v)} "
+    return any(tok in s for tok in [' mobile ', ' phone ', ' smartphone ', ' android ', ' ios '])
 
 def analyze_row(row, metas):
-    placement_cands = []
-    reach_cands = []
     date_cands = []
-    international = False
-    international_evidence = None
-    video = False
-    video_evidence = None
+    device_cands = []
+    cpc_cands = []
+    mobile_cpc_cands = []
+    campaign_cands = []
     campaignish = 0
     blob_parts = []
 
@@ -221,101 +228,101 @@ def analyze_row(row, metas):
         nk = norm_key(name)
         vv = str(value or '').strip()
         nvv = norm(vv)
-        if vv and len(vv) < 120:
+
+        if vv and len(vv) < 160:
             blob_parts.append(vv)
         blob_parts.append(name)
 
-        if any(tok in nk for tok in ['campaign', 'ad', 'advert', 'marketing', 'placement', 'reach', 'budget', 'click', 'video']):
+        if any(tok in nk for tok in ['campaign', 'ad', 'advert', 'marketing', 'device', 'mobile', 'cpc', 'click', 'placement', 'audience']):
             campaignish += 1
 
         if vv:
             score = 0
-            if nk == 'placement' or nk.endswith('placement') or 'adplacement' in nk:
-                score += 250
-            if 'placementtype' in nk or 'placementname' in nk:
-                score += 220
-            if score > 0:
-                placement_cands.append({'name': name, 'value': vv, 'score': score})
-
-        num = parse_number(vv)
-        if num is not None:
-            score = 0
-            if nk == 'reach' or nk.endswith('reach') or 'estimatedreach' in nk or 'campaignreach' in nk:
+            if nk == 'campaign' or nk.endswith('campaign') or 'campaignname' in nk:
                 score += 260
-            if 'totalreach' in nk or 'audiencereach' in nk:
+            if 'adname' in nk or 'advertisementname' in nk:
+                score += 240
+            if 'name' in nk and any(tok in nk for tok in ['campaign', 'advert', 'marketing', 'ad']):
                 score += 220
-            if 'impression' in nk or 'view' in nk or 'click' in nk or 'ctr' in nk or 'cpc' in nk or 'cpm' in nk:
-                score -= 120
             if score > 0:
-                reach_cands.append({'name': name, 'value': num, 'score': score})
+                campaign_cands.append({'name': name, 'value': vv, 'score': score})
 
         dt_source = metas.get(name, {}).get('start_date') or vv
         dt = parse_date_text(dt_source)
         if dt:
             score = 0
-            if 'launchdate' in nk or 'launcheddate' in nk:
-                score += 260
-            if 'launch' in nk:
-                score += 240
             if 'campaignstartdate' in nk:
-                score += 250
+                score += 300
             if 'startdate' in nk:
-                score += 220
-            if 'launched' in nk:
-                score += 180
-            if nk.endswith('year') or nk == 'year':
-                score += 170
-            if 'date' in nk and any(tok in nk for tok in ['campaign','ad','market']):
+                score += 270
+            if 'start' in nk and ('date' in nk or nk.endswith('start')):
+                score += 240
+            if 'launcheddate' in nk or 'launchdate' in nk:
+                score += 230
+            if nk in {'date', 'campaigndate'}:
                 score += 120
+            if 'date' in nk and any(tok in nk for tok in ['campaign', 'ad', 'advert', 'marketing']):
+                score += 150
             if score > 0:
                 date_cands.append({'name': name, 'date': dt, 'raw': dt_source, 'score': score})
 
-        if not international:
-            if 'international' in nk and truthy_text(vv):
-                international = True
-                international_evidence = f'{name}={vv}'
-            elif any(tok in nk for tok in ['scope','market','region','audience','campaigntype','campaign']) and any(tok in nvv for tok in ['international','global','worldwide','multi country','multicountry']):
-                international = True
-                international_evidence = f'{name}={vv}'
-            elif 'international' in nvv and not any(tok in nk for tok in ['date','id']):
-                international = True
-                international_evidence = f'{name}={vv}'
+        if vv and is_mobile_text(vv):
+            score = 40
+            if nk == 'device' or nk.endswith('device') or 'device' in nk:
+                score += 260
+            if 'platform' in nk or 'targetdevice' in nk:
+                score += 220
+            if 'audience' in nk or 'segment' in nk or 'target' in nk:
+                score += 90
+            if 'mobile' in nk:
+                score += 120
+            device_cands.append({'name': name, 'value': vv, 'score': score})
 
-        if not video:
-            if any(tok in nk for tok in ['format','media','content','creative','adtype','campaigntype','type']) and 'video' in nvv:
-                video = True
-                video_evidence = f'{name}={vv}'
-            elif nk == 'video' and truthy_text(vv):
-                video = True
-                video_evidence = f'{name}={vv}'
+        num = parse_number(vv)
+        if num is not None:
+            score = 0
+            if nk == 'cpc' or nk.endswith('cpc'):
+                score += 300
+            if 'costperclick' in nk or 'averagecpc' in nk or 'avgcpc' in nk:
+                score += 280
+            if 'click' in nk and 'cost' in nk:
+                score += 250
+            if 'cpc' in nk:
+                score += 220
+            if any(tok in nk for tok in ['ctr', 'cpm', 'spend', 'budget', 'reach', 'impression', 'view', 'engagement']):
+                score -= 130
+            if score > 0:
+                cand = {'name': name, 'value': num, 'score': score}
+                cpc_cands.append(cand)
+                if 'mobile' in nk:
+                    mobile_cpc_cands.append(cand)
 
-    blob = norm(' '.join(blob_parts))
-    if not international and any(tok in blob for tok in [' international ', ' global ', ' worldwide ', ' multi country ', ' multicountry ']):
-        international = True
-        international_evidence = international_evidence or 'blob'
-    if not video and ' video ' in f' {blob} ':
-        video = True
-        video_evidence = video_evidence or 'blob'
+    blob = f" {norm(' '.join(blob_parts))} "
+    if not device_cands and ' mobile ' in blob:
+        device_cands.append({'name': '__blob__', 'value': 'mobile', 'score': 10})
 
-    best_placement = choose_best(placement_cands)
-    best_reach = choose_best(reach_cands)
     best_date = choose_best(date_cands)
+    best_device = choose_best(device_cands)
+    best_cpc = choose_best(cpc_cands)
+    best_mobile_cpc = choose_best(mobile_cpc_cands)
+    best_campaign = choose_best(campaign_cands)
 
-    year = best_date['date'].year if best_date else None
-    is_match = bool(best_placement and best_reach and year == TARGET_YEAR and international and video)
+    is_mobile = bool(best_mobile_cpc) or bool(best_device and is_mobile_text(best_device['value']))
+    cpc_value = best_mobile_cpc['value'] if best_mobile_cpc else (best_cpc['value'] if best_cpc else None)
+    cpc_field = best_mobile_cpc['name'] if best_mobile_cpc else (best_cpc['name'] if best_cpc else None)
+    dt = best_date['date'] if best_date else None
+    is_match = bool(dt and cpc_value is not None and dt.year == TARGET_YEAR and dt.month == TARGET_MONTH and is_mobile)
 
     return {
-        'placement': best_placement['value'] if best_placement else None,
-        'placement_field': best_placement['name'] if best_placement else None,
-        'reach': best_reach['value'] if best_reach else None,
-        'reach_field': best_reach['name'] if best_reach else None,
-        'year': year,
-        'date_field': best_date['name'] if best_date else None,
+        'campaign': best_campaign['value'] if best_campaign else None,
+        'campaign_field': best_campaign['name'] if best_campaign else None,
+        'date': dt,
         'date_raw': best_date['raw'] if best_date else None,
-        'international': international,
-        'international_evidence': international_evidence,
-        'video': video,
-        'video_evidence': video_evidence,
+        'date_field': best_date['name'] if best_date else None,
+        'device': 'mobile' if is_mobile else (best_device['value'] if best_device else None),
+        'device_field': best_device['name'] if best_device else None,
+        'cpc': cpc_value,
+        'cpc_field': cpc_field,
         'campaignish': campaignish,
         'is_match': is_match,
     }
@@ -362,28 +369,25 @@ try:
               body: JSON.stringify(body)
             });
             const text = await resp.text();
-            attemptsOut.push({attempt: i + 1, status: resp.status, text: text.slice(0, 500)});
-            if (resp.status === 200) {
-              return {attempts: attemptsOut, finalStatus: resp.status, finalText: text};
+            attemptsOut.push({status: resp.status, text: text.slice(0, 500)});
+            let parsed = null;
+            try { parsed = JSON.parse(text); } catch (e) {}
+            if (resp.status === 200 && parsed && parsed.csrfState) {
+              return {ok: true, attemptsOut, parsed};
             }
-            if (i + 1 < attempts) await new Promise(r => setTimeout(r, waitMs));
+            await new Promise(r => setTimeout(r, waitMs));
           }
-          return {attempts: attemptsOut, finalStatus: null, finalText: null};
+          return {ok: false, attemptsOut};
         }"""
 
-        send_resp = page.evaluate(js_send, {'body': body, 'version': version, 'attempts': 10, 'waitMs': 45000})
-        out['send_attempts'] = send_resp.get('attempts')
-        save()
-        if send_resp.get('finalStatus') != 200:
+        send_resp = page.evaluate(js_send, {'body': body, 'version': version, 'attempts': 5, 'waitMs': 3000})
+        out['send_temporary_password'] = send_resp
+        if not send_resp.get('ok'):
             raise RuntimeError(f"sendTemporaryPassword failed: {send_resp}")
-        send_json = json.loads(send_resp['finalText'])
-        state = send_json.get('csrfState')
-        out['state_prefix'] = state[:24] if state else None
+        state = (send_resp.get('parsed') or {}).get('csrfState')
         if not state:
             raise RuntimeError('csrfState missing from sendTemporaryPassword response')
 
-        code = None
-        email_meta = None
         for _ in range(120):
             time.sleep(2)
             fresh_msgs = [m for m in gmail_list('subject:"Your temporary Notion login code" newer_than:7d', 50) if m['id'] not in before]
@@ -392,14 +396,13 @@ try:
             for meta in candidate_metas:
                 if meta.get('state_from_link') == state and meta.get('code'):
                     code = meta['code']
-                    email_meta = meta
+                    out['chosen_login_email'] = meta
                     break
-            save()
-            if code:
-                break
-        if not code:
-            raise RuntimeError('No matching login email found')
-        out['login_email'] = email_meta
+            else:
+                continue
+            break
+        else:
+            raise RuntimeError('Timed out waiting for Notion login code email')
 
         js_login = """async ({state, code, version}) => {
           const resp = await fetch('https://www.notion.so/api/v3/loginWithEmail', {
@@ -415,9 +418,8 @@ try:
           });
           return {status: resp.status, text: await resp.text()};
         }"""
-
         login_resp = page.evaluate(js_login, {'state': state, 'code': code, 'version': version})
-        out['login_response'] = {'status': login_resp['status'], 'text_prefix': login_resp['text'][:500]}
+        out['login_resp'] = {'status': login_resp['status'], 'text': login_resp['text'][:500]}
         if login_resp['status'] != 200:
             raise RuntimeError(f"loginWithEmail failed: {login_resp['status']} {login_resp['text'][:300]}")
 
@@ -473,7 +475,7 @@ try:
           return {status: resp.status, text: await resp.text()};
         }"""
 
-        search_queries = ['campaign', 'campaigns', 'advertising', 'marketing', 'ad placement', 'placement', 'reach', 'video', 'international']
+        search_queries = ['campaign', 'campaigns', 'advertising', 'marketing', 'cpc', 'mobile', 'device', 'click']
         candidate_pages = []
         search_hits = []
         for q in search_queries:
@@ -504,13 +506,11 @@ try:
             res = []
             for it in data.get('results', []):
                 bid = it.get('id')
-                block = (((data.get('recordMap') or {}).get('block') or {}).get(bid) or {}).get('value') or {}
-                title = None
-                if (block.get('properties') or {}).get('title'):
-                    title = ''.join(str(x[0]) for x in block['properties']['title'] if isinstance(x, list) and x)
-                item = {'id': bid, 'title': title, 'type': block.get('type')}
-                res.append(item)
-                # Keep broad page set to avoid false negatives
+                title = it.get('title')
+                typ = it.get('type')
+                space = it.get('spaceId')
+                parent = it.get('parentId')
+                res.append({'id': bid, 'title': title, 'type': typ, 'spaceId': space, 'parentId': parent})
                 if bid:
                     candidate_pages.append(bid)
             search_hits.append({'query': q, 'results': res[:20]})
@@ -519,7 +519,7 @@ try:
 
         collection_candidates = []
         seen_collections = set()
-        for pid in list(dict.fromkeys(candidate_pages))[:40]:
+        for pid in list(dict.fromkeys(candidate_pages))[:50]:
             payload = {'pageId': pid, 'limit': 100, 'cursor': {'stack': []}, 'chunkNumber': 0, 'verticalColumns': False}
             resp = page.evaluate(js_load, {'payload': payload, 'userId': user_id, 'version': version})
             if resp['status'] != 200:
@@ -556,7 +556,7 @@ try:
         collection_stats = []
         best_collection = None
 
-        for cb in collection_candidates[:30]:
+        for cb in collection_candidates:
             payload = {
                 'collection': {'id': cb['collection_id'], 'spaceId': SPACE_ID},
                 'collectionView': {'id': cb['view_id'], 'spaceId': SPACE_ID},
@@ -581,42 +581,51 @@ try:
 
             row_matches = []
             max_campaignish = 0
-            partial_counts = {'placement_and_reach': 0, 'target_year': 0, 'international': 0, 'video': 0}
+            partial_counts = {'with_date': 0, 'with_mobile': 0, 'with_cpc': 0, 'target_month': 0}
             samples = []
 
             for bid in block_ids:
                 row, metas = row_from_block(data['recordMap'], schema, bid)
                 analysis = analyze_row(row, metas)
                 max_campaignish = max(max_campaignish, analysis['campaignish'])
+
                 if len(samples) < 5:
                     samples.append({
                         'row': {k: row.get(k) for k in list(row.keys())[:15]},
-                        'analysis': analysis,
+                        'analysis': {
+                            'campaign': analysis['campaign'],
+                            'date_field': analysis['date_field'],
+                            'date_raw': analysis['date_raw'],
+                            'device_field': analysis['device_field'],
+                            'device': analysis['device'],
+                            'cpc_field': analysis['cpc_field'],
+                            'cpc': analysis['cpc'],
+                            'campaignish': analysis['campaignish'],
+                            'is_match': analysis['is_match'],
+                        },
                     })
-                if analysis['placement'] and analysis['reach'] is not None:
-                    partial_counts['placement_and_reach'] += 1
-                if analysis['year'] == TARGET_YEAR:
-                    partial_counts['target_year'] += 1
-                if analysis['international']:
-                    partial_counts['international'] += 1
-                if analysis['video']:
-                    partial_counts['video'] += 1
+
+                if analysis['date']:
+                    partial_counts['with_date'] += 1
+                    if analysis['date'].year == TARGET_YEAR and analysis['date'].month == TARGET_MONTH:
+                        partial_counts['target_month'] += 1
+                if analysis['device'] and is_mobile_text(analysis['device']):
+                    partial_counts['with_mobile'] += 1
+                if analysis['cpc'] is not None:
+                    partial_counts['with_cpc'] += 1
                 if analysis['is_match']:
                     row_matches.append({
-                        'placement': analysis['placement'],
-                        'reach': analysis['reach'],
-                        'placement_field': analysis['placement_field'],
-                        'reach_field': analysis['reach_field'],
-                        'date_field': analysis['date_field'],
+                        'campaign': analysis['campaign'],
                         'date_raw': analysis['date_raw'],
-                        'international_evidence': analysis['international_evidence'],
-                        'video_evidence': analysis['video_evidence'],
+                        'device': analysis['device'],
+                        'cpc': analysis['cpc'],
+                        'cpc_field': analysis['cpc_field'],
                         'row': row,
                     })
 
             title_blob = norm(cb.get('title') or '')
             title_score = 0
-            for tok, pts in [('campaign', 10), ('advert', 8), ('marketing', 7), ('placement', 6), ('reach', 6), ('video', 4)]:
+            for tok, pts in [('campaign', 12), ('advert', 10), ('marketing', 8), ('cpc', 8), ('mobile', 6), ('device', 5), ('click', 4)]:
                 if tok in title_blob:
                     title_score += pts
 
@@ -632,7 +641,14 @@ try:
                 'samples': samples,
                 'match_preview': row_matches[:10],
             }
-            stat['score'] = stat['matched_rows'] * 1000 + title_score * 10 + max_campaignish + partial_counts['placement_and_reach'] * 2
+            stat['score'] = (
+                stat['matched_rows'] * 1000
+                + title_score * 10
+                + max_campaignish
+                + partial_counts['target_month'] * 5
+                + partial_counts['with_mobile'] * 2
+                + partial_counts['with_cpc'] * 3
+            )
             collection_stats.append(stat)
             save()
 
@@ -644,14 +660,8 @@ try:
         out['best_collection'] = best_collection
 
         if not best_collection or not best_collection.get('matched_rows'):
-            raise RuntimeError('No exact campaign matches found in any candidate collection')
+            raise RuntimeError('No December 2023 mobile CPC matches found in any candidate collection')
 
-        groups = {}
-        for item in best_collection['match_preview']:
-            # only preview, not full set
-            pass
-
-        # Rebuild from best collection full preview if needed by re-querying exact collection
         cb = {
             'collection_id': best_collection['collection_id'],
             'view_id': best_collection['view_id'],
@@ -674,52 +684,31 @@ try:
         block_ids = res.get('blockIds', [])
         schema = ((((data.get('recordMap') or {}).get('collection') or {}).get(cb['collection_id']) or {}).get('value') or {}).get('schema') or {}
 
-        grouped = {}
         matched_rows = []
         for bid in block_ids:
             row, metas = row_from_block(data['recordMap'], schema, bid)
             analysis = analyze_row(row, metas)
             if not analysis['is_match']:
                 continue
-            placement = analysis['placement'].strip()
-            key = norm(placement)
-            g = grouped.setdefault(key, {'placement': placement, 'reach_values': [], 'rows': []})
-            g['reach_values'].append(float(analysis['reach']))
-            if len(g['rows']) < 5:
-                g['rows'].append({
-                    'placement': placement,
-                    'reach': analysis['reach'],
-                    'date_raw': analysis['date_raw'],
-                    'international_evidence': analysis['international_evidence'],
-                    'video_evidence': analysis['video_evidence'],
-                    'row': row,
-                })
             matched_rows.append({
-                'placement': placement,
-                'reach': analysis['reach'],
+                'campaign': analysis['campaign'],
+                'date_raw': analysis['date_raw'],
+                'device': analysis['device'],
+                'cpc': analysis['cpc'],
+                'cpc_field': analysis['cpc_field'],
                 'row': row,
             })
 
-        placements = []
-        for g in grouped.values():
-            avg_reach = sum(g['reach_values']) / len(g['reach_values'])
-            placements.append({
-                'placement': g['placement'],
-                'count': len(g['reach_values']),
-                'average_reach': avg_reach,
-                'sample_rows': g['rows'],
-            })
-        placements.sort(key=lambda x: (x['average_reach'], x['count']), reverse=True)
-
         out['matched_row_count'] = len(matched_rows)
-        out['placements'] = placements
-        if not placements:
-            raise RuntimeError('No grouped placements found after selecting best collection')
+        out['matched_rows_preview'] = matched_rows[:10]
+        if not matched_rows:
+            raise RuntimeError('No matched rows found after selecting best collection')
 
+        avg = sum(float(r['cpc']) for r in matched_rows) / len(matched_rows)
         out['answer'] = {
-            'placement': placements[0]['placement'],
-            'average_reach': placements[0]['average_reach'],
-            'count': placements[0]['count'],
+            'average_cpc': round(avg, 3),
+            'count': len(matched_rows),
+            'collection_title': cb['title'],
         }
         save()
         browser.close()
