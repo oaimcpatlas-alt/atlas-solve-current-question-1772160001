@@ -1,0 +1,44 @@
+name: advertising-mobile-cpc-notion
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/advertising_mobile_cpc.yml'
+      - 'advertising_mobile_cpc_notion.py'
+      - 'advertising_mobile_cpc_trigger.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install requests playwright python-dateutil
+          python -m playwright install --with-deps chromium
+      - name: Run advertising mobile CPC solver
+        run: python advertising_mobile_cpc_notion.py
+      - name: Commit result
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add advertising_mobile_cpc_result.json .github/workflows/advertising_mobile_cpc.yml advertising_mobile_cpc_notion.py advertising_mobile_cpc_trigger.txt || true
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git commit -m "Run advertising mobile CPC notion solver" || exit 0
+          git pull --rebase --autostash
+          git push
