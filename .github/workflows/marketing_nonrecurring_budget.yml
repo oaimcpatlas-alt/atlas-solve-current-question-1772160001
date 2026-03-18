@@ -1,0 +1,43 @@
+name: MarketingNonRecurringBudget
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/marketing_nonrecurring_budget.yml'
+      - 'scripts/answer_marketing_budget.py'
+      - 'marketing_nonrecurring_budget_trigger.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  solve:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+      AIRTABLE_PAT: ${{ secrets.AIRTABLE_PAT }}
+      AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run scanner
+        run: |
+          python scripts/answer_marketing_budget.py
+      - name: Commit result
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p outputs
+          git add outputs/marketing_nonrecurring_budget_answer.json
+          if git diff --cached --quiet; then
+            echo "No result changes to commit"
+            exit 0
+          fi
+          git commit -m "Update marketing nonrecurring budget answer"
+          git push
