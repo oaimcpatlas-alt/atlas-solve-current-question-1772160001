@@ -1,0 +1,31 @@
+{
+  "question": "max showroom visitors in a day in the month when Harper Lee died",
+  "assumed_month": 2,
+  "assumed_month_name": "February",
+  "author": "Harper Lee",
+  "death_date": "2016-02-19",
+  "started_at": "2026-03-18T21:48:35.610703Z",
+  "token_lengths": {
+    "AIRTABLE_API_KEY": 0,
+    "AIRTABLE_PAT": 0,
+    "AIRTABLE_TOKEN": 0
+  },
+  "token_attempts": [
+    {
+      "name": "AIRTABLE_API_KEY",
+      "status": "missing"
+    },
+    {
+      "name": "AIRTABLE_PAT",
+      "status": "missing"
+    },
+    {
+      "name": "AIRTABLE_TOKEN",
+      "status": "missing"
+    }
+  ],
+  "bases": [],
+  "candidates": [],
+  "error": "No working Airtable token found",
+  "finished_at": "2026-03-18T21:48:35.611020Z"
+}
