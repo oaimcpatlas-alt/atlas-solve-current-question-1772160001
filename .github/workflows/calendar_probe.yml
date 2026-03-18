@@ -1,0 +1,81 @@
+
+name: calendar-probe
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/calendar_probe.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe calendar with possible secrets
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os, json, requests, traceback
+          out = {
+              "has_client_id": bool(os.getenv("GOOGLE_CLIENT_ID")),
+              "has_client_secret": bool(os.getenv("GOOGLE_CLIENT_SECRET")),
+              "has_refresh_token": bool(os.getenv("GOOGLE_REFRESH_TOKEN")),
+          }
+          try:
+              if not (out["has_client_id"] and out["has_client_secret"] and out["has_refresh_token"]):
+                  raise RuntimeError("missing one or more GOOGLE_* secrets")
+              r = requests.post(
+                  "https://oauth2.googleapis.com/token",
+                  data={
+                      "client_id": os.environ["GOOGLE_CLIENT_ID"],
+                      "client_secret": os.environ["GOOGLE_CLIENT_SECRET"],
+                      "refresh_token": os.environ["GOOGLE_REFRESH_TOKEN"],
+                      "grant_type": "refresh_token",
+                  },
+                  timeout=30,
+              )
+              out["token_status"] = r.status_code
+              out["token_text"] = r.text[:1000]
+              r.raise_for_status()
+              access_token = r.json()["access_token"]
+              headers = {"Authorization": f"Bearer {access_token}"}
+              params = {
+                  "timeMin": "2025-07-08T00:00:00Z",
+                  "timeMax": "2025-07-12T00:00:00Z",
+                  "singleEvents": "true",
+                  "orderBy": "startTime",
+                  "maxResults": "50",
+              }
+              ev = requests.get(
+                  "https://www.googleapis.com/calendar/v3/calendars/primary/events",
+                  headers=headers,
+                  params=params,
+                  timeout=30,
+              )
+              out["events_status"] = ev.status_code
+              out["events_text"] = ev.text[:8000]
+          except Exception as e:
+              out["error"] = repr(e)
+              out["traceback"] = traceback.format_exc()
+          with open("calendar_probe_output.json", "w", encoding="utf-8") as f:
+              json.dump(out, f, indent=2)
+          PY
+      - name: Commit output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add calendar_probe_output.json
+          git commit -m "Add calendar probe output" || exit 0
+          git push
