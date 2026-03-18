@@ -1,0 +1,612 @@
+name: AirtableSalesHrQ22017
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/airtable_sales_hr_q2_2017.yml'
+      - 'airtable_sales_hr_q2_2017_trigger.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  solve:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+      AIRTABLE_PAT: ${{ secrets.AIRTABLE_PAT }}
+      AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Query Airtable and compute answer
+        run: |
+          python - <<'PY'
+          import os, json, urllib.request, urllib.error, urllib.parse, traceback, time, re, math
+          from datetime import datetime, timezone
+
+          OUT = {
+              "question": "Which area had the best performance average in Q2 2017 between Sales and Human Resources, and what was the lowest individual score from the losing area?",
+              "target_year": 2017,
+              "target_quarter": 2,
+              "target_areas": ["sales", "human resources"],
+              "started_at": datetime.now(timezone.utc).isoformat(),
+              "token_lengths": {k: len(os.environ.get(k, "")) for k in ["AIRTABLE_API_KEY", "AIRTABLE_PAT", "AIRTABLE_TOKEN"]},
+              "token_attempts": [],
+              "bases": [],
+              "candidates": [],
+              "selected": None,
+              "answer": None,
+          }
+
+          def save():
+              os.makedirs("outputs", exist_ok=True)
+              with open("outputs/airtable_sales_hr_q2_2017.json", "w", encoding="utf-8") as f:
+                  json.dump(OUT, f, indent=2, ensure_ascii=False)
+
+          def req_json(url, token, params=None):
+              if params:
+                  url += ("&" if "?" in url else "?") + urllib.parse.urlencode(params)
+              req = urllib.request.Request(
+                  url,
+                  headers={
+                      "Authorization": f"Bearer {token}",
+                      "User-Agent": "python",
+                      "Content-Type": "application/json",
+                  },
+              )
+              with urllib.request.urlopen(req, timeout=120) as resp:
+                  body = resp.read()
+              return json.loads(body.decode("utf-8"))
+
+          def try_tokens():
+              for name in ["AIRTABLE_API_KEY", "AIRTABLE_PAT", "AIRTABLE_TOKEN"]:
+                  token = os.environ.get(name, "")
+                  if not token:
+                      OUT["token_attempts"].append({"name": name, "status": "missing"})
+                      continue
+                  try:
+                      data = req_json("https://api.airtable.com/v0/meta/bases", token)
+                      bases = data.get("bases", [])
+                      OUT["token_attempts"].append({"name": name, "status": "ok", "base_count": len(bases)})
+                      return token, bases
+                  except urllib.error.HTTPError as e:
+                      try:
+                          body = e.read().decode("utf-8")
+                      except Exception:
+                          body = ""
+                      OUT["token_attempts"].append({"name": name, "status": e.code, "body": body[:500]})
+                  except Exception as e:
+                      OUT["token_attempts"].append({"name": name, "status": "error", "error": repr(e)})
+              return None, []
+
+          def get_tables(token, base_id):
+              return req_json(f"https://api.airtable.com/v0/meta/bases/{base_id}/tables", token).get("tables", [])
+
+          def iter_records(token, base_id, table_name, max_pages=30):
+              offset = None
+              pages = 0
+              encoded_table = urllib.parse.quote(table_name, safe="")
+              while True:
+                  params = {"pageSize": 100}
+                  if offset:
+                      params["offset"] = offset
+                  data = req_json(f"https://api.airtable.com/v0/{base_id}/{encoded_table}", token, params=params)
+                  for rec in data.get("records", []):
+                      yield rec
+                  offset = data.get("offset")
+                  pages += 1
+                  if not offset or pages >= max_pages:
+                      break
+
+          def norm(s):
+              return re.sub(r"[^a-z0-9]+", " ", str(s).lower()).strip()
+
+          def norm_key(s):
+              return re.sub(r"[^a-z0-9]+", "", str(s).lower())
+
+          def to_number(v):
+              if v is None or isinstance(v, bool):
+                  return None
+              if isinstance(v, (int, float)):
+                  return float(v)
+              s = str(v).strip()
+              if not s:
+                  return None
+              s = s.replace(",", "").replace("$", "").replace("%", "")
+              try:
+                  return float(s)
+              except Exception:
+                  return None
+
+          def parse_date(v):
+              if v is None or isinstance(v, bool):
+                  return None
+              s = str(v).strip()
+              if not s:
+                  return None
+              ss = s.replace("Z", "+00:00")
+              for val in [ss, s]:
+                  try:
+                      if "T" in val:
+                          return datetime.fromisoformat(val)
+                      if re.match(r"^\d{4}-\d{2}-\d{2}$", val):
+                          return datetime.strptime(val, "%Y-%m-%d")
+                  except Exception:
+                      pass
+              for fmt in [
+                  "%m/%d/%Y", "%d/%m/%Y", "%m/%d/%y", "%d/%m/%y",
+                  "%Y/%m/%d", "%Y-%m-%d %H:%M:%S", "%m-%d-%Y", "%d-%m-%Y",
+                  "%b %d %Y", "%B %d %Y", "%d %b %Y", "%d %B %Y",
+                  "%b %d, %Y", "%B %d, %Y",
+              ]:
+                  try:
+                      return datetime.strptime(s, fmt)
+                  except Exception:
+                      pass
+              return None
+
+          month_names = {
+              "jan": 1, "january": 1,
+              "feb": 2, "february": 2,
+              "mar": 3, "march": 3,
+              "apr": 4, "april": 4,
+              "may": 5,
+              "jun": 6, "june": 6,
+              "jul": 7, "july": 7,
+              "aug": 8, "august": 8,
+              "sep": 9, "sept": 9, "september": 9,
+              "oct": 10, "october": 10,
+              "nov": 11, "november": 11,
+              "dec": 12, "december": 12,
+          }
+
+          def parse_month(v):
+              if v is None or isinstance(v, bool):
+                  return None
+              if isinstance(v, (int, float)):
+                  n = int(v)
+                  if 1 <= n <= 12:
+                      return n
+                  return None
+              s = norm(v)
+              if not s:
+                  return None
+              if s in month_names:
+                  return month_names[s]
+              for k, m in month_names.items():
+                  if re.search(rf"\b{re.escape(k)}\b", s):
+                      return m
+              m = re.fullmatch(r"0?([1-9]|1[0-2])", s)
+              if m:
+                  return int(m.group(1))
+              d = parse_date(v)
+              if d:
+                  return d.month
+              return None
+
+          def parse_quarter_value(v):
+              if v is None:
+                  return None
+              if isinstance(v, (int, float)):
+                  n = int(v)
+                  if 1 <= n <= 4:
+                      return n
+              s = norm(v)
+              if not s:
+                  return None
+              if s in {"q1", "1", "quarter 1", "first quarter", "quarter1"}:
+                  return 1
+              if s in {"q2", "2", "quarter 2", "second quarter", "quarter2"}:
+                  return 2
+              if s in {"q3", "3", "quarter 3", "third quarter", "quarter3"}:
+                  return 3
+              if s in {"q4", "4", "quarter 4", "fourth quarter", "quarter4"}:
+                  return 4
+              if "q1" in s or "first quarter" in s:
+                  return 1
+              if "q2" in s or "second quarter" in s:
+                  return 2
+              if "q3" in s or "third quarter" in s:
+                  return 3
+              if "q4" in s or "fourth quarter" in s:
+                  return 4
+              return None
+
+          def quarter_from_month(m):
+              if not m:
+                  return None
+              return ((int(m) - 1) // 3) + 1
+
+          def flatten_value(v, prefix=""):
+              out = {}
+              if isinstance(v, dict):
+                  for k, vv in v.items():
+                      p = f"{prefix}.{k}" if prefix else str(k)
+                      out.update(flatten_value(vv, p))
+              elif isinstance(v, list):
+                  if not v:
+                      out[prefix] = ""
+                  else:
+                      for i, vv in enumerate(v):
+                          p = f"{prefix}[{i}]"
+                          out.update(flatten_value(vv, p))
+              else:
+                  out[prefix] = v
+              return out
+
+          sales_values = {"sales"}
+          hr_values = {"hr", "human resources", "human resource", "humanresources", "people operations"}
+
+          def detect_team(flat):
+              best = None
+              for path, v in flat.items():
+                  nk = norm_key(path)
+                  nv = norm(v)
+                  if not nv:
+                      continue
+                  team = None
+                  if nv in sales_values or nv.startswith("sales ") or nv.endswith(" sales") or "sales team" in nv or "sales department" in nv:
+                      team = "sales"
+                  elif nv in hr_values or "human resources" in nv or "human resource" in nv or nv == "people operations":
+                      team = "human resources"
+                  if not team:
+                      continue
+                  score = 0
+                  if re.search(r"(department|dept|team|function|division|unit|group|area|role|section)", nk):
+                      score += 10
+                  if "area" in nk:
+                      score += 4
+                  if "department" in nk or "dept" in nk:
+                      score += 4
+                  if path == team:
+                      score += 2
+                  if nv == team:
+                      score += 2
+                  cand = {"team": team, "field": path, "value": v, "score": score}
+                  if not best or cand["score"] > best["score"]:
+                      best = cand
+              return best
+
+          def field_name_period(name):
+              s = norm(name)
+              m = re.search(r"\b(19|20)\d{2}\b", s)
+              year = int(m.group(0)) if m else None
+              q = parse_quarter_value(s)
+              month = parse_month(s)
+              if q is None and month is not None:
+                  q = quarter_from_month(month)
+              return year, q
+
+          def detect_wide_scores(flat):
+              out = []
+              for path, v in flat.items():
+                  num = to_number(v)
+                  if num is None:
+                      continue
+                  nk = norm_key(path)
+                  name_norm = norm(path)
+                  year, q = field_name_period(path)
+                  score = 0
+                  if year == 2017 and q == 2:
+                      score += 80
+                  elif year == 2017 and q is not None:
+                      score += 10
+                  else:
+                      continue
+                  if "performancescore" in nk:
+                      score += 80
+                  if "reviewscore" in nk or "evaluationscore" in nk or "appraisalscore" in nk:
+                      score += 70
+                  if "overallscore" in nk or "totalscore" in nk:
+                      score += 65
+                  if nk.endswith("score") or nk == "score":
+                      score += 50
+                  if "score" in nk:
+                      score += 35
+                  if "rating" in nk:
+                      score += 20
+                  if any(bad in nk for bad in ["customer", "revenue", "salary", "cost", "amount", "budget", "price", "views", "likes", "shares", "comments", "age", "distance", "stock", "inventory", "visitor", "satisfaction"]):
+                      score -= 100
+                  if score > 40:
+                      out.append({"field": path, "value": num, "score": score, "year": year, "quarter": q})
+              out.sort(key=lambda x: (-x["score"], x["field"]))
+              return out[:3]
+
+          def detect_score(flat):
+              best = None
+              for path, v in flat.items():
+                  num = to_number(v)
+                  if num is None or num < -1000 or num > 1000000:
+                      continue
+                  nk = norm_key(path)
+                  score = 0
+                  if "performancescore" in nk:
+                      score += 130
+                  if "reviewscore" in nk or "evaluationscore" in nk or "appraisalscore" in nk:
+                      score += 120
+                  if "overallscore" in nk:
+                      score += 115
+                  if "totalscore" in nk:
+                      score += 105
+                  if nk.endswith("score") or nk == "score":
+                      score += 95
+                  if "score" in nk:
+                      score += 70
+                  if "rating" in nk:
+                      score += 45
+                  if "points" in nk:
+                      score += 35
+                  if "performance" in nk or "review" in nk or "evaluation" in nk or "appraisal" in nk:
+                      score += 20
+                  if any(bad in nk for bad in [
+                      "customer", "revenue", "salary", "price", "cost", "amount", "budget", "payment", "purchase",
+                      "views", "likes", "shares", "comments", "age", "year", "month", "quarter", "visitor",
+                      "stock", "inventory", "distance", "satisfaction", "conversion", "forecast", "profit", "expense"
+                  ]):
+                      score -= 100
+                  if score <= 0:
+                      continue
+                  cand = {"field": path, "value": num, "score": score}
+                  if not best or cand["score"] > best["score"]:
+                      best = cand
+              return best
+
+          def detect_period(flat):
+              year = None
+              quarter = None
+              month = None
+              date_hits = []
+              for path, v in flat.items():
+                  nk = norm_key(path)
+                  num = to_number(v)
+                  if year is None:
+                      if re.search(r"(year|reviewyear|assessmentyear|fiscalyear|periodyear|evalyear)", nk):
+                          if num is not None and 1900 <= int(num) <= 2100:
+                              year = int(num)
+                          else:
+                              m = re.search(r"\b(19|20)\d{2}\b", str(v))
+                              if m:
+                                  year = int(m.group(0))
+                  if quarter is None:
+                      if re.search(r"(quarter|qtr|reviewquarter|assessmentquarter|periodquarter|fiscalquarter)", nk):
+                          quarter = parse_quarter_value(v)
+                  if month is None and re.search(r"(month|reviewmonth|assessmentmonth|periodmonth|fiscalmonth)", nk):
+                      month = parse_month(v)
+                  # derive from date-ish fields or any parseable date with relevant field names
+                  if re.search(r"(date|time|timestamp|review|assessment|eval|appraisal|period|created|updated)", nk):
+                      d = parse_date(v)
+                      if d:
+                          date_hits.append((path, d))
+                          if year is None:
+                              year = d.year
+                          if month is None:
+                              month = d.month
+                  # value-text may itself contain quarter/year
+                  if quarter is None:
+                      qv = parse_quarter_value(v)
+                      if qv is not None and re.search(r"(quarter|qtr|period|review|assessment|eval|appraisal)", nk):
+                          quarter = qv
+                  if year is None:
+                      m = re.search(r"\b(19|20)\d{2}\b", str(v))
+                      if m and re.search(r"(year|review|assessment|eval|appraisal|period)", nk):
+                          year = int(m.group(0))
+              if quarter is None and month is not None:
+                  quarter = quarter_from_month(month)
+              # if still missing, try latest date hit
+              if (year is None or quarter is None) and date_hits:
+                  _, d = date_hits[0]
+                  if year is None:
+                      year = d.year
+                  if quarter is None:
+                      quarter = quarter_from_month(d.month)
+              return {"year": year, "quarter": quarter, "month": month, "date_hits": [{"field": p, "value": d.isoformat()} for p, d in date_hits[:3]]}
+
+          def schema_score(base_name, table_name, fields):
+              text = norm(base_name + " " + table_name)
+              score = 0
+              if "performance" in text:
+                  score += 20
+              if "employee" in text or "staff" in text or "personnel" in text:
+                  score += 15
+              if "review" in text or "evaluation" in text or "appraisal" in text:
+                  score += 12
+              if "department" in text or "area" in text or "team" in text:
+                  score += 8
+              if "human resources" in text or "hr" in text or "sales" in text:
+                  score += 8
+              for f in fields:
+                  fn = norm(f.get("name", ""))
+                  if any(x in fn for x in ["performance score", "review score", "evaluation score", "score", "rating"]):
+                      score += 5
+                  if any(x in fn for x in ["department", "dept", "area", "team", "division", "unit"]):
+                      score += 5
+                  if any(x in fn for x in ["year", "quarter", "date", "review date", "assessment date"]):
+                      score += 3
+              return score
+
+          def summarize_scalar(fields):
+              out = {}
+              for k, v in fields.items():
+                  if isinstance(v, list):
+                      out[k] = v[:3]
+                  elif isinstance(v, dict):
+                      out[k] = {kk: vv for kk, vv in list(v.items())[:5]}
+                  else:
+                      out[k] = v
+              return out
+
+          token, bases = try_tokens()
+          OUT["bases"] = [{"id": b.get("id"), "name": b.get("name"), "permissionLevel": b.get("permissionLevel")} for b in bases]
+          save()
+
+          if not token:
+              raise RuntimeError("No working Airtable token")
+
+          base_candidates = []
+
+          for base in bases:
+              base_id = base.get("id")
+              base_name = base.get("name", "")
+              try:
+                  tables = get_tables(token, base_id)
+              except Exception as e:
+                  OUT["candidates"].append({"base": base_name, "base_id": base_id, "error": f"list tables failed: {e!r}"})
+                  save()
+                  continue
+
+              for table in tables:
+                  table_name = table.get("name", "")
+                  fields = table.get("fields", [])
+                  sscore = schema_score(base_name, table_name, fields)
+                  observations = []
+                  team_counts = {"sales": 0, "human resources": 0}
+                  sample_matches = []
+                  scanned = 0
+                  errors = None
+
+                  try:
+                      for rec in iter_records(token, base_id, table_name, max_pages=30):
+                          scanned += 1
+                          flat = flatten_value(rec.get("fields", {}))
+                          team = detect_team(flat)
+                          if not team:
+                              continue
+
+                          added = False
+                          for ws in detect_wide_scores(flat):
+                              if ws.get("year") == 2017 and ws.get("quarter") == 2:
+                                  obs = {
+                                      "record_id": rec.get("id"),
+                                      "team": team["team"],
+                                      "team_field": team["field"],
+                                      "team_value": team["value"],
+                                      "score": ws["value"],
+                                      "score_field": ws["field"],
+                                      "score_confidence": ws["score"],
+                                      "period_source": "field_name",
+                                  }
+                                  observations.append(obs)
+                                  team_counts[team["team"]] = team_counts.get(team["team"], 0) + 1
+                                  added = True
+                                  if len(sample_matches) < 5:
+                                      sample_matches.append({"match": obs, "record_fields": summarize_scalar(rec.get("fields", {}))})
+                          if added:
+                              continue
+
+                          period = detect_period(flat)
+                          if period.get("year") != 2017 or period.get("quarter") != 2:
+                              continue
+                          score = detect_score(flat)
+                          if not score:
+                              continue
+                          obs = {
+                              "record_id": rec.get("id"),
+                              "team": team["team"],
+                              "team_field": team["field"],
+                              "team_value": team["value"],
+                              "score": score["value"],
+                              "score_field": score["field"],
+                              "score_confidence": score["score"],
+                              "period_source": "record",
+                              "period_evidence": period,
+                          }
+                          observations.append(obs)
+                          team_counts[team["team"]] = team_counts.get(team["team"], 0) + 1
+                          if len(sample_matches) < 5:
+                              sample_matches.append({"match": obs, "record_fields": summarize_scalar(rec.get("fields", {}))})
+                  except Exception as e:
+                      errors = repr(e)
+
+                  by_team = {}
+                  for t in ["sales", "human resources"]:
+                      vals = [float(o["score"]) for o in observations if o["team"] == t]
+                      if vals:
+                          by_team[t] = {
+                              "count": len(vals),
+                              "average": sum(vals) / len(vals),
+                              "min": min(vals),
+                              "max": max(vals),
+                          }
+
+                  relevance = sscore + len(observations) * 3
+                  if "sales" in by_team and "human resources" in by_team:
+                      relevance += 120
+                  if errors:
+                      relevance -= 40
+
+                  candidate = {
+                      "base": base_name,
+                      "base_id": base_id,
+                      "table": table_name,
+                      "schema_score": sscore,
+                      "relevance": relevance,
+                      "scanned_records": scanned,
+                      "matched_records": len(observations),
+                      "by_team": by_team,
+                      "sample_matches": sample_matches,
+                  }
+                  if errors:
+                      candidate["error"] = errors
+
+                  OUT["candidates"].append(candidate)
+                  save()
+
+          valid = [
+              c for c in OUT["candidates"]
+              if isinstance(c, dict)
+              and c.get("by_team", {}).get("sales")
+              and c.get("by_team", {}).get("human resources")
+          ]
+          valid.sort(key=lambda c: (
+              -(c.get("relevance") or 0),
+              -((c.get("by_team", {}).get("sales", {}).get("count") or 0) + (c.get("by_team", {}).get("human resources", {}).get("count") or 0)),
+              c.get("base", ""),
+              c.get("table", ""),
+          ))
+
+          if not valid:
+              OUT["answer"] = None
+              OUT["selected"] = None
+              raise RuntimeError("No Airtable table produced both Sales and Human Resources Q2 2017 performance scores")
+
+          best = valid[0]
+          sales_avg = best["by_team"]["sales"]["average"]
+          hr_avg = best["by_team"]["human resources"]["average"]
+          if sales_avg >= hr_avg:
+              winner = "sales"
+              loser = "human resources"
+          else:
+              winner = "human resources"
+              loser = "sales"
+
+          OUT["selected"] = best
+          OUT["answer"] = {
+              "winner_area": winner,
+              "winner_average": round(best["by_team"][winner]["average"], 4),
+              "loser_area": loser,
+              "loser_average": round(best["by_team"][loser]["average"], 4),
+              "loser_lowest_individual_score": round(best["by_team"][loser]["min"], 4),
+              "basis": {
+                  "base": best["base"],
+                  "table": best["table"],
+                  "sales_count": best["by_team"]["sales"]["count"],
+                  "human_resources_count": best["by_team"]["human resources"]["count"],
+              },
+          }
+          save()
+          print(json.dumps(OUT["answer"], indent=2))
+          PY
+      - name: Commit output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add outputs/airtable_sales_hr_q2_2017.json .github/workflows/airtable_sales_hr_q2_2017.yml airtable_sales_hr_q2_2017_trigger.txt
+          git commit -m "Add Airtable Sales vs HR Q2 2017 answer workflow" || exit 0
+          git pull --rebase --autostash
+          git push
