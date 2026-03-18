@@ -1,0 +1,43 @@
+name: MarketingBudgetNotion
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/marketing_budget_notion.yml'
+      - 'scripts/answer_marketing_budget_notion.py'
+      - 'marketing_budget_notion_trigger.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  solve:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        run: |
+          pip install requests playwright >/dev/null
+          python -m playwright install --with-deps chromium
+      - name: Run notion query
+        run: |
+          python scripts/answer_marketing_budget_notion.py
+      - name: Commit result
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p outputs
+          git add outputs/marketing_budget_notion_answer.json
+          if git diff --cached --quiet; then
+            echo "No result changes to commit"
+            exit 0
+          fi
+          git commit -m "Update marketing budget notion answer"
+          git push
