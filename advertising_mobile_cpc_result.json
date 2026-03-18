@@ -1,0 +1,15 @@
+{
+  "started_at": "2026-03-18T23:55:27Z",
+  "space_id": "ce875c9f-0bd0-81a2-a27f-000358568e11",
+  "target_year": 2023,
+  "target_month": 12,
+  "question": "What is the average CPC from mobile devices for campaigns started in December 2023?",
+  "http_statuses": [
+    {
+      "step": "gmail_token",
+      "status": 400
+    }
+  ],
+  "error": "HTTPError('400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/advertising_mobile_cpc_notion.py\", line 331, in <module>\n    before = {m['id'] for m in gmail_list('subject:\"Your temporary Notion login code\" newer_than:7d', 50)}\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/advertising_mobile_cpc_notion.py\", line 60, in gmail_list\n    headers=gmail_headers(),\n            ^^^^^^^^^^^^^^^\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/advertising_mobile_cpc_notion.py\", line 53, in gmail_headers\n    _GMAIL_HEADERS = {'Authorization': f'Bearer {gtoken()}'}\n                                                 ^^^^^^^^\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/advertising_mobile_cpc_notion.py\", line 45, in gtoken\n    r.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token\n"
+}
