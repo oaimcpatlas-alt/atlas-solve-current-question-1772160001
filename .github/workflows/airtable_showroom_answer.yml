@@ -1,0 +1,418 @@
+name: AirtableShowroomAnswer
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/airtable_showroom_answer.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  solve:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+      AIRTABLE_PAT: ${{ secrets.AIRTABLE_PAT }}
+      AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Query Airtable and compute answer
+        run: |
+          python - <<'PY'
+          import os, json, urllib.request, urllib.error, urllib.parse, traceback, time, re
+          from datetime import datetime
+
+          OUT = {
+              "question": "max showroom visitors in a day in the month when Harper Lee died",
+              "assumed_month": 2,
+              "assumed_month_name": "February",
+              "author": "Harper Lee",
+              "death_date": "2016-02-19",
+              "started_at": datetime.utcnow().isoformat() + "Z",
+              "token_lengths": {k: len(os.environ.get(k, "")) for k in ["AIRTABLE_API_KEY", "AIRTABLE_PAT", "AIRTABLE_TOKEN"]},
+              "token_attempts": [],
+              "bases": [],
+              "candidates": [],
+          }
+
+          def save():
+              os.makedirs("outputs", exist_ok=True)
+              with open("outputs/airtable_showroom_answer.json", "w", encoding="utf-8") as f:
+                  json.dump(OUT, f, indent=2, ensure_ascii=False)
+
+          def req_json(url, token, params=None):
+              if params:
+                  url += ("&" if "?" in url else "?") + urllib.parse.urlencode(params)
+              req = urllib.request.Request(
+                  url,
+                  headers={
+                      "Authorization": f"Bearer {token}",
+                      "User-Agent": "python",
+                      "Content-Type": "application/json",
+                  },
+              )
+              with urllib.request.urlopen(req, timeout=120) as resp:
+                  body = resp.read()
+                  return json.loads(body.decode("utf-8"))
+
+          def try_tokens():
+              for name in ["AIRTABLE_API_KEY", "AIRTABLE_PAT", "AIRTABLE_TOKEN"]:
+                  token = os.environ.get(name, "")
+                  if not token:
+                      OUT["token_attempts"].append({"name": name, "status": "missing"})
+                      continue
+                  try:
+                      data = req_json("https://api.airtable.com/v0/meta/bases", token)
+                      OUT["token_attempts"].append({"name": name, "status": "ok", "base_count": len(data.get("bases", []))})
+                      return token, data.get("bases", [])
+                  except urllib.error.HTTPError as e:
+                      try:
+                          body = e.read().decode("utf-8")
+                      except Exception:
+                          body = ""
+                      OUT["token_attempts"].append({"name": name, "status": e.code, "body": body[:500]})
+                  except Exception as e:
+                      OUT["token_attempts"].append({"name": name, "status": "error", "error": repr(e)})
+              return None, []
+
+          def get_tables(token, base_id):
+              return req_json(f"https://api.airtable.com/v0/meta/bases/{base_id}/tables", token).get("tables", [])
+
+          def iter_records(token, base_id, table_name, max_pages=50):
+              # Airtable record endpoint under /v0/{base}/{table}
+              offset = None
+              pages = 0
+              encoded_table = urllib.parse.quote(table_name, safe="")
+              while True:
+                  params = {"pageSize": 100}
+                  if offset:
+                      params["offset"] = offset
+                  data = req_json(f"https://api.airtable.com/v0/{base_id}/{encoded_table}", token, params=params)
+                  for rec in data.get("records", []):
+                      yield rec
+                  offset = data.get("offset")
+                  pages += 1
+                  if not offset or pages >= max_pages:
+                      break
+
+          month_names = {
+              "jan": 1, "january": 1,
+              "feb": 2, "february": 2,
+              "mar": 3, "march": 3,
+              "apr": 4, "april": 4,
+              "may": 5,
+              "jun": 6, "june": 6,
+              "jul": 7, "july": 7,
+              "aug": 8, "august": 8,
+              "sep": 9, "sept": 9, "september": 9,
+              "oct": 10, "october": 10,
+              "nov": 11, "november": 11,
+              "dec": 12, "december": 12,
+          }
+
+          def norm(s):
+              return re.sub(r"[^a-z0-9]+", " ", str(s).lower()).strip()
+
+          def parse_month_from_value(v):
+              if v is None:
+                  return None
+              if isinstance(v, bool):
+                  return None
+              if isinstance(v, (int, float)):
+                  if 1 <= int(v) <= 12:
+                      return int(v)
+                  return None
+              s = str(v).strip()
+              if not s:
+                  return None
+              # ISO-like dates/times
+              try:
+                  ss = s.replace("Z", "+00:00")
+                  if "T" in ss or re.match(r"^\d{4}-\d{2}-\d{2}$", ss):
+                      dt = datetime.fromisoformat(ss)
+                      return dt.month
+              except Exception:
+                  pass
+              # Common date patterns
+              for fmts in [
+                  "%Y-%m-%d", "%m/%d/%Y", "%d/%m/%Y",
+                  "%m/%d/%y", "%d/%m/%y",
+                  "%b %d %Y", "%B %d %Y", "%d %b %Y", "%d %B %Y",
+                  "%b %d, %Y", "%B %d, %Y",
+              ]:
+                  try:
+                      return datetime.strptime(s, fmts).month
+                  except Exception:
+                      pass
+              sl = norm(s)
+              if sl in month_names:
+                  return month_names[sl]
+              # e.g., "Feb 2024" or "February sales"
+              for key,val in month_names.items():
+                  if re.search(rf"\b{re.escape(key)}\b", sl):
+                      return val
+              m = re.fullmatch(r"0?([1-9]|1[0-2])", sl)
+              if m:
+                  return int(m.group(1))
+              return None
+
+          def to_number(v):
+              if v is None or isinstance(v, bool):
+                  return None
+              if isinstance(v, (int, float)):
+                  return float(v)
+              s = str(v).strip()
+              if not s:
+                  return None
+              s = s.replace(",", "")
+              s = s.replace("$", "")
+              s = s.replace("%", "")
+              try:
+                  return float(s)
+              except Exception:
+                  return None
+
+          def field_score(name, table_name):
+              n = norm(name)
+              t = norm(table_name)
+              score = 0
+              if "visitor" in n:
+                  score += 5
+              if "showroom" in n:
+                  score += 5
+              if "show room" in n:
+                  score += 5
+              if "footfall" in n:
+                  score += 4
+              if "daily" in n:
+                  score += 1
+              if "showroom" in t or "show room" in t:
+                  score += 2
+              if "visitor" in t or "footfall" in t:
+                  score += 2
+              return score
+
+          def table_score(table_name, fields):
+              t = norm(table_name)
+              score = 0
+              if "showroom" in t or "show room" in t:
+                  score += 3
+              if "visitor" in t or "footfall" in t:
+                  score += 3
+              for f in fields:
+                  fn = f.get("name","")
+                  ft = f.get("type","")
+                  score += min(field_score(fn, table_name), 8)
+                  if ft in ("date", "dateTime", "createdTime", "lastModifiedTime"):
+                      score += 1
+              return score
+
+          def candidate_from_table(token, base, table):
+              fields = table.get("fields", [])
+              table_name = table.get("name", "")
+              tscore = table_score(table_name, fields)
+              numericish = []
+              monthish = []
+              dateish = []
+              all_field_names = [f.get("name","") for f in fields]
+              for f in fields:
+                  fname = f.get("name","")
+                  ftype = f.get("type","")
+                  n = norm(fname)
+                  fs = field_score(fname, table_name)
+                  # Potential numeric visitor fields
+                  if fs >= 5 or ("visitor" in n) or ("footfall" in n):
+                      numericish.append((fname, ftype, fs))
+                  # Potential month/date fields
+                  if ftype in ("date", "dateTime", "createdTime", "lastModifiedTime"):
+                      dateish.append(fname)
+                  if "date" in n or "day" in n:
+                      if fname not in dateish:
+                          dateish.append(fname)
+                  if "month" in n:
+                      monthish.append(fname)
+
+              if not numericish:
+                  return None
+
+              stats = {
+                  "base_id": base["id"],
+                  "base_name": base.get("name"),
+                  "table_name": table_name,
+                  "table_id": table.get("id"),
+                  "table_score": tscore,
+                  "fields": all_field_names,
+                  "numeric_candidates": [{"name": a, "type": b, "score": c} for a,b,c in numericish],
+                  "date_fields": dateish,
+                  "month_fields": monthish,
+                  "record_count_scanned": 0,
+                  "feb_record_count": 0,
+                  "field_maxima": {},
+                  "field_feb_samples": {},
+              }
+
+              maxima = {}
+              feb_samples = {}
+              try:
+                  for rec in iter_records(token, base["id"], table_name):
+                      stats["record_count_scanned"] += 1
+                      data = rec.get("fields", {})
+                      month = None
+
+                      # First inspect explicit month fields
+                      for fname in monthish:
+                          if fname in data:
+                              month = parse_month_from_value(data.get(fname))
+                              if month:
+                                  break
+                      # Then inspect date-like fields
+                      if month is None:
+                          for fname in dateish:
+                              if fname in data:
+                                  month = parse_month_from_value(data.get(fname))
+                                  if month:
+                                      break
+                      # Fallback: inspect any field named exactly Date/Month-ish or value that looks like an ISO date
+                      if month is None:
+                          for key, value in data.items():
+                              nk = norm(key)
+                              if nk in ("date", "month", "day"):
+                                  month = parse_month_from_value(value)
+                                  if month:
+                                      break
+
+                      if month != 2:
+                          continue
+
+                      stats["feb_record_count"] += 1
+                      for fname, ftype, fs in numericish:
+                          if fname not in data:
+                              continue
+                          num = to_number(data.get(fname))
+                          if num is None:
+                              continue
+                          if fname not in maxima or num > maxima[fname]:
+                              maxima[fname] = num
+                              feb_samples[fname] = {
+                                  "record_id": rec.get("id"),
+                                  "value": num,
+                                  "fields": data,
+                              }
+              except urllib.error.HTTPError as e:
+                  try:
+                      body = e.read().decode("utf-8")
+                  except Exception:
+                      body = ""
+                  stats["error"] = {"status": e.code, "body": body[:1000]}
+              except Exception as e:
+                  stats["error"] = {"error": repr(e), "traceback": traceback.format_exc()[:4000]}
+
+              stats["field_maxima"] = maxima
+              stats["field_feb_samples"] = feb_samples
+              if not maxima:
+                  return stats  # keep for debugging if candidate but no Feb records/max
+              # Select best field within table
+              best_field = None
+              best_rank = None
+              for fname, _ftype, fs in numericish:
+                  if fname not in maxima:
+                      continue
+                  # Prefer fields explicitly named showroom visitors, then larger field score, then larger max
+                  rank = (
+                      1 if ("showroom" in norm(fname) and "visitor" in norm(fname)) else 0,
+                      fs,
+                      maxima[fname],
+                  )
+                  if best_rank is None or rank > best_rank:
+                      best_rank = rank
+                      best_field = fname
+              stats["best_field"] = best_field
+              stats["best_value"] = maxima.get(best_field)
+              return stats
+
+          try:
+              token, bases = try_tokens()
+              OUT["bases"] = [{"id": b.get("id"), "name": b.get("name"), "permissionLevel": b.get("permissionLevel")} for b in bases]
+              if not token:
+                  OUT["error"] = "No working Airtable token found"
+                  save()
+                  raise SystemExit(0)
+
+              for base in bases:
+                  try:
+                      tables = get_tables(token, base["id"])
+                  except urllib.error.HTTPError as e:
+                      try:
+                          body = e.read().decode("utf-8")
+                      except Exception:
+                          body = ""
+                      OUT.setdefault("base_errors", []).append({"base": base, "status": e.code, "body": body[:500]})
+                      continue
+                  except Exception as e:
+                      OUT.setdefault("base_errors", []).append({"base": base, "error": repr(e)})
+                      continue
+
+                  base_info = next((b for b in OUT["bases"] if b["id"] == base["id"]), None)
+                  if base_info is not None:
+                      base_info["tables"] = [{"id": t.get("id"), "name": t.get("name"), "field_names": [f.get("name","") for f in t.get("fields", [])]} for t in tables]
+
+                  for table in tables:
+                      cand = candidate_from_table(token, base, table)
+                      if cand is not None:
+                          OUT["candidates"].append(cand)
+                          save()
+
+              # Choose best candidate overall
+              best = None
+              best_rank = None
+              for cand in OUT["candidates"]:
+                  val = cand.get("best_value")
+                  field = cand.get("best_field")
+                  if val is None or not field:
+                      continue
+                  fnorm = norm(field)
+                  tnorm = norm(cand.get("table_name",""))
+                  rank = (
+                      1 if ("showroom" in fnorm and "visitor" in fnorm) else 0,
+                      1 if ("showroom" in tnorm) else 0,
+                      cand.get("table_score", 0),
+                      cand.get("numeric_candidates", [{}])[0].get("score", 0) if cand.get("numeric_candidates") else 0,
+                      val,
+                  )
+                  if best_rank is None or rank > best_rank:
+                      best_rank = rank
+                      best = cand
+
+              OUT["selected_candidate"] = best
+              OUT["answer"] = None if not best else best.get("best_value")
+              if best:
+                  OUT["answer_context"] = {
+                      "base_name": best.get("base_name"),
+                      "table_name": best.get("table_name"),
+                      "field_name": best.get("best_field"),
+                      "value": best.get("best_value"),
+                      "feb_record_count": best.get("feb_record_count"),
+                  }
+          except SystemExit:
+              pass
+          except Exception as e:
+              OUT["fatal_error"] = {"error": repr(e), "traceback": traceback.format_exc()[:10000]}
+          finally:
+              OUT["finished_at"] = datetime.utcnow().isoformat() + "Z"
+              save()
+          PY
+      - name: Commit result
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add outputs/airtable_showroom_answer.json
+          git commit -m "Add Airtable showroom answer" || exit 0
+          git pull --rebase --autostash origin main || true
+          git push || true
