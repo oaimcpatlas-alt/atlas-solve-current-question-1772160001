@@ -1,0 +1,11 @@
+{
+  "started_at": "2026-03-18T23:42:52Z",
+  "has_google_client_id": false,
+  "has_google_client_secret": false,
+  "has_google_refresh_token": false,
+  "gmail_token_status": 400,
+  "gmail_token_text": "{\n  \"error\": \"invalid_request\",\n  \"error_description\": \"Missing required parameter: refresh_token\"\n}",
+  "error": "400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 120, in <module>\n  File \"<stdin>\", line 78, in latest_reset_details\n  File \"<stdin>\", line 37, in gmail_list\n  File \"<stdin>\", line 33, in refresh_access_token\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token\n",
+  "finished_at": "2026-03-18T23:42:52Z"
+}
