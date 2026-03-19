@@ -26,7 +26,8 @@ jobs:
       - name: Install deps
         run: |
           python -m pip install requests >/dev/null 2>&1
-          npm install mongodb ws >/dev/null 2>&1      - name: Authenticate and refresh browser cookies
+          npm install mongodb ws >/dev/null 2>&1
+      - name: Authenticate and refresh browser cookies
         run: |
           cat > /tmp/browser_query.py <<'PY'
 
@@ -379,8 +380,6 @@ jobs:
           python /tmp/browser_query.py
           test -f browser_cookies.json || (echo 'browser_cookies.json missing' && exit 1)
           test -f browser_state.json || true
-
-      - name: Run query via Atlas browser proxy
 
       - name: Run query via Atlas browser proxy
         env:
