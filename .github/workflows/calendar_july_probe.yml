@@ -1,0 +1,101 @@
+name: calendar-july-probe
+
+on:
+  push:
+    branches: [ calendar-july-probe-1773940744 ]
+    paths:
+      - '.github/workflows/calendar_july_probe.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe July 2025 calendar
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os, json, requests, traceback
+          out = {
+              "has_client_id": bool(os.getenv("GOOGLE_CLIENT_ID")),
+              "has_client_secret": bool(os.getenv("GOOGLE_CLIENT_SECRET")),
+              "has_refresh_token": bool(os.getenv("GOOGLE_REFRESH_TOKEN")),
+          }
+          try:
+              if not (out["has_client_id"] and out["has_client_secret"] and out["has_refresh_token"]):
+                  raise RuntimeError("missing one or more GOOGLE_* secrets")
+              r = requests.post(
+                  "https://oauth2.googleapis.com/token",
+                  data={
+                      "client_id": os.environ["GOOGLE_CLIENT_ID"],
+                      "client_secret": os.environ["GOOGLE_CLIENT_SECRET"],
+                      "refresh_token": os.environ["GOOGLE_REFRESH_TOKEN"],
+                      "grant_type": "refresh_token",
+                  },
+                  timeout=30,
+              )
+              out["token_status"] = r.status_code
+              out["token_text"] = r.text[:1000]
+              r.raise_for_status()
+              access_token = r.json()["access_token"]
+              headers = {"Authorization": f"Bearer {access_token}"}
+              params = {
+                  "timeMin": "2025-07-01T00:00:00Z",
+                  "timeMax": "2025-08-01T00:00:00Z",
+                  "singleEvents": "true",
+                  "orderBy": "startTime",
+                  "maxResults": "250",
+              }
+              ev = requests.get(
+                  "https://www.googleapis.com/calendar/v3/calendars/primary/events",
+                  headers=headers,
+                  params=params,
+                  timeout=30,
+              )
+              out["events_status"] = ev.status_code
+              out["events_text"] = ev.text[:12000]
+              ev.raise_for_status()
+              items = ev.json().get("items", [])
+              simplified = []
+              for e in items:
+                  simplified.append({
+                      "id": e.get("id"),
+                      "summary": e.get("summary"),
+                      "start": e.get("start"),
+                      "end": e.get("end"),
+                      "location": e.get("location"),
+                      "description": (e.get("description") or "")[:1000],
+                  })
+              out["events"] = simplified
+              def match(e):
+                  text = " ".join([
+                      e.get("summary") or "",
+                      e.get("description") or "",
+                      e.get("location") or "",
+                  ]).lower()
+                  return ("clinical" in text) or ("round" in text)
+              out["filtered_events"] = [e for e in simplified if match(e)]
+          except Exception as e:
+              out["error"] = repr(e)
+              out["traceback"] = traceback.format_exc()
+          with open("calendar_july_probe_output.json", "w", encoding="utf-8") as f:
+              json.dump(out, f, indent=2)
+          PY
+      - name: Commit output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add calendar_july_probe_output.json
+          git commit -m "Add calendar July probe output" || exit 0
+          git push
