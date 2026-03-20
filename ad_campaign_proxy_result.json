@@ -1,8 +1,8 @@
 {
-  "started_at": "2026-03-04T00:41:04.603Z",
+  "started_at": "2026-03-20T06:17:43.437Z",
   "target": "Average CPC from mobile devices for campaigns started in December 2023",
   "cookieHeaderLength": 371,
   "error": "Unexpected server response: 303",
   "stack": "MongoServerSelectionError: Unexpected server response: 303\n    at Topology.selectServer (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:347:38)\n    at async Topology._connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:220:28)\n    at async Topology.connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/sdam/topology.js:171:13)\n    at async topologyConnect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:258:17)\n    at async MongoClient._connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:271:13)\n    at async MongoClient.connect (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/node_modules/mongodb/lib/mongo_client.js:196:13)\n    at async main (/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/scripts/proxy_ad_scan.js:270:5)",
-  "finished_at": "2026-03-04T00:42:04.651Z"
+  "finished_at": "2026-03-20T06:18:43.486Z"
 }
