@@ -1,0 +1,42 @@
+name: museum-brunch-walk
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/museum_brunch_walk.yml'
+      - 'museum_brunch_walk.py'
+      - 'museum_brunch_walk_trigger.txt'
+permissions:
+  contents: write
+jobs:
+  run:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        run: pip install requests
+      - name: Run query
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+        run: |
+          python museum_brunch_walk.py || true
+          test -f museum_brunch_walk_result.json && cat museum_brunch_walk_result.json | head -c 80000 || true
+      - name: Commit outputs
+        if: always()
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .github/workflows/museum_brunch_walk.yml museum_brunch_walk.py museum_brunch_walk_trigger.txt museum_brunch_walk_result.json
+          git commit -m "Run museum brunch walk query" || exit 0
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0 || true
+            sleep 15
+          done
+          exit 0
