@@ -1,6 +1,6 @@
 {
   "question": "I'm auditing how the marketing departments non recurring budget allocations have changed over the years. According to our financial records in the database, how much did the total budget allocated to non recurring marketing transactions vary between January 2020 and January 2021, depending on the transaction dates? Was it an increase or decrease, and by what percentage?",
-  "started_at": "2026-03-18T23:40:40.848281+00:00",
+  "started_at": "2026-03-20T06:24:34.311520+00:00",
   "token_lengths": {
     "AIRTABLE_API_KEY": 0,
     "AIRTABLE_PAT": 0,
