@@ -1,0 +1,10 @@
+{
+  "started_at": "2026-03-20T14:19:51.485161Z",
+  "question": "Average monthly rent and standard deviation for furnished four bedroom apartments over 2000 square feet with premium amenities built in the 2010s",
+  "has_google_client_id": false,
+  "has_google_client_secret": false,
+  "has_google_refresh_token": false,
+  "error": "Missing GOOGLE_* secrets",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/furnished_4br_secret_query.py\", line 350, in <module>\n    ok,msg = query_with_email(email)\n             ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/furnished_4br_secret_query.py\", line 161, in query_with_email\n    before={m['id'] for m in gmail_list('subject:\"Your temporary Notion login code\" newer_than:2d', 100)}\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/furnished_4br_secret_query.py\", line 58, in gmail_list\n    headers=gmail_headers(), timeout=30)\n            ^^^^^^^^^^^^^^^\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/furnished_4br_secret_query.py\", line 52, in gmail_headers\n    _GMAIL_HEADERS={'Authorization': f'Bearer {gtoken()}'}\n                                               ^^^^^^^^\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/furnished_4br_secret_query.py\", line 37, in gtoken\n    raise RuntimeError('Missing GOOGLE_* secrets')\nRuntimeError: Missing GOOGLE_* secrets\n",
+  "finished_at": "2026-03-20T14:19:51.485692Z"
+}

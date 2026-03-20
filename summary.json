@@ -1,0 +1,10 @@
+{
+  "error": "Missing GOOGLE_* secrets",
+  "chosen_email": null,
+  "rows_fetched": null,
+  "match_count": null,
+  "average_monthly_rent": null,
+  "population_standard_deviation": null,
+  "sample_standard_deviation": null,
+  "results_so_far": null
+}
