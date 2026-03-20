@@ -1,0 +1,10 @@
+{
+  "started_at": "2026-03-20T06:15:33.048267Z",
+  "token_status": 400,
+  "token_body": {
+    "error": "invalid_request",
+    "error_description": "Missing required parameter: refresh_token"
+  },
+  "error": "HTTPError('400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/museum_brunch_walk.py\", line 66, in <module>\n    token = refresh_access_token()\n            ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/atlas-solve-current-question-1772160001/atlas-solve-current-question-1772160001/museum_brunch_walk.py\", line 22, in refresh_access_token\n    r.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token\n"
+}
